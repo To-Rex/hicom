@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -243,7 +244,9 @@ class UserPage extends StatelessWidget {
                                       color: Theme.of(context).colorScheme.onBackground,
                                       size: _getController.height.value * 0.04),
                                   title: 'Dastur mavzusi'.tr,
-                                  onTap: () {},
+                                  onTap: () {
+                                    AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
+                                  },
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: true,
                                   isLanguage: false
