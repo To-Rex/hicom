@@ -7,6 +7,7 @@ import 'package:hicom/resource/colors.dart';
 import 'package:hicom/splash_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../controllers/get_controller.dart';
+import 'package:share_link/share_link.dart';
 
 class UserPage extends StatelessWidget {
   UserPage({super.key});
@@ -229,7 +230,6 @@ class UserPage extends StatelessWidget {
                                   icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Qo\'llab quvvatlash'.tr,
                                   onTap: () {
-                                    //SupportPage
                                     Get.to(() => SupportPage(),
                                       transition: Transition.fadeIn
                                     );
@@ -251,7 +251,16 @@ class UserPage extends StatelessWidget {
                               SettingsItem(
                                   icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dasturni ulashish'.tr,
-                                  onTap: () {},
+                                  onTap: () {
+                                    /*final result = await ShareLink.shareUri(
+                                      Uri.parse('https://2312.nl'),
+                                      subject: '2312.nl website',
+                                      shareOrigin: shareButtonKey.absolutePositionBounds,
+                                    );*/
+                                    ShareLink.shareUri(
+                                        Uri.parse('https://hicom.uz/'),
+                                    );
+                                  },
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: false,
                                   isLanguage: false
