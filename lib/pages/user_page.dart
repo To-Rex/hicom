@@ -192,7 +192,9 @@ class UserPage extends StatelessWidget {
                             children: [
                               SettingsItem(
                                   icon: Icon(
-                                      Theme.of(context).brightness != Brightness.dark ? Icons.wb_sunny_outlined : Icons.nightlight_outlined,
+                                      Theme.of(context).brightness != Brightness.dark
+                                          ? TablerIcons.sun
+                                          : TablerIcons.moon,
                                       color: Theme.of(context).colorScheme.onBackground,
                                       size: _getController.height.value * 0.04),
                                   title: 'Dastur mavzusi'.tr,
@@ -201,7 +203,10 @@ class UserPage extends StatelessWidget {
                                 isNightMode: true),
                               const Divider(),
                               SettingsItem(
-                                  icon: Icon(Icons.language, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                  icon: Icon(
+                                      TablerIcons.language,
+                                      //TablerIcons.world,
+                                      color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dastur tili'.tr,
                                   onTap: () {
                                     bottomBuildLanguageDialog(context);
@@ -209,7 +214,7 @@ class UserPage extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.onBackground, isNightMode: false),
                               const Divider(),
                               SettingsItem(
-                                  icon: Icon(Icons.question_mark_outlined, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                  icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Foydalanish yo\'riqnomasi'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
@@ -217,7 +222,7 @@ class UserPage extends StatelessWidget {
                               ),
                               const Divider(),
                               SettingsItem(
-                                  icon: Icon(Icons.headphones_outlined, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                  icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Qo\'llab quvvatlash'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
@@ -225,7 +230,7 @@ class UserPage extends StatelessWidget {
                               ),
                               const Divider(),
                               SettingsItem(
-                                  icon: Icon(Icons.star_outline_rounded, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                  icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dasturni baholash'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
@@ -233,7 +238,7 @@ class UserPage extends StatelessWidget {
                               ),
                               const Divider(),
                               SettingsItem(
-                                  icon: Icon(Icons.share_outlined, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                  icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dasturni ulashish'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
