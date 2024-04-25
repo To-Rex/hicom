@@ -82,7 +82,8 @@ class SupportPage extends StatelessWidget {
                   },
                   icon: Icon(
                       TablerIcons.brand_telegram,
-                      color: Theme.of(context).colorScheme.onBackground,
+                      //color: Theme.of(context).colorScheme.onBackground,
+                      color: AppColors.primaryColor,
                       size: _getController.height.value * 0.04)
               ),
               SizedBox(width: Get.width * 0.01),
@@ -91,7 +92,8 @@ class SupportPage extends StatelessWidget {
                     launchUrl(Uri.parse('https://m.facebook.com/hicom.uz'));
                   },
                   icon: Icon(TablerIcons.brand_facebook,
-                      color: Theme.of(context).colorScheme.onBackground,
+                      //color: Theme.of(context).colorScheme.onBackground,
+                      color: AppColors.primaryColor,
                       size: _getController.height.value * 0.04)
               ),
               SizedBox(width: Get.width * 0.01),
@@ -100,7 +102,8 @@ class SupportPage extends StatelessWidget {
                     launchUrl(Uri.parse('https://www.instagram.com/hicom.uz/'));
                   },
                   icon: Icon(TablerIcons.brand_instagram,
-                      color: Theme.of(context).colorScheme.onBackground,
+                      //color: Theme.of(context).colorScheme.onBackground,
+                      color: AppColors.primaryColor,
                       size: _getController.height.value * 0.04)
               ),
             ],
