@@ -18,6 +18,9 @@ class LocaleString extends Translations{
       'Tahrirlash' : 'Tahrirlash',
       'Qidirish' : 'Qidirish',
       'Tilni tanlang' : 'Tilni tanlang',
+      'Bog\'lanish' : 'Bog\'lanish',
+      'Web sahifa' : 'Web sahifa',
+      'Manzil' : 'Manzil',
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -34,6 +37,9 @@ class LocaleString extends Translations{
       'Tahrirlash' : 'Edit',
       'Qidirish' : 'Search',
       'Tilni tanlang' : 'Choose language',
+      'Bog\'lanish' : 'Contact',
+      'Web sahifa' : 'Website',
+      'Manzil' : 'Address',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -50,6 +56,9 @@ class LocaleString extends Translations{
       'Tahrirlash' : 'Таҳрирлаш',
       'Qidirish' : 'Қидириш',
       'Tilni tanlang' : 'Тилни танланг',
+      'Bog\'lanish' : 'Боғланиш',
+      'Web sahifa' : 'Веб саҳифа',
+      'Manzil' : 'Манзил',
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -66,6 +75,9 @@ class LocaleString extends Translations{
       'Tahrirlash' : 'Редактирование',
       'Qidirish' : 'Поиск',
       'Tilni tanlang' : 'Выберите язык',
+      'Bog\'lanish' : 'Связь',
+      'Web sahifa' : 'Веб сайт',
+      'Manzil' : 'Адрес',
     }
   };
 
