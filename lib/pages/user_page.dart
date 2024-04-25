@@ -252,10 +252,7 @@ class UserPage extends StatelessWidget {
                                   icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dasturni ulashish'.tr,
                                   onTap: () {
-                                    ShareLink.shareUri(
-                                      Uri.parse('https://hicom.uz/'),
-                                      subject: 'Hicom.uz',
-                                    );
+                                    ShareLink.shareUri(Uri.parse('https://hicom.uz/'), subject: 'Hicom.uz');
                                   },
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: false,
