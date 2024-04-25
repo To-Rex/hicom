@@ -10,6 +10,8 @@ import '../controllers/get_controller.dart';
 import 'package:share_link/share_link.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import 'instruction_page.dart';
+
 class UserPage extends StatelessWidget {
   UserPage({super.key});
 
@@ -255,7 +257,10 @@ class UserPage extends StatelessWidget {
                               SettingsItem(
                                   icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Foydalanish yo\'riqnomasi'.tr,
-                                  onTap: () {},
+                                  onTap: () {
+                                    //InstructionPage
+                                    Get.to(() => InstructionPage(), transition: Transition.fadeIn);
+                                  },
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: false,
                                   isLanguage: false
