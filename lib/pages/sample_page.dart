@@ -13,7 +13,7 @@ class SamplePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr)),
+          title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))),
           leading: Obx(() => IconButton(
             icon: Icon(_getController.isSearch.value ? Icons.arrow_back: Icons.account_circle_outlined, size: _getController.height.value * 0.035),
             onPressed: () => {

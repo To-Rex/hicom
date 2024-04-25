@@ -16,7 +16,9 @@ class SupportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Support'),
+        title: Text('Qo\'llab quvvatlash'.tr,
+          style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),
+        ),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -44,39 +46,33 @@ class SupportPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SettingsSupportItem(
-                        icon: Icon(
-                            TablerIcons.device_mobile,
-                            color: AppColors.primaryColor,
-                            size: _getController.height.value * 0.04),
-                        title: 'Bog\'lanish'.tr,
-                        onTap: () {},
-                        color: Theme.of(context).colorScheme.onBackground,
-                        isNightMode: false,
-                        isLanguage: false
+                      icon: Icon(TablerIcons.device_mobile, color: AppColors.primaryColor, size: _getController.height.value * 0.04),
+                      title: 'Bog\'lanish'.tr,
+                      onTap: () {},
+                      color: Theme.of(context).colorScheme.onBackground,
+                      isNightMode: false,
+                      isLanguage: false,
+                      subTitle: '+998 (91) 684 81 00',
                     ),
                     const Divider(),
                     SettingsSupportItem(
-                        icon: Icon(
-                            TablerIcons.app_window,
-                            color: AppColors.primaryColor,
-                            size: _getController.height.value * 0.04),
-                        title: 'Web sahifa'.tr,
-                        onTap: () {},
-                        color: Theme.of(context).colorScheme.onBackground,
-                        isNightMode: false,
-                        isLanguage: false
+                      icon: Icon(TablerIcons.app_window, color: AppColors.primaryColor, size: _getController.height.value * 0.04),
+                      title: 'Web sahifa'.tr,
+                      onTap: () {},
+                      color: Theme.of(context).colorScheme.onBackground,
+                      isNightMode: false,
+                      isLanguage: false,
+                      subTitle: 'https://hicom.uz/',
                     ),
                     const Divider(),
                     SettingsSupportItem(
-                        icon: Icon(
-                            TablerIcons.map_pin,
-                            color: AppColors.primaryColor,
-                            size: _getController.height.value * 0.04),
-                        title: 'Manzil'.tr,
-                        onTap: () {},
-                        color: Theme.of(context).colorScheme.onBackground,
-                        isNightMode: false,
-                        isLanguage: false
+                      icon: Icon(TablerIcons.map_pin, color: AppColors.primaryColor, size: _getController.height.value * 0.04),
+                      title: 'Manzil'.tr,
+                      onTap: () {},
+                      color: Theme.of(context).colorScheme.onBackground,
+                      isNightMode: false,
+                      isLanguage: false,
+                      subTitle: 'Qo\'qon shaxar, A.Navoiy, 12 uy.',
                     ),
                   ])),
         ],
