@@ -6,7 +6,9 @@ class EditUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mening hisobim'.tr),
+        title: Text('Hisobni taxrirlash'.tr,
+          style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20),
+        ),
         centerTitle: true,
         leading: IconButton(icon: Icon(Icons.arrow_back, size: 30), onPressed: () => Get.back()),
       ),
