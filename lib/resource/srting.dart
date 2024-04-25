@@ -25,6 +25,8 @@ class LocaleString extends Translations{
       'Yuborildi' : 'Yuborildi',
       'Hisobni taxrirlash' : 'Hisobni taxrirlash',
       'Ism va familiya' : 'Ism va familiya',
+      'Kiriting' : 'Kiriting',
+      'Mamlakat' : 'Mamlakat',
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -48,6 +50,8 @@ class LocaleString extends Translations{
       'Yuborildi' : 'Sent',
       'Hisobni taxrirlash' : 'Edit Account',
       'Ism va familiya' : 'Name and surname',
+      'Kiriting' : 'Enter',
+      'Mamlakat' : 'Country',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -71,6 +75,8 @@ class LocaleString extends Translations{
       'Yuborildi' : 'Юборилди',
       'Hisobni taxrirlash' : 'Хисобни таҳрирлаш',
       'Ism va familiya' : 'Исм и фамилия',
+      'Kiriting' : 'Киритинг',
+      'Mamlakat' : 'Маълакат',
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -94,6 +100,8 @@ class LocaleString extends Translations{
       'Yuborildi' : 'Отправлено',
       'Hisobni taxrirlash' : 'Изменить аккаунт',
       'Ism va familiya' : 'Имя и фамилия',
+      'Kiriting' : 'Ввести',
+      'Mamlakat' : 'Страна',
     }
   };
 

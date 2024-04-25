@@ -41,6 +41,30 @@ class EditUser extends StatelessWidget {
                   children: [
                     SizedBox(height: _getController.height.value * 0.01),
                     Text('${'Ism va familiya'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+                    SizedBox(height: _getController.height.value * 0.01),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: TextField(
+                        controller: _getController.nameController,
+                        decoration: InputDecoration(
+                          fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                          filled: true,
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                          hintText: 'Kiriting'.tr,
+                          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: _getController.width.value * 0.04)
+                        ),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)
+                      )
+                    ),
+                    SizedBox(height: _getController.height.value * 0.01),
+                    Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+                    SizedBox(height: _getController.height.value * 0.01),
+
                   ]
                 )
               )
