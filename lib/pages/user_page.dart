@@ -146,7 +146,9 @@ class UserPage extends StatelessWidget {
                                     ],
                                   ),
                                   const Spacer(),
-                                  Icon(Icons.account_circle, color: AppColors.primaryColor, size: _getController.height.value * 0.08),
+                                  Icon(
+                                      Icons.account_circle,
+                                      color: AppColors.primaryColor, size: _getController.height.value * 0.08),
                                 ],
                               ),
                               SizedBox(height: _getController.height.value * 0.01),
@@ -160,7 +162,9 @@ class UserPage extends StatelessWidget {
                                   overlayColor: MaterialStateProperty.all(Colors.transparent),
                                   child: Row(
                                       children: [
-                                        Icon(Icons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
+                                        Icon(
+                                            TablerIcons.logout,
+                                            color: AppColors.red, size: _getController.height.value * 0.035),
                                         SizedBox(width: _getController.height.value * 0.01),
                                         Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
                                       ]
@@ -200,25 +204,29 @@ class UserPage extends StatelessWidget {
                                   title: 'Dastur mavzusi'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
-                                isNightMode: true),
+                                  isNightMode: true,
+                                  isLanguage: false
+                              ),
                               const Divider(),
                               SettingsItem(
                                   icon: Icon(
-                                      TablerIcons.language,
-                                      //TablerIcons.world,
+                                      TablerIcons.world,
                                       color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dastur tili'.tr,
                                   onTap: () {
                                     bottomBuildLanguageDialog(context);
                                   },
-                                  color: Theme.of(context).colorScheme.onBackground, isNightMode: false),
+                                  color: Theme.of(context).colorScheme.onBackground, isNightMode: false,
+                                  isLanguage: true
+                              ),
                               const Divider(),
                               SettingsItem(
                                   icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Foydalanish yo\'riqnomasi'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false
+                                  isNightMode: false,
+                                  isLanguage: false
                               ),
                               const Divider(),
                               SettingsItem(
@@ -226,7 +234,8 @@ class UserPage extends StatelessWidget {
                                   title: 'Qo\'llab quvvatlash'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false
+                                  isNightMode: false,
+                                  isLanguage: false
                               ),
                               const Divider(),
                               SettingsItem(
@@ -234,7 +243,8 @@ class UserPage extends StatelessWidget {
                                   title: 'Dasturni baholash'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false
+                                  isNightMode: false,
+                                  isLanguage: false
                               ),
                               const Divider(),
                               SettingsItem(
@@ -242,7 +252,8 @@ class UserPage extends StatelessWidget {
                                   title: 'Dasturni ulashish'.tr,
                                   onTap: () {},
                                   color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false
+                                  isNightMode: false,
+                                  isLanguage: false
                               ),
                             ]))
                   ],

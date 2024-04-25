@@ -13,8 +13,9 @@ class SettingsItem extends StatelessWidget {
   Function onTap;
   Color color;
   bool isNightMode;
+  bool isLanguage;
 
-  SettingsItem({super.key, required this.icon, required this.title, required this.onTap, required this.color, required this.isNightMode});
+  SettingsItem({super.key, required this.icon, required this.title, required this.onTap, required this.color, required this.isNightMode, required this.isLanguage});
 
   final GetController _getController = Get.put(GetController());
 
@@ -27,6 +28,8 @@ class SettingsItem extends StatelessWidget {
           SizedBox(width: _getController.width.value * 0.03),
           Text(title, style: TextStyle(color: color, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
           const Spacer(),
+          if (isLanguage)
+            Text(Get.locale == const Locale('uz', 'UZ') ? 'O\'zbekcha' : Get.locale == const Locale('oz', 'OZ') ? 'Узбекча' : Get.locale == const Locale('ru', 'RU') ? 'Русский' : 'English', style: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5), fontSize: _getController.width.value * 0.035, fontWeight: FontWeight.w500)),
           if (!isNightMode)
             IconButton(onPressed: () => onTap(),icon: Icon(Icons.chevron_right, size: _getController.height.value * 0.035, color: color))
           else
@@ -39,11 +42,11 @@ class SettingsItem extends StatelessWidget {
               trackColor: AppColors.grey.withOpacity(0.5),
               focusColor: AppColors.green,
               thumbColor: Theme.of(context).colorScheme.surface,
-              applyTheme: true,
+              applyTheme: true
             )
-        ],
+        ]
       ),
-      onTap: () => onTap(),
+      onTap: () => onTap()
     );
   }
 }
