@@ -64,7 +64,6 @@ class EditUser extends StatelessWidget {
                     SizedBox(height: _getController.height.value * 0.01),
                     Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                     SizedBox(height: _getController.height.value * 0.01),
-
                   ]
                 )
               )
