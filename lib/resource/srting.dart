@@ -24,6 +24,7 @@ class LocaleString extends Translations{
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : 'Qo\'qon shaxar, A.Navoiy, 12 uy.',
       'Yuborildi' : 'Yuborildi',
       'Hisobni taxrirlash' : 'Hisobni taxrirlash',
+      'Ism va familiya' : 'Ism va familiya',
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -46,6 +47,7 @@ class LocaleString extends Translations{
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : '12th Street, A.Navoiy, Qo\'qon city.',
       'Yuborildi' : 'Sent',
       'Hisobni taxrirlash' : 'Edit Account',
+      'Ism va familiya' : 'Name and surname',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -68,6 +70,7 @@ class LocaleString extends Translations{
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : 'Қўқон шахар, А.Навой, 12 уй.',
       'Yuborildi' : 'Юборилди',
       'Hisobni taxrirlash' : 'Хисобни таҳрирлаш',
+      'Ism va familiya' : 'Исм и фамилия',
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -90,6 +93,7 @@ class LocaleString extends Translations{
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : 'город Коканд, улица А. Навоий, дом 12.',
       'Yuborildi' : 'Отправлено',
       'Hisobni taxrirlash' : 'Изменить аккаунт',
+      'Ism va familiya' : 'Имя и фамилия',
     }
   };
 
