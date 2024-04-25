@@ -8,6 +8,7 @@ import 'package:hicom/splash_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../controllers/get_controller.dart';
 import 'package:share_link/share_link.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class UserPage extends StatelessWidget {
   UserPage({super.key});
@@ -90,13 +91,53 @@ class UserPage extends StatelessWidget {
     );
   }
 
-  void _onLoading() async {
-    _getController.refreshController.loadComplete();
+  void showRateDialog(BuildContext context) {
+    Get.defaultDialog(
+      title: 'Dasturni baholash'.tr,
+      titleStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+      backgroundColor: Theme.of(context).colorScheme.background,
+        confirm: ElevatedButton(
+            onPressed: () => Get.back(),
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                backgroundColor: Colors.red,
+                minimumSize: Size(_getController.width.value * 0.4, _getController.height.value * 0.05),
+            ),
+            child: Text('Bekor qilish'.tr)
+        ),
+
+        content: Column(
+        children: [
+          RatingBar.builder(
+            initialRating: 3,
+            minRating: 0,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+            itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+            onRatingUpdate: (rating) => {
+              Get.back(),
+              Get.showSnackbar(
+                GetSnackBar(
+                  title: 'Dasturni baholash'.tr,
+                  message: 'Yuborildi'.tr,
+                  backgroundColor: AppColors.black70.withOpacity(0.7),
+                  duration: const Duration(seconds: 2),
+                  margin: const EdgeInsets.all(10.0),
+                  borderRadius: 10.0
+                )
+              )
+            }
+          ),
+          SizedBox(height: _getController.height.value * 0.01),
+        ]
+      )
+    );
   }
 
-  void _getData() {
-    _getController.refreshController.refreshCompleted();
-  }
+  void _onLoading() => _getController.refreshController.loadComplete();
+  void _getData() => _getController.refreshController.refreshCompleted();
 
   @override
   Widget build(BuildContext context) {
@@ -234,7 +275,9 @@ class UserPage extends StatelessWidget {
                               SettingsItem(
                                   icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dasturni baholash'.tr,
-                                  onTap: () {},
+                                  onTap: () {
+                                    showRateDialog(context);
+                                  },
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: false,
                                   isLanguage: false

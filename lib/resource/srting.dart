@@ -22,6 +22,7 @@ class LocaleString extends Translations{
       'Web sahifa' : 'Web sahifa',
       'Manzil' : 'Manzil',
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : 'Qo\'qon shaxar, A.Navoiy, 12 uy.',
+      'Yuborildi' : 'Yuborildi',
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -42,6 +43,7 @@ class LocaleString extends Translations{
       'Web sahifa' : 'Website',
       'Manzil' : 'Address',
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : '12th Street, A.Navoiy, Qo\'qon city.',
+      'Yuborildi' : 'Sent',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -62,6 +64,7 @@ class LocaleString extends Translations{
       'Web sahifa' : 'Веб саҳифа',
       'Manzil' : 'Манзил',
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : 'Қўқон шахар, А.Навой, 12 уй.',
+      'Yuborildi' : 'Юборилди',
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -82,6 +85,7 @@ class LocaleString extends Translations{
       'Web sahifa' : 'Веб сайт',
       'Manzil' : 'Адрес',
       'Qo\'qon shaxar, A.Navoiy, 12 uy.' : 'город Коканд, улица А. Навоий, дом 12.',
+      'Yuborildi' : 'Отправлено',
     }
   };
 
