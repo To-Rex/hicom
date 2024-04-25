@@ -10,6 +10,7 @@ import '../controllers/get_controller.dart';
 import 'package:share_link/share_link.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import 'edit_user.dart';
 import 'instruction_page.dart';
 
 class UserPage extends StatelessWidget {
@@ -199,7 +200,9 @@ class UserPage extends StatelessWidget {
                               SizedBox(height: _getController.height.value * 0.01),
                               ElevatedButton(
                                   style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(() => EditUser(), transition: Transition.fadeIn);
+                                  },
                                   child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: _getController.height.value * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))),
                               SizedBox(height: _getController.height.value * 0.01),
                               const Divider(),
