@@ -162,18 +162,13 @@ class UserPage extends StatelessWidget {
                                   overlayColor: MaterialStateProperty.all(Colors.transparent),
                                   child: Row(
                                       children: [
-                                        Icon(
-                                            TablerIcons.logout,
-                                            color: AppColors.red, size: _getController.height.value * 0.035),
+                                        Icon(TablerIcons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
                                         SizedBox(width: _getController.height.value * 0.01),
                                         Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
                                       ]
                                   ),
-                                  onTap: () => Get.offAll(
-                                      () => SplashScreen()
-                                  )
+                                  onTap: () => Get.offAll(() => SplashScreen())
                               )
-
                             ])),
                     SizedBox(height: _getController.height.value * 0.02),
                     Container(
@@ -255,7 +250,7 @@ class UserPage extends StatelessWidget {
                                   isNightMode: false,
                                   isLanguage: false
                               ),
-                            ]))
+                            ])),
                   ],
                 ))));
   }
