@@ -182,7 +182,6 @@ class UserPage extends StatelessWidget {
                             children: [
                               SettingsItem(
                                   icon: Icon(
-                                      //Icons.nightlight_outlined,
                                       Theme.of(context).brightness != Brightness.dark ? Icons.wb_sunny_outlined : Icons.nightlight_outlined,
                                       color: Theme.of(context).colorScheme.onBackground,
                                       size: _getController.height.value * 0.04),
@@ -196,7 +195,6 @@ class UserPage extends StatelessWidget {
                                   title: 'Dastur tili'.tr,
                                   onTap: () {
                                     bottomBuildLanguageDialog(context);
-                                    //buildLanguageDialog(context);
                                   },
                                   color: Theme.of(context).colorScheme.onBackground, isNightMode: false),
                               const Divider(),
