@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../models/districts_model.dart';
+import '../models/province_model.dart';
+
 
 class GetController extends GetxController {
   var height = 0.0.obs;
@@ -20,6 +23,17 @@ class GetController extends GetxController {
     super.onInit();
     height.value = Get.height;
     width.value = Get.width;
+  }
+
+  var districtsModel = DistrictsModel().obs;
+  var provinceModel = ProvinceModel().obs;
+
+  void changeDistrictsModel(DistrictsModel districtsModel) {
+    this.districtsModel.value = districtsModel;
+  }
+
+  void changeProvinceModel(ProvinceModel provinceModel) {
+    this.provinceModel.value = provinceModel;
   }
 
   String getQueryString(String action, String uid) {

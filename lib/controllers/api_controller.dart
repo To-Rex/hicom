@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hicom/controllers/tea.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'get_controller.dart';
@@ -13,6 +14,8 @@ class ApiController extends GetxController {
   static const String _baseUrl = 'http://185.196.213.76:8000/SSC_Switch/hicom?';
   static const String key = '50UvFayZ2w5u3O9B';
   static const String _switchPassword = '123456';
+
+  final GetController getController = Get.put(GetController());
 
   //show toast message
   void showToast(context,String title,String message, error,sec) {
@@ -36,7 +39,6 @@ class ApiController extends GetxController {
     );
   }
 
-  
   void showDialogConnectivity(context) {
     showDialog(
       context: context,
@@ -57,5 +59,10 @@ class ApiController extends GetxController {
     );
   }
 
+  Future<void> getData(data) async {
+    var response = await get(Uri.parse('${_baseUrl+getController.getQueryString('regions', 'null') + data}&key=$key'));
+    debugPrint(response.body);
+    _getController.fullName.value = TEA.decryptTEA(response.body);
+  }
 
 }
