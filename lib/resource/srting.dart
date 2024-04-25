@@ -1,0 +1,72 @@
+import 'package:get/get.dart';
+
+class LocaleString extends Translations{
+  @override
+  Map<String, Map<String, String>> get keys => {
+    'uz_UZ':{
+      'Dilshodjon Haydarov':'Dilshodjon Haydarov',
+      'versiya':'Versiyasi 1.0.0',
+      'Loyihalar ro\'yxati':'Loyihalar ro\'yxati',
+      'Mening hisobim':'Mening hisobim',
+      'Hisobdan chiqish':'Hisobdan chiqish',
+      'Dastur mavzusi' : 'Dastur mavzusi',
+      'Dastur tili' : 'Dastur tili',
+      'Foydalanish yo\'riqnomasi' : 'Foydalanish yo\'riqnomasi',
+      'Qo\'llab quvvatlash':'Qo\'llab quvvatlash',
+      'Dasturni baholash' : 'Dasturni baholash',
+      'Dasturni ulashish' : 'Dasturni ulashish',
+      'Tahrirlash' : 'Tahrirlash',
+      'Qidirish' : 'Qidirish',
+      'Tilni tanlang' : 'Tilni tanlang',
+    },
+    'en_EN':{
+      'Dilshodjon Haydarov':'Dilshodjon Haydarov',
+      'versiya':'Version 1.0.0',
+      'Loyihalar ro\'yxati':'List of projects',
+      'Mening hisobim':'My account',
+      'Hisobdan chiqish':'Log out',
+      'Dastur mavzusi' : 'program topic',
+      'Dastur tili' : 'Program language',
+      'Foydalanish yo\'riqnomasi' : 'Instructions for use',
+      'Qo\'llab quvvatlash' : 'Support',
+      'Dasturni baholash' : 'Publishing program',
+      'Dasturni ulashish' : 'Share program',
+      'Tahrirlash' : 'Edit',
+      'Qidirish' : 'Search',
+      'Tilni tanlang' : 'Choose language',
+    },
+    'oz_OZ':{
+      'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
+      'versiya':'Версияси 1.0.0',
+      'Loyihalar ro\'yxati':'Лойихалар ройхати',
+      'Mening hisobim':'Менинг хисобим',
+      'Hisobdan chiqish':'Хисобдан чиқиш',
+      'Dastur mavzusi' : 'Дастур мавзуси',
+      'Dastur tili' : 'Дастур тили',
+      'Foydalanish yo\'riqnomasi' : 'Фоидалиш йориқномаси',
+      'Qo\'llab quvvatlash':'Қўллаб қувватлаш',
+      'Dasturni baholash' : 'Дастурни баҳолаш',
+      'Dasturni ulashish' : 'Дастурни улаштиш',
+      'Tahrirlash' : 'Таҳрирлаш',
+      'Qidirish' : 'Қидириш',
+      'Tilni tanlang' : 'Тилни танланг',
+    },
+    'ru_RU':{
+      'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
+      'versiya':'Версия 1.0.0',
+      'Loyihalar ro\'yxati':'Список проектов',
+      'Mening hisobim':'Мой аккаунт',
+      'Hisobdan chiqish':'Выход',
+      'Dastur mavzusi' : 'Тема программы',
+      'Dastur tili' : 'Язык программы',
+      'Foydalanish yo\'riqnomasi' : 'Инструкция по использованию',
+      'Qo\'llab quvvatlash':'Поддержка',
+      'Dasturni baholash' : 'Оценка программы',
+      'Dasturni ulashish' : 'Поделиться программой',
+      'Tahrirlash' : 'Редактирование',
+      'Qidirish' : 'Поиск',
+      'Tilni tanlang' : 'Выберите язык',
+    }
+  };
+
+}
