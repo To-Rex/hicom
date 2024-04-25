@@ -193,9 +193,7 @@ class UserPage extends StatelessWidget {
                             children: [
                               SettingsItem(
                                   icon: Icon(
-                                      Theme.of(context).brightness != Brightness.dark
-                                          ? TablerIcons.sun
-                                          : TablerIcons.moon,
+                                      Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon,
                                       color: Theme.of(context).colorScheme.onBackground,
                                       size: _getController.height.value * 0.04),
                                   title: 'Dastur mavzusi'.tr,
@@ -206,13 +204,9 @@ class UserPage extends StatelessWidget {
                               ),
                               const Divider(),
                               SettingsItem(
-                                  icon: Icon(
-                                      TablerIcons.world,
-                                      color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                  icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dastur tili'.tr,
-                                  onTap: () {
-                                    bottomBuildLanguageDialog(context);
-                                  },
+                                  onTap: () {bottomBuildLanguageDialog(context);},
                                   color: Theme.of(context).colorScheme.onBackground, isNightMode: false,
                                   isLanguage: true
                               ),
@@ -230,9 +224,7 @@ class UserPage extends StatelessWidget {
                                   icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Qo\'llab quvvatlash'.tr,
                                   onTap: () {
-                                    Get.to(() => SupportPage(),
-                                      transition: Transition.fadeIn
-                                    );
+                                    Get.to(() => SupportPage(), transition: Transition.fadeIn);
                                   },
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: false,
