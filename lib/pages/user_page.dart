@@ -66,7 +66,7 @@ class UserPage extends StatelessWidget {
                                                       if (locale[index]['locale'] == Get.locale)
                                                         Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground),
                                                       if (locale[index]['locale'] != Get.locale)
-                                                        Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground),
+                                                        Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
                                                     ]
                                                 )
                                             )
