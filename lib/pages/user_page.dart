@@ -250,8 +250,13 @@ class UserPage extends StatelessWidget {
                                   isNightMode: false,
                                   isLanguage: false
                               ),
-                            ])),
-                  ],
-                ))));
+                            ]
+                        )
+                    )
+                  ]
+                )
+            )
+        )
+    );
   }
 }
