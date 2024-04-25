@@ -3,6 +3,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/set_item.dart';
 import 'package:hicom/resource/colors.dart';
+import 'package:hicom/splash_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../controllers/get_controller.dart';
 
@@ -155,11 +156,20 @@ class UserPage extends StatelessWidget {
                                   child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: _getController.height.value * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))),
                               SizedBox(height: _getController.height.value * 0.01),
                               const Divider(),
-                              Row(children: [
-                                Icon(Icons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
-                                SizedBox(width: _getController.height.value * 0.01),
-                                Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
-                              ])
+                              InkWell(
+                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                  child: Row(
+                                      children: [
+                                        Icon(Icons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
+                                        SizedBox(width: _getController.height.value * 0.01),
+                                        Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
+                                      ]
+                                  ),
+                                  onTap: () => Get.offAll(
+                                      () => SplashScreen()
+                                  )
+                              )
+
                             ])),
                     SizedBox(height: _getController.height.value * 0.02),
                     Container(
