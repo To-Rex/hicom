@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/set_item.dart';
+import 'package:hicom/pages/support_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:hicom/splash_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -227,7 +228,12 @@ class UserPage extends StatelessWidget {
                               SettingsItem(
                                   icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Qo\'llab quvvatlash'.tr,
-                                  onTap: () {},
+                                  onTap: () {
+                                    //SupportPage
+                                    Get.to(() => SupportPage(),
+                                      transition: Transition.fadeIn
+                                    );
+                                  },
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: false,
                                   isLanguage: false
