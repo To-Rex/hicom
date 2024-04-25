@@ -9,7 +9,10 @@ import 'get_controller.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
-  static const String _baseUrl = 'https://ildizkitoblari.uz';
+
+  static const String _baseUrl = 'http://185.196.213.76:8000/SSC_Switch/hicom?';
+  static const String key = '50UvFayZ2w5u3O9B';
+  static const String _switchPassword = '123456';
 
   //show toast message
   void showToast(context,String title,String message, error,sec) {

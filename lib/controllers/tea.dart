@@ -2,6 +2,8 @@
 import'dart:convert';
 import 'dart:typed_data';
 
+import 'package:hicom/controllers/api_controller.dart';
+
 class TEA {
   static const int TIMES = 32; // 迭代次数，不可修改
   static const int DELTA = 0x9e3779b9; // 这是算法标准给的值，不可修改
@@ -184,13 +186,13 @@ class TEA {
       }
   }
 
-  static String encryptTEA(String data, String key) {
-    List<int> bytes = encrypt(data.codeUnits, key.codeUnits, true);
+  static String encryptTEA(String data) {
+    List<int> bytes = encrypt(data.codeUnits, ApiController.key.codeUnits, true);
     return String.fromCharCodes(bytes as Iterable<int>);
   }
 
-  static String decryptTEA(String data, String key) {
-    List<int> bytes = decrypt(data.codeUnits, key.codeUnits, true);
+  static String decryptTEA(String data) {
+    List<int> bytes = decrypt(data.codeUnits, ApiController.key.codeUnits, true);
     return String.fromCharCodes(bytes as Iterable<int>);
   }
 

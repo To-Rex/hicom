@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hicom/pages/user_page.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../companents/search_fild.dart';
 import '../controllers/get_controller.dart';
 
@@ -8,7 +10,9 @@ class SamplePage extends StatelessWidget {
   SamplePage({super.key});
 
   final GetController _getController = Get.put(GetController());
-
+  void _onLoading() => _getController.refreshController.loadComplete();
+  void _getData() => _getController.refreshController.refreshCompleted();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +40,36 @@ class SamplePage extends StatelessWidget {
             )
           ]
         ),
+        body: SmartRefresher(
+            enablePullDown: true,
+            enablePullUp: true,
+            physics: const BouncingScrollPhysics(),
+            header: CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
+            footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
+            onLoading: _onLoading,
+            onRefresh: _getData,
+            controller: _getController.refreshController,
+            child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                    children: [
+                      Text(_getController.fullName.value,
 
-        body: const Center(
-          child: Text('Sample Page'),
+                      ),
+                      SizedBox(height: _getController.height.value * 0.02),
+                      //copi text to clipboard
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.blue,
+                        ),
+                        onPressed: () async {
+                          await Clipboard.setData(ClipboardData(text: _getController.fullName.value));
+                        }, child:
+                        Text('Copi'.tr),
+                      )
+                    ]
+                )
+            )
         ),
         floatingActionButton: FloatingActionButton(
           shape: const CircleBorder(),
