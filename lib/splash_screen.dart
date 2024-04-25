@@ -14,9 +14,9 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    TEA.encryptTEA('salom', '50UvFayZ2w5u3O9B');
+    //TEA.encryptTEA('salom', '50UvFayZ2w5u3O9B');
 
-    debugPrint('salom::  ====  ${TEA.encryptTEA('salom', '50UvFayZ2w5u3O9B')}');
+    //debugPrint('salom::  ====  ${TEA.encryptTEA('salom', '50UvFayZ2w5u3O9B')}');
 
     Future.delayed(const Duration(seconds: 1), () {
       Get.off(
