@@ -93,7 +93,9 @@ class ApiController extends GetxController {
                                         onTap: () {
                                           setState(() {
                                             _getController.changeDropDownItems(0, index);
-                                            ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
+                                            //ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
+                                            print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id);
+                                            ApiController().getData(TEA.encryptTEA('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}'), 'districts');
                                           });
                                         },
                                       child: Padding(
@@ -134,7 +136,83 @@ class ApiController extends GetxController {
                               child: Obx(() => ListView.builder(
                                   itemCount: _getController.districtsModel.value.districts!.length,
                                   itemBuilder: (context, index) {
-                                    if (_getController.districtsModel.value.districts![index].regionId == _getController.provinceModel.value.regions![_getController.dropDownItems[0]].id) {
+                                    return InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            _getController.changeDropDownItems(1, index);
+                                          });
+                                        },
+                                        child: Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                            child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                      height: _getController
+                                                          .height.value *
+                                                          0.01),
+                                                  Container(
+                                                      height: _getController
+                                                          .height.value *
+                                                          0.04,
+                                                      width: _getController
+                                                          .width.value,
+                                                      margin: EdgeInsets.only(
+                                                          bottom: _getController
+                                                              .height.value *
+                                                              0.01),
+                                                      child: Center(
+                                                          child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  _getController
+                                                                      .districtsModel
+                                                                      .value
+                                                                      .districts![index]
+                                                                      .name
+                                                                      .toString(),
+                                                                  style: TextStyle(
+                                                                      color: Theme
+                                                                          .of(
+                                                                          context)
+                                                                          .colorScheme
+                                                                          .onBackground,
+                                                                      fontSize: _getController
+                                                                          .width
+                                                                          .value *
+                                                                          0.04),),
+                                                                const Spacer(),
+                                                                if (_getController
+                                                                    .dropDownItems[1] ==
+                                                                    index)
+                                                                  Icon(
+                                                                      TablerIcons
+                                                                          .circle_check,
+                                                                      color: Theme
+                                                                          .of(
+                                                                          context)
+                                                                          .colorScheme
+                                                                          .onBackground)
+                                                                else
+                                                                  Icon(
+                                                                      TablerIcons
+                                                                          .circle,
+                                                                      color: Theme
+                                                                          .of(
+                                                                          context)
+                                                                          .colorScheme
+                                                                          .onBackground
+                                                                          .withOpacity(
+                                                                          0.5))
+                                                              ]
+                                                          )
+                                                      )
+                                                  ),
+                                                  //if (_getController.state.length - 1 != index)
+                                                  const Divider()
+                                                ]
+                                            )
+                                        )
+                                    );
+                                    /*if (_getController.districtsModel.value.districts![index].regionId == _getController.provinceModel.value.regions![_getController.dropDownItems[0]].id) {
                                       return InkWell(
                                           onTap: () {
                                             setState(() {
@@ -213,7 +291,7 @@ class ApiController extends GetxController {
                                       );
                                     } else{
                                       return Container();
-                                    }
+                                    }*/
                                   }
                               ))
                           )

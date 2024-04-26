@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hicom/controllers/tea.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../companents/dropdown_item.dart';
@@ -19,7 +20,7 @@ class EditUser extends StatelessWidget {
   var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
-    ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
+    ApiController().getData('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
     ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions');
     return Scaffold(
       appBar: AppBar(
@@ -88,7 +89,7 @@ class EditUser extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 bottomSheetWidth: _getController.width.value,
                                 padding: EdgeInsets.only(top: _getController.height.value * 0.02),
-                                backgroundColor: Theme.of(context).colorScheme.background,
+                                //backgroundColor: Theme.of(context).colorScheme.background,
                                 flagSize: _getController.width.value * 0.06,
                                 inputDecoration: InputDecoration(
                                   fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
@@ -120,14 +121,14 @@ class EditUser extends StatelessWidget {
                         DropdownItem(
                             title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                             onTap: () => {
-                              ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0)
+                              ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
                             }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                       SizedBox(height: _getController.height.value * 0.01),
                       if (_getController.districtsModel.value.districts != null)
                         DropdownItem(
-                            title: _getController.getDistrictsItem(_getController.dropDownItems[1]).toString(),
+                            title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
                             onTap: () => {
                               ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1)
                             }),

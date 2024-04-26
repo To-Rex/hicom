@@ -47,19 +47,6 @@ class GetController extends GetxController {
     this.districtsModel.value = districtsModel;
   }
 
-
-  String? getDistrictsItem(int id) {
-    String? name = "";
-
-    final selectedRegionId = provinceModel.value.regions?[dropDownItems[0]].id;
-    final sortedDistricts = districtsModel.value.districts?.where((district) =>
-    district.regionId == selectedRegionId).toList();
-
-    name = sortedDistricts![id].name;
-    return name;
-  }
-
-
   void changeProvinceModel(ProvinceModel provinceModel) {
     this.provinceModel.value = provinceModel;
   }
