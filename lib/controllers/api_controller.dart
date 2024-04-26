@@ -61,9 +61,10 @@ class ApiController extends GetxController {
     );
   }
 
+  
+
   Future<void> getData(data,act) async {
-    var response = await get(Uri.parse('${_baseUrl+getController.getQueryString('regions', 'null') + data}&key=$key'));
-    debugPrint(response.body);
+    var response = await get(Uri.parse('${_baseUrl+getController.getQueryString(act, 'null') + data}&key=$key'));
     _getController.fullName.value = TEA.decryptTEA(response.body);
     if (response.statusCode == 200) {
       if (act == 'regions') {

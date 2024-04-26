@@ -12,22 +12,11 @@ class GetController extends GetxController {
   var fullName = 'Dilshodjon Haydarov'.obs;
   var isSearch = false.obs;
   var isNightMode = false.obs;
-  /*List dropDownItems = <int>[0,0,0,0].obs;
-
-
-  void changeDropDownItems(int index) {
-    //dropDownItems edit index value
-
-  }*/
-
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
 
   void changeDropDownItems(int index, int newValue) {
     if (index >= 0 && index < dropDownItems.length) {
-      print('Index: $index, Value: $newValue');
       dropDownItems[index] = newValue;
-    } else {
-      print('Index out of range');
     }
   }
   //change fullName

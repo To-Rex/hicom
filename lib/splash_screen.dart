@@ -16,7 +16,6 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions');
 
     Future.delayed(const Duration(seconds: 1), () {
       Get.off(SamplePage(), transition: Transition.fadeIn);
