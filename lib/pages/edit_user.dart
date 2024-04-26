@@ -118,9 +118,10 @@ class EditUser extends StatelessWidget {
                             contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                           ),
                           style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
-                          value: _getController.provinceModel.value.regions![0].name,
+                          value: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name,
                           onChanged: (String? newValue) {
-                            _getController.provinceModel.value.regions![0].name = newValue!;
+                            _getController.changeDropDownItems(1, _getController.provinceModel.value.regions!.indexWhere((region) => region.name == newValue));
+                            debugPrint(_getController.dropDownItems[1].toString());
                           },
                           items: _getController.provinceModel.value.regions!.map((e) => DropdownMenuItem(
                               value: e.name,
