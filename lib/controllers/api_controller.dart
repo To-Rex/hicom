@@ -72,7 +72,7 @@ class ApiController extends GetxController {
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return SizedBox(
-                  height: _getController.height.value * 0.6,
+                  height: _getController.height.value * 0.7,
                   width: double.infinity,
                   child: Column(
                       children: [
@@ -82,19 +82,18 @@ class ApiController extends GetxController {
                             margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03),
                             decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(10.0))
                         ),
-                        Text(title.toString().tr,
-                          style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045),
-                        ),
+                        Text(title.toString().tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
                         SizedBox(height: _getController.height.value * 0.02),
-                        //if (cat == 0)
-                          /*Expanded(
+                        if (cat == 0)
+                          Expanded(
                               child: ListView.builder(
-                                  itemCount: _getController.state.length,
+                                  itemCount: _getController.provinceModel.value.regions!.length,
                                   itemBuilder: (context, index) {
                                     return InkWell(
                                         onTap: () {
                                           setState(() {
                                             _getController.changeDropDownItems(0, index);
+                                            ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
                                           });
                                         },
                                       child: Padding(
@@ -109,7 +108,7 @@ class ApiController extends GetxController {
                                                   child: Center(
                                                     child: Row(
                                                         children: [
-                                                          Text(_getController.state[index].toString().tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
+                                                          Text(_getController.provinceModel.value.regions![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
                                                           const Spacer(),
                                                           if (_getController.dropDownItems[0] == index)
                                                             Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
@@ -119,15 +118,147 @@ class ApiController extends GetxController {
                                                     )
                                                   )
                                               ),
-                                              //if (_getController.state.length - 1 != index)
-                                                const Divider()
+                                              if (_getController.provinceModel.value.regions!.length - 1 != index)
+                                                const Divider(),
+                                              if (_getController.provinceModel.value.regions!.length - 1 == index)
+                                                SizedBox(height: _getController.height.value * 0.01),
                                             ]
                                         )
                                       )
                                     );
                                   }
                               )
-                          )*/
+                          )
+                        else if (cat == 1)
+                          Expanded(
+                              child: Obx(() => ListView.builder(
+                                  itemCount: _getController.districtsModel.value.districts!.length,
+                                  itemBuilder: (context, index) {
+                                    if (_getController.districtsModel.value.districts![index].regionId == _getController.provinceModel.value.regions![_getController.dropDownItems[0]].id) {
+                                      return InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              _getController.changeDropDownItems(1, index);
+                                            });
+                                          },
+                                          child: Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                              child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                        height: _getController
+                                                            .height.value *
+                                                            0.01),
+                                                    Container(
+                                                        height: _getController
+                                                            .height.value *
+                                                            0.04,
+                                                        width: _getController
+                                                            .width.value,
+                                                        margin: EdgeInsets.only(
+                                                            bottom: _getController
+                                                                .height.value *
+                                                                0.01),
+                                                        child: Center(
+                                                            child: Row(
+                                                                children: [
+                                                                  Text(
+                                                                    _getController
+                                                                        .districtsModel
+                                                                        .value
+                                                                        .districts![index]
+                                                                        .name
+                                                                        .toString(),
+                                                                    style: TextStyle(
+                                                                        color: Theme
+                                                                            .of(
+                                                                            context)
+                                                                            .colorScheme
+                                                                            .onBackground,
+                                                                        fontSize: _getController
+                                                                            .width
+                                                                            .value *
+                                                                            0.04),),
+                                                                  const Spacer(),
+                                                                  if (_getController
+                                                                      .dropDownItems[1] ==
+                                                                      index)
+                                                                    Icon(
+                                                                        TablerIcons
+                                                                            .circle_check,
+                                                                        color: Theme
+                                                                            .of(
+                                                                            context)
+                                                                            .colorScheme
+                                                                            .onBackground)
+                                                                  else
+                                                                    Icon(
+                                                                        TablerIcons
+                                                                            .circle,
+                                                                        color: Theme
+                                                                            .of(
+                                                                            context)
+                                                                            .colorScheme
+                                                                            .onBackground
+                                                                            .withOpacity(
+                                                                            0.5))
+                                                                ]
+                                                            )
+                                                        )
+                                                    ),
+                                                    //if (_getController.state.length - 1 != index)
+                                                    const Divider()
+                                                  ]
+                                              )
+                                          )
+                                      );
+                                    } else{
+                                      return Container();
+                                    }
+                                  }
+                              ))
+                          )
+                        else
+                          Expanded(
+                              child: ListView.builder(
+                                  itemCount: _getController.dropDownItem.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            _getController.changeDropDownItems(2, index);
+                                          });
+                                        },
+                                        child: Padding(
+                                            padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                            child: Column(
+                                                children: [
+                                                  SizedBox(height: _getController.height.value * 0.01),
+                                                  Container(
+                                                      height: _getController.height.value * 0.04,
+                                                      width: _getController.width.value,
+                                                      margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
+                                                      child: Center(
+                                                          child: Row(
+                                                              children: [
+                                                                Text(_getController.dropDownItem[index].tr,style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
+                                                                const Spacer(),
+                                                                if (_getController.dropDownItems[2] == index)
+                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
+                                                                else
+                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                              ]
+                                                          )
+                                                      )
+                                                  ),
+                                                  if (_getController.dropDownItem.length - 1 != index)
+                                                    const Divider()
+                                                ]
+                                            )
+                                        )
+                                    );
+                                  }
+                              )
+                          )
                       ]
                   )
               );
@@ -137,11 +268,17 @@ class ApiController extends GetxController {
 
   Future<void> getData(data,act) async {
     var response = await get(Uri.parse('${_baseUrl+getController.getQueryString(act, 'null') + data}&key=$key'));
-    _getController.fullName.value = TEA.decryptTEA(response.body);
+
     if (response.statusCode == 200) {
       if (act == 'regions') {
+        _getController.clearProvinceModel();
         _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(TEA.decryptTEA(response.body))));
+        debugPrint(TEA.decryptTEA(response.body).toString());
+        debugPrint('====================================================================================');
       }else if (act == 'districts') {
+        _getController.clearDistrictsModel();
+        debugPrint(TEA.decryptTEA(response.body).toString());
+        _getController.fullName.value = TEA.decryptTEA(response.body);
         _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(TEA.decryptTEA(response.body))));
       }
     }else {

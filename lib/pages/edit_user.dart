@@ -19,8 +19,8 @@ class EditUser extends StatelessWidget {
   var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
-    ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions');
     ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
+    ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions');
     return Scaffold(
       appBar: AppBar(
           title: Text('Hisobni taxrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.05, fontWeight: FontWeight.w500)),
@@ -111,28 +111,27 @@ class EditUser extends StatelessWidget {
                       SizedBox(height: _getController.height.value * 0.01),
                       if (_getController.provinceModel.value.regions != null)
                         DropdownItem(
-                            title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
+                            title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                             onTap: () => {
-                              print('Uzbekistan'),
-                              ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,1)
+                              ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0)
                             }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                       SizedBox(height: _getController.height.value * 0.01),
                       if (_getController.districtsModel.value.districts != null)
                         DropdownItem(
-                            title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
+                            title: _getController.getDistrictsItem(_getController.dropDownItems[1]).toString(),
                             onTap: () => {
-                              ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,2)
+                              ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1)
                             }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                       SizedBox(height: _getController.height.value * 0.01),
                       if (_getController.districtsModel.value.districts != null)
                         DropdownItem(
-                            title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
+                            title: _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
                             onTap: () => {
-                              ApiController().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,3)
+                              ApiController().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
                             }),
                       SizedBox(height: _getController.height.value * 0.05),
                       ElevatedButton(

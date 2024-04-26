@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import '../models/districts_model.dart';
 import '../models/province_model.dart';
 
@@ -14,6 +13,8 @@ class GetController extends GetxController {
   var isNightMode = false.obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
+  RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
+
 
   void changeDropDownItems(int index, int newValue) {
     if (index >= 0 && index < dropDownItems.length) {
@@ -27,7 +28,7 @@ class GetController extends GetxController {
     }
   }
 
-  //change fullName
+
   changeFullName(String name) {
     fullName.value = name;
   }
@@ -46,8 +47,29 @@ class GetController extends GetxController {
     this.districtsModel.value = districtsModel;
   }
 
+
+  String? getDistrictsItem(int id) {
+    String? name = "";
+
+    final selectedRegionId = provinceModel.value.regions?[dropDownItems[0]].id;
+    final sortedDistricts = districtsModel.value.districts?.where((district) =>
+    district.regionId == selectedRegionId).toList();
+
+    name = sortedDistricts![id].name;
+    return name;
+  }
+
+
   void changeProvinceModel(ProvinceModel provinceModel) {
     this.provinceModel.value = provinceModel;
+  }
+
+  void clearProvinceModel() {
+    provinceModel.value = ProvinceModel();
+  }
+
+  void clearDistrictsModel() {
+    districtsModel.value = DistrictsModel();
   }
 
   String getQueryString(String action, String uid) {
