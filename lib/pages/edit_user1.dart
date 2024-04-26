@@ -24,8 +24,8 @@ class EditUser1 extends StatelessWidget {
   var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
-    ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions');
-    ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
+    ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions');
+    ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
     return Scaffold(
       appBar: AppBar(
           title: Text('Hisobni taxrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.05, fontWeight: FontWeight.w500)),

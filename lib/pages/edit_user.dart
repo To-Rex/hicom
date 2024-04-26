@@ -20,8 +20,8 @@ class EditUser extends StatelessWidget {
   var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
-    ApiController().getData('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
-    ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions');
+    ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions');
+    ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
     return Scaffold(
       appBar: AppBar(
           title: Text('Hisobni taxrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.05, fontWeight: FontWeight.w500)),
@@ -109,9 +109,9 @@ class EditUser extends StatelessWidget {
                             if (_getController.dropDownItemsTitle[0] != 'Uzbekistan'){
                               _getController.clearDistrictsModel(),
                               _getController.clearProvinceModel()
-                            }else{
-                              ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts'),
-                              ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions')
+                            } else {
+                              ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions'),
+                              ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts')
                             }
                       }),
                       SizedBox(height: _getController.height.value * 0.01),

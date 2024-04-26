@@ -90,7 +90,7 @@ class ApiController extends GetxController {
                                         onTap: () {
                                           setState(() {
                                             _getController.changeDropDownItems(0, index);
-                                            ApiController().getData(TEA.encryptTEA('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}'), 'districts');
+                                            ApiController().getRegions(TEA.encryptTEA('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}'), 'districts');
                                           });
                                         },
                                       child: Padding(
@@ -339,7 +339,7 @@ class ApiController extends GetxController {
     );
   }
 
-  Future<void> getData(data,act) async {
+  Future<void> getRegions(data,act) async {
     var response = await get(
         Uri.parse('${_baseUrl+getController.getQueryString(act, 'null') + data}&key=$key'),
         headers: {
