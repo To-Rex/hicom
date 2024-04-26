@@ -6,6 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import '../models/districts_model.dart';
+import '../models/province_model.dart';
 import 'get_controller.dart';
 
 class ApiController extends GetxController {
@@ -59,10 +61,19 @@ class ApiController extends GetxController {
     );
   }
 
-  Future<void> getData(data) async {
+  Future<void> getData(data,act) async {
     var response = await get(Uri.parse('${_baseUrl+getController.getQueryString('regions', 'null') + data}&key=$key'));
     debugPrint(response.body);
     _getController.fullName.value = TEA.decryptTEA(response.body);
+    if (response.statusCode == 200) {
+      if (act == 'regions') {
+        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(response.body)));
+      } else if (act == 'districts') {
+        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(response.body)));
+      }
+    }else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
   }
 
 }

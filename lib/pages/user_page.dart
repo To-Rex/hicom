@@ -140,8 +140,10 @@ class UserPage extends StatelessWidget {
     );
   }
 
-  void _onLoading() => _getController.refreshController.loadComplete();
-  void _getData() => _getController.refreshController.refreshCompleted();
+  final _refreshController = RefreshController(initialRefresh: false);
+
+  void _onLoading() => _refreshController.loadComplete();
+  void _getData() => _refreshController.refreshCompleted();
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +160,7 @@ class UserPage extends StatelessWidget {
             footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
             onLoading: _onLoading,
             onRefresh: _getData,
-            controller: _getController.refreshController,
+            controller: _refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
