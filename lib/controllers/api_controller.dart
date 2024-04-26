@@ -3,14 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
 import '../models/districts_model.dart';
 import '../models/province_model.dart';
 import 'get_controller.dart';
-import 'package:country_picker/country_picker.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
@@ -93,8 +90,6 @@ class ApiController extends GetxController {
                                         onTap: () {
                                           setState(() {
                                             _getController.changeDropDownItems(0, index);
-                                            //ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
-                                            print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id);
                                             ApiController().getData(TEA.encryptTEA('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}'), 'districts');
                                           });
                                         },
@@ -345,19 +340,26 @@ class ApiController extends GetxController {
   }
 
   Future<void> getData(data,act) async {
-    var response = await get(Uri.parse('${_baseUrl+getController.getQueryString(act, 'null') + data}&key=$key'));
-
+    var response = await get(
+        Uri.parse('${_baseUrl+getController.getQueryString(act, 'null') + data}&key=$key'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+        }
+    );
+    //encode the data utf8.encode
     if (response.statusCode == 200) {
       if (act == 'regions') {
         _getController.clearProvinceModel();
-        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(TEA.decryptTEA(response.body))));
+        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))));
         debugPrint(TEA.decryptTEA(response.body).toString());
         debugPrint('====================================================================================');
       }else if (act == 'districts') {
         _getController.clearDistrictsModel();
         debugPrint(TEA.decryptTEA(response.body).toString());
         _getController.fullName.value = TEA.decryptTEA(response.body);
-        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(TEA.decryptTEA(response.body))));
+        //_getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(TEA.decryptTEA(response.body))));
+        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))));
       }
     }else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
