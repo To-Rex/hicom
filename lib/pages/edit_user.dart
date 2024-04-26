@@ -73,7 +73,7 @@ class EditUser extends StatelessWidget {
                       Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                       SizedBox(height: _getController.height.value * 0.01),
                       DropdownItem(
-                          title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
+                          title: _getController.dropDownItemsTitle.first,
                           onTap: () => {
                             showCountryPicker(
                               context: context,
@@ -101,9 +101,10 @@ class EditUser extends StatelessWidget {
                                   focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10))
                                 ),
                               ),
-                              onSelect: (Country country) {print('Select country: ${country.displayName}');},
+                              onSelect: (Country country) {
+                                _getController.changeDropDownItemsTitle(0,country.name.toString());
+                              },
                             )
-                            //ApiController().bottomBuildLanguageDialog(context,'Mamlakat'.tr,0)
                       }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Violyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),

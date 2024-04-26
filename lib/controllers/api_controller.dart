@@ -86,8 +86,8 @@ class ApiController extends GetxController {
                           style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045),
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
-                        if (cat == 0)
-                          Expanded(
+                        //if (cat == 0)
+                          /*Expanded(
                               child: ListView.builder(
                                   itemCount: _getController.state.length,
                                   itemBuilder: (context, index) {
@@ -119,7 +119,7 @@ class ApiController extends GetxController {
                                                     )
                                                   )
                                               ),
-                                              if (_getController.state.length - 1 != index)
+                                              //if (_getController.state.length - 1 != index)
                                                 const Divider()
                                             ]
                                         )
@@ -127,7 +127,7 @@ class ApiController extends GetxController {
                                     );
                                   }
                               )
-                          )
+                          )*/
                       ]
                   )
               );

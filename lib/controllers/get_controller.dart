@@ -13,20 +13,20 @@ class GetController extends GetxController {
   var isSearch = false.obs;
   var isNightMode = false.obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
-  RxList<String> state = [
-    'Uzbekistan',
-    'China',
-    'Japan',
-    'Korea',
-    'India',
-    'Turkmenistan',
-  ].obs;
+  RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
 
   void changeDropDownItems(int index, int newValue) {
     if (index >= 0 && index < dropDownItems.length) {
       dropDownItems[index] = newValue;
     }
   }
+
+  void changeDropDownItemsTitle(int index, String newValue) {
+    if (index >= 0 && index < dropDownItemsTitle.length) {
+      dropDownItemsTitle[index] = newValue;
+    }
+  }
+
   //change fullName
   changeFullName(String name) {
     fullName.value = name;
