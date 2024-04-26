@@ -104,7 +104,14 @@ class EditUser extends StatelessWidget {
                               onSelect: (Country country) {
                                 _getController.changeDropDownItemsTitle(0,country.name.toString());
                               },
-                            )
+                            ),
+                            if (_getController.dropDownItemsTitle[0] != 'Uzbekistan'){
+                              _getController.clearDistrictsModel(),
+                              _getController.clearProvinceModel()
+                            }else{
+                              ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts'),
+                              ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions')
+                            }
                       }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Violyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
@@ -135,7 +142,9 @@ class EditUser extends StatelessWidget {
                             }),
                       SizedBox(height: _getController.height.value * 0.05),
                       ElevatedButton(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Get.back()
+                          },
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
                               backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)

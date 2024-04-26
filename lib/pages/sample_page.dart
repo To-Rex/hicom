@@ -53,7 +53,17 @@ class SamplePage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                     children: [
-                      Text(_getController.fullName.value,
+                      SizedBox(
+                        height: _getController.height.value * 0.9,
+                        width: double.infinity,
+                        child: Center(
+                            child: Text(
+                              'Loyihalar ro\'yxati'.tr,
+                              style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),
+                            )
+                        )
+                      )
+                      /*Text(_getController.fullName.value,
 
                       ),
                       SizedBox(height: _getController.height.value * 0.02),
@@ -66,7 +76,7 @@ class SamplePage extends StatelessWidget {
                           await Clipboard.setData(ClipboardData(text: _getController.fullName.value));
                         }, child:
                         Text('Copi'.tr),
-                      )
+                      )*/
                     ]
                 )
             )
