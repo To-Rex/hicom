@@ -61,7 +61,34 @@ class ApiController extends GetxController {
     );
   }
 
-  
+  bottomBuildLanguageDialog(BuildContext context,title){
+    Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        enableDrag: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return SizedBox(
+                  height: _getController.height.value * 0.5,
+                  width: double.infinity,
+                  child: Column(
+                      children: [
+                        Container(
+                            height: _getController.height.value * 0.005,
+                            width: _getController.width.value * 0.2,
+                            margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03),
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(10.0))
+                        ),
+                        Text(title.toString().tr,
+                          style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045),
+                        ),
+                        SizedBox(height: _getController.height.value * 0.02),
+                      ]
+                  )
+              );
+            })
+    );
+  }
 
   Future<void> getData(data,act) async {
     var response = await get(Uri.parse('${_baseUrl+getController.getQueryString(act, 'null') + data}&key=$key'));

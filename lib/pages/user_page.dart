@@ -104,10 +104,10 @@ class UserPage extends StatelessWidget {
             onPressed: () => Get.back(),
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.primaryColor,
                 minimumSize: Size(_getController.width.value * 0.4, _getController.height.value * 0.05),
             ),
-            child: Text('Bekor qilish'.tr)
+            child: Text('Bekor qilish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))
         ),
 
         content: Column(
