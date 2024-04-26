@@ -104,10 +104,10 @@ class EditUser extends StatelessWidget {
                     Text('${'Violyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                     SizedBox(height: _getController.height.value * 0.01),
                     if (_getController.provinceModel.value.regions != null)
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child:  DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child:  DropdownButtonFormField<String>(
+                            decoration: InputDecoration(
                             fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
                             filled: true,
                             border: InputBorder.none,
@@ -117,18 +117,25 @@ class EditUser extends StatelessWidget {
                             disabledBorder: InputBorder.none,
                             contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                           ),
-                          style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
-                          value: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name,
-                          onChanged: (String? newValue) {
-                            _getController.changeDropDownItems(1, _getController.provinceModel.value.regions!.indexWhere((region) => region.name == newValue));
-                            debugPrint(_getController.dropDownItems[1].toString());
-                          },
-                          items: _getController.provinceModel.value.regions!.map((e) => DropdownMenuItem(
-                              value: e.name,
-                              child: Text(e.name.toString(), style: TextStyle(fontSize: Get.width * 0.04)))
-                          ).toList(),
-                        )
-                    ),
+                            style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                            value: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name,
+                            onChanged: (String? newValue) {
+                              _getController.changeDropDownItems(1, _getController.provinceModel.value.regions!.indexWhere((region) => region.name == newValue));
+                              debugPrint(_getController.dropDownItems[1].toString());
+                              },
+                            items: _getController.provinceModel.value.regions!.map((e) => DropdownMenuItem(
+                                value: e.name,
+                                child: Text(e.name.toString(), style: TextStyle(fontSize: Get.width * 0.04)))
+                            ).toList(),
+                          )
+                      ),
+                    SizedBox(height: _getController.height.value * 0.01),
+                    Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+                    SizedBox(height: _getController.height.value * 0.01),
+                    if (_getController.districtsModel.value.districts != null)
+                      ClipRRect(
+
+                      )
                   ]
                 )
               )
