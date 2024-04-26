@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hicom/controllers/tea.dart';
@@ -9,6 +10,7 @@ import 'package:http/http.dart' as http;
 import '../models/districts_model.dart';
 import '../models/province_model.dart';
 import 'get_controller.dart';
+import 'package:country_picker/country_picker.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
@@ -61,15 +63,16 @@ class ApiController extends GetxController {
     );
   }
 
-  bottomBuildLanguageDialog(BuildContext context,title){
+  bottomBuildLanguageDialog(BuildContext context,title,cat){
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
+        isScrollControlled: true,
         backgroundColor: Theme.of(context).colorScheme.background,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return SizedBox(
-                  height: _getController.height.value * 0.5,
+                  height: _getController.height.value * 0.6,
                   width: double.infinity,
                   child: Column(
                       children: [
@@ -83,6 +86,48 @@ class ApiController extends GetxController {
                           style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045),
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
+                        if (cat == 0)
+                          Expanded(
+                              child: ListView.builder(
+                                  itemCount: _getController.state.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            _getController.changeDropDownItems(0, index);
+                                          });
+                                        },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                        child: Column(
+                                            children: [
+                                              SizedBox(height: _getController.height.value * 0.01),
+                                              Container(
+                                                  height: _getController.height.value * 0.04,
+                                                  width: _getController.width.value,
+                                                  margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
+                                                  child: Center(
+                                                    child: Row(
+                                                        children: [
+                                                          Text(_getController.state[index].toString().tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
+                                                          const Spacer(),
+                                                          if (_getController.dropDownItems[0] == index)
+                                                            Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
+                                                          else
+                                                            Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                        ]
+                                                    )
+                                                  )
+                                              ),
+                                              if (_getController.state.length - 1 != index)
+                                                const Divider()
+                                            ]
+                                        )
+                                      )
+                                    );
+                                  }
+                              )
+                          )
                       ]
                   )
               );

@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -15,14 +16,6 @@ class EditUser extends StatelessWidget {
   void _getData() => _refreshController.refreshCompleted();
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
-  List<String> state = [
-    'Uzbekistan',
-    'China',
-    'Japan',
-    'Korea',
-    'India',
-    'Turkmenistan',
-  ];
   var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
@@ -82,7 +75,35 @@ class EditUser extends StatelessWidget {
                       DropdownItem(
                           title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
                           onTap: () => {
-                            ApiController().bottomBuildLanguageDialog(context,'Mamlakat'.tr)
+                            showCountryPicker(
+                              context: context,
+                              showPhoneCode: true,
+                              useSafeArea: true,
+                              onClosed: () => print('Dialog closed'),
+                              showWorldWide: false,
+                              useRootNavigator: true,
+                              favorite: ['UZ','RU','KZ','TJ','KG','AF'],
+                              countryListTheme: CountryListThemeData(
+                                bottomSheetHeight: _getController.height.value * 0.7,
+                                borderRadius: BorderRadius.circular(10),
+                                bottomSheetWidth: _getController.width.value,
+                                padding: EdgeInsets.only(top: _getController.height.value * 0.02),
+                                backgroundColor: Theme.of(context).colorScheme.background,
+                                flagSize: _getController.width.value * 0.06,
+                                inputDecoration: InputDecoration(
+                                  fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                  filled: true,
+                                  contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
+                                  border: InputBorder.none,
+                                  labelText: 'Mamlakatlarni qidirish'.tr,
+                                  labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                                  enabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10))
+                                ),
+                              ),
+                              onSelect: (Country country) {print('Select country: ${country.displayName}');},
+                            )
+                            //ApiController().bottomBuildLanguageDialog(context,'Mamlakat'.tr,0)
                       }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Violyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
@@ -92,7 +113,7 @@ class EditUser extends StatelessWidget {
                             title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
                             onTap: () => {
                               print('Uzbekistan'),
-                              ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr)
+                              ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,1)
                             }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
@@ -101,7 +122,7 @@ class EditUser extends StatelessWidget {
                         DropdownItem(
                             title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
                             onTap: () => {
-                              print('Uzbekistan')
+                              ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,2)
                             }),
                       SizedBox(height: _getController.height.value * 0.01),
                       Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
@@ -110,7 +131,7 @@ class EditUser extends StatelessWidget {
                         DropdownItem(
                             title: _getController.provinceModel.value.regions![_getController.dropDownItems[1]].name.toString(),
                             onTap: () => {
-                              print('Uzbekistan')
+                              ApiController().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,3)
                             }),
                       SizedBox(height: _getController.height.value * 0.05),
                       ElevatedButton(
