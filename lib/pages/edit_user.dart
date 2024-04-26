@@ -74,30 +74,60 @@ class EditUser extends StatelessWidget {
                     SizedBox(height: _getController.height.value * 0.01),
                     Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                     SizedBox(height: _getController.height.value * 0.01),
-                    //dropdown state
-                    DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                        filled: true,
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        disabledBorder: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                      ),
-                      style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
-                      value: selectedValue,
-                      onChanged: (String? newValue) {
-                        selectedValue = newValue!;
-                      },
-                      items: state.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    )
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child:  DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                          fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                          filled: true,
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                        ),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                        value: selectedValue,
+                        onChanged: (String? newValue) {
+                          selectedValue = newValue!;
+                        },
+                        items: state.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      )
+                    ),
+                    SizedBox(height: _getController.height.value * 0.01),
+                    Text('${'Violyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+                    SizedBox(height: _getController.height.value * 0.01),
+                    if (_getController.provinceModel.value.regions != null)
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child:  DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                            fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                            filled: true,
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                          ),
+                          style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                          value: _getController.provinceModel.value.regions![0].name,
+                          onChanged: (String? newValue) {
+                            _getController.provinceModel.value.regions![0].name = newValue!;
+                          },
+                          items: _getController.provinceModel.value.regions!.map((e) => DropdownMenuItem(
+                              value: e.name,
+                              child: Text(e.name.toString(), style: TextStyle(fontSize: Get.width * 0.04)))
+                          ).toList(),
+                        )
+                    ),
                   ]
                 )
               )
