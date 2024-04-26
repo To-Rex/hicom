@@ -67,9 +67,7 @@ class ApiController extends GetxController {
     _getController.fullName.value = TEA.decryptTEA(response.body);
     if (response.statusCode == 200) {
       if (act == 'regions') {
-        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(response.body)));
-      } else if (act == 'districts') {
-        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(TEA.decryptTEA(response.body))));
       }
     }else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);

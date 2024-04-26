@@ -39,8 +39,7 @@ class GetController extends GetxController {
   String getQueryString(String action, String uid) {
     String returnUrl = "";
 
-    switch (action)
-    {
+    switch (action) {
       case "wxl":
         returnUrl = "act=wxl&uid=null&dt=";
         break;

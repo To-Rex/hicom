@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../controllers/get_controller.dart';
+import '../models/province_model.dart';
 
 class EditUser extends StatelessWidget {
 
@@ -11,6 +12,15 @@ class EditUser extends StatelessWidget {
   void _getData() => _refreshController.refreshCompleted();
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
+  List<String> state = [
+    'Uzbekistan',
+    'China',
+    'Japan',
+    'Korea',
+    'India',
+    'Turkmenistan',
+  ];
+  var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +74,30 @@ class EditUser extends StatelessWidget {
                     SizedBox(height: _getController.height.value * 0.01),
                     Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                     SizedBox(height: _getController.height.value * 0.01),
-
+                    //dropdown state
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                        filled: true,
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                      ),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                      value: selectedValue,
+                      onChanged: (String? newValue) {
+                        selectedValue = newValue!;
+                      },
+                      items: state.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    )
                   ]
                 )
               )
