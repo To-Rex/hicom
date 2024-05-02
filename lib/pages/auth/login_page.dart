@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hicom/resource/colors.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../controllers/get_controller.dart';
 
@@ -74,9 +75,10 @@ class LoginPage extends StatelessWidget {
               width: Get.width,
               margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
                   onPressed: () => {},
-                  child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
+                  child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )
           ),
           SizedBox(height: Get.height * 0.05)
