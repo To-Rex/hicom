@@ -26,7 +26,7 @@ class VerifyPage extends StatelessWidget {
           Container(
             width: Get.width,
             margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.13),
-            child: Text('Telefon raqamingizni kiriting:'.tr, style: TextStyle(fontSize: Get.width * 0.06, fontWeight: FontWeight.w500))
+            child: Text('Telefon raqamingizni kiriting:'.tr, style: TextStyle(fontSize: Get.width * 0.07, fontWeight: FontWeight.w500))
           ),
           Container(
               width: Get.width,
