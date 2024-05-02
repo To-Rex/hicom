@@ -217,4 +217,5 @@ class GetController extends GetxController {
   final TextEditingController nameController = TextEditingController();
   final RefreshController refreshController = RefreshController(initialRefresh: false);
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController codeController = TextEditingController();
 }
