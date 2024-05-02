@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../controllers/get_controller.dart';
 
 class LoginPage extends StatelessWidget {
@@ -8,8 +8,11 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final GetController _getController = Get.put(GetController());
+  var code = '+998';
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -20,16 +23,65 @@ class LoginPage extends StatelessWidget {
         children: [
           SizedBox(height: Get.height * 0.03),
           Container(
-            width: Get.width * 0.8,
-            margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
+            width: Get.width,
+            margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.13),
             child: Text('Telefon raqamingizni kiriting:'.tr, style: TextStyle(fontSize: Get.width * 0.06, fontWeight: FontWeight.w500))
           ),
           Container(
-              width: Get.width * 0.8,
-              margin: EdgeInsets.only(top: Get.height * 0.01, left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.01),
+              width: Get.width,
+              margin: EdgeInsets.only(top: Get.height * 0.01, left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.03),
               child: Text('Biz Tasdiqlash kodini jo‘natamiz.'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7), fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
           ),
-
+          Container(
+              width: Get.width,
+              height: Get.height * 0.06,
+              margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+              ),
+              child: IntlPhoneField(
+                  controller: _getController.phoneController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  flagsButtonPadding: EdgeInsets.only(left: _getController.width.value * 0.01, right: _getController.width.value * 0.01),
+                  onChanged: (phone) {},
+                invalidNumberMessage: null,
+                  decoration: InputDecoration(
+                    hintText: 'Telefon raqam',
+                    hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5), fontSize: Get.width * 0.04),
+                    border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(7)), borderSide: BorderSide.none),
+                    counterText: '',
+                    counter: null,
+                    semanticCounterText: null,
+                    error: null,
+                    errorText: null,
+                    isDense: true,
+                  ),
+                  style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04),
+                  showCountryFlag: true,
+                  showCursor: true,
+                  showDropdownIcon: false,
+                  initialCountryCode: 'UZ',
+                  dropdownTextStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04),
+                  onCountryChanged: (phone) {
+                    code = phone.fullCountryCode;
+                  }
+              )
+          ),
+          const Spacer(),
+          Container(
+            width: Get.width,
+            margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+                onPressed: () => {},
+                child: Text('Kod jo‘natish'.tr))
+          ),
+          SizedBox(height: Get.height * 0.05)
         ]
       )
     );
