@@ -71,15 +71,13 @@ class LoginPage extends StatelessWidget {
           ),
           const Spacer(),
           Container(
-            width: Get.width,
-            margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              ),
-                onPressed: () => {},
-                child: Text('Kod jo‘natish'.tr))
+              width: Get.width,
+              margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
+                  onPressed: () => {},
+                  child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
+              )
           ),
           SizedBox(height: Get.height * 0.05)
         ]
