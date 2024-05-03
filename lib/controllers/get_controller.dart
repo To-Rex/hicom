@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/districts_model.dart';
+import '../models/login_model.dart';
 import '../models/province_model.dart';
 
 
@@ -43,6 +44,7 @@ class GetController extends GetxController {
 
   var districtsModel = DistrictsModel().obs;
   var provinceModel = ProvinceModel().obs;
+  var loginModel = LoginModel().obs;
 
   void changeDistrictsModel(DistrictsModel districtsModel) {
     this.districtsModel.value = districtsModel;
@@ -59,6 +61,15 @@ class GetController extends GetxController {
   void clearDistrictsModel() {
     districtsModel.value = DistrictsModel();
   }
+
+  void changeLoginModel(LoginModel loginModel) {
+    this.loginModel.value = loginModel;
+  }
+
+  void clearLoginModel() {
+    loginModel.value = LoginModel();
+  }
+
 
   String getQueryString(String action, String uid) {
     String returnUrl = "";

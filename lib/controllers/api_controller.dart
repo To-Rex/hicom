@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import '../models/districts_model.dart';
 import '../models/province_model.dart';
 import '../pages/auth/verify_page.dart';
+import '../pages/sample_page.dart';
 import 'get_controller.dart';
 
 class ApiController extends GetxController {
@@ -368,7 +369,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> sendCode() async {
-    var json = TEA.encryptTEA('{"phone": "${_getController.phoneController.text}","code":""}');
+    var json = TEA.encryptTEA('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":""}');
     var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('sendcode', 'null') + json.toString()}&key=$key'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -376,6 +377,7 @@ class ApiController extends GetxController {
         }
     );
     debugPrint(response.body);
+    debugPrint(TEA.decryptTEA(response.body).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
@@ -389,7 +391,9 @@ class ApiController extends GetxController {
   }
 
   Future<void> checkCode() async {
-    var json = TEA.encryptTEA('{"phone": "${_getController.phoneController.text}","code": "${_getController.codeController.text}"}');
+    var json = TEA.encryptTEA('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":"${_getController.codeController.text}"}');
+    print(json);
+    print(TEA.decryptTEA(json).toString());
     var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('checkcode', 'null') + json.toString()}&key=$key'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -397,9 +401,13 @@ class ApiController extends GetxController {
         }
     );
     debugPrint(response.body);
+    debugPrint(TEA.decryptTEA(response.body).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod to‘g‘ri'.tr, false, 2);
+        //login(jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['session']);
+        login(_getController.code.value+_getController.phoneController.text,jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['session']);
+        Get.to(SamplePage());
       } else {
         showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
       }
@@ -408,14 +416,16 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> login () async {
-    var json = TEA.encryptTEA('{"phone": "${_getController.phoneController.text}","session": ""}');
-    var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('login', 'null') + json.toString()}&key=$key'),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json',
-        }
-    );
+  Future<void> login (phone,session) async {
+    debugPrint(phone);
+    debugPrint(session);
+    //print(tea.encrypt_tea_str('{\n  "phone": "+998995340313",\n  "session":"8EnO91aENx5sxoq3CVY/FnDvhMHNUwvpfhW0QKHRLBEtrQAgS8Y/FjgpaXRMj1kK"\n}'))
+    var json = TEA.encryptTEA('{"phone": "$phone","session":"$session"}');
+    print(json);
+    print(TEA.decryptTEA(json).toString());
+    var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('login', 'null') + json.toString()}&key=$key'), headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'});
+    debugPrint(response.body);
+    debugPrint(TEA.decryptTEA(response.body).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
@@ -426,5 +436,4 @@ class ApiController extends GetxController {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
-
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/pages/sample_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -87,7 +88,8 @@ class VerifyPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
                   onPressed: () => {
-                    Get.to(() => SamplePage())
+                    ApiController().checkCode(),
+                    //Get.to(() => SamplePage())
                   },
                   child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )
