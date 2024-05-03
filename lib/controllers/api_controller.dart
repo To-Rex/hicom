@@ -7,6 +7,7 @@ import 'package:hicom/controllers/tea.dart';
 import 'package:http/http.dart';
 import '../models/districts_model.dart';
 import '../models/province_model.dart';
+import '../pages/auth/verify_page.dart';
 import 'get_controller.dart';
 
 class ApiController extends GetxController {
@@ -362,6 +363,66 @@ class ApiController extends GetxController {
         _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))));
       }
     }else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+  Future<void> sendCode() async {
+    var json = TEA.encryptTEA('{"phone": "${_getController.phoneController.text}","code":""}');
+    var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('sendcode', 'null') + json.toString()}&key=$key'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+        }
+    );
+    debugPrint(response.body);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
+        showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
+        Get.to(VerifyPage());
+      } else {
+        showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
+      }
+    }else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+  Future<void> checkCode() async {
+    var json = TEA.encryptTEA('{"phone": "${_getController.phoneController.text}","code": "${_getController.codeController.text}"}');
+    var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('checkcode', 'null') + json.toString()}&key=$key'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+        }
+    );
+    debugPrint(response.body);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
+        showToast(Get.context!, 'OK', 'Kod to‘g‘ri'.tr, false, 2);
+      } else {
+        showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
+      }
+    } else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+  Future<void> login () async {
+    var json = TEA.encryptTEA('{"phone": "${_getController.phoneController.text}","session": ""}');
+    var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('login', 'null') + json.toString()}&key=$key'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+        }
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
+        showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
+      } else {
+        showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
+      }
+    } else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/pages/auth/verify_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -10,7 +11,6 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final GetController _getController = Get.put(GetController());
-  var code = '+998';
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class LoginPage extends StatelessWidget {
                   initialCountryCode: 'UZ',
                   dropdownTextStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04),
                   onCountryChanged: (phone) {
-                    code = phone.fullCountryCode;
+                    _getController.code.value = '+${phone.fullCountryCode}';
                   }
               )
           ),
@@ -79,7 +79,8 @@ class LoginPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
                   onPressed: () => {
-                    Get.to(() => VerifyPage())
+                    ApiController().  sendCode(),
+                    print(_getController.code.value + _getController.phoneController.text),
                   },
                   child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )

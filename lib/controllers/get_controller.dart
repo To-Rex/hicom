@@ -11,6 +11,7 @@ class GetController extends GetxController {
   var fullName = 'Dilshodjon Haydarov'.obs;
   var isSearch = false.obs;
   var isNightMode = false.obs;
+  var code = '+998'.obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
   RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
