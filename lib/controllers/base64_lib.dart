@@ -30,7 +30,6 @@ class Base64EncoderDecoder {
     }
 
     encoded = encoded.replaceAll(RegExp(r"="), "");
-
     return encoded;
   }
 
@@ -51,7 +50,6 @@ class Base64EncoderDecoder {
       bytes.add((value >> 8) & 0xff);
       bytes.add(value & 0xff);
     }
-
     return utf8.decode(bytes.where((byte) => byte != 0).toList());
   }
 
@@ -66,25 +64,8 @@ class Base64EncoderDecoder {
     return result;
   }
 
-
   static Uint8List encodeBase64(String message) {
-    // Encode the message to Base64 without line wrapping
     String base64String = base64Encode(utf8.encode(message));
-
-    // Convert the Base64 string to bytes
     return Uint8List.fromList(utf8.encode(base64String));
   }
-
-}
-
-
-
-
-void main() {
-  String message = "Hello, Flutter!";
-  String encoded = Base64EncoderDecoder.encodeBase64NoWrap(message);
-  print("Encoded: $encoded");
-
-  String decoded = Base64EncoderDecoder.decodeBase64NoWrap(encoded);
-  print("Decoded: $decoded");
 }
