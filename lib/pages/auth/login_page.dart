@@ -76,10 +76,9 @@ class LoginPage extends StatelessWidget {
               width: Get.width,
               margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
+                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
                   onPressed: () => {
-                    ApiController().  sendCode(),
+                    ApiController().sendCode(),
                     print(_getController.code.value + _getController.phoneController.text),
                   },
                   child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))

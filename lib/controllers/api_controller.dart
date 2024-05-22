@@ -51,10 +51,10 @@ class ApiController extends GetxController {
           content: Text('Internet bağlanmadi'.tr),
           actions: <Widget>[
             TextButton(
-              child: Text('Yana qayta urinish'.tr),
-              onPressed: () {
-                Navigator.of(context).pop();
-              }
+                child: Text('Yana qayta urinish'.tr),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }
             ),
           ],
         );
@@ -92,38 +92,38 @@ class ApiController extends GetxController {
                                         onTap: () {
                                           setState(() {
                                             _getController.changeDropDownItems(0, index);
-                                            ApiController().getRegions(TEA.encryptTEA('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}'), 'districts');
+                                            ApiController().getRegions(Tea.encryptTea('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}','50UvFayZ2w5u3O9B'), 'districts');
                                           });
                                         },
-                                      child: Padding(
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                        child: Column(
-                                            children: [
-                                              SizedBox(height: _getController.height.value * 0.01),
-                                              Container(
-                                                  height: _getController.height.value * 0.04,
-                                                  width: _getController.width.value,
-                                                  margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
-                                                  child: Center(
-                                                    child: Row(
-                                                        children: [
-                                                          Text(_getController.provinceModel.value.regions![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
-                                                          const Spacer(),
-                                                          if (_getController.dropDownItems[0] == index)
-                                                            Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
-                                                          else
-                                                            Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
-                                                        ]
-                                                    )
-                                                  )
-                                              ),
-                                              if (_getController.provinceModel.value.regions!.length - 1 != index)
-                                                const Divider(),
-                                              if (_getController.provinceModel.value.regions!.length - 1 == index)
-                                                SizedBox(height: _getController.height.value * 0.01),
-                                            ]
+                                        child: Padding(
+                                            padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                            child: Column(
+                                                children: [
+                                                  SizedBox(height: _getController.height.value * 0.01),
+                                                  Container(
+                                                      height: _getController.height.value * 0.04,
+                                                      width: _getController.width.value,
+                                                      margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
+                                                      child: Center(
+                                                          child: Row(
+                                                              children: [
+                                                                Text(_getController.provinceModel.value.regions![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
+                                                                const Spacer(),
+                                                                if (_getController.dropDownItems[0] == index)
+                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
+                                                                else
+                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                              ]
+                                                          )
+                                                      )
+                                                  ),
+                                                  if (_getController.provinceModel.value.regions!.length - 1 != index)
+                                                    const Divider(),
+                                                  if (_getController.provinceModel.value.regions!.length - 1 == index)
+                                                    SizedBox(height: _getController.height.value * 0.01),
+                                                ]
+                                            )
                                         )
-                                      )
                                     );
                                   }
                               )
@@ -353,15 +353,15 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       if (act == 'regions') {
         _getController.clearProvinceModel();
-        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))));
-        debugPrint(TEA.decryptTEA(response.body).toString());
+        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))));
+        debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
         debugPrint('====================================================================================');
       }else if (act == 'districts') {
         _getController.clearDistrictsModel();
-        debugPrint(TEA.decryptTEA(response.body).toString());
-        _getController.fullName.value = TEA.decryptTEA(response.body);
-        //_getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(TEA.decryptTEA(response.body))));
-        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))));
+        debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
+        _getController.fullName.value = Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B')!;
+        //_getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(Tea.decryptTea(response.body))));
+        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))));
       }
     }else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
@@ -369,7 +369,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> sendCode() async {
-    var json = TEA.encryptTEA('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":""}');
+    var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":""}','50UvFayZ2w5u3O9B');
     var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('sendcode', 'null') + json.toString()}&key=$key'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -377,9 +377,9 @@ class ApiController extends GetxController {
         }
     );
     debugPrint(response.body);
-    debugPrint(TEA.decryptTEA(response.body).toString());
+    debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
+      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
         Get.to(VerifyPage());
       } else {
@@ -391,9 +391,9 @@ class ApiController extends GetxController {
   }
 
   Future<void> checkCode() async {
-    var json = TEA.encryptTEA('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":"${_getController.codeController.text}"}');
+    var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":"${_getController.codeController.text}"}','50UvFayZ2w5u3O9B');
     print(json);
-    print(TEA.decryptTEA(json).toString());
+    print(Tea.decryptTea(json,'50UvFayZ2w5u3O9B').toString());
     var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('checkcode', 'null') + json.toString()}&key=$key'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -401,12 +401,11 @@ class ApiController extends GetxController {
         }
     );
     debugPrint(response.body);
-    debugPrint(TEA.decryptTEA(response.body).toString());
+    debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
+      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod to‘g‘ri'.tr, false, 2);
-        //login(jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['session']);
-        login(_getController.code.value+_getController.phoneController.text,jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['session']);
+        login(_getController.code.value+_getController.phoneController.text,jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))['session']);
         Get.to(SamplePage());
       } else {
         showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
@@ -420,14 +419,14 @@ class ApiController extends GetxController {
     debugPrint(phone);
     debugPrint(session);
     //print(tea.encrypt_tea_str('{\n  "phone": "+998995340313",\n  "session":"8EnO91aENx5sxoq3CVY/FnDvhMHNUwvpfhW0QKHRLBEtrQAgS8Y/FjgpaXRMj1kK"\n}'))
-    var json = TEA.encryptTEA('{"phone": "$phone","session":"$session"}');
+    var json = Tea.encryptTea('{"phone": "$phone","session":"$session"}','50UvFayZ2w5u3O9B');
     print(json);
-    print(TEA.decryptTEA(json).toString());
+    print(Tea.decryptTea(json!,'50UvFayZ2w5u3O9B').toString());
     var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('login', 'null') + json.toString()}&key=$key'), headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'});
     debugPrint(response.body);
-    debugPrint(TEA.decryptTEA(response.body).toString());
+    debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(utf8.decode(TEA.decryptTEA(response.body).toString().codeUnits))['errcode'] == 0) {
+      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
       } else {
         showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);

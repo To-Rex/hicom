@@ -16,14 +16,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','districts');
-    //ApiController().getData('I0N7xNMEgeesBx/mXPInIb0=','regions');
 
-    debugPrint(TEA.encryptTEA('{'
-        '"country_id": 1'
-        '}'));
     Future.delayed(const Duration(seconds: 1), () {
-      //Get.off(SamplePage(), transition: Transition.fadeIn);
       Get.off(LoginPage(), transition: Transition.fadeIn);
       if (GetStorage().read('token') != null) {
         //Get.off(SamplePage());

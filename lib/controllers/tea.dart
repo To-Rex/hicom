@@ -1,107 +1,62 @@
-
-import'dart:convert';
+import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:hicom/controllers/api_controller.dart';
+class Tea {
+  static const int TIMES = 32;
+  static const int DELTA = 0x9e3779b9;
+  static const List<int> BYTES = [104, 105, 99, 111, 109, 116, 101, 97]; // 'hicomtea' in bytes
 
-class TEA {
-  static const int TIMES = 32; // 迭代次数，不可修改
-  static const int DELTA = 0x9e3779b9; // 这是算法标准给的值，不可修改
-  static const List<int> BYTES = [104, 105, 99, 111, 109, 116, 101, 97];
-
-
-  /// byte数组转uint数组，4byte转一个uint，不足4byte丢弃
-  static List<int> byte2uint(List<int> bs) {
-    List<int> uint = List<int>.filled(bs.length ~/ 4, 0);
-    for (int i = 0; i < uint.length; i++) {
-      int start = i * 4;
-      for (int j = 4; j > 0; j--) {
-        uint[i] <<= 8;
-        uint[i] |= bs[start + j - 1] & 0xff;
-      }
-    }
-    return uint;
+  static List<int> byte2uint(Uint8List bs) {
+    var buffer = ByteData.sublistView(bs);
+    return List.generate(bs.length ~/ 4, (i) => buffer.getUint32(i * 4, Endian.little));
   }
 
-  /// uint数组转byte数组，1转4
-  static List<int> uint2byte(List<int> uint) {
-    List<int> bs = List<int>.filled(uint.length * 4, 0);
-    for (int i = 0; i < uint.length; i++) {
-      int start = i * 4;
-      for (int j = 0; j < 4; j++) {
-        bs[start + j] = uint[i] & 0xff;
-        uint[i] >>= 8;
-      }
+  static Uint8List uint2byte(List<int> uint) {
+    var buffer = ByteData(uint.length * 4);
+    for (var i = 0; i < uint.length; i++) {
+      buffer.setUint32(i * 4, uint[i], Endian.little);
     }
-    return bs;
+    return buffer.buffer.asUint8List();
   }
 
-  /// int 转 uint
   static int int2uint(int v) {
     return v & 0xffffffff;
   }
 
-  /// uint方式增加
   static int uintAdd(int l) {
-    while (l > 0xffffffff) {
-      l -= 0x100000000;
-    }
-    return l;
+    return l & 0xffffffff;
   }
 
-  /// uint方式减少
   static int uintSub(int l, int sub) {
-    if (l >= sub) {
-      return l - sub;
-    } else {
-      return l + 0x100000000 - sub;
-    }
+    return (l - sub) & 0xffffffff;
   }
 
-  /// uint方式左移
   static int uintLeft(int l, int offset) {
     return (l << offset) & 0xffffffff;
   }
 
-  /// uint方式右移
   static int uintRight(int l, int offset) {
-    return ((l & 0xffffffff) >> offset) & 0xffffffff;
+    return (l >> offset);
   }
 
-  /// TEA 加密算法
-  static List<int> encrypt2(List<int> bs, List<int> keys, int delta) {
+  static Uint8List encrypt(Uint8List bs, List<int> keys, int delta) {
     int sum = 0;
-    List<int> v = byte2uint(bs);
-    for (int j = 0; j < TIMES; j++) {
+    var v = byte2uint(bs);
+    for (var i = 0; i < TIMES; i++) {
       sum = uintAdd(sum + delta);
-      v[0] = uintAdd(v[0] + (uintAdd(uintLeft(v[1], 6) + keys[0]) ^
-      uintAdd(v[1] + sum) ^
-      uintAdd(uintRight(v[1], 3) + keys[1])));
-      v[1] = uintAdd(v[1] + (uintAdd(uintLeft(v[0], 6) + keys[2]) ^
-      uintAdd(v[0] + sum) ^
-      uintAdd(uintRight(v[0], 3) + keys[3])));
+      v[0] = uintAdd(v[0] + (uintAdd(uintLeft(v[1], 6) + keys[0]) ^ uintAdd(v[1] + sum) ^ uintAdd(uintRight(v[1], 3) + keys[1])));
+      v[1] = uintAdd(v[1] + (uintAdd(uintLeft(v[0], 6) + keys[2]) ^ uintAdd(v[0] + sum) ^ uintAdd(uintRight(v[0], 3) + keys[3])));
     }
     return uint2byte(v);
   }
 
-  /// TEA解密算法，每次操作可以处理
-  static List<int> decrypt2(List<int> bs, List<int> keys, int delta, int sum) {
-    List<int> v = byte2uint(bs);
-
-    for (int j = 0; j < TIMES; j++) {
-      v[1] = uintSub(
-          v[1],
-          uintAdd(uintLeft(v[0], 6) + keys[2]) ^
-          uintAdd(v[0] + sum) ^
-          uintAdd(uintRight(v[0], 3) + keys[3]));
-      v[0] = uintSub(
-          v[0],
-          uintAdd(uintLeft(v[1], 6) + keys[0]) ^
-          uintAdd(v[1] + sum) ^
-          uintAdd(uintRight(v[1], 3) + keys[1]));
+  static Uint8List decrypt(Uint8List bs, List<int> keys, int delta, int sum) {
+    var v = byte2uint(bs);
+    for (var i = 0; i < TIMES; i++) {
+      v[1] = uintSub(v[1], uintAdd(uintLeft(v[0], 6) + keys[2]) ^ uintAdd(v[0] + sum) ^ uintAdd(uintRight(v[0], 3) + keys[3]));
+      v[0] = uintSub(v[0], uintAdd(uintLeft(v[1], 6) + keys[0]) ^ uintAdd(v[1] + sum) ^ uintAdd(uintRight(v[1], 3) + keys[1]));
       sum = uintSub(sum, delta);
     }
-
     return uint2byte(v);
   }
 
@@ -110,127 +65,127 @@ class TEA {
   }
 
   static int ubyteRight(int v, int offset) {
-    return ((v & 0xff) >> offset) & 0xff;
+    return (v >> offset) & 0xff;
   }
 
   static int ubyteAdd(int v) {
-    while (v > 0xff) {
-      v -= 0x100;
-    }
-    return v;
+    return v & 0xff;
   }
 
   static int ubyteSub(int v, int sub) {
-    if (v >= sub) {
-      return v - sub;
-    }
-    while (v < sub) {
-      v += 0x100;
-    }
-    return v - sub;
+    return (v - sub) & 0xff;
   }
 
-  /// 字节加密
   static int encryptByte(int b, List<int> keys, int index) {
     int m = BYTES[index % 8] & 0xff;
     int k = keys[index % 4] & 0xff;
     int s = b & 0xff;
-    for (int j = 0; j < TIMES; j++) {
-      s = ubyteAdd(s + (ubyteAdd(ubyteLeft(m, 3) + k) ^
-      ubyteAdd(ubyteRight(m, 2) + k)));
+    for (var i = 0; i < TIMES; i++) {
+      s = ubyteAdd(s + (ubyteAdd(ubyteLeft(m, 3) + k) ^ ubyteAdd(ubyteRight(m, 2) + k)));
     }
-    return s & 0xff;
+    return s;
   }
 
-  /// 字节解密
   static int decryptByte(int b, List<int> keys, int index) {
     int m = BYTES[index % 8] & 0xff;
     int k = keys[index % 4] & 0xff;
     int s = b & 0xff;
-    for (int j = 0; j < TIMES; j++) {
-      s = ubyteSub(s, ubyteAdd(ubyteLeft(m, 3) + k) ^
-      ubyteAdd(ubyteRight(m, 2) + k));
+    for (var i = 0; i < TIMES; i++) {
+      s = ubyteSub(s, ubyteAdd(ubyteLeft(m, 3) + k) ^ ubyteAdd(ubyteRight(m, 2) + k));
     }
-    return s & 0xff;
+    return s;
   }
 
-  /// TEA加密
-  static List<int> encrypt(List<int> bs, List<int> key, bool isBase64)
-  {
-    // if (key.length != 16) {
-    //   return null;
-    // }
-      var bb = Uint8List(bs.length);
-      for (int i = 0; i < bs.length; i++) {
-        bb[i] = bs[i];
-      }
-
-      int len = bs.length;
-      int remain = len % 8;
-      int align = len - remain;
-      List<int> keys = byte2uint(key);
-      int delta = int2uint(DELTA);
-      for (int i = 0; i < align; i += 8) {
-        List<int> tmp = List<int>.from(bb.sublist(i, i + 8));
-        tmp = encrypt2(tmp, keys, delta);
-        bb.setRange(i, i + 8, tmp);
-      }
-      for (int i = align; i < len; i++) {
-        bb[i] = encryptByte(bs[i], keys, i);
-      }
-
-      if (isBase64) {
-        return base64.encode(bb).codeUnits;
-      } else {
-        return bb;
-      }
-  }
-
-  static String encryptTEA(String data) {
-    List<int> bytes = encrypt(data.codeUnits, ApiController.key.codeUnits, true);
-    return String.fromCharCodes(bytes as Iterable<int>);
-  }
-
-  static String decryptTEA(String data) {
-    List<int> bytes = decrypt(data.codeUnits, ApiController.key.codeUnits, true);
-    return String.fromCharCodes(bytes as Iterable<int>);
-  }
-
-  static String byteArrayToHex(List<int> a) {
-    return a.map((b) => b.toRadixString(16).padLeft(2, '0')).join(' ');
-  }
-
-  static String longArrayToHex(List<int> a) {
-    return a.map((b) => b.toRadixString(16)).join(' ');
-  }
-
-  /// TEA解密
-  static List<int> decrypt(List<int> bs, List<int> key, bool isBase64) {
-    // if (key.length != 16) {
-    //   return null;
-    // }
-    if (isBase64) {
-      bs = base64.decode(String.fromCharCodes(bs));
+  static dynamic encryptData(Uint8List bs, Uint8List key, bool isBase64) {
+    if (key.length != 16) {
+      return null;
     }
 
-    int len = bs.length;
-    int remain = len % 8;
-    int align = len - remain;
+    int lenBs = bs.length;
+    int remain = lenBs % 8;
+    int align = lenBs - remain;
+    var keys = byte2uint(key);
     int delta = int2uint(DELTA);
-    List<int> keys = byte2uint(key);
+
+    var encryptedBs = Uint8List.fromList(bs);
+
+    for (var i = 0; i < align; i += 8) {
+      var tmp = bs.sublist(i, i + 8);
+      encryptedBs.setRange(i, i + 8, encrypt(tmp, keys, delta));
+    }
+
+    for (var i = align; i < lenBs; i++) {
+      encryptedBs[i] = encryptByte(bs[i], keys, i);
+    }
+
+    if (isBase64) {
+      return base64Encode(encryptedBs);
+    } else {
+      return encryptedBs;
+    }
+  }
+
+  static dynamic decryptData(Uint8List bs, Uint8List key, bool isBase64) {
+    if (key.length != 16) {
+      return null;
+    }
+
+    if (isBase64) {
+      bs = base64Decode(utf8.decode(bs));
+    }
+
+    int lenBs = bs.length;
+    int remain = lenBs % 8;
+    int align = lenBs - remain;
+    int delta = int2uint(DELTA);
+    var keys = byte2uint(key);
     int sum = uintAdd(TIMES * delta);
 
-    for (int i = 0; i < align; i += 8) {
-      List<int> tmp = List<int>.from(bs.sublist(i, i + 8));
-      tmp = decrypt2(tmp, keys, delta, sum);
-      bs.setRange(i, i + 8, tmp);
-    }
-    for (int i = align; i < len; i++) {
-      bs[i] = decryptByte(bs[i], keys, i);
+    var decryptedBs = Uint8List.fromList(bs);
+
+    for (var i = 0; i < align; i += 8) {
+      var tmp = bs.sublist(i, i + 8);
+      decryptedBs.setRange(i, i + 8, decrypt(tmp, keys, delta, sum));
     }
 
-    return bs;
+    for (var i = align; i < lenBs; i++) {
+      decryptedBs[i] = decryptByte(bs[i], keys, i);
+    }
+
+    return decryptedBs;
+  }
+
+  static String encryptTea(String data, String key) {
+    var encryptedBytes = encryptData(Uint8List.fromList(utf8.encode(data)), Uint8List.fromList(utf8.encode(key)), true);
+    return encryptedBytes;
+  }
+
+  static String decryptTea(String data, String key) {
+    var decryptedBytes = decryptData(Uint8List.fromList(utf8.encode(data)), Uint8List.fromList(utf8.encode(key)), true);
+    return utf8.decode(decryptedBytes);
   }
 
 }
 
+String decodeBase64Url(String encodedStr) {
+  var urlDecodedStr = Uri.decodeComponent(encodedStr);
+  int paddingNeeded = urlDecodedStr.length % 4;
+  if (paddingNeeded != 0) {
+    urlDecodedStr += '=' * (4 - paddingNeeded);
+  }
+
+  return urlDecodedStr;
+}
+
+main() {
+  String key = "50UvFayZ2w5u3O9B";
+  String data = '{"phone": "+998995340313","session":"SX2eafvMG0FPejAMi3U8dNNmA+J+ecCDdOXvzH6jhRk8wD1g5+AmTCG6PoZEukai"}';
+  String encrypted = Tea.encryptTea(data, key);
+  print("Encrypted: $encrypted");
+  try {
+    String decrypted = Tea.decryptTea('TwXZWWsGG/kgW3FnTKdQ0h8iEaYoC91lFfuAA48DCCWMkuDp87ANrYc03VHp2lCVWZDH4UMzx0+LaCkg/Za2056xgoN+bF2HpuhQFEXehw0MVaGTq+Z/+zvCEDd7T3W7V12awXyp99v1OgfJoaN6Tfl1ZbmmkQyzuNG0lpp1LmCozYRIQrq1qm438wfcZiGRKDayQnzFAxNJIEF+ekqe/MvKd/wi7Wp1F412yp9pdVkNrrMurMuhd75TzWwnR3tMwaNDKM0XPLSpJCLa0R2d', key);
+    print("Decrypted: $decrypted");
+  } catch (e) {
+    print("Error: $e");
+  }
+}

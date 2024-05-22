@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/districts_model.dart';
 import '../models/login_model.dart';
@@ -16,6 +19,7 @@ class GetController extends GetxController {
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
   RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
+  var responseText = ''.obs;
 
 
   void changeDropDownItems(int index, int newValue) {
@@ -30,9 +34,36 @@ class GetController extends GetxController {
     }
   }
 
-
   changeFullName(String name) {
     fullName.value = name;
+  }
+
+  //get token from storage
+
+ String getKey() {
+    return GetStorage().read('key') ?? '50UvFayZ2w5u3O9B';
+  }
+
+  //write token to storage
+  void writeKey(String token) {
+    GetStorage().write('key', token);
+  }
+
+  //clear token from storage
+  void clearKey() {
+    GetStorage().remove('key');
+  }
+
+  void writeUid(String uid) {
+    GetStorage().write('uid', uid);
+  }
+
+  String getUid() {
+    return GetStorage().read('uid') ?? '';
+  }
+
+  void clearUid() {
+    GetStorage().remove('uid');
   }
 
   @override
