@@ -406,7 +406,6 @@ class ApiController extends GetxController {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod to‘g‘ri'.tr, false, 2);
         login(_getController.code.value+_getController.phoneController.text,jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))['session']);
-        Get.to(SamplePage());
       } else {
         showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
       }
@@ -418,16 +417,17 @@ class ApiController extends GetxController {
   Future<void> login (phone,session) async {
     debugPrint(phone);
     debugPrint(session);
-    //print(tea.encrypt_tea_str('{\n  "phone": "+998995340313",\n  "session":"8EnO91aENx5sxoq3CVY/FnDvhMHNUwvpfhW0QKHRLBEtrQAgS8Y/FjgpaXRMj1kK"\n}'))
+
     var json = Tea.encryptTea('{"phone": "$phone","session":"$session"}','50UvFayZ2w5u3O9B');
-    print(json);
-    print(Tea.decryptTea(json!,'50UvFayZ2w5u3O9B').toString());
-    var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('login', 'null') + json.toString()}&key=$key'), headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'});
+    print('suuu $json');
+    print(Tea.decryptTea(json,'50UvFayZ2w5u3O9B').toString());
+    var response = await post( Uri.parse('${_baseUrl+getController.getQueryString('login', 'null') + json.toString()}&key=50UvFayZ2w5u3O9B'), headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'});
     debugPrint(response.body);
     debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
+        Get.to(SamplePage());
       } else {
         showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
       }

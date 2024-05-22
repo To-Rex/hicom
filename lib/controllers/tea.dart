@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'base64_lib.dart';
+
 class Tea {
   static const int TIMES = 32;
   static const int DELTA = 0x9e3779b9;
@@ -125,13 +127,17 @@ class Tea {
     }
   }
 
+
   static dynamic decryptData(Uint8List bs, Uint8List key, bool isBase64) {
     if (key.length != 16) {
       return null;
     }
 
     if (isBase64) {
-      bs = base64Decode(utf8.decode(bs));
+      // Decode the base64 encoded string to Uint8List
+      //bs = base64Decode(utf8.decode(bs));
+      print(utf8.decode(bs).runtimeType);
+      bs = Base64EncoderDecoder.decodeBase64(utf8.decode(bs));
     }
 
     int lenBs = bs.length;
@@ -157,7 +163,9 @@ class Tea {
 
   static String encryptTea(String data, String key) {
     var encryptedBytes = encryptData(Uint8List.fromList(utf8.encode(data)), Uint8List.fromList(utf8.encode(key)), true);
-    return encryptedBytes;
+    //return encryptedBytes.toString().replaceAll('/', '%2F').replaceAll('+', '%2B').replaceAll('=', '%3D');
+    return encryptedBytes.toString().replaceAll('/', '%2F').replaceAll('+', '%2B').replaceAll('=', '%3D').replaceAll('\n', '%0A').replaceAll('\r', '%0D').replaceAll('\t', '%09').replaceAll(' ', '%20').replaceAll(RegExp(r"[^\x00-\x7F]+"), "");
+    //return encryptedBytes.toString().replaceAll(RegExp(r"[^\x00-\x7F]+"), "");
   }
 
   static String decryptTea(String data, String key) {
@@ -165,7 +173,11 @@ class Tea {
     return utf8.decode(decryptedBytes);
   }
 
+
+
 }
+
+
 
 String decodeBase64Url(String encodedStr) {
   var urlDecodedStr = Uri.decodeComponent(encodedStr);
@@ -177,14 +189,22 @@ String decodeBase64Url(String encodedStr) {
   return urlDecodedStr;
 }
 
+
+
 main() {
   String key = "50UvFayZ2w5u3O9B";
-  String data = '{"phone": "+998995340313","session":"SX2eafvMG0FPejAMi3U8dNNmA+J+ecCDdOXvzH6jhRk8wD1g5+AmTCG6PoZEukai"}';
+  String data = '{"phone":"+998995340313","session":"p8Yc6+UQK5h1L9xygMvePPIQK9vFkxHvXE9dwC8ghXpYdZjuy++VtSQqOcOQnoCP"}';
+  String data1 = '{"phone":"+998995340313","session":"p8Yc6+UQK5h1L9xygMvePPIQK9vFkxHvXE9dwC8ghXpYdZjuy++VtSQqOcOQnoCP"}';
   String encrypted = Tea.encryptTea(data, key);
+  String encrypted1 = Tea.encryptTea(data1, key);
   print("Encrypted: $encrypted");
+  print("Encrypted: $encrypted1");
   try {
-    String decrypted = Tea.decryptTea('TwXZWWsGG/kgW3FnTKdQ0h8iEaYoC91lFfuAA48DCCWMkuDp87ANrYc03VHp2lCVWZDH4UMzx0+LaCkg/Za2056xgoN+bF2HpuhQFEXehw0MVaGTq+Z/+zvCEDd7T3W7V12awXyp99v1OgfJoaN6Tfl1ZbmmkQyzuNG0lpp1LmCozYRIQrq1qm438wfcZiGRKDayQnzFAxNJIEF+ekqe/MvKd/wi7Wp1F412yp9pdVkNrrMurMuhd75TzWwnR3tMwaNDKM0XPLSpJCLa0R2d', key);
-    print("Decrypted: $decrypted");
+    //String decrypted0 = Tea.decryptTea('Vay39ikEG%2FzH4D85ESpdiNwsi%2B9Gh1hrUvUl75C1qv52YqORpI%2BKx9zowyol%2F0hsl8tzHIZYkDuDhSy9%2FzAdCXHQ%2BGVmH5M3wn4ROtTd0DKvJOvyMFZ4XHRO7svSGY1adw5Z7cId', key);
+    String decrypted1 = Tea.decryptTea('Vay39ikEG%2FzH4D85ESpdiNwsi%2B9Gh1hrUvUl75C1qv7JcFvKbccvb2tykcyiQTzpnoCKjM307qz6YmON8wC7x12kejMBVxF42k3Ow7ILU%2FBJ9TQR1zxI71W2NOusdYghri9D8MId', key);
+    String decrypted2 = Tea.decryptTea('Vay39ikEG%2FzH4D85ESpdiNwsi%2B9Gh1hrUvUl75C1qv7JcFvKbccvb2tykcyiQTzpnoCKjM307qz6YmON8wC7x12kejMBVxF42k3Ow7ILU%2FBJ9TQR1zxI71W2NOusdYghri9D8MId', key);
+    print("Decrypted: $decrypted1");
+    print("Decrypted: $decrypted2");
   } catch (e) {
     print("Error: $e");
   }

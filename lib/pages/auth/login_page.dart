@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
+import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/auth/verify_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -79,7 +80,7 @@ class LoginPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
                   onPressed: () => {
                     ApiController().sendCode(),
-                    print(_getController.code.value + _getController.phoneController.text),
+                    //print(_getController.code.value + _getController.phoneController.text),
                   },
                   child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )

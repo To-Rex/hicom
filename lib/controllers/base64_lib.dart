@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 class Base64EncoderDecoder {
   static const List<String> base64Chars = [
@@ -53,7 +54,31 @@ class Base64EncoderDecoder {
 
     return utf8.decode(bytes.where((byte) => byte != 0).toList());
   }
+
+  static Uint8List decodeBase64(String base64String) {
+    base64String = Uri.decodeFull(base64String);
+    while (base64String.length % 4 != 0) {
+      base64String += '=';
+    }
+    base64String = base64String.replaceAll(RegExp(r'[\n\r]'), '');
+    List<int> decodedBytes = base64.decode(base64String);
+    Uint8List result = Uint8List.fromList(decodedBytes);
+    return result;
+  }
+
+
+  static Uint8List encodeBase64(String message) {
+    // Encode the message to Base64 without line wrapping
+    String base64String = base64Encode(utf8.encode(message));
+
+    // Convert the Base64 string to bytes
+    return Uint8List.fromList(utf8.encode(base64String));
+  }
+
 }
+
+
+
 
 void main() {
   String message = "Hello, Flutter!";
