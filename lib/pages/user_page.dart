@@ -218,7 +218,11 @@ class UserPage extends StatelessWidget {
                                         Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
                                       ]
                                   ),
-                                  onTap: () => Get.offAll(() => SplashScreen())
+                                  //onTap: () => Get.offAll(() => SplashScreen())
+                                onTap: (){
+                                    _getController.clearKey();
+                                    Get.offAll(() => SplashScreen());
+                                },
                               )
                             ])),
                     SizedBox(height: _getController.height.value * 0.02),
