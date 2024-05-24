@@ -8,7 +8,6 @@ class DropdownItem extends StatelessWidget {
   Function onTap;
 
   DropdownItem({super.key, required this.title, required this.onTap});
-  final GetController _getController = Get.put(GetController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +22,7 @@ class DropdownItem extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text(title, style: TextStyle(fontSize: Get.width * 0.04,
-                    color: Theme.of(context).colorScheme.onBackground,
-                    fontWeight: FontWeight.w500)),
+                Text(title, style: TextStyle(fontSize: Get.width * 0.04, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500)),
                 const Spacer(),
                 Icon(Icons.chevron_right, size: Get.width * 0.04, color: Theme.of(context).colorScheme.onBackground)
               ]
