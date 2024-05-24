@@ -327,19 +327,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> signUp() async {
-    /*var json = Tea.encryptTea('{
-    'phone': _getController.code.value+_getController.phoneController.text,
-        'name': _getController.nameController.text,
-        'type': _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
-    'country_id': '1',
-    'region_id': _getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString(),
-    'district_id': _getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString(),
-  }', key);*/
     var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "1","region_id": "${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}", "district_id": "${_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()}"}',key);
-    print(_getController.getType());
-    //var json = Tea.encryptTea('{"phone": "+998331432003","name": "Test Testov","type": "1","country_id": "1","region_id": "12", "district_id": "183"}',key);
-    print(json);
-    print(Tea.decryptTea(json, key).toString());
     var response = await post(Uri.parse('${_baseUrl + getController.getQueryString('signup', 'null') + json.toString()}&key=50UvFayZ2w5u3O9B'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -361,5 +349,25 @@ class ApiController extends GetxController {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
 
+  }
+
+  Future<void> editUser() async {
+    //changeprofile
+    //{"phone":"+998331432003","name":"Test Testov","type":2,"country_id":1,"region_id":2,"district_id":33}
+    var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "1","region_id": "${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}", "district_id": "${_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()}"}',key);
+    var response = await post(Uri.parse('${_baseUrl + getController.getQueryString('changeprofile', 'null') + json.toString()}&key=50UvFayZ2w5u3O9B'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+      },
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body,key).toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+    } else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
   }
 }

@@ -153,8 +153,7 @@ class EditUser extends StatelessWidget {
                                 print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()),
                                 print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()),
                                 print(_getController.dropDownItem[_getController.dropDownItems[2]]),
-
-                                ApiController().signUp()
+                                ApiController().editUser()
                               }
                             },
                             style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)),
