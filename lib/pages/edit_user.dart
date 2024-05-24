@@ -43,7 +43,7 @@ class EditUser extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: Get.height * 0.05),
-                    TextFields(title: 'Ismingizni kiriting'.tr,hintText: 'salom', controller: _getController.nameController),
+                    TextFields(title: 'Ism-familiyangizni kiriting'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameController),
                     SizedBox(height: _getController.height.value * 0.02),
                     Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),),
                     Container(
@@ -84,14 +84,14 @@ class EditUser extends StatelessWidget {
                                   _getController.changeDropDownItemsTitle(0,country.name.toString());
                                 }
                             ),
-                            if (_getController.dropDownItemsTitle[0] != 'Uzbekistan'){
+                            if (_getController.dropDownItemsTitle[0] != 'Uzbekistan'.tr){
                               ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions')
                             } else {
                               _getController.clearDistrictsModel(),
                               _getController.clearProvinceModel(),
                               _getController.dropDownItems[0] = 0,
                               _getController.dropDownItems[1] = 0,
-                              _getController.dropDownItems[2] = 0
+                              _getController.dropDownItems[2] = 0,
                             }
                           }),
                     ),
@@ -132,19 +132,38 @@ class EditUser extends StatelessWidget {
                           }),
                     ),
                     SizedBox(height: _getController.height.value * 0.05),
-                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:ElevatedButton(
-                        onPressed: () => {
-                          Get.back()
-                        },
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
-                            backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)
-                        ),
-                        child: SizedBox(
-                            width: _getController.width.value,
-                            height: _getController.height.value * 0.06,
-                            child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
-                    )),
+                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                        child: ElevatedButton(
+                            onPressed: () => {
+                              if (_getController.nameController.text.isEmpty) {
+                                ApiController().showToast(context,'Xatolik'.tr, 'Ism-familiyangizni kiriting'.tr, true, 3)
+                              } else if (_getController.dropDownItems[0] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
+                                ApiController().showToast(context,'Xatolik'.tr,'Viloyatni tanlang'.tr, true, 3)
+                              } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
+                                ApiController().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
+                              } else{
+                                //print() nameController.text, phoneController.text, _getController.dropDownItems[0], _getController.dropDownItems[1], _getController.dropDownItems[2], _getController.code.value + _getController.phoneController.text
+                                print(_getController.code.value + _getController.phoneController.text),
+                                print(_getController.nameController.text),
+                                print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString()),
+                                print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString()),
+                                print(_getController.dropDownItem[_getController.dropDownItems[2]]),
+
+                                //print country_id, region_id, district_id
+                                print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()),
+                                print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()),
+                                print(_getController.dropDownItem[_getController.dropDownItems[2]]),
+
+                                ApiController().signUp()
+                              }
+                            },
+                            style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)),
+                            child: SizedBox(
+                                width: _getController.width.value,
+                                height: _getController.height.value * 0.06,
+                                child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                        )
+                    ),
                     SizedBox(height: _getController.height.value * 0.01),
                   ]
               )))

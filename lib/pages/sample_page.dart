@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/user_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../companents/search_fild.dart';
@@ -63,20 +64,6 @@ class SamplePage extends StatelessWidget {
                             )
                         )
                       )
-                      /*Text(_getController.fullName.value,
-
-                      ),
-                      SizedBox(height: _getController.height.value * 0.02),
-                      //copi text to clipboard
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.blue,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(ClipboardData(text: _getController.fullName.value));
-                        }, child:
-                        Text('Copi'.tr),
-                      )*/
                     ]
                 )
             )
