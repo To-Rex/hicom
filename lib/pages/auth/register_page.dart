@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -30,11 +31,59 @@ class RegisterPage extends StatelessWidget{
                   SizedBox(height: Get.height * 0.05),
                   TextFields(title: 'Ismingizni kiriting'.tr,hintText: 'salom', controller: _getController.nameController),
                   SizedBox(height: _getController.height.value * 0.02),
-                  if (_getController.provinceModel.value.regions != null)
+                  Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),),
+                  Container(
+                    margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.02, top: _getController.height.value * 0.01),
+                    child: DropdownItem(
+                        title: _getController.dropDownItemsTitle.first,
+                        onTap: () => {
+                          _getController.clearDistrictsModel(),
+                          _getController.clearProvinceModel(),
+                          showCountryPicker(
+                              context: context,
+                              showPhoneCode: true,
+                              useSafeArea: true,
+                              onClosed: () => print('Dialog closed'),
+                              showWorldWide: false,
+                              useRootNavigator: true,
+                              favorite: ['UZ','RU','KZ','TJ','KG','AF'],
+                              countryListTheme: CountryListThemeData(
+                                  bottomSheetHeight: _getController.height.value * 0.7,
+                                  borderRadius: BorderRadius.circular(10),
+                                  bottomSheetWidth: _getController.width.value,
+                                  //padding: EdgeInsets.only(top: _getController.height.value * 0.01),
+                                  flagSize: _getController.width.value * 0.06,
+                                  inputDecoration: InputDecoration(
+                                      fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                      filled: true,
+                                      disabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                                      focusColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: _getController.width.value * 0.04),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
+                                      border: InputBorder.none,
+                                      labelText: 'Mamlakatlarni qidirish'.tr,
+                                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                                      enabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                                      focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10))
+                                  )
+                              ),
+                              onSelect: (Country country) {
+                                _getController.changeDropDownItemsTitle(0,country.name.toString());
+                              }
+                          ),
+                        if (_getController.dropDownItemsTitle[0] != 'Uzbekistan'){
+                          ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions')
+                        } else {
+                          _getController.clearDistrictsModel(),
+                          _getController.clearProvinceModel(),
+                        }
+                        }),
+                  ),
+                  if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
-                  if (_getController.provinceModel.value.regions != null)
+                  if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     SizedBox(height: _getController.height.value * 0.01),
-                  if (_getController.provinceModel.value.regions != null)
+                  if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Container(
                       margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
                       child: DropdownItem(
@@ -43,11 +92,11 @@ class RegisterPage extends StatelessWidget{
                             ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0)
                           })
                     ),
-                  if (_getController.districtsModel.value.districts != null)
+                  if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
-                  if (_getController.districtsModel.value.districts != null)
+                  if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     SizedBox(height: _getController.height.value * 0.01),
-                  if (_getController.districtsModel.value.districts != null)
+                  if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Container(
                       margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
                       child: DropdownItem(
