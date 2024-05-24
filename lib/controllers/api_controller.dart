@@ -91,8 +91,10 @@ class ApiController extends GetxController {
                                     return InkWell(
                                         onTap: () {
                                           setState(() {
-                                            _getController.changeDropDownItems(0, index);
-                                            ApiController().getRegions(Tea.encryptTea('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}','50UvFayZ2w5u3O9B'), 'districts');
+                                            if (index != 0) {
+                                              _getController.changeDropDownItems(0, index);
+                                              ApiController().getRegions(Tea.encryptTea('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}','50UvFayZ2w5u3O9B'), 'districts');
+                                            }
                                           });
                                         },
                                         child: Padding(
@@ -135,9 +137,11 @@ class ApiController extends GetxController {
                                   itemBuilder: (context, index) {
                                     return InkWell(
                                         onTap: () {
-                                          setState(() {
-                                            _getController.changeDropDownItems(1, index);
-                                          });
+                                          if (index != 0) {
+                                            setState(() {
+                                              _getController.changeDropDownItems(1, index);
+                                            });
+                                          }
                                         },
                                         child: Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                             child: Column(
@@ -231,17 +235,11 @@ class ApiController extends GetxController {
       if (act == 'regions') {
         _getController.clearProvinceModel();
         _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString())));
-        _getController.countryList.value = _getController.provinceModel.value.regions!.map((e) => e.name.toString()).toList();
-        _getController.countryList.insert(0, ''.tr);
-        _getController.selectedCountry.value = _getController.countryList[0];
       } else if (act == 'districts') {
         _getController.clearDistrictsModel();
         debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
         _getController.fullName.value = Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B');
         _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString())));
-        _getController.districtsList.value = _getController.districtsModel.value.districts!.map((e) => e.name.toString()).toList();
-        _getController.districtsList.insert(0, ''.tr);
-        _getController.selectedDistrict.value = _getController.districtsList[0];
       }
     }else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);

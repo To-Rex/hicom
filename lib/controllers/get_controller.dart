@@ -17,16 +17,10 @@ class GetController extends GetxController {
   var isSearch = false.obs;
   var isNightMode = false.obs;
   var code = '+998'.obs;
-  var selectedCountry = ''.obs;
-  var selectedDistrict = ''.obs;
-  var countryList = [].obs;
-  var districtsList = [].obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
   RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
   var responseText = ''.obs;
-
-  int getDropDownItems(selectedCountry) {return countryList.indexOf(selectedCountry);}
 
   void changeDropDownItems(int index, int newValue) {
     if (index >= 0 && index < dropDownItems.length) {
@@ -85,10 +79,23 @@ class GetController extends GetxController {
 
   void changeDistrictsModel(DistrictsModel districtsModel) {
     this.districtsModel.value = districtsModel;
+    addDistrictsModel(Districts(id: 0, regionId: 0, name: 'Tanlang'));
   }
 
-  void changeProvinceModel(ProvinceModel provinceModel) {
-    this.provinceModel.value = provinceModel;
+  void changeProvinceModel(ProvinceModel provinceModels) {
+    provinceModel.value = provinceModels;
+    addRegions(Regions(countryId: 0, id: 0, name: 'Tanlang'));
+  }
+
+
+  //provinceModel.value = provinceModels.regions.insert(0, Regions(countryId: 0, id: 0, name: 'Tanlang'));
+  void addRegions(Regions regions) {
+    provinceModel.value.regions!.insert(0, regions);
+  }
+
+
+  void addDistrictsModel(Districts districtsModels) {
+    districtsModel.value.districts!.insert(0, districtsModels);
   }
 
   void clearProvinceModel() {

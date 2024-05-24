@@ -20,7 +20,7 @@ class RegisterPage extends StatelessWidget{
     ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions');
      return Scaffold(
       appBar: AppBar(
-        title: Text('ma’lumotlarni kiriting'.tr),
+        title: Text('Ma’lumotlarni kiriting'.tr),
         centerTitle: true,
         leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.06), onPressed: () => Get.back())
       ),
@@ -51,7 +51,6 @@ class RegisterPage extends StatelessWidget{
                                   bottomSheetHeight: _getController.height.value * 0.7,
                                   borderRadius: BorderRadius.circular(10),
                                   bottomSheetWidth: _getController.width.value,
-                                  //padding: EdgeInsets.only(top: _getController.height.value * 0.01),
                                   flagSize: _getController.width.value * 0.06,
                                   inputDecoration: InputDecoration(
                                       fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
@@ -76,6 +75,9 @@ class RegisterPage extends StatelessWidget{
                         } else {
                           _getController.clearDistrictsModel(),
                           _getController.clearProvinceModel(),
+                          _getController.dropDownItems[0] = 0,
+                          _getController.dropDownItems[1] = 0,
+                          _getController.dropDownItems[2] = 0
                         }
                         }),
                   ),
@@ -89,7 +91,8 @@ class RegisterPage extends StatelessWidget{
                       child: DropdownItem(
                           title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                           onTap: () => {
-                            ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0)
+                            ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
+                            _getController.dropDownItems[1] = 0
                           })
                     ),
                   if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
@@ -102,7 +105,7 @@ class RegisterPage extends StatelessWidget{
                       child: DropdownItem(
                           title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
                           onTap: () => {
-                            ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1)
+                            ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
                           })
                     ),
                   Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
@@ -130,8 +133,7 @@ class RegisterPage extends StatelessWidget{
                   )),
                   SizedBox(height: _getController.height.value * 0.01),
                 ]
-          ))
-      )
+          )))
     );
   }
 }

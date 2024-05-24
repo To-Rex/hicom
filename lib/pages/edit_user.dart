@@ -5,6 +5,7 @@ import 'package:hicom/controllers/tea.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../companents/dropdown_item.dart';
+import '../companents/text_fild.dart';
 import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
 import '../models/province_model.dart';
@@ -37,132 +38,116 @@ class EditUser extends StatelessWidget {
           onLoading: _onLoading,
           onRefresh: _getData,
           controller: _refreshController,
-          child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: _getController.width.value * 0.03,
-                  right: _getController.width.value * 0.03,
-                  top: _getController.height.value * 0.02
-                ),
-                child: Obx(() =>  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: _getController.height.value * 0.01),
-                      Text('${'Ism va familiya'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
-                      SizedBox(height: _getController.height.value * 0.01),
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: TextField(
-                              controller: _getController.nameController,
-                              decoration: InputDecoration(
-                                  fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                  filled: true,
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                  hintText: 'Kiriting'.tr,
-                                  hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: _getController.width.value * 0.04)
-                              ),
-                              style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)
-                          )
-                      ),
-                      SizedBox(height: _getController.height.value * 0.01),
-                      Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
-                      SizedBox(height: _getController.height.value * 0.01),
-                      DropdownItem(
+          child: Obx(() => SingleChildScrollView(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: Get.height * 0.05),
+                    TextFields(title: 'Ismingizni kiriting'.tr,hintText: 'salom', controller: _getController.nameController),
+                    SizedBox(height: _getController.height.value * 0.02),
+                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),),
+                    Container(
+                      margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.02, top: _getController.height.value * 0.01),
+                      child: DropdownItem(
                           title: _getController.dropDownItemsTitle.first,
                           onTap: () => {
+                            _getController.clearDistrictsModel(),
+                            _getController.clearProvinceModel(),
                             showCountryPicker(
-                              context: context,
-                              showPhoneCode: true,
-                              useSafeArea: true,
-                              onClosed: () => print('Dialog closed'),
-                              showWorldWide: false,
-                              useRootNavigator: true,
-                              favorite: ['UZ','RU','KZ','TJ','KG','AF'],
-                              countryListTheme: CountryListThemeData(
-                                bottomSheetHeight: _getController.height.value * 0.7,
-                                borderRadius: BorderRadius.circular(10),
-                                bottomSheetWidth: _getController.width.value,
-                                //padding: EdgeInsets.only(top: _getController.height.value * 0.01),
-                                flagSize: _getController.width.value * 0.06,
-
-                                inputDecoration: InputDecoration(
-                                  fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                  filled: true,
-                                  disabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                  focusColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                  hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: _getController.width.value * 0.04),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
-                                  border: InputBorder.none,
-                                  labelText: 'Mamlakatlarni qidirish'.tr,
-                                  labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
-                                  enabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                  focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10))
-                                )
-                              ),
-                              onSelect: (Country country) {
-                                _getController.changeDropDownItemsTitle(0,country.name.toString());
-                              }
+                                context: context,
+                                showPhoneCode: true,
+                                useSafeArea: true,
+                                onClosed: () => print('Dialog closed'),
+                                showWorldWide: false,
+                                useRootNavigator: true,
+                                favorite: ['UZ','RU','KZ','TJ','KG','AF'],
+                                countryListTheme: CountryListThemeData(
+                                    bottomSheetHeight: _getController.height.value * 0.7,
+                                    borderRadius: BorderRadius.circular(10),
+                                    bottomSheetWidth: _getController.width.value,
+                                    flagSize: _getController.width.value * 0.06,
+                                    inputDecoration: InputDecoration(
+                                        fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                        filled: true,
+                                        disabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                                        focusColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                        hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: _getController.width.value * 0.04),
+                                        contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
+                                        border: InputBorder.none,
+                                        labelText: 'Mamlakatlarni qidirish'.tr,
+                                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                                        enabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                                        focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10))
+                                    )
+                                ),
+                                onSelect: (Country country) {
+                                  _getController.changeDropDownItemsTitle(0,country.name.toString());
+                                }
                             ),
                             if (_getController.dropDownItemsTitle[0] != 'Uzbekistan'){
-                              _getController.clearDistrictsModel(),
-                              _getController.clearProvinceModel()
+                              ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions')
                             } else {
-                              ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions'),
-                              ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts')
+                              _getController.clearDistrictsModel(),
+                              _getController.clearProvinceModel(),
+                              _getController.dropDownItems[0] = 0,
+                              _getController.dropDownItems[1] = 0,
+                              _getController.dropDownItems[2] = 0
                             }
-                      }),
+                          }),
+                    ),
+                    if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                      Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
+                    if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                       SizedBox(height: _getController.height.value * 0.01),
-                      Text('${'Violyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
-                      SizedBox(height: _getController.height.value * 0.01),
-                      if (_getController.provinceModel.value.regions != null)
-                        DropdownItem(
-                            title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
-                            onTap: () => {
-                              ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0)
-                            }),
-                      SizedBox(height: _getController.height.value * 0.01),
-                      Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
-                      SizedBox(height: _getController.height.value * 0.01),
-                      if (_getController.districtsModel.value.districts != null)
-                        DropdownItem(
-                            title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
-                            onTap: () => {
-                              ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1)
-                            }),
-                      SizedBox(height: _getController.height.value * 0.01),
-                      Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
-                      SizedBox(height: _getController.height.value * 0.01),
-                        DropdownItem(
-                            title: _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
-                            onTap: () => {
-                              ApiController().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
-                            }),
-                      SizedBox(height: _getController.height.value * 0.05),
-                      ElevatedButton(
-                          onPressed: () => {
-                            Get.back()
-                          },
-                          style: ButtonStyle(
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
-                              backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)
-                          ),
-                          child: SizedBox(
-                              width: _getController.width.value,
-                              height: _getController.height.value * 0.06,
-                              child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                    if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                      Container(
+                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
+                          child: DropdownItem(
+                              title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
+                              onTap: () => {
+                                ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
+                                _getController.dropDownItems[1] = 0
+                              })
                       ),
+                    if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                      Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
+                    if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                       SizedBox(height: _getController.height.value * 0.01),
-                    ]
-                )
-                )
-              )
-          )
+                    if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                      Container(
+                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
+                          child: DropdownItem(
+                              title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
+                              onTap: () => {
+                                ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
+                              })
+                      ),
+                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
+                    Container(
+                      margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02,top: _getController.height.value * 0.02),
+                      child: DropdownItem(
+                          title: _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
+                          onTap: () => {
+                            ApiController().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
+                          }),
+                    ),
+                    SizedBox(height: _getController.height.value * 0.05),
+                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:ElevatedButton(
+                        onPressed: () => {
+                          Get.back()
+                        },
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
+                            backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)
+                        ),
+                        child: SizedBox(
+                            width: _getController.width.value,
+                            height: _getController.height.value * 0.06,
+                            child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                    )),
+                    SizedBox(height: _getController.height.value * 0.01),
+                  ]
+              )))
       )
     );
   }

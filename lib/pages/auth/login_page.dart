@@ -84,7 +84,6 @@ class LoginPage extends StatelessWidget {
                     Get.to(RegisterPage()),
                     //Get.to(SamplePage()),
                     //ApiController().sendCode(),
-                    //print(_getController.code.value + _getController.phoneController.text),
                   },
                   child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )
