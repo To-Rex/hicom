@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl_phone_field/countries.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/districts_model.dart';
 import '../models/login_model.dart';
@@ -16,11 +17,16 @@ class GetController extends GetxController {
   var isSearch = false.obs;
   var isNightMode = false.obs;
   var code = '+998'.obs;
+  var selectedCountry = ''.obs;
+  var selectedDistrict = ''.obs;
+  var countryList = [].obs;
+  var districtsList = [].obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
   RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
   var responseText = ''.obs;
 
+  int getDropDownItems(selectedCountry) {return countryList.indexOf(selectedCountry);}
 
   void changeDropDownItems(int index, int newValue) {
     if (index >= 0 && index < dropDownItems.length) {
@@ -261,4 +267,6 @@ class GetController extends GetxController {
   final RefreshController refreshController = RefreshController(initialRefresh: false);
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
+
+
 }

@@ -142,63 +142,21 @@ class ApiController extends GetxController {
                                         child: Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                             child: Column(
                                                 children: [
-                                                  SizedBox(
-                                                      height: _getController
-                                                          .height.value *
-                                                          0.01),
+                                                  SizedBox(height: _getController.height.value * 0.01),
                                                   Container(
-                                                      height: _getController
-                                                          .height.value *
-                                                          0.04,
-                                                      width: _getController
-                                                          .width.value,
-                                                      margin: EdgeInsets.only(
-                                                          bottom: _getController
-                                                              .height.value *
-                                                              0.01),
+                                                      height: _getController.height.value * 0.04,
+                                                      width: _getController.width.value,
+                                                      margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
                                                       child: Center(
                                                           child: Row(
                                                               children: [
-                                                                Text(
-                                                                  _getController
-                                                                      .districtsModel
-                                                                      .value
-                                                                      .districts![index]
-                                                                      .name
-                                                                      .toString(),
-                                                                  style: TextStyle(
-                                                                      color: Theme
-                                                                          .of(
-                                                                          context)
-                                                                          .colorScheme
-                                                                          .onBackground,
-                                                                      fontSize: _getController
-                                                                          .width
-                                                                          .value *
-                                                                          0.04),),
+                                                                Text(_getController.districtsModel.value.districts![index].name.toString(),
+                                                                  style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
                                                                 const Spacer(),
-                                                                if (_getController
-                                                                    .dropDownItems[1] ==
-                                                                    index)
-                                                                  Icon(
-                                                                      TablerIcons
-                                                                          .circle_check,
-                                                                      color: Theme
-                                                                          .of(
-                                                                          context)
-                                                                          .colorScheme
-                                                                          .onBackground)
+                                                                if (_getController.dropDownItems[1] == index)
+                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
                                                                 else
-                                                                  Icon(
-                                                                      TablerIcons
-                                                                          .circle,
-                                                                      color: Theme
-                                                                          .of(
-                                                                          context)
-                                                                          .colorScheme
-                                                                          .onBackground
-                                                                          .withOpacity(
-                                                                          0.5))
+                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
                                                               ]
                                                           )
                                                       )
@@ -209,86 +167,6 @@ class ApiController extends GetxController {
                                             )
                                         )
                                     );
-                                    /*if (_getController.districtsModel.value.districts![index].regionId == _getController.provinceModel.value.regions![_getController.dropDownItems[0]].id) {
-                                      return InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              _getController.changeDropDownItems(1, index);
-                                            });
-                                          },
-                                          child: Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                              child: Column(
-                                                  children: [
-                                                    SizedBox(
-                                                        height: _getController
-                                                            .height.value *
-                                                            0.01),
-                                                    Container(
-                                                        height: _getController
-                                                            .height.value *
-                                                            0.04,
-                                                        width: _getController
-                                                            .width.value,
-                                                        margin: EdgeInsets.only(
-                                                            bottom: _getController
-                                                                .height.value *
-                                                                0.01),
-                                                        child: Center(
-                                                            child: Row(
-                                                                children: [
-                                                                  Text(
-                                                                    _getController
-                                                                        .districtsModel
-                                                                        .value
-                                                                        .districts![index]
-                                                                        .name
-                                                                        .toString(),
-                                                                    style: TextStyle(
-                                                                        color: Theme
-                                                                            .of(
-                                                                            context)
-                                                                            .colorScheme
-                                                                            .onBackground,
-                                                                        fontSize: _getController
-                                                                            .width
-                                                                            .value *
-                                                                            0.04),),
-                                                                  const Spacer(),
-                                                                  if (_getController
-                                                                      .dropDownItems[1] ==
-                                                                      index)
-                                                                    Icon(
-                                                                        TablerIcons
-                                                                            .circle_check,
-                                                                        color: Theme
-                                                                            .of(
-                                                                            context)
-                                                                            .colorScheme
-                                                                            .onBackground)
-                                                                  else
-                                                                    Icon(
-                                                                        TablerIcons
-                                                                            .circle,
-                                                                        color: Theme
-                                                                            .of(
-                                                                            context)
-                                                                            .colorScheme
-                                                                            .onBackground
-                                                                            .withOpacity(
-                                                                            0.5))
-                                                                ]
-                                                            )
-                                                        )
-                                                    ),
-                                                    //if (_getController.state.length - 1 != index)
-                                                    const Divider()
-                                                  ]
-                                              )
-                                          )
-                                      );
-                                    } else{
-                                      return Container();
-                                    }*/
                                   }
                               ))
                           )
@@ -349,19 +227,21 @@ class ApiController extends GetxController {
           'Accept': 'application/json',
         }
     );
-    //encode the data utf8.encode
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       if (act == 'regions') {
         _getController.clearProvinceModel();
-        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))));
-        debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
-        debugPrint('====================================================================================');
-      }else if (act == 'districts') {
+        _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString())));
+        _getController.countryList.value = _getController.provinceModel.value.regions!.map((e) => e.name.toString()).toList();
+        _getController.countryList.insert(0, ''.tr);
+        _getController.selectedCountry.value = _getController.countryList[0];
+      } else if (act == 'districts') {
         _getController.clearDistrictsModel();
         debugPrint(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString());
-        _getController.fullName.value = Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B')!;
-        //_getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(Tea.decryptTea(response.body))));
-        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString().codeUnits))));
+        _getController.fullName.value = Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B');
+        _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(Tea.decryptTea(response.body,'50UvFayZ2w5u3O9B').toString())));
+        _getController.districtsList.value = _getController.districtsModel.value.districts!.map((e) => e.name.toString()).toList();
+        _getController.districtsList.insert(0, ''.tr);
+        _getController.selectedDistrict.value = _getController.districtsList[0];
       }
     }else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);

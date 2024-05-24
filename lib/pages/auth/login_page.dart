@@ -4,6 +4,7 @@ import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/auth/register_page.dart';
 import 'package:hicom/pages/auth/verify_page.dart';
+import 'package:hicom/pages/sample_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../controllers/get_controller.dart';
@@ -81,6 +82,7 @@ class LoginPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
                   onPressed: () => {
                     Get.to(RegisterPage()),
+                    //Get.to(SamplePage()),
                     //ApiController().sendCode(),
                     //print(_getController.code.value + _getController.phoneController.text),
                   },
