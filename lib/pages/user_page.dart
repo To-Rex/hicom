@@ -147,11 +147,9 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getController.getUser();
     return Scaffold(
-        appBar: AppBar(
-            leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()),
-            centerTitle: true,
-            title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),)),
+        appBar: AppBar(leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),)),
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
@@ -189,16 +187,14 @@ class UserPage extends StatelessWidget {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('Foydalanuvchi nomi'.tr, style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
+                                      Text(_getController.loginModel.value.user!.name.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
                                       SizedBox(height: _getController.height.value * 0.01),
-                                      Text('+998995340313'.tr, style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
+                                      Text(_getController.loginModel.value.user!.phone.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
                                     ],
                                   ),
                                   const Spacer(),
-                                  Icon(
-                                      Icons.account_circle,
-                                      color: AppColors.primaryColor, size: _getController.height.value * 0.08),
-                                ],
+                                  Icon(Icons.account_circle, color: AppColors.primaryColor, size: _getController.height.value * 0.08),
+                                ]
                               ),
                               SizedBox(height: _getController.height.value * 0.01),
                               ElevatedButton(
@@ -210,15 +206,14 @@ class UserPage extends StatelessWidget {
                               SizedBox(height: _getController.height.value * 0.01),
                               const Divider(),
                               InkWell(
-                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
-                                  child: Row(
-                                      children: [
-                                        Icon(TablerIcons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
-                                        SizedBox(width: _getController.height.value * 0.01),
-                                        Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
-                                      ]
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                child: Row(
+                                    children: [
+                                      Icon(TablerIcons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
+                                      SizedBox(width: _getController.height.value * 0.01),
+                                      Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
+                                    ]
                                   ),
-                                  //onTap: () => Get.offAll(() => SplashScreen())
                                 onTap: (){
                                     _getController.clearKey();
                                     Get.offAll(() => SplashScreen());
@@ -234,21 +229,13 @@ class UserPage extends StatelessWidget {
                             color: Theme.of(context).colorScheme.background,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
-                              BoxShadow(
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
-                                  spreadRadius: 2,
-                                  blurRadius: 2,
-                                  offset: const Offset(1, 2)
-                              )
+                              BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
                             ]),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SettingsItem(
-                                  icon: Icon(
-                                      Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon,
-                                      color: Theme.of(context).colorScheme.onBackground,
-                                      size: _getController.height.value * 0.04),
+                                  icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Dastur mavzusi'.tr,
                                   onTap: () {
                                     AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
@@ -270,7 +257,6 @@ class UserPage extends StatelessWidget {
                                   icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
                                   title: 'Foydalanish yo\'riqnomasi'.tr,
                                   onTap: () {
-                                    //InstructionPage
                                     Get.to(() => InstructionPage(), transition: Transition.fadeIn);
                                   },
                                   color: Theme.of(context).colorScheme.onBackground,
@@ -309,7 +295,7 @@ class UserPage extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.onBackground,
                                   isNightMode: false,
                                   isLanguage: false
-                              ),
+                              )
                             ]
                         )
                     )

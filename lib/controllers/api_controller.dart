@@ -313,6 +313,8 @@ class ApiController extends GetxController {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 0) {
         _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))));
         _getController.writeKey(_getController.loginModel.value.key.toString());
+        _getController.writeUid(_getController.loginModel.value.uid.toString());
+        _getController.writeUser(_getController.loginModel.value);
         Get.to(SamplePage());
       } else {
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 20003) {
@@ -342,6 +344,8 @@ class ApiController extends GetxController {
       showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
       _getController.changeRegisterModel(RegisterModel.fromJson(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())));
       _getController.writeKey(_getController.registerModel.value.key.toString());
+      _getController.writeUid(_getController.registerModel.value.uid.toString());
+      Get.to(SamplePage());
     } else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }

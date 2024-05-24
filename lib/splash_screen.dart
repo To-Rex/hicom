@@ -18,11 +18,10 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Future.delayed(const Duration(seconds: 1), () {
-      Get.off(LoginPage(), transition: Transition.fadeIn);
-      if (GetStorage().read('token') != null) {
-        //Get.off(SamplePage());
+      if(_getController.getUid() != '' && _getController.getKey() != '50UvFayZ2w5u3O9B') {
+        Get.off(SamplePage());
       } else {
-        //Get.off(const OnboardingPage());
+        Get.off(LoginPage(), transition: Transition.fadeIn);
       }
     });
 

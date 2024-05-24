@@ -49,12 +49,8 @@ class GetController extends GetxController {
    }
   }
 
-  //write token to storage
-  void writeKey(String token) {
-    GetStorage().write('key', token);
-  }
+  void writeKey(String token) {GetStorage().write('key', token);}
 
-  //clear token from storage
   void clearKey() {
     GetStorage().remove('key');
   }
@@ -63,12 +59,24 @@ class GetController extends GetxController {
     GetStorage().write('uid', uid);
   }
 
-  String getUid() {
-    return GetStorage().read('uid') ?? '';
-  }
+  String getUid() {return GetStorage().read('uid') ?? '';}
 
   void clearUid() {
     GetStorage().remove('uid');
+  }
+
+  void writeUser(LoginModel loginModel) {
+    GetStorage().write('user', jsonEncode(loginModel.toJson()));
+  }
+
+  void getUser() {
+    if (GetStorage().read('user') != null) {
+      loginModel.value = LoginModel.fromJson(jsonDecode(GetStorage().read('user')));
+    }
+  }
+
+  void clearUser() {
+    GetStorage().remove('user');
   }
 
   @override
