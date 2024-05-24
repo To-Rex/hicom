@@ -42,7 +42,11 @@ class GetController extends GetxController {
   //get token from storage
 
  String getKey() {
-    return GetStorage().read('key') ?? '50UvFayZ2w5u3O9B';
+   if (GetStorage().read('key') != null) {
+     return GetStorage().read('key').toString();
+   } else {
+     return '50UvFayZ2w5u3O9B';
+   }
   }
 
   //write token to storage
@@ -121,7 +125,6 @@ class GetController extends GetxController {
   }
 
   int getType() {
-    //return dropDownItem[dropDownItems[2]].toString(); int vlue off index
     return dropDownItems[2];
   }
 

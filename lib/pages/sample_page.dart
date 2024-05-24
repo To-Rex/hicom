@@ -32,7 +32,7 @@ class SamplePage extends StatelessWidget {
           centerTitle: true,
           actions: [
             Obx(() => _getController.isSearch.value
-                ? SearchFields(onChanged: (String) {})
+                ? SearchFields(onChanged: (String value) {})
                 : IconButton(icon: Icon(Icons.search,
                 size: _getController.height.value * 0.035),
                 onPressed: () => {
@@ -73,7 +73,8 @@ class SamplePage extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
-            print(Tea.decryptTea('QKgC%2FARFt24%2B9Zfu%2Fam%2BMEuW8oR%2FW%2F%2B8ZbM9Sdcb%2F6rmA5Zwk1hKqXbBAnaAGbmr3MBVa7aShWEbB7YRYqNc2LJo7o9qnctRPJpdNTyssV%2Ftmdj%2F4IVC1keTjoZd77QZYvozEx0%3D', '9rLrK8Po9cgvF64A'));
+            _getController.clearKey();
+            print(_getController.getKey());
           },
           child: const Icon(Icons.add),
         ));

@@ -69,7 +69,6 @@ class Base64EncoderDecoder {
 
     // Remove all whitespace and line breaks
     base64String = base64String.replaceAll(RegExp(r'\s+'), '');
-
     // Add padding if necessary
     int paddingNeeded = base64String.length % 4;
     if (paddingNeeded > 0) {
