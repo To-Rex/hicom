@@ -8,6 +8,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
+import '../models/register_model.dart';
 
 
 class GetController extends GetxController {
@@ -76,6 +77,11 @@ class GetController extends GetxController {
   var districtsModel = DistrictsModel().obs;
   var provinceModel = ProvinceModel().obs;
   var loginModel = LoginModel().obs;
+  var registerModel = RegisterModel().obs;
+
+  void changeRegisterModel(RegisterModel registerModels) {
+    registerModel.value = registerModels;
+  }
 
   void changeDistrictsModel(DistrictsModel districtsModel) {
     this.districtsModel.value = districtsModel;
@@ -114,6 +120,10 @@ class GetController extends GetxController {
     loginModel.value = LoginModel();
   }
 
+  int getType() {
+    //return dropDownItem[dropDownItems[2]].toString(); int vlue off index
+    return dropDownItems[2];
+  }
 
   String getQueryString(String action, String uid) {
     String returnUrl = "";

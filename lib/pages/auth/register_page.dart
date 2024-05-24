@@ -128,6 +128,18 @@ class RegisterPage extends StatelessWidget{
                             } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
                               ApiController().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
                             } else{
+                              //print() nameController.text, phoneController.text, _getController.dropDownItems[0], _getController.dropDownItems[1], _getController.dropDownItems[2], _getController.code.value + _getController.phoneController.text
+                              print(_getController.code.value + _getController.phoneController.text),
+                              print(_getController.nameController.text),
+                              print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString()),
+                              print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString()),
+                              print(_getController.dropDownItem[_getController.dropDownItems[2]]),
+
+                              //print country_id, region_id, district_id
+                              print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()),
+                              print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()),
+                              print(_getController.dropDownItem[_getController.dropDownItems[2]]),
+
                               ApiController().signUp()
                             }
                           },

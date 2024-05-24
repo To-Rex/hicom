@@ -39,6 +39,7 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang' : 'Shaxarni tanlang yoki Tumanni tanlang',
       'Saqlash' : 'Saqlash',
       'Ma’lumotlarni kiriting' : 'Ma’lumotlarni kiriting',
+      'Bunday foydalanuvchi allaqachon mavjud.' : 'Bunday foydalanuvchi allaqachon mavjud.',
 
     },
     'en_EN':{
@@ -77,6 +78,7 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang' : 'Choose country or choose city',
       'Saqlash' : 'Save',
       'Ma’lumotlarni kiriting' : 'Enter information',
+      'Bunday foydalanuvchi allaqachon mavjud.' : 'This user already exists.',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -114,6 +116,7 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang' : 'Шахарни танланг или Туманни танланг',
       'Saqlash' : 'Сақлаш',
       'Ma’lumotlarni kiriting' : 'Маълумотларни киритинг',
+      'Bunday foydalanuvchi allaqachon mavjud.' : 'Бундай фойдаланувчи аллақачон мавжуд.',
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -151,6 +154,7 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang' : 'Выберите город или район',
       'Saqlash' : 'Сохранить',
       'Ma’lumotlarni kiriting' : 'Введите информацию',
+      'Bunday foydalanuvchi allaqachon mavjud.' : 'Этот пользователь уже существует.',
     }
   };
 

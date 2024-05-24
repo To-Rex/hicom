@@ -54,13 +54,34 @@ class Base64EncoderDecoder {
   }
 
   static Uint8List decodeBase64(String base64String) {
-    base64String = Uri.decodeFull(base64String);
+    /*base64String = Uri.decodeFull(base64String);
     while (base64String.length % 4 != 0) {
       base64String += '=';
     }
-    base64String = base64String.replaceAll(RegExp(r'[\n\r]'), '');
+    //{"phone": "+998331432003","name": "Test Testov","type": "1","country_id": "1","region_id": "12", "district_id": "183"}
+    //base64String = base64String.replaceAll(RegExp(r'[\n\r]'), '');
+    base64String = base64String.replaceAll('\n', '').replaceAll('\r', '');
     List<int> decodedBytes = base64.decode(base64String);
     Uint8List result = Uint8List.fromList(decodedBytes);
+    return result;*/
+
+    base64String = Uri.decodeFull(base64String);
+
+    // Remove all whitespace and line breaks
+    base64String = base64String.replaceAll(RegExp(r'\s+'), '');
+
+    // Add padding if necessary
+    int paddingNeeded = base64String.length % 4;
+    if (paddingNeeded > 0) {
+      base64String = base64String.padRight(base64String.length + (4 - paddingNeeded), '=');
+    }
+
+    // Decode the base64 string
+    List<int> decodedBytes = base64.decode(base64String);
+
+    // Convert the list of bytes into Uint8List
+    Uint8List result = Uint8List.fromList(decodedBytes);
+
     return result;
   }
 
