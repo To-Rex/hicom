@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
         initial: AdaptiveThemeMode.dark,
         light: ThemeData.light(useMaterial3: true),
         dark: ThemeData.dark(useMaterial3: true),
-        builder: (theme, darkTheme) => GetMaterialApp(
+        builder: (theme, lightTheme) => GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Ildiz Kitoblari',
             theme: theme,
             translations: LocaleString(),
             locale: Get.locale ?? const Locale('uz', 'UZ'),
-            darkTheme: darkTheme,
+            darkTheme: lightTheme,
             //home: SplashScreen()
             routes: {
               '/': (context) => SplashScreen()

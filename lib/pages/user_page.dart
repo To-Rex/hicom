@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/set_item.dart';
+import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/pages/support_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:hicom/splash_screen.dart';
@@ -216,7 +217,12 @@ class UserPage extends StatelessWidget {
                                   ),
                                 onTap: (){
                                     _getController.clearKey();
+                                    _getController.clearUid();
+                                    _getController.clearUser();
                                     Get.offAll(() => SplashScreen());
+                                },
+                                onLongPress: (){
+                                  ApiController().deleteUser();
                                 },
                               )
                             ])),

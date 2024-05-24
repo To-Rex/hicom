@@ -318,6 +318,7 @@ class ApiController extends GetxController {
         Get.to(SamplePage());
       } else {
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 20003) {
+          Get.to(RegisterPage());
           showToast(Get.context!, 'Xatolik', 'Bunday foydalanuvchi allaqachon mavjud.'.tr, true, 3);
         }else {
           showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
@@ -356,6 +357,25 @@ class ApiController extends GetxController {
     //changeprofile
     var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "1","region_id": "${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}", "district_id": "${_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()}"}',_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('changeprofile', 'null') + json.toString()}&key=${_getController.getKey()}'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+      },
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+    } else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+  Future<void> deleteUser() async {
+    var json = Tea.encryptTea(jsonEncode(_getController.loginModel.value),_getController.getKey());
+    print('${_getController.getQueryString('logout', _getController.getUid())}&key=${_getController.getKey()}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('logout', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': 'application/json',

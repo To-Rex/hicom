@@ -73,8 +73,7 @@ class SamplePage extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
-            _getController.clearKey();
-            print(_getController.getKey());
+            Tea.decryptTea('Vay39ikEG%2FwNO5Sp3PI7gai%2FyfqPFdLKDLjrIyxFft%2FGYVkxUoJvWHw2mKTqmleBY%2B%2FOYb79GF33MswuKRAce51H5dD0jl6nCPgfAhkUBpAXgpVV8ayN6rJaK%2BS%2B%2Ba%2B0cDVC7BTCnQ%3D%3D', '');
           },
           child: const Icon(Icons.add),
         ));
