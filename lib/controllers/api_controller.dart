@@ -435,4 +435,27 @@ class ApiController extends GetxController {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
+  Future<void> signUp() async {
+    var json = Tea.encryptTea('{"phone": "${_getController.code.value +
+        _getController.phoneController.text}","code":"${_getController
+        .codeController.text}"}', '50UvFayZ2w5u3O9B');
+    print(json);
+    print(Tea.decryptTea(json, '50UvFayZ2w5u3O9B').toString());
+    var response = await post(Uri.parse('${_baseUrl + getController.getQueryString('signup', 'null') + json.toString()}&key=$key'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+        },
+        body: {
+          'phone': _getController.code.value+_getController.phoneController.text,
+          'name': '',
+          'type':'',
+          'country_id':'',
+          'region_id':'',
+          'district_id':'',
+        }
+    );
+
+  }
 }
