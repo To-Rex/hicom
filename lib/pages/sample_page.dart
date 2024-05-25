@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/user_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -73,7 +74,7 @@ class SamplePage extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
-            Tea.decryptTea('Vay39ikEG%2FwNO5Sp3PI7gai%2FyfqPFdLKDLjrIyxFft%2FGYVkxUoJvWHw2mKTqmleBY%2B%2FOYb79GF33MswuKRAce51H5dD0jl6nCPgfAhkUBpAXgpVV8ayN6rJaK%2BS%2B%2Ba%2B0cDVC7BTCnQ%3D%3D', '');
+
           },
           child: const Icon(Icons.add),
         ));

@@ -283,12 +283,13 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.writeLogin(_getController.code.value+_getController.phoneController.text, jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['session']);
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 0) {
         showToast(Get.context!, 'OK', 'Kod to‘g‘ri'.tr, false, 2);
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['registered'] == 0) {
           Get.to(RegisterPage());
         } else {
-          login(_getController.code.value+_getController.phoneController.text,jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['session']);
+          login(_getController.code.value+_getController.phoneController.text,jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['session'],key,true);
         }
       } else {
         showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
@@ -298,32 +299,36 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> login (phone,session) async {
+  Future<void> login (phone,session,keys,enter) async {
     debugPrint(phone);
     debugPrint(session);
-
-    var json = Tea.encryptTea('{"phone": "$phone","session":"$session"}',_getController.getKey());
+    var json = Tea.encryptTea('{"phone": "$phone","session":"$session"}',keys);
     print('suuu $json');
-    print(Tea.decryptTea(json,_getController.getKey()).toString());
-    var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('login', 'null') + json.toString()}&key=50UvFayZ2w5u3O9B'), headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'});
+    print(Tea.decryptTea(json,keys).toString());
+    var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('login', 'null') + json.toString()}&key=$keys'), headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'});
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
-    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    debugPrint(Tea.decryptTea(response.body,keys).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 0) {
-        _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))));
+      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,keys).toString().codeUnits))['errcode'] == 0) {
+        _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body,keys).toString().codeUnits))));
         _getController.writeKey(_getController.loginModel.value.key.toString());
         _getController.writeUid(_getController.loginModel.value.uid.toString());
         _getController.writeUser(_getController.loginModel.value);
-        Get.to(SamplePage());
+        if (enter){
+          Get.to(SamplePage());
+        }
+
       } else {
-        if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 20003) {
+        if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,keys).toString().codeUnits))['errcode'] == 20003) {
+          _getController.writeKey(_getController.loginModel.value.key.toString());
+          _getController.writeUid(_getController.loginModel.value.uid.toString());
+          _getController.writeUser(_getController.loginModel.value);
           Get.to(RegisterPage());
           showToast(Get.context!, 'Xatolik', 'Bunday foydalanuvchi allaqachon mavjud.'.tr, true, 3);
         }else {
           showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
         }
-
       }
     } else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
@@ -331,31 +336,33 @@ class ApiController extends GetxController {
   }
 
   Future<void> signUp() async {
-    var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "1","region_id": "${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}", "district_id": "${_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()}"}',_getController.getKey());
-    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('signup', 'null') + json.toString()}&key=${_getController.getKey()}'),
+    var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "1","region_id": "${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}", "district_id": "${_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()}"}',key);
+    debugPrint(json.toString());
+    debugPrint('${_baseUrl + _getController.getQueryString('signup', 'null') + json.toString()}&key=$key}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('signup', 'null') + json.toString()}&key=$key'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json',
-        },
+          'Accept': 'application/json'
+        }
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
-    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    debugPrint(Tea.decryptTea(response.body,key).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
-      _getController.changeRegisterModel(RegisterModel.fromJson(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())));
+      _getController.changeRegisterModel(RegisterModel.fromJson(jsonDecode(Tea.decryptTea(response.body,key).toString())));
       _getController.writeKey(_getController.registerModel.value.key.toString());
       _getController.writeUid(_getController.registerModel.value.uid.toString());
-      Get.to(SamplePage());
+      login(_getController.getNumber(),_getController.getSession(),key,true);
     } else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
-
   }
 
   Future<void> editUser() async {
     //changeprofile
     var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "1","region_id": "${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}", "district_id": "${_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()}"}',_getController.getKey());
+    debugPrint('${_baseUrl + _getController.getQueryString('changeprofile', 'null') + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('changeprofile', 'null') + json.toString()}&key=${_getController.getKey()}'),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -367,6 +374,8 @@ class ApiController extends GetxController {
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+      //login(phone, session, keys)
+      login(_getController.getNumber(),_getController.getSession(),key,false);
     } else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
@@ -390,4 +399,25 @@ class ApiController extends GetxController {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
+
+  Future<void> getSettings() async {
+    print('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+      },
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+    } else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+
 }

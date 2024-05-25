@@ -79,6 +79,28 @@ class GetController extends GetxController {
     GetStorage().remove('user');
   }
 
+  //number and session
+  void writeLogin(String number, String session) {
+    GetStorage().write('number', number);
+    GetStorage().write('session', session);
+  }
+
+  String getNumber() {
+    if (GetStorage().read('number') != null) {
+      return GetStorage().read('number').toString();
+    } else {
+      return '';
+    }
+  }
+
+  String getSession() {
+    if (GetStorage().read('session') != null) {
+      return GetStorage().read('session').toString();
+    } else {
+      return '';
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();

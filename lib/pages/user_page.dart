@@ -162,151 +162,153 @@ class UserPage extends StatelessWidget {
             controller: _refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    SizedBox(height: _getController.height.value * 0.02),
-                    Container(
-                        width: _getController.width.value,
-                        margin: EdgeInsets.symmetric(horizontal: _getController.height.value * 0.015, vertical: _getController.height.value * 0.01),
-                        padding: EdgeInsets.all(_getController.height.value * 0.02),
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.background,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
-                                  spreadRadius: 2,
-                                  blurRadius: 2,
-                                  offset: const Offset(1, 2) // changes position of shadow
-                              )
-                            ]),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                child: Obx(() => Column(
+                    children: [
+                      SizedBox(height: _getController.height.value * 0.02),
+                      Container(
+                          width: _getController.width.value,
+                          margin: EdgeInsets.symmetric(horizontal: _getController.height.value * 0.015, vertical: _getController.height.value * 0.01),
+                          padding: EdgeInsets.all(_getController.height.value * 0.02),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+                                    spreadRadius: 2,
+                                    blurRadius: 2,
+                                    offset: const Offset(1, 2) // changes position of shadow
+                                )
+                              ]),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                     children: [
-                                      Text(_getController.loginModel.value.user!.name.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
-                                      SizedBox(height: _getController.height.value * 0.01),
-                                      Text(_getController.loginModel.value.user!.phone.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Icon(Icons.account_circle, color: AppColors.primaryColor, size: _getController.height.value * 0.08),
-                                ]
-                              ),
-                              SizedBox(height: _getController.height.value * 0.01),
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                                  onPressed: () {
-                                    Get.to(() => EditUser(), transition: Transition.fadeIn);
-                                  },
-                                  child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: _getController.height.value * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))),
-                              SizedBox(height: _getController.height.value * 0.01),
-                              const Divider(),
-                              InkWell(
-                                overlayColor: MaterialStateProperty.all(Colors.transparent),
-                                child: Row(
-                                    children: [
-                                      Icon(TablerIcons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
-                                      SizedBox(width: _getController.height.value * 0.01),
-                                      Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          if (_getController.loginModel.value.user != null)
+                                            Text(_getController.loginModel.value.user!.name.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
+                                          SizedBox(height: _getController.height.value * 0.01),
+                                          if (_getController.loginModel.value.user != null)
+                                            Text(_getController.loginModel.value.user!.phone.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Icon(Icons.account_circle, color: AppColors.primaryColor, size: _getController.height.value * 0.08),
                                     ]
+                                ),
+                                SizedBox(height: _getController.height.value * 0.01),
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                    onPressed: () {
+                                      Get.to(() => EditUser(), transition: Transition.fadeIn);
+                                    },
+                                    child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: _getController.height.value * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))),
+                                SizedBox(height: _getController.height.value * 0.01),
+                                const Divider(),
+                                InkWell(
+                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                  child: Row(
+                                      children: [
+                                        Icon(TablerIcons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
+                                        SizedBox(width: _getController.height.value * 0.01),
+                                        Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
+                                      ]
                                   ),
-                                onTap: (){
+                                  onTap: (){
                                     _getController.clearKey();
                                     _getController.clearUid();
                                     _getController.clearUser();
                                     Get.offAll(() => SplashScreen());
-                                },
-                                onLongPress: (){
-                                  ApiController().deleteUser();
-                                },
-                              )
-                            ])),
-                    SizedBox(height: _getController.height.value * 0.02),
-                    Container(
-                        width: _getController.width.value,
-                        margin: EdgeInsets.symmetric(horizontal: _getController.height.value * 0.015, vertical: _getController.height.value * 0.01),
-                        padding: EdgeInsets.all(_getController.height.value * 0.01),
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.background,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
-                            ]),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SettingsItem(
-                                  icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
-                                  title: 'Dastur mavzusi'.tr,
-                                  onTap: () {
-                                    AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
                                   },
-                                  color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: true,
-                                  isLanguage: false
-                              ),
-                              const Divider(),
-                              SettingsItem(
-                                  icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
-                                  title: 'Dastur tili'.tr,
-                                  onTap: () {bottomBuildLanguageDialog(context);},
-                                  color: Theme.of(context).colorScheme.onBackground, isNightMode: false,
-                                  isLanguage: true
-                              ),
-                              const Divider(),
-                              SettingsItem(
-                                  icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
-                                  title: 'Foydalanish yo\'riqnomasi'.tr,
-                                  onTap: () {
-                                    Get.to(() => InstructionPage(), transition: Transition.fadeIn);
+                                  onLongPress: (){
+                                    ApiController().deleteUser();
                                   },
-                                  color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false,
-                                  isLanguage: false
-                              ),
-                              const Divider(),
-                              SettingsItem(
-                                  icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
-                                  title: 'Qo\'llab quvvatlash'.tr,
-                                  onTap: () {
-                                    Get.to(() => SupportPage(), transition: Transition.fadeIn);
-                                  },
-                                  color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false,
-                                  isLanguage: false
-                              ),
-                              const Divider(),
-                              SettingsItem(
-                                  icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
-                                  title: 'Dasturni baholash'.tr,
-                                  onTap: () {
-                                    showRateDialog(context);
-                                  },
-                                  color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false,
-                                  isLanguage: false
-                              ),
-                              const Divider(),
-                              SettingsItem(
-                                  icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
-                                  title: 'Dasturni ulashish'.tr,
-                                  onTap: () {
-                                    ShareLink.shareUri(Uri.parse('https://hicom.uz/'), subject: 'Hicom.uz');
-                                  },
-                                  color: Theme.of(context).colorScheme.onBackground,
-                                  isNightMode: false,
-                                  isLanguage: false
-                              )
-                            ]
-                        )
-                    )
-                  ]
-                )
+                                )
+                              ])),
+                      SizedBox(height: _getController.height.value * 0.02),
+                      Container(
+                          width: _getController.width.value,
+                          margin: EdgeInsets.symmetric(horizontal: _getController.height.value * 0.015, vertical: _getController.height.value * 0.01),
+                          padding: EdgeInsets.all(_getController.height.value * 0.01),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
+                              ]),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SettingsItem(
+                                    icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    title: 'Dastur mavzusi'.tr,
+                                    onTap: () {
+                                      AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
+                                    },
+                                    color: Theme.of(context).colorScheme.onBackground,
+                                    isNightMode: true,
+                                    isLanguage: false
+                                ),
+                                const Divider(),
+                                SettingsItem(
+                                    icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    title: 'Dastur tili'.tr,
+                                    onTap: () {bottomBuildLanguageDialog(context);},
+                                    color: Theme.of(context).colorScheme.onBackground, isNightMode: false,
+                                    isLanguage: true
+                                ),
+                                const Divider(),
+                                SettingsItem(
+                                    icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    title: 'Foydalanish yo\'riqnomasi'.tr,
+                                    onTap: () {
+                                      Get.to(() => InstructionPage(), transition: Transition.fadeIn);
+                                    },
+                                    color: Theme.of(context).colorScheme.onBackground,
+                                    isNightMode: false,
+                                    isLanguage: false
+                                ),
+                                const Divider(),
+                                SettingsItem(
+                                    icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    title: 'Qo\'llab quvvatlash'.tr,
+                                    onTap: () {
+                                      Get.to(() => SupportPage(), transition: Transition.fadeIn);
+                                    },
+                                    color: Theme.of(context).colorScheme.onBackground,
+                                    isNightMode: false,
+                                    isLanguage: false
+                                ),
+                                const Divider(),
+                                SettingsItem(
+                                    icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    title: 'Dasturni baholash'.tr,
+                                    onTap: () {
+                                      showRateDialog(context);
+                                    },
+                                    color: Theme.of(context).colorScheme.onBackground,
+                                    isNightMode: false,
+                                    isLanguage: false
+                                ),
+                                const Divider(),
+                                SettingsItem(
+                                    icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    title: 'Dasturni ulashish'.tr,
+                                    onTap: () {
+                                      ShareLink.shareUri(Uri.parse('https://hicom.uz/'), subject: 'Hicom.uz');
+                                    },
+                                    color: Theme.of(context).colorScheme.onBackground,
+                                    isNightMode: false,
+                                    isLanguage: false
+                                )
+                              ]
+                          )
+                      )
+                    ]
+                ))
             )
         )
     );
