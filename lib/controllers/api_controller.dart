@@ -394,7 +394,6 @@ class ApiController extends GetxController {
     }
   }
 
-
   Future<void> getSettings() async {
     print('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}'),
@@ -412,6 +411,4 @@ class ApiController extends GetxController {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
-
-
 }
