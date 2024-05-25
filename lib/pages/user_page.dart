@@ -149,6 +149,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _getController.getUser();
+    _getController.nameController.text = _getController.loginModel.value.user?.name ?? '';
     return Scaffold(
         appBar: AppBar(leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),)),
         body: SmartRefresher(
