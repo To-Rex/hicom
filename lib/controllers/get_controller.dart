@@ -113,6 +113,28 @@ class GetController extends GetxController {
   var loginModel = LoginModel().obs;
   var registerModel = RegisterModel().obs;
 
+  void getProvince(){
+    if (loginModel.value.user != null && loginModel.value.user?.regionId != null) {
+      for (var i = 0; i < provinceModel.value.regions!.length; i++) {
+        if (provinceModel.value.regions![i].id == loginModel.value.user?.regionId) {
+          changeDropDownItems(0, i);
+          break;
+        }
+      }
+    }
+  }
+
+  void getDistricts(){
+    if (loginModel.value.user != null && loginModel.value.user?.regionId != null) {
+      for (var i = 0; i < districtsModel.value.districts!.length; i++) {
+        if (districtsModel.value.districts![i].id == loginModel.value.user?.districtId) {
+          changeDropDownItems(1, i);
+          break;
+        }
+      }
+    }
+  }
+
   void changeRegisterModel(RegisterModel registerModels) {
     registerModel.value = registerModels;
   }

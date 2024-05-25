@@ -77,12 +77,7 @@ class ApiController extends GetxController {
                   width: double.infinity,
                   child: Column(
                       children: [
-                        Container(
-                            height: _getController.height.value * 0.005,
-                            width: _getController.width.value * 0.2,
-                            margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03),
-                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(10.0))
-                        ),
+                        Container(height: _getController.height.value * 0.005, width: _getController.width.value * 0.2, margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03), decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(10.0))),
                         Text(title.toString().tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
                         SizedBox(height: _getController.height.value * 0.02),
                         if (cat == 0)

@@ -21,8 +21,9 @@ class EditUser extends StatelessWidget {
   var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
-    ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions');
-    ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
+    ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions').then((value) => _getController.getProvince()).then((value) =>ApiController().getRegions(Tea.encryptTea('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}',ApiController.key), 'districts').then((value) => _getController.getDistricts()));
+
+    //ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
     return Scaffold(
       appBar: AppBar(
           title: Text('Hisobni taxrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.05, fontWeight: FontWeight.w500)),
@@ -142,7 +143,6 @@ class EditUser extends StatelessWidget {
                               } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
                                 ApiController().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
                               } else{
-                                //print() nameController.text, phoneController.text, _getController.dropDownItems[0], _getController.dropDownItems[1], _getController.dropDownItems[2], _getController.code.value + _getController.phoneController.text
                                 print(_getController.code.value + _getController.phoneController.text),
                                 print(_getController.nameController.text),
                                 print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString()),

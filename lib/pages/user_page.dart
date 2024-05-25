@@ -174,12 +174,7 @@ class UserPage extends StatelessWidget {
                               color: Theme.of(context).colorScheme.background,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
-                                BoxShadow(
-                                    color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
-                                    spreadRadius: 2,
-                                    blurRadius: 2,
-                                    offset: const Offset(1, 2) // changes position of shadow
-                                )
+                                BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
                               ]),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,12 +229,7 @@ class UserPage extends StatelessWidget {
                           width: _getController.width.value,
                           margin: EdgeInsets.symmetric(horizontal: _getController.height.value * 0.015, vertical: _getController.height.value * 0.01),
                           padding: EdgeInsets.all(_getController.height.value * 0.01),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
-                              ]),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))]),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

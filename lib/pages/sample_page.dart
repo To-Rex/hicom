@@ -74,7 +74,8 @@ class SamplePage extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
-
+            _getController.getProvince();
+            _getController.getDistricts();
           },
           child: const Icon(Icons.add),
         ));
