@@ -355,9 +355,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> editUser() async {
-    var phone = _getController.code.value+_getController.phoneController.text;
-    phone = phone.toString() == '+998' ? _getController.getNumber() : phone;
-    var json = Tea.encryptTea('{"phone": "$phone","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "1","region_id": "${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}", "district_id": "${_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()}"}',_getController.getKey());
+    var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text == '+998' ? _getController.getNumber() : _getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "${_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr ? 1 : 2}","region_id": "${_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr?_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString(): "0"}", "district_id": "${_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr ? _getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString() : "0"}"}',_getController.getKey());
     debugPrint('${_baseUrl + _getController.getQueryString('changeprofile', 'null') + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('changeprofile', 'null') + json.toString()}&key=${_getController.getKey()}'),
       headers: {

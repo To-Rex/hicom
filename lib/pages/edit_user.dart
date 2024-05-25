@@ -21,6 +21,7 @@ class EditUser extends StatelessWidget {
   var selectedValue = 'Uzbekistan';
   @override
   Widget build(BuildContext context) {
+    _getController.dropDownItemsTitle[0] = 'Uzbekistan'.tr;
     ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions').then((value) => _getController.getProvince()).then((value) =>ApiController().getRegions(Tea.encryptTea('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}',ApiController.key), 'districts').then((value) => _getController.getDistricts()));
 
     //ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
@@ -85,24 +86,23 @@ class EditUser extends StatelessWidget {
                                   _getController.changeDropDownItemsTitle(0,country.name.toString());
                                 }
                             ),
-                            if (_getController.dropDownItemsTitle[0] != 'Uzbekistan'.tr){
+                            if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr){
                               ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions')
-                            } else {
-                              _getController.clearDistrictsModel(),
+
+                             /* _getController.clearDistrictsModel(),
                               _getController.clearProvinceModel(),
                               _getController.dropDownItems[0] = 0,
                               _getController.dropDownItems[1] = 0,
-                              _getController.dropDownItems[2] = 0,
-                            }
+                              _getController.dropDownItems[2] = 0,*/
+                            } else {
+                              }
                           }),
                     ),
-                    if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                    if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr && _getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                       Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
-                    if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                      SizedBox(height: _getController.height.value * 0.01),
-                    if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                    if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr && _getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                       Container(
-                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
+                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02,top: _getController.height.value * 0.01),
                           child: DropdownItem(
                               title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                               onTap: () => {
@@ -110,13 +110,11 @@ class EditUser extends StatelessWidget {
                                 _getController.dropDownItems[1] = 0
                               })
                       ),
-                    if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                    if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr && _getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                       Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
-                    if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                      SizedBox(height: _getController.height.value * 0.01),
-                    if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                    if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr && _getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                       Container(
-                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
+                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02,top: _getController.height.value * 0.01),
                           child: DropdownItem(
                               title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
                               onTap: () => {
@@ -143,16 +141,6 @@ class EditUser extends StatelessWidget {
                               } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
                                 ApiController().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
                               } else{
-                                print(_getController.code.value + _getController.phoneController.text),
-                                print(_getController.nameController.text),
-                                print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString()),
-                                print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString()),
-                                print(_getController.dropDownItem[_getController.dropDownItems[2]]),
-
-                                //print country_id, region_id, district_id
-                                print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()),
-                                print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()),
-                                print(_getController.dropDownItem[_getController.dropDownItems[2]]),
                                 ApiController().editUser()
                               }
                             },
