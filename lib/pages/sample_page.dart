@@ -59,10 +59,7 @@ class SamplePage extends StatelessWidget {
                         height: _getController.height.value * 0.9,
                         width: double.infinity,
                         child: Center(
-                            child: Text(
-                              'Loyihalar ro\'yxati'.tr,
-                              style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),
-                            )
+                            child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),)
                         )
                       )
                     ]
@@ -73,7 +70,9 @@ class SamplePage extends StatelessWidget {
           shape: const CircleBorder(),
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          onPressed: () {},
+          onPressed: () {
+            print(Tea.decryptTea('GS30owy90H/Z53rfrZToYxnnu+7oLNlpWpnolqEixHQhNjc/8sjbbUUEJYRO13gmQzzPWCuVDn+a5rqCuUBgFCu2LRf0udjthQ1Etv4Zs+WgKsSVOvoPLLrrT6bYpthWgjpBEixYrfsdaDOSzaxCT8olwzDAteS3j+Eeq6d2cGNF0kpn8OkxVwGxikoSvHdg7q+Uz5FMlELzTyIGo1we/ZudfQ==', 'kxxIDp6uF6ov5tw6'));
+          },
           child: const Icon(Icons.add),
         ));
   }

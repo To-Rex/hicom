@@ -411,4 +411,9 @@ class ApiController extends GetxController {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
+  Future<void> getProjects() async {
+
+  }
+
 }
