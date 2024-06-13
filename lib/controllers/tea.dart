@@ -136,7 +136,6 @@ class Tea {
     if (isBase64) {
       // Decode the base64 encoded string to Uint8List
       //bs = base64Decode(utf8.decode(bs));
-      print(utf8.decode(bs).runtimeType);
       bs = Base64EncoderDecoder.decodeBase64(utf8.decode(bs));
     }
 
@@ -173,8 +172,6 @@ class Tea {
     return utf8.decode(decryptedBytes);
   }
 
-
-
 }
 
 
@@ -193,18 +190,11 @@ String decodeBase64Url(String encodedStr) {
 
 main() {
   String key = "50UvFayZ2w5u3O9B";
-  String data = '{"phone":"+998995340313","session":"p8Yc6+UQK5h1L9xygMvePPIQK9vFkxHvXE9dwC8ghXpYdZjuy++VtSQqOcOQnoCP"}';
-  String data1 = '{"phone":"+998995340313","session":"p8Yc6+UQK5h1L9xygMvePPIQK9vFkxHvXE9dwC8ghXpYdZjuy++VtSQqOcOQnoCP"}';
-  String encrypted = Tea.encryptTea(data, key);
-  String encrypted1 = Tea.encryptTea(data1, key);
-  print("Encrypted: $encrypted");
-  print("Encrypted: $encrypted1");
   try {
-    //String decrypted0 = Tea.decryptTea('Vay39ikEG%2FzH4D85ESpdiNwsi%2B9Gh1hrUvUl75C1qv52YqORpI%2BKx9zowyol%2F0hsl8tzHIZYkDuDhSy9%2FzAdCXHQ%2BGVmH5M3wn4ROtTd0DKvJOvyMFZ4XHRO7svSGY1adw5Z7cId', key);
-    String decrypted1 = Tea.decryptTea('Vay39ikEG%2FzH4D85ESpdiNwsi%2B9Gh1hrUvUl75C1qv7JcFvKbccvb2tykcyiQTzpnoCKjM307qz6YmON8wC7x12kejMBVxF42k3Ow7ILU%2FBJ9TQR1zxI71W2NOusdYghri9D8MId', key);
-    String decrypted2 = Tea.decryptTea('Vay39ikEG%2FzH4D85ESpdiNwsi%2B9Gh1hrUvUl75C1qv7JcFvKbccvb2tykcyiQTzpnoCKjM307qz6YmON8wC7x12kejMBVxF42k3Ow7ILU%2FBJ9TQR1zxI71W2NOusdYghri9D8MId', key);
-    print("Decrypted: $decrypted1");
-    print("Decrypted: $decrypted2");
+    //String decrypted = Tea.decryptTea('{"phone": "+998331432003","name": "Test Testov","type": "1","country_id": "1","region_id": "12", "district_id": "183"}', key);
+    String enkrypted = Tea.decryptTea('//Byng0ssugk9V4C+UWLqzvcHpS8ojfRaIEkc9cO/bsdPQ==', '7pSuncejhvFYM7fc');
+    //print("Decrypted: $decrypted");
+    print("Decrypted: $enkrypted");
   } catch (e) {
     print("Error: $e");
   }

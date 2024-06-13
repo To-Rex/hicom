@@ -413,7 +413,21 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProjects() async {
-
+    print('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+      },
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+      debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n',''),_getController.getKey()));
+    } else {
+      showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
   }
 
 }
