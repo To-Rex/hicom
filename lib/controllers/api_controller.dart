@@ -9,6 +9,7 @@ import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
 import '../models/register_model.dart';
+import '../models/sample/project_model.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/sample_page.dart';
@@ -424,7 +425,12 @@ class ApiController extends GetxController {
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
-      debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n',''),_getController.getKey()));
+      try {
+        debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n',''),_getController.getKey()));
+        _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
+      }catch(e){
+        debugPrint(e.toString());
+      }
     } else {
       showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }

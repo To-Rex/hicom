@@ -109,10 +109,6 @@ class GetController extends GetxController {
     projectModel.value = projectModels;
   }
 
-  void getClearProject(){
-    projectModel.value = ProjectModel();
-  }
-
   void getProvince(){
     if (loginModel.value.user != null && loginModel.value.user?.regionId != null) {
       for (var i = 0; i < provinceModel.value.regions!.length; i++) {
