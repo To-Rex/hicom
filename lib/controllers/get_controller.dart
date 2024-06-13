@@ -9,6 +9,7 @@ import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
 import '../models/register_model.dart';
+import '../models/sample/project_model.dart';
 
 
 class GetController extends GetxController {
@@ -51,23 +52,15 @@ class GetController extends GetxController {
 
   void writeKey(String token) {GetStorage().write('key', token);}
 
-  void clearKey() {
-    GetStorage().remove('key');
-  }
+  void clearKey() {GetStorage().remove('key');}
 
-  void writeUid(String uid) {
-    GetStorage().write('uid', uid);
-  }
+  void writeUid(String uid) {GetStorage().write('uid', uid);}
 
   String getUid() {return GetStorage().read('uid') ?? '';}
 
-  void clearUid() {
-    GetStorage().remove('uid');
-  }
+  void clearUid() {GetStorage().remove('uid');}
 
-  void writeUser(LoginModel loginModel) {
-    GetStorage().write('user', jsonEncode(loginModel.toJson()));
-  }
+  void writeUser(LoginModel loginModel) {GetStorage().write('user', jsonEncode(loginModel.toJson()));}
 
   void getUser() {
     if (GetStorage().read('user') != null) {
@@ -75,9 +68,7 @@ class GetController extends GetxController {
     }
   }
 
-  void clearUser() {
-    GetStorage().remove('user');
-  }
+  void clearUser() {GetStorage().remove('user');}
 
   //number and session
   void writeLogin(String number, String session) {
@@ -112,6 +103,15 @@ class GetController extends GetxController {
   var provinceModel = ProvinceModel().obs;
   var loginModel = LoginModel().obs;
   var registerModel = RegisterModel().obs;
+  var projectModel = ProjectModel().obs;
+
+  void getProject(ProjectModel projectModels){
+    projectModel.value = projectModels;
+  }
+
+  void getClearProject(){
+    projectModel.value = ProjectModel();
+  }
 
   void getProvince(){
     if (loginModel.value.user != null && loginModel.value.user?.regionId != null) {
@@ -135,9 +135,7 @@ class GetController extends GetxController {
     }
   }
 
-  void changeRegisterModel(RegisterModel registerModels) {
-    registerModel.value = registerModels;
-  }
+  void changeRegisterModel(RegisterModel registerModels) {registerModel.value = registerModels;}
 
   void changeDistrictsModel(DistrictsModel districtsModel) {
     this.districtsModel.value = districtsModel;
@@ -149,36 +147,19 @@ class GetController extends GetxController {
     addRegions(Regions(countryId: 0, id: 0, name: 'Tanlang'));
   }
 
+  void addRegions(Regions regions) {provinceModel.value.regions!.insert(0, regions);}
 
-  //provinceModel.value = provinceModels.regions.insert(0, Regions(countryId: 0, id: 0, name: 'Tanlang'));
-  void addRegions(Regions regions) {
-    provinceModel.value.regions!.insert(0, regions);
-  }
+  void addDistrictsModel(Districts districtsModels) {districtsModel.value.districts!.insert(0, districtsModels);}
 
+  void clearProvinceModel() {provinceModel.value = ProvinceModel();}
 
-  void addDistrictsModel(Districts districtsModels) {
-    districtsModel.value.districts!.insert(0, districtsModels);
-  }
+  void clearDistrictsModel() {districtsModel.value = DistrictsModel();}
 
-  void clearProvinceModel() {
-    provinceModel.value = ProvinceModel();
-  }
+  void changeLoginModel(LoginModel loginModel) {this.loginModel.value = loginModel;}
 
-  void clearDistrictsModel() {
-    districtsModel.value = DistrictsModel();
-  }
+  void clearLoginModel() {loginModel.value = LoginModel();}
 
-  void changeLoginModel(LoginModel loginModel) {
-    this.loginModel.value = loginModel;
-  }
-
-  void clearLoginModel() {
-    loginModel.value = LoginModel();
-  }
-
-  int getType() {
-    return dropDownItems[2];
-  }
+  int getType() {return dropDownItems[2];}
 
   String getQueryString(String action, String uid) {
     String returnUrl = "";
