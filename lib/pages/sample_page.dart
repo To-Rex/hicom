@@ -88,11 +88,24 @@ class SamplePage extends StatelessWidget {
                         ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: _getController.projectModel.value.admin!.isEmpty ? _getController.projectModel.value.join!.length : _getController.projectModel.value.admin!.length,
+                            itemCount: _getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin!.length : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join!.length : 0,
                             itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
-                                child: Text(_getController.projectModel.value.admin!.isEmpty ? _getController.projectModel.value.join![index].name.toString() : _getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))
+                              return Card(
+                                  margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
+                                  child: Row(
+                                    children: [
+                                      IconButton(onPressed: () {}, icon: Icon(Icons.account_circle_outlined, size: _getController.width.value * 0.05)),
+                                      Column(
+                                          children: [
+                                            Text(_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].name.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].name.toString() : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
+                                            //note
+
+                                          ]
+                                      ),
+                                      const Spacer(),
+                                      IconButton(onPressed: () {}, icon: Icon(Icons.menu, size: _getController.width.value * 0.05))
+                                    ],
+                                  )
                               );
                             })
                         ]) :
@@ -101,13 +114,13 @@ class SamplePage extends StatelessWidget {
                         height: _getController.height.value * 0.9,
                         width: double.infinity,
                         child: Center(
-                            child: Text('Loyihalar ro\'yxati'.tr,
-                                style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)
-                            )
+                            child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))
                         )
                     )
                   ]);
-                }))),
+                })
+            )
+        ),
         floatingActionButton: FloatingActionButton(
           shape: const CircleBorder(),
           backgroundColor: Colors.blue,
