@@ -92,6 +92,12 @@ class GetController extends GetxController {
     }
   }
 
+  void addAllData(number, session, keys, uid) {
+    writeLogin(number, session);
+    writeKey(keys);
+    writeUid(uid);
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -105,9 +111,7 @@ class GetController extends GetxController {
   var registerModel = RegisterModel().obs;
   var projectModel = ProjectModel().obs;
 
-  void getProject(ProjectModel projectModels){
-    projectModel.value = projectModels;
-  }
+  void getProject(ProjectModel projectModels){projectModel.value = projectModels;}
 
   void getProvince(){
     if (loginModel.value.user != null && loginModel.value.user?.regionId != null) {

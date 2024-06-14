@@ -424,7 +424,7 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+      showToast(Get.context!, 'Ajoyib', 'Malumotlarni yuklandi'.tr, false, 2);
       try {
         debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n',''),_getController.getKey()));
         _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
