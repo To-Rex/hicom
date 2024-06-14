@@ -49,19 +49,15 @@ class SamplePage extends StatelessWidget {
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Obx(() {
-                  final hasProjects =
-                      (_getController.projectModel.value.errCode != 0 && _getController.projectModel.value.admin != null && _getController.projectModel.value.admin!.isNotEmpty) || (_getController.projectModel.value.join != null && _getController.projectModel.value.join!.isNotEmpty);
+                  final hasProjects = (_getController.projectModel.value.errCode != 0 && _getController.projectModel.value.admin != null && _getController.projectModel.value.admin!.isNotEmpty) || (_getController.projectModel.value.join != null && _getController.projectModel.value.join!.isNotEmpty);
                   return hasProjects ?
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
-                          child: Text(
-                              _getController.projectModel.value.admin!.isNotEmpty ? 'Admin'.tr : _getController.projectModel.value.join!.isNotEmpty ? 'User'.tr : ''.tr,
-                              style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
-                        ),
-                        ListView.builder(
+                        if (_getController.projectModel.value.admin!.isNotEmpty)
+                        Container(margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01), child: Text(_getController.projectModel.value.admin!.isNotEmpty ? 'Admin'.tr : _getController.projectModel.value.join!.isNotEmpty ? 'User'.tr : ''.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))),
+                        if (_getController.projectModel.value.admin!.isNotEmpty)
+                          ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: _getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin!.length : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join!.length : 0,
@@ -85,13 +81,13 @@ class SamplePage extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(height: _getController.height.value * 0.01),
-                                              Text(_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].name.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].name.toString() : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
-                                              Text(_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].note.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].note.toString() : '', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                              Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
+                                              Text( _getController.projectModel.value.admin![index].note.toString() , style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                               Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
-                                                    Text('${'Jami'.tr} ${_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].sc.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].sc.toString() : ''}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                    Text('${'Jami'.tr} ${_getController.projectModel.value.admin![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                                     Container(
                                                         width: 2,
                                                         height: _getController.height.value * 0.025,
@@ -101,7 +97,7 @@ class SamplePage extends StatelessWidget {
                                                             color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
                                                         )
                                                     ),
-                                                    Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].lsc.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].lsc.toString() : ''}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                    Text('${'Yoniq'.tr} ${ _getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                                     Container(
                                                         width: 2,
                                                         height: _getController.height.value * 0.025,
@@ -111,7 +107,7 @@ class SamplePage extends StatelessWidget {
                                                             color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
                                                         )
                                                     ),
-                                                    Text('${'Xato'.tr} ${_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].wsc.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].wsc.toString() : ''}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                    Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                                   ]
                                               )
                                             ]
@@ -122,17 +118,84 @@ class SamplePage extends StatelessWidget {
                                     )
                                   )
                               );
-                            })
-                        ]) :
-                  Column(children: [
-                    SizedBox(
-                        height: _getController.height.value * 0.9,
-                        width: double.infinity,
-                        child: Center(
-                            child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))
+                            }),
+                        if (_getController.projectModel.value.join!.isNotEmpty)
+                        Container(margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01), child: Text(_getController.projectModel.value.admin!.isNotEmpty ? 'Admin'.tr : _getController.projectModel.value.join!.isNotEmpty ? 'User'.tr : ''.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))),
+                        if (_getController.projectModel.value.join!.isNotEmpty)
+                          ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: _getController.projectModel.value.join!.length,
+                              itemBuilder: (context, index) {
+                                return Card(
+                                    color: Theme.of(context).colorScheme.background,
+                                    shadowColor: Theme.of(context).colorScheme.onBackground,
+                                    surfaceTintColor: Theme.of(context).colorScheme.onBackground,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                    elevation: 3,
+                                    margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10.0),
+                                            color: Theme.of(context).colorScheme.background
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            IconButton(onPressed: () {}, icon: Icon(Icons.account_circle_outlined, size: _getController.width.value * 0.1)),
+                                            Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(height: _getController.height.value * 0.01),
+                                                  Text(_getController.projectModel.value.join![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
+                                                  Text(_getController.projectModel.value.join![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                  Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                                      children: [
+                                                        Text('${'Jami'.tr} ${_getController.projectModel.value.join![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                        Container(
+                                                            width: 2,
+                                                            height: _getController.height.value * 0.025,
+                                                            margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(3),
+                                                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                            )
+                                                        ),
+                                                        Text('${'Yoniq'.tr} ${_getController.projectModel.value.join![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                        Container(
+                                                            width: 2,
+                                                            height: _getController.height.value * 0.025,
+                                                            margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(3),
+                                                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                            )
+                                                        ),
+                                                        Text('${'Xato'.tr} ${_getController.projectModel.value.join![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                      ]
+                                                  )
+                                                ]
+                                            ),
+                                            const Spacer(),
+                                            IconButton(onPressed: () {}, icon: Icon(Icons.menu, size: _getController.width.value * 0.05))
+                                          ],
+                                        )
+                                    )
+                                );
+                              })
+                        ]
+                  ) : Column(
+                      children: [
+                        SizedBox(
+                            height: _getController.height.value * 0.9,
+                            width: double.infinity,
+                            child: Center(
+                                child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))
+                            )
                         )
-                    )
-                  ]);
+                      ]
+                  );
                 })
             )
         ),
