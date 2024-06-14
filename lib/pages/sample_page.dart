@@ -124,6 +124,7 @@ class SamplePage extends StatelessWidget {
                                                       InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'watchers':
+                                                      InstrumentComponents().bottomSheetUsers(context, _getController.projectModel.value.admin![index].pid);
                                                       ApiController().getProjectsUsers(_getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'share':

@@ -298,6 +298,4 @@ class ApiController extends GetxController {
     }
   }
 
-
-
 }
