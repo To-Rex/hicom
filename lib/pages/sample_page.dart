@@ -13,60 +13,36 @@ class SamplePage extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
 
-  void _onLoading() => _getController.refreshController.loadComplete();
+  void _onLoading() {
+    _getController.refreshController.loadComplete();
+  }
 
-  void _getData() => _getController.refreshController.refreshCompleted();
+  void _getData() {
+    _getController.refreshController.refreshCompleted();
+    ApiController().getProjects();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.9),
         appBar: AppBar(
-            title: Obx(() => Text(
-                _getController.isSearch.value
-                    ? ''.tr
-                    : 'Loyihalar ro\'yxati'.tr,
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground,
-                    fontSize: _getController.width.value * 0.05))),
-            leading: Obx(() => IconButton(
-                icon: Icon(
-                    _getController.isSearch.value
-                        ? Icons.arrow_back
-                        : Icons.account_circle_outlined,
-                    size: _getController.height.value * 0.035),
-                onPressed: () => {
-                      if (_getController.isSearch.value)
-                        {
-                          _getController.isSearch.value =
-                              !_getController.isSearch.value
-                        }
-                      else
-                        {Get.to(UserPage(), transition: Transition.fadeIn)}
-                    })),
+            backgroundColor: Colors.transparent,
+            title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))),
+            leading: Obx(() => IconButton(icon: Icon(_getController.isSearch.value ? Icons.arrow_back : Icons.account_circle_outlined, size: _getController.height.value * 0.035), onPressed: () => {if (_getController.isSearch.value){_getController.isSearch.value = !_getController.isSearch.value} else {Get.to(UserPage(), transition: Transition.fadeIn)}})),
             centerTitle: true,
             actions: [
               Obx(() => _getController.isSearch.value
                   ? SearchFields(onChanged: (String value) {})
-                  : IconButton(
-                      icon: Icon(Icons.search,
-                          size: _getController.height.value * 0.035),
-                      onPressed: () => {
-                            _getController.isSearch.value =
-                                !_getController.isSearch.value
-                          }))
+                  : IconButton(icon: Icon(Icons.search, size: _getController.height.value * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
+              )
             ]),
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
             physics: const BouncingScrollPhysics(),
-            header: CustomHeader(
-                builder: (BuildContext context, RefreshStatus? mode) {
-              return SizedBox(height: _getController.height.value * 0.1);
-            }),
-            footer:
-                CustomFooter(builder: (BuildContext context, LoadStatus? mode) {
-              return SizedBox(height: _getController.height.value * 0.1);
-            }),
+            header: CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
+            footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
             onLoading: _onLoading,
             onRefresh: _getData,
             controller: _getController.refreshController,
@@ -91,20 +67,59 @@ class SamplePage extends StatelessWidget {
                             itemCount: _getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin!.length : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join!.length : 0,
                             itemBuilder: (context, index) {
                               return Card(
+                                  color: Theme.of(context).colorScheme.background,
+                                  shadowColor: Theme.of(context).colorScheme.onBackground,
+                                  surfaceTintColor: Theme.of(context).colorScheme.onBackground,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                  elevation: 3,
                                   margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
-                                  child: Row(
-                                    children: [
-                                      IconButton(onPressed: () {}, icon: Icon(Icons.account_circle_outlined, size: _getController.width.value * 0.05)),
-                                      Column(
-                                          children: [
-                                            Text(_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].name.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].name.toString() : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
-                                            //note
-
-                                          ]
-                                      ),
-                                      const Spacer(),
-                                      IconButton(onPressed: () {}, icon: Icon(Icons.menu, size: _getController.width.value * 0.05))
-                                    ],
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        color: Theme.of(context).colorScheme.background
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        IconButton(onPressed: () {}, icon: Icon(Icons.account_circle_outlined, size: _getController.width.value * 0.1)),
+                                        Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(height: _getController.height.value * 0.01),
+                                              Text(_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].name.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].name.toString() : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
+                                              Text(_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].note.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].note.toString() : '', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                              Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text('${'Jami'.tr} ${_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].sc.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].sc.toString() : ''}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                    Container(
+                                                        width: 2,
+                                                        height: _getController.height.value * 0.025,
+                                                        margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(3),
+                                                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                        )
+                                                    ),
+                                                    Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].lsc.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].lsc.toString() : ''}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                    Container(
+                                                        width: 2,
+                                                        height: _getController.height.value * 0.025,
+                                                        margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(3),
+                                                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                        )
+                                                    ),
+                                                    Text('${'Xato'.tr} ${_getController.projectModel.value.admin!.isNotEmpty ? _getController.projectModel.value.admin![index].wsc.toString() : _getController.projectModel.value.join!.isNotEmpty ? _getController.projectModel.value.join![index].wsc.toString() : ''}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                  ]
+                                              )
+                                            ]
+                                        ),
+                                        const Spacer(),
+                                        IconButton(onPressed: () {}, icon: Icon(Icons.menu, size: _getController.width.value * 0.05))
+                                      ],
+                                    )
                                   )
                               );
                             })
