@@ -9,6 +9,7 @@ import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
 import '../models/register_model.dart';
+import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
 
 
@@ -110,6 +111,10 @@ class GetController extends GetxController {
   var loginModel = LoginModel().obs;
   var registerModel = RegisterModel().obs;
   var projectModel = ProjectModel().obs;
+  //GetUsersModel
+  var getUsersModel = GetUsersModel().obs;
+
+  void changeGetUsersModel(GetUsersModel getUsersModels) {getUsersModel.value = getUsersModels;}
 
   void getProject(ProjectModel projectModels){projectModel.value = projectModels;}
 

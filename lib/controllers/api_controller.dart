@@ -9,6 +9,7 @@ import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
 import '../models/register_model.dart';
+import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
@@ -275,7 +276,6 @@ class ApiController extends GetxController {
     }
   }
 
-  //prjjoin   {"pid":"38d3c91e52f5f121c73ad8a9b076fb18"}
   Future<void> getProjectsUsers(pidId) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjjoin', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
@@ -288,9 +288,16 @@ class ApiController extends GetxController {
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+      try {
+        _getController.getUsersModel(GetUsersModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
+      }catch(e){
+        debugPrint(e.toString());
+      }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
+
 
 }
