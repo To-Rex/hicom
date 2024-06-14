@@ -320,12 +320,10 @@ class SamplePage extends StatelessWidget {
                     ])
                     : Column(children: [
                     SizedBox(
-                    height: _getController.height.value * 0.9,
-                    width: double.infinity,
-                    child: Center(
-                        child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))
+                        height: _getController.height.value * 0.9,
+                        width: double.infinity,
+                        child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)))
                     )
-                )
                 ])
                 )
             )
