@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/user_page.dart';
@@ -117,6 +118,10 @@ class SamplePage extends StatelessWidget {
                                                 onSelected: (String value) {
                                                   switch (value) {
                                                     case 'edit':
+                                                      //nameProjectController
+                                                      _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
+                                                      _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
+                                                      InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'watchers':
                                                       break;

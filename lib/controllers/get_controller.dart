@@ -321,5 +321,7 @@ class GetController extends GetxController {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
 
+  final TextEditingController nameProjectController = TextEditingController();
+  final TextEditingController noteProjectController = TextEditingController();
 
 }
