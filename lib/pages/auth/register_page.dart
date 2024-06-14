@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
 
 import '../../companents/dropdown_item.dart';
+import '../../companents/instrument/instrument_components.dart';
 import '../../companents/text_fild.dart';
 import '../../controllers/get_controller.dart';
 import '../../controllers/tea.dart';
@@ -91,7 +92,7 @@ class RegisterPage extends StatelessWidget{
                       child: DropdownItem(
                           title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                           onTap: () => {
-                            ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
+                            InstrumentComponents().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
                             _getController.dropDownItems[1] = 0
                           })
                     ),
@@ -105,7 +106,7 @@ class RegisterPage extends StatelessWidget{
                       child: DropdownItem(
                           title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
                           onTap: () => {
-                            ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
+                            InstrumentComponents().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
                           })
                     ),
                   Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
@@ -114,7 +115,7 @@ class RegisterPage extends StatelessWidget{
                     child: DropdownItem(
                         title: _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
                         onTap: () => {
-                          ApiController().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
+                          InstrumentComponents().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
                         }),
                   ),
                   SizedBox(height: _getController.height.value * 0.05),
@@ -122,11 +123,11 @@ class RegisterPage extends StatelessWidget{
                       child: ElevatedButton(
                           onPressed: () => {
                             if (_getController.nameController.text.isEmpty) {
-                              ApiController().showToast(context,'Xatolik'.tr, 'Ism-familiyangizni kiriting'.tr, true, 3)
+                              InstrumentComponents().showToast(context,'Xatolik'.tr, 'Ism-familiyangizni kiriting'.tr, true, 3)
                             } else if (_getController.dropDownItems[0] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
-                              ApiController().showToast(context,'Xatolik'.tr,'Viloyatni tanlang'.tr, true, 3)
+                              InstrumentComponents().showToast(context,'Xatolik'.tr,'Viloyatni tanlang'.tr, true, 3)
                             } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
-                              ApiController().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
+                              InstrumentComponents().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
                             } else{
                               //print() nameController.text, phoneController.text, _getController.dropDownItems[0], _getController.dropDownItems[1], _getController.dropDownItems[2], _getController.code.value + _getController.phoneController.text
                               print(_getController.code.value + _getController.phoneController.text),

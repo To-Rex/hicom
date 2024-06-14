@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -106,7 +107,7 @@ class EditUser extends StatelessWidget {
                           child: DropdownItem(
                               title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                               onTap: () => {
-                                ApiController().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
+                                InstrumentComponents().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
                                 _getController.dropDownItems[1] = 0
                               })
                       ),
@@ -118,7 +119,7 @@ class EditUser extends StatelessWidget {
                           child: DropdownItem(
                               title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
                               onTap: () => {
-                                ApiController().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
+                                InstrumentComponents().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
                               })
                       ),
                     Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
@@ -127,7 +128,7 @@ class EditUser extends StatelessWidget {
                       child: DropdownItem(
                           title: _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
                           onTap: () => {
-                            ApiController().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
+                            InstrumentComponents().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
                           }),
                     ),
                     SizedBox(height: _getController.height.value * 0.05),
@@ -135,11 +136,11 @@ class EditUser extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () => {
                               if (_getController.nameController.text.isEmpty) {
-                                ApiController().showToast(context,'Xatolik'.tr, 'Ism-familiyangizni kiriting'.tr, true, 3)
+                                InstrumentComponents().showToast(context,'Xatolik'.tr, 'Ism-familiyangizni kiriting'.tr, true, 3)
                               } else if (_getController.dropDownItems[0] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
-                                ApiController().showToast(context,'Xatolik'.tr,'Viloyatni tanlang'.tr, true, 3)
+                                InstrumentComponents().showToast(context,'Xatolik'.tr,'Viloyatni tanlang'.tr, true, 3)
                               } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
-                                ApiController().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
+                                InstrumentComponents().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
                               } else{
                                 ApiController().editUser()
                               }
