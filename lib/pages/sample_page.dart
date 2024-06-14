@@ -124,6 +124,7 @@ class SamplePage extends StatelessWidget {
                                                       InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'watchers':
+                                                      ApiController().getProjectsUsers(_getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'share':
                                                       break;
@@ -339,13 +340,13 @@ class SamplePage extends StatelessWidget {
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
             //ApiController().getProjects();
-            //debugPrint(Tea.decryptTea('FxzAdaenyjsXttESZaex/+M+PpIFennnS9iNofKzW+REiJ0v1fgUvbijgc4vkHROzUQfqGyStbMzZiiFEk/Vs6mzf+LazJcQc2iQJSSvgIGqdD3rFEx15bu/gSxRqahhuPfly1qdjJB1kjirlowe2INj/eTYhAlsZjOUFmJ6E1I+Y+epDAN0xQFhTYQXsvxDMRYhX34JZqNQDLwiToOJ8xudfQ==', 'aeMxl0IjfumA4bxn'));
-            _getController.addAllData(
+            debugPrint(Tea.decryptTea('2n24x4rCjXpfnwgCrVP7FrJXSgrdxKI4z2Lx8vEdDR4qeN8Q7JzuNviHB/oSkAbxlXKuEcY+bBfe9XL5r6+5RGv5iwLuiP72RQl6KDDpaOGbvxXxh+Gr8lhfZ4GoiH/u32dFwwOuU8XOPmqJWkjlBoVNFvnc5npHDVuu7gMbB1r6JYV/xAhEgalm2GzvxM65tCEiHf3d', _getController.getKey()).toString());
+            /*_getController.addAllData(
                 '+998916848100',
                 'ivEWz4iyP2UZ348HRyF3JKNMuppBSGCNL3a2fnRJolJIpjQUEOlJH208aXBdQtfQ',
                 'a2tB333raC8y74dt',
                 '2025b25f25ce9ad98d6047ff0dc105b5'
-            );
+            );*/
           },
           child: const Icon(Icons.add),
         ));

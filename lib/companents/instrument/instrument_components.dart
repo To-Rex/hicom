@@ -256,12 +256,13 @@ class InstrumentComponents {
                                     height: _getController.height.value * 0.06,
                                     child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
                             )
-                        ),
+                        )
                       ]
                   )
               );
             })
     );
   }
+
 
 }
