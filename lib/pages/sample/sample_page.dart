@@ -6,6 +6,7 @@ import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/sample/add_project_page.dart';
+import 'package:hicom/pages/sample/switch_lists.dart';
 import 'package:hicom/pages/user_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/search_fild.dart';
@@ -62,146 +63,152 @@ class SamplePage extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: _getController.projectModel.value.admin!.length,
                             itemBuilder: (context, index) {
-                              return Card(
-                                  color: Theme.of(context).colorScheme.background,
-                                  shadowColor: Theme.of(context).colorScheme.onBackground,
-                                  surfaceTintColor: Theme.of(context).colorScheme.onBackground,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                  elevation: 3,
-                                  margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
-                                  child: Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.background),
-                                      child: Row(
-                                          children: [
-                                            Container(
-                                              margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
-                                              child: Stack(
-                                                children: [
-                                                  SvgPicture.asset('assets/svg_assets/folde.svg', width: _getController.width.value * 0.06, height: _getController.height.value * 0.06),
-                                                  Positioned(
-                                                    top: _getController.height.value * 0.026,
-                                                    left: _getController.width.value * 0.056,
-                                                    child: SvgPicture.asset('assets/svg_assets/user.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03),
-                                                  )
-                                                ]
-                                              )
-                                            ),
-                                            Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(height: _getController.height.value * 0.01),
-                                                  Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
-                                                  Text(_getController.projectModel.value.admin![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
-                                                  Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                              return InkWell(
+                                onTap: () => {
+                                  ApiController().getSwitchList(_getController.projectModel.value.admin![index].pid),
+                                  Get.to(SwitchList(), arguments: _getController.projectModel.value.admin![index].pid)
+                                },
+                                child: Card(
+                                    color: Theme.of(context).colorScheme.background,
+                                    shadowColor: Theme.of(context).colorScheme.onBackground,
+                                    surfaceTintColor: Theme.of(context).colorScheme.onBackground,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                    elevation: 3,
+                                    margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
+                                    child: Container(
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.background),
+                                        child: Row(
+                                            children: [
+                                              Container(
+                                                  margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
+                                                  child: Stack(
                                                       children: [
-                                                        Text('${'Jami'.tr} ${_getController.projectModel.value.admin![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
-                                                        Container(
-                                                            width: 2,
-                                                            height: _getController.height.value * 0.025,
-                                                            margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
-                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
-                                                        ),
-                                                        Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
-                                                        Container(
-                                                            width: 2,
-                                                            height: _getController.height.value * 0.025,
-                                                            margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.circular(3),
-                                                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
-                                                            )
-                                                        ),
-                                                        Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                        SvgPicture.asset('assets/svg_assets/folde.svg', width: _getController.width.value * 0.06, height: _getController.height.value * 0.06),
+                                                        Positioned(
+                                                          top: _getController.height.value * 0.026,
+                                                          left: _getController.width.value * 0.056,
+                                                          child: SvgPicture.asset('assets/svg_assets/user.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03),
+                                                        )
                                                       ]
                                                   )
-                                                ]
-                                            ),
-                                            const Spacer(),
-                                            //if is admin
-                                            PopupMenuButton<String>(
-                                                icon: Icon(Icons.menu, size: _getController.width.value * 0.05),
-                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                                color: Theme.of(context).colorScheme.background,
-                                                surfaceTintColor: Colors.transparent,
-                                                elevation: 4,
-                                                onSelected: (String value) {
-                                                  switch (value) {
-                                                    case 'edit':
-                                                      //nameProjectController
-                                                      _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
-                                                      _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
-                                                      InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
-                                                      break;
-                                                    case 'watchers':
-                                                      InstrumentComponents().bottomSheetUsers(context, _getController.projectModel.value.admin![index].pid);
-                                                      ApiController().getProjectsUsers(_getController.projectModel.value.admin![index].pid);
-                                                      break;
-                                                    case 'share':
-                                                      InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.admin![index].pid);
-                                                      break;
-                                                    case 'delete':
-                                                      InstrumentComponents().deleteProject(context, _getController.projectModel.value.admin![index].pid);
-                                                      break;
-                                                  }
-                                                },
-                                                itemBuilder: (BuildContext context) {
-                                                  return [
-                                                    PopupMenuItem(
-                                                        value: 'edit',
-                                                        child: Row(
-                                                          children: [
-                                                            Icon(Icons.edit, size: _getController.width.value * 0.04),
-                                                            SizedBox(width: _getController.width.value * 0.015),
-                                                            Text('Tahrirlash'.tr)
-                                                          ],
-                                                        )
-                                                    ),
-                                                    PopupMenuItem(
-                                                        value: 'watchers',
-                                                        child: Row(
-                                                          children: [
-                                                            Icon(Icons.person, size: _getController.width.value * 0.04),
-                                                            SizedBox(width: _getController.width.value * 0.015),
-                                                            Text('Kuzatuvchilar'.tr)
-                                                          ],
-                                                        )
-                                                    ),
-                                                    PopupMenuItem(
-                                                        value: 'share',
-                                                        child: Row(
-                                                          children: [
-                                                            Icon(Icons.share, size: _getController.width.value * 0.04),
-                                                            SizedBox(width: _getController.width.value * 0.015),
-                                                            Text('Ulashish'.tr)
-                                                          ],
-                                                        )
-                                                    ),
-                                                    //line
-                                                    //const Divider(),
-                                                    const PopupMenuItem(
-                                                      height: 0,
-                                                      padding: EdgeInsets.all(0),
-                                                      value: 'watcher',
-                                                      child: Divider(),
-                                                    ),
-                                                    PopupMenuItem(
-                                                        value: 'delete',
-                                                        child: Row(
-                                                          children: [
-                                                            Icon(Icons.delete, size: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.error),
-                                                            SizedBox(width: _getController.width.value * 0.015),
-                                                            Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.04))
-                                                          ],
-                                                        )
+                                              ),
+                                              Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(height: _getController.height.value * 0.01),
+                                                    Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
+                                                    Text(_getController.projectModel.value.admin![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                    Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        children: [
+                                                          Text('${'Jami'.tr} ${_getController.projectModel.value.admin![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                          Container(
+                                                              width: 2,
+                                                              height: _getController.height.value * 0.025,
+                                                              margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                          ),
+                                                          Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                          Container(
+                                                              width: 2,
+                                                              height: _getController.height.value * 0.025,
+                                                              margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(3),
+                                                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                              )
+                                                          ),
+                                                          Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                        ]
                                                     )
-                                                  ];
-                                                }
-                                            )
-                                          ]
-                                      )
-                                  )
+                                                  ]
+                                              ),
+                                              const Spacer(),
+                                              //if is admin
+                                              PopupMenuButton<String>(
+                                                  icon: Icon(Icons.menu, size: _getController.width.value * 0.05),
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                                  color: Theme.of(context).colorScheme.background,
+                                                  surfaceTintColor: Colors.transparent,
+                                                  elevation: 4,
+                                                  onSelected: (String value) {
+                                                    switch (value) {
+                                                      case 'edit':
+                                                      //nameProjectController
+                                                        _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
+                                                        _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
+                                                        InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
+                                                        break;
+                                                      case 'watchers':
+                                                        InstrumentComponents().bottomSheetUsers(context, _getController.projectModel.value.admin![index].pid);
+                                                        ApiController().getProjectsUsers(_getController.projectModel.value.admin![index].pid);
+                                                        break;
+                                                      case 'share':
+                                                        InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.admin![index].pid);
+                                                        break;
+                                                      case 'delete':
+                                                        InstrumentComponents().deleteProject(context, _getController.projectModel.value.admin![index].pid);
+                                                        break;
+                                                    }
+                                                  },
+                                                  itemBuilder: (BuildContext context) {
+                                                    return [
+                                                      PopupMenuItem(
+                                                          value: 'edit',
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(Icons.edit, size: _getController.width.value * 0.04),
+                                                              SizedBox(width: _getController.width.value * 0.015),
+                                                              Text('Tahrirlash'.tr)
+                                                            ],
+                                                          )
+                                                      ),
+                                                      PopupMenuItem(
+                                                          value: 'watchers',
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(Icons.person, size: _getController.width.value * 0.04),
+                                                              SizedBox(width: _getController.width.value * 0.015),
+                                                              Text('Kuzatuvchilar'.tr)
+                                                            ],
+                                                          )
+                                                      ),
+                                                      PopupMenuItem(
+                                                          value: 'share',
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(Icons.share, size: _getController.width.value * 0.04),
+                                                              SizedBox(width: _getController.width.value * 0.015),
+                                                              Text('Ulashish'.tr)
+                                                            ],
+                                                          )
+                                                      ),
+                                                      //line
+                                                      //const Divider(),
+                                                      const PopupMenuItem(
+                                                        height: 0,
+                                                        padding: EdgeInsets.all(0),
+                                                        value: 'watcher',
+                                                        child: Divider(),
+                                                      ),
+                                                      PopupMenuItem(
+                                                          value: 'delete',
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(Icons.delete, size: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.error),
+                                                              SizedBox(width: _getController.width.value * 0.015),
+                                                              Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.04))
+                                                            ],
+                                                          )
+                                                      )
+                                                    ];
+                                                  }
+                                              )
+                                            ]
+                                        )
+                                    )
+                                )
                               );
                             }),
                       if (_getController.projectModel.value.join!.isNotEmpty)

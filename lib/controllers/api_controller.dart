@@ -368,5 +368,21 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> getSwitchList(pidId) async {
+    //http://185.196.213.76:8000/SSC_Switch/hicom?act=swmng&uid=736e7b7014d7c1c5250807a877258253&dt=VQuaS8Q1ZBzjdbvtNdiYy9%2BjZzVQNiNXu%2FWIvaKtK9BLo%2BYcTMD1kGI9&key=iW95f1xk3pA5tP4C
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swmng', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+      },
+    );
+    debugPrint(response.body);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
 
 }
