@@ -341,6 +341,9 @@ class GetController extends GetxController {
   final TextEditingController codeController = TextEditingController();
 
   final TextEditingController nameProjectController = TextEditingController();
+  final TextEditingController switchNameProjectController = TextEditingController();
+  final TextEditingController switchSerialProjectController = TextEditingController();
   final TextEditingController noteProjectController = TextEditingController();
+  final TextEditingController passwordProjectController = TextEditingController();
 
 }

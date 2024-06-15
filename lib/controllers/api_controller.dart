@@ -332,4 +332,25 @@ class ApiController extends GetxController {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
+  Future<void> addProjects() async {
+    var json = Tea.encryptTea(jsonEncode({"sna": _getController.switchSerialProjectController.text, "na": _getController.switchNameProjectController.text, "pda": _getController.passwordProjectController.text, "name":_getController.nameProjectController.text, "note": "", "auto": 0}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+      },
+    );
+    debugPrint(response.body);
+    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 29999) {
+        InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma\'lumotlar (Masalan, seriya raqam) noto\'g\'ri!'.tr, true, 1);
+      }
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+
 }

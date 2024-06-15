@@ -351,7 +351,7 @@ class SamplePage extends StatelessWidget {
                 '2025b25f25ce9ad98d6047ff0dc105b5'
             );*/
 
-            Get.to(const AddProjectPage());
+            Get.to(AddProjectPage());
             //InstrumentComponents().bottomCrackUser(context);
           },
           child: const Icon(Icons.add),
