@@ -11,6 +11,7 @@ import '../models/province_model.dart';
 import '../models/register_model.dart';
 import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
+import '../models/sample/switch_list_model.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/sample/sample_page.dart';
@@ -369,7 +370,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSwitchList(pidId) async {
-    //http://185.196.213.76:8000/SSC_Switch/hicom?act=swmng&uid=736e7b7014d7c1c5250807a877258253&dt=VQuaS8Q1ZBzjdbvtNdiYy9%2BjZzVQNiNXu%2FWIvaKtK9BLo%2BYcTMD1kGI9&key=iW95f1xk3pA5tP4C
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swmng', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: {
@@ -380,6 +380,8 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+      _getController.clearSwitchList();
+      _getController.changeSwitchList(SwitchListModel.fromJson(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))));
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }

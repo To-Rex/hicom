@@ -12,6 +12,7 @@ import '../models/province_model.dart';
 import '../models/register_model.dart';
 import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
+import '../models/sample/switch_list_model.dart';
 
 
 class GetController extends GetxController {
@@ -125,8 +126,12 @@ class GetController extends GetxController {
   var loginModel = LoginModel().obs;
   var registerModel = RegisterModel().obs;
   var projectModel = ProjectModel().obs;
-  //GetUsersModel
   var getUsersModel = GetUsersModel().obs;
+  var switchList = SwitchListModel().obs;
+
+  void changeSwitchList(SwitchListModel switchLists) {switchList.value = switchLists;}
+
+  void clearSwitchList() {switchList.value = SwitchListModel();}
 
   void changeGetUsersModel(GetUsersModel getUsersModels) {getUsersModel.value = getUsersModels;}
 
