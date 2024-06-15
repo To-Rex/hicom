@@ -477,6 +477,27 @@ class InstrumentComponents {
             })
     );
   }
-
+  //delete projekt dialog
+  void deleteProject(BuildContext context, String? pid) {
+    Get.dialog(
+        AlertDialog(
+          title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.05)),
+          content: Text('Loyiha o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+          actions: [
+            TextButton(
+                onPressed: () => Get.back(),
+                child: Text('Bekor qilish'.tr)
+            ),
+            TextButton(
+                onPressed: () => {
+                  Get.back(),
+                  ApiController().projectDelete(pid)
+                },
+                child: Text('O’chirish'.tr)
+            )
+          ],
+        )
+    );
+  }
 
 }

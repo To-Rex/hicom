@@ -133,6 +133,7 @@ class SamplePage extends StatelessWidget {
                                                       InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'delete':
+                                                      InstrumentComponents().deleteProject(context, _getController.projectModel.value.admin![index].pid);
                                                       break;
                                                   }
                                                 },
