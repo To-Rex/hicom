@@ -403,6 +403,8 @@ class InstrumentComponents {
                                     showToast(context, 'Diqqat!'.tr, 'Kuzatuvchi nomi kiriting'.tr, true, 3)
                                   } else {
                                     ApiController().projectShare(pidId)
+                                    //close bottom sheet
+
                                   }
                                 },
                                 style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),

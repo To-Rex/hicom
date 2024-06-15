@@ -299,17 +299,33 @@ class ApiController extends GetxController {
   }
 
   Future<void> projectShare(pidId) async {
-    var json = Tea.encryptTea(jsonEncode({"pid": pidId,"phone": _getController.nameProjectController.text, "name":_getController.noteProjectController.text}),_getController.getKey());
-    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjshare', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+    //{"pid":"38d3c91e52f5f121c73ad8a9b076fb18","phone":"","name":""}
+    var phone = _getController.nameProjectController.text;
+    var name = _getController.noteProjectController.text;
+    //http://185.196.213.76:8000/SSC_Switch/hicom?act=prjshrem&uid=736e7b7014d7c1c5250807a877258253&dt=SVO7ano%2BD%2Fk7vYzWGhp%2FCVwGhckqcnlBrzmumFanSk5WMZsArLZqFuqr0xQ6rmM%2BvruDgUg4GtbB0fiEuKZLmrCj7sE7OY%2FcQ%2FnUG%2BZASo0%3D&key=G5P1UoIXwbUhz4Na
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "phone": phone, "name": name}),_getController.getKey());
+    print('${_baseUrl + _getController.getQueryString('prjshrem', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjshrem', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': 'application/json',
       },
     );
     debugPrint(response.body);
-    debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'OK', 'oooo'.tr, false, 2);
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 20000) {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu foydalanuvchi allaqachon taklif qilgan'.tr, false, 2);
+      } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 1) {
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Bu foydalanuvchi tizimda mavjud emas'.tr, true, 3);
+      } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0) {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Foydalanuvchi taklif qilindi'.tr, false, 2);
+      } else {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Exx nimadur xato ketdi'.tr, true, 3);
+      }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
