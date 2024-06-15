@@ -129,6 +129,7 @@ class SamplePage extends StatelessWidget {
                                                       ApiController().getProjectsUsers(_getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'share':
+                                                      InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.admin![index].pid);
                                                       break;
                                                     case 'delete':
                                                       break;
