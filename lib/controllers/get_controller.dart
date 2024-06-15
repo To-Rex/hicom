@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/districts_model.dart';
@@ -97,6 +98,19 @@ class GetController extends GetxController {
     writeLogin(number, session);
     writeKey(keys);
     writeUid(uid);
+    InstrumentComponents().showToast(Get.context!, 'OK', 'Masulot saqlandi'.tr, false, 2);
+  }
+
+  //{"Phone":"+998916848100","SessionToken""ivEWz4iyP2UZ348HRyF3JKNMuppBSGCNL3a2fnRJolJIpjQUEOlJH208aXBdQtfQ",KEY"a2tB333raC8y74dt",UID"2025b25f25ce9ad98d6047ff0dc105b5"}
+  void addUserData(data){
+    if (data != null) {
+      var dataJson = jsonDecode(data.toString());
+      writeLogin(dataJson['Phone'].toString(), dataJson['SessionToken'].toString());
+      writeKey(dataJson['KEY'].toString());
+      writeUid(dataJson['UID'].toString());
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Masulot bo\'sh'.tr, true, 3);
+    }
   }
 
   @override

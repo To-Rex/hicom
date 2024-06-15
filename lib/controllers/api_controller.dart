@@ -116,7 +116,6 @@ class ApiController extends GetxController {
         if (enter){
           Get.offAll(SamplePage());
         }
-
       } else {
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,keys).toString().codeUnits))['errcode'] == 20003) {
           _getController.writeKey(_getController.loginModel.value.key.toString());

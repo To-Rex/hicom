@@ -276,12 +276,60 @@ class InstrumentComponents {
                   height: _getController.height.value * 0.6,
                   decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
+                  child: Obx(() => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppBar(
+                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+                            title: Text('Loyihani kuzatuvchilari'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                            centerTitle: false,
+                            backgroundColor: Theme.of(context).colorScheme.background,
+                            elevation: 0,
+                            leadingWidth: 0,
+                            leading: Container(),
+                            actions: [
+                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                            ]
+                        ),
+                        SizedBox(height: _getController.height.value * 0.02),
+                        //Null check operator used on a null value
+                        if (_getController.getUsersModel.value.join != null)
+                          ListView.builder(
+                              itemCount: _getController.getUsersModel.value.join!.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                    leading: Icon(Icons.person, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05),
+                                    title: Text(_getController.getUsersModel.value.join![index].name.toString()),
+                                    trailing: Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                );
+                              }
+                          )
+                      ]
+                  ))
+              );
+            })
+    );
+  }
+
+  bottomCrackUser(BuildContext context) {
+    Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        enableDrag: true,
+        isScrollControlled: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                  height: _getController.height.value * 0.6,
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppBar(
                           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                          title: Text('Loyihani kuzatuvchilari'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                          title: Text('User crack'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
                           centerTitle: false,
                           backgroundColor: Theme.of(context).colorScheme.background,
                           elevation: 0,
@@ -292,18 +340,21 @@ class InstrumentComponents {
                           ]
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
-                        if (_getController.getUsersModel.value.join!.isNotEmpty)
-                        ListView.builder(
-                            itemCount: _getController.getUsersModel.value.join!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                leading: Icon(Icons.person, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05),
-                                title: Text(_getController.getUsersModel.value.join![index].name.toString()),
-                                trailing: Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
-                              );
-                            }
-                        )
+                        TextFields(title: 'User Data'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        const Expanded(child: SizedBox()),
+                        Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                            child: ElevatedButton(
+                                onPressed: () => {
+                                  _getController.addUserData(_getController.nameProjectController.text)
+                                },
+                                style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                                child: SizedBox(
+                                    width: _getController.width.value,
+                                    height: _getController.height.value * 0.06,
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                            )
+                        ),
+                        SizedBox(height: _getController.height.value * 0.02)
                       ]
                   )
               );

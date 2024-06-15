@@ -25,6 +25,7 @@ class SamplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ApiController().login(_getController.getNumber(),_getController.getSession(),'50UvFayZ2w5u3O9B',false);
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.9),
         appBar: AppBar(
@@ -348,6 +349,7 @@ class SamplePage extends StatelessWidget {
                 'a2tB333raC8y74dt',
                 '2025b25f25ce9ad98d6047ff0dc105b5'
             );*/
+            InstrumentComponents().bottomCrackUser(context);
           },
           child: const Icon(Icons.add),
         ));
