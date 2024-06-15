@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -55,10 +56,6 @@ class SamplePage extends StatelessWidget {
                     ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
-                        child: Text(_getController.projectModel.value.admin!.isNotEmpty ? 'Admin'.tr : _getController.projectModel.value.join!.isNotEmpty ? 'Join'.tr : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
-                      ),
                       if (_getController.projectModel.value.admin!.isNotEmpty)
                         ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
@@ -76,7 +73,19 @@ class SamplePage extends StatelessWidget {
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.background),
                                       child: Row(
                                           children: [
-                                            IconButton(onPressed: () {}, icon: Icon(Icons.account_circle_outlined, size: _getController.width.value * 0.1)),
+                                            Container(
+                                              margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
+                                              child: Stack(
+                                                children: [
+                                                  SvgPicture.asset('assets/svg_assets/folde.svg', width: _getController.width.value * 0.06, height: _getController.height.value * 0.06),
+                                                  Positioned(
+                                                    top: _getController.height.value * 0.026,
+                                                    left: _getController.width.value * 0.056,
+                                                    child: SvgPicture.asset('assets/svg_assets/user.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03),
+                                                  )
+                                                ]
+                                              )
+                                            ),
                                             Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
@@ -215,7 +224,10 @@ class SamplePage extends StatelessWidget {
                                       ),
                                       child: Row(
                                           children: [
-                                            IconButton(onPressed: () {}, icon: Icon(Icons.account_circle_outlined, size: _getController.width.value * 0.1)),
+                                            Container(
+                                              margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02,),
+                                              child: SvgPicture.asset('assets/svg_assets/folde.svg', width: _getController.width.value * 0.06, height: _getController.height.value * 0.06),
+                                            ),
                                             Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
