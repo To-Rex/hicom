@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
-import 'package:hicom/pages/sample_page.dart';
+import 'package:hicom/pages/sample/sample_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';

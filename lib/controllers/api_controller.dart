@@ -13,7 +13,7 @@ import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
-import '../pages/sample_page.dart';
+import '../pages/sample/sample_page.dart';
 import 'get_controller.dart';
 
 class ApiController extends GetxController {
@@ -298,7 +298,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> projektShare(pidId) async {
+  Future<void> projectShare(pidId) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId,"phone": _getController.nameProjectController.text, "name":_getController.noteProjectController.text}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjshare', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: {
@@ -310,6 +310,24 @@ class ApiController extends GetxController {
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       InstrumentComponents().showToast(Get.context!, 'OK', 'oooo'.tr, false, 2);
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+  Future<void> projectDelete(pidId) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjdel', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+      },
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+      getProjects();
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }

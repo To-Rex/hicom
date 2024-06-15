@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/auth/login_page.dart';
-import 'package:hicom/pages/sample_page.dart';
+import 'package:hicom/pages/sample/sample_page.dart';
 import '../controllers/get_controller.dart';
 
 class SplashScreen extends StatelessWidget {
