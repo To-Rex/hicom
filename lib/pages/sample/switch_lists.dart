@@ -125,6 +125,7 @@ class SwitchList extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
+            //debugPrint(Tea.decryptTea('VxQB/CYRF1lcGsFgF9O+bh6987e7lnU5E5u3W2L8ckXgpXJSAh0=', _getController.getKey()));
             Get.to(AddSwitchPage(), arguments: Get.arguments);
           },
           child: const Icon(Icons.add),

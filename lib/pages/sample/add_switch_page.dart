@@ -43,7 +43,7 @@ class AddSwitchPage extends StatelessWidget {
                       } else if (_getController.passwordProjectController.text.isEmpty){
                         InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilma parolini kiriting'.tr, true, 3)
                       } else {
-                        ApiController().addProjects()
+                        ApiController().addSwitch(Get.arguments)
                       }
                     },
                     style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),

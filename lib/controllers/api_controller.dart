@@ -383,5 +383,17 @@ class ApiController extends GetxController {
     }
   }
 
-
+  Future<void> addSwitch(pidId) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sna": ["PS308G00112247000027B0BET"], "na": ["test"], "pda": ["123456"], "auto": 0}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.back();
+      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
+      getSwitchList(pidId);
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
 }
