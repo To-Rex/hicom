@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../companents/sample/port_items.dart';
 import '../../controllers/get_controller.dart';
 
 class SwitchList extends StatelessWidget {
@@ -87,11 +89,12 @@ class SwitchList extends StatelessWidget {
                                 )
                               ]
                             ),
+                            PortItems(one: '1', two: '2', three: '3', four: '4', five: '5', six: '6', seven: '7', eight: '8', nine: '', ten: 'L1', eleven: 'L2', twelve: 'SFF'),
                             Row(
                               children: [
                                 Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
                                 const Spacer(),
-                                Text(_getController.switchListModel.value.offline![index].note.toString()),
+                                Text(_getController.switchListModel.value.offline![index].sn.toString()),
                               ],
                             )
                           ],
@@ -101,12 +104,13 @@ class SwitchList extends StatelessWidget {
               )
           ]
       )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-        },
-        child: Icon(Icons.add),
-      ),
+        floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(),
+          backgroundColor: Colors.blue,
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        )
     );
   }
 }

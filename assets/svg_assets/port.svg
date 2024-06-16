@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 100 75">
+    <g transform="rotate(180, 50, 37.5)">
+        <!-- Main Rectangle -->
+        <rect x="0" y="9" width="100" height="66" fill="#333333" />
+
+        <!-- Top Bar -->
+        <rect x="25" y="0" width="50" height="10" fill="#333333" />
+    </g>
+</svg>
