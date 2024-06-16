@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
+import 'package:hicom/models/settings_info.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/districts_model.dart';
@@ -128,6 +129,11 @@ class GetController extends GetxController {
   var projectModel = ProjectModel().obs;
   var getUsersModel = GetUsersModel().obs;
   var switchListModel = SwitchListModel().obs;
+  var settingsInfoModel = SettingsInfo().obs;
+
+  void changeSettingsInfoModel(SettingsInfo settingsInfo) {
+    settingsInfoModel.value = settingsInfo;
+  }
 
   void changeSwitchList(SwitchListModel switchLists) {switchListModel.value = switchLists;}
 
@@ -360,5 +366,7 @@ class GetController extends GetxController {
     String replacement = '*' * (20 - 6);
     return '$prefix$replacement$suffix';
   }
+
+
 
 }

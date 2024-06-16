@@ -12,6 +12,7 @@ import '../models/register_model.dart';
 import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
 import '../models/sample/switch_list_model.dart';
+import '../models/settings_info.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/sample/sample_page.dart';
@@ -180,14 +181,13 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSettings() async {
-    print('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}');
-    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}'),
-      headers: headers
-    );
+    debugPrint('${_baseUrl + _getController.getQueryString('settings', 'null') + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}');
+    var response = await get(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null') + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
-    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
+      debugPrint(Tea.decryptTea('3yZ7oI51a6NU/CeZ3afmDWOfrEsHfudjby20hOBkhsLfMB695GrzyYGyd14tqnSt9qQ4nJcoL4irK5L3PjD+dWj7Jo2cOkFmb+A+JUoRpZW/Oyv8rcFAxxtYn4NNBe3y53Yv0guyPbh9h6qElKF6tcSrRRHgIo/AW2ZGfg8h+yi8D/lZp8kosEbfLKSxzaSE+AxXqHr5Xoc22IX67eu5t2MG4ToxrF1Zh1klbTRVaAE6217TBRLk/QtTuNxZRGw7ya+DlAW9IUZh5h8XrQWvOUbfLKSxzaSE+AxXqHr5XocJ4FPPJEENvqkilh1Wipi77vp/PP6xPrWP4Czn1UWcpCLQ0MtkRsUilhUzICWV8iwx4F8O7oqOs6MJTo0tX1Oz9oDydwewEeI+BErZ6zv2x8xNZOi1n4GsTvn0qEzRRCXWoKtxb7uH+I4wm3+RjDMmx1ju+nPf4NR0euP5lbuBk+aPVvV+V4l3rKBq+wbM26KhB0LO563vnKdcooZ7+f/ZoMtbltXhGT8iqgeEZbTUUO4zjdxmpaoWICN2XDpg098TO2fbjHXzON8wHr3kavPJSLJc501hONuzOcWCnsKgJaSD3Gt4UOriU/vrzdAJRJI=', '6VarcjE2oJ7tWX8z'));
+      _getController.changeSettingsInfoModel(SettingsInfo.fromJson(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())));
       InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);

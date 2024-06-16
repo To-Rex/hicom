@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/set_item.dart';
@@ -150,6 +151,7 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _getController.getUser();
     _getController.nameController.text = _getController.loginModel.value.user?.name ?? '';
+    ApiController().getSettings();
     return Scaffold(
         appBar: AppBar(leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),)),
         body: SmartRefresher(
@@ -192,7 +194,8 @@ class UserPage extends StatelessWidget {
                                         ],
                                       ),
                                       const Spacer(),
-                                      Icon(Icons.account_circle, color: AppColors.primaryColor, size: _getController.height.value * 0.08),
+                                      //Icon(Icons.account_circle, color: AppColors.primaryColor, size: _getController.height.value * 0.08),
+                                      SvgPicture.asset('assets/svg_assets/user.svg', width: _getController.height.value * 0.08, height: _getController.height.value * 0.08)
                                     ]
                                 ),
                                 SizedBox(height: _getController.height.value * 0.01),
