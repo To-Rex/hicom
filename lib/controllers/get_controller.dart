@@ -127,11 +127,11 @@ class GetController extends GetxController {
   var registerModel = RegisterModel().obs;
   var projectModel = ProjectModel().obs;
   var getUsersModel = GetUsersModel().obs;
-  var switchList = SwitchListModel().obs;
+  var switchListModel = SwitchListModel().obs;
 
-  void changeSwitchList(SwitchListModel switchLists) {switchList.value = switchLists;}
+  void changeSwitchList(SwitchListModel switchLists) {switchListModel.value = switchLists;}
 
-  void clearSwitchList() {switchList.value = SwitchListModel();}
+  void clearSwitchList() {switchListModel.value = SwitchListModel();}
 
   void changeGetUsersModel(GetUsersModel getUsersModels) {getUsersModel.value = getUsersModels;}
 
