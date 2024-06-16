@@ -93,8 +93,10 @@ class SwitchList extends StatelessWidget {
                             Row(
                               children: [
                                 Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
+                                //Text('${'MAC'.tr} ${_getController.maskString(_getController.switchListModel.value.offline![index].mac.toString())}'),
                                 const Spacer(),
-                                Text(_getController.switchListModel.value.offline![index].sn.toString()),
+                                //Text(_getController.switchListModel.value.offline![index].sn.toString()),
+                                Text(_getController.maskString(_getController.switchListModel.value.offline![index].sn.toString())),
                               ],
                             )
                           ],

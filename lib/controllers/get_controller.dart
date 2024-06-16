@@ -351,4 +351,14 @@ class GetController extends GetxController {
   final TextEditingController noteProjectController = TextEditingController();
   final TextEditingController passwordProjectController = TextEditingController();
 
+
+
+  String maskString(String input) {
+    if (input.length < 20) return input;
+    String prefix = input.substring(0, 6);
+    String suffix = input.substring(19);
+    String replacement = '*' * (20 - 6);
+    return '$prefix$replacement$suffix';
+  }
+
 }
