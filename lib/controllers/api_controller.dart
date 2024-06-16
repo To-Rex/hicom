@@ -24,13 +24,15 @@ class ApiController extends GetxController {
   static const String key = '50UvFayZ2w5u3O9B';
   static const String _switchPassword = '123456';
 
+  Map<String, String> headers = {
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Accept': 'application/json',
+  };
+
   Future<void> getRegions(data,act) async {
     var response = await get(
         Uri.parse('${_baseUrl+_getController.getQueryString(act, 'null') + data}&key=$key'),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json',
-        }
+        headers: headers
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (act == 'regions') {
@@ -50,10 +52,7 @@ class ApiController extends GetxController {
   Future<void> sendCode() async {
     var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":""}',_getController.getKey());
     var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('sendcode', 'null') + json.toString()}&key=${_getController.getKey()}'),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json',
-        }
+        headers: headers
     );
     debugPrint(response.body);
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
@@ -74,10 +73,7 @@ class ApiController extends GetxController {
     print(json);
     print(Tea.decryptTea(json,key).toString());
     var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('checkcode', 'null') + json.toString()}&key=${_getController.getKey()}'),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json',
-        }
+        headers: headers
     );
     debugPrint(response.body);
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
@@ -99,13 +95,8 @@ class ApiController extends GetxController {
   }
 
   Future<void> login (phone,session,keys,enter) async {
-    debugPrint(phone);
-    debugPrint(session);
     var json = Tea.encryptTea('{"phone": "$phone","session":"$session"}',keys);
-    print('suuu $json');
-    print(Tea.decryptTea(json,keys).toString());
-    var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('login', 'null') + json.toString()}&key=$keys'), headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'});
-    debugPrint(response.body);
+    var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('login', 'null') + json.toString()}&key=$keys'), headers: headers);
     debugPrint(response.statusCode.toString());
     debugPrint(Tea.decryptTea(response.body,keys).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -138,10 +129,7 @@ class ApiController extends GetxController {
     debugPrint(json.toString());
     debugPrint('${_baseUrl + _getController.getQueryString('signup', 'null') + json.toString()}&key=$key}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('signup', 'null') + json.toString()}&key=$key'),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json'
-        }
+        headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -161,10 +149,7 @@ class ApiController extends GetxController {
     var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text == '+998' ? _getController.getNumber() : _getController.code.value+_getController.phoneController.text}","name": "${_getController.nameController.text}","type": "${_getController.dropDownItems[2]}","country_id": "${_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr ? 1 : 2}","region_id": "${_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr?_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString(): "0"}", "district_id": "${_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr ? _getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString() : "0"}"}',_getController.getKey());
     debugPrint('${_baseUrl + _getController.getQueryString('changeprofile', 'null') + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('changeprofile', 'null') + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -182,10 +167,7 @@ class ApiController extends GetxController {
     var json = Tea.encryptTea(jsonEncode(_getController.loginModel.value),_getController.getKey());
     print('${_getController.getQueryString('logout', _getController.getUid())}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('logout', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -200,10 +182,7 @@ class ApiController extends GetxController {
   Future<void> getSettings() async {
     print('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null')}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -218,10 +197,7 @@ class ApiController extends GetxController {
   Future<void> getProjects() async {
     print('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -242,10 +218,7 @@ class ApiController extends GetxController {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "name": name}),_getController.getKey());
     print('${_baseUrl + _getController.getQueryString('prjren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -261,10 +234,7 @@ class ApiController extends GetxController {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "note": note}),_getController.getKey());
     print('${_baseUrl + _getController.getQueryString('prjnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -279,10 +249,7 @@ class ApiController extends GetxController {
   Future<void> getProjectsUsers(pidId) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjjoin', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -300,17 +267,9 @@ class ApiController extends GetxController {
   }
 
   Future<void> projectShare(pidId) async {
-    //{"pid":"38d3c91e52f5f121c73ad8a9b076fb18","phone":"","name":""}
-    var phone = _getController.nameProjectController.text;
-    var name = _getController.noteProjectController.text;
-    //http://185.196.213.76:8000/SSC_Switch/hicom?act=prjshrem&uid=736e7b7014d7c1c5250807a877258253&dt=SVO7ano%2BD%2Fk7vYzWGhp%2FCVwGhckqcnlBrzmumFanSk5WMZsArLZqFuqr0xQ6rmM%2BvruDgUg4GtbB0fiEuKZLmrCj7sE7OY%2FcQ%2FnUG%2BZASo0%3D&key=G5P1UoIXwbUhz4Na
-    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "phone": phone, "name": name}),_getController.getKey());
-    print('${_baseUrl + _getController.getQueryString('prjshrem', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "phone": _getController.nameProjectController.text, "name": _getController.noteProjectController.text}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjshrem', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
@@ -335,10 +294,7 @@ class ApiController extends GetxController {
   Future<void> projectDelete(pidId) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjdel', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -353,10 +309,7 @@ class ApiController extends GetxController {
   Future<void> addProjects() async {
     var json = Tea.encryptTea(jsonEncode({"sna": _getController.switchSerialProjectController.text, "na": _getController.switchNameProjectController.text, "pda": _getController.passwordProjectController.text, "name":_getController.nameProjectController.text, "note": "", "auto": 0}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
@@ -372,10 +325,7 @@ class ApiController extends GetxController {
   Future<void> getSwitchList(pidId) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swmng', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
+      headers: headers
     );
     debugPrint(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -386,5 +336,52 @@ class ApiController extends GetxController {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
+  Future<void> renameSwitch(pidId,sn) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "name": _getController.nameProjectController.text}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+      headers: headers
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      renameSwitchNote(pidId,sn);
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+  Future<void> renameSwitchNote(pidId,sn) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "note": _getController.noteProjectController.text}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+        headers: headers
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.back();
+      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
+      getSwitchList(pidId);
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+  Future<void> deleteSwitch(pidId,sn) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdel', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+        headers: headers
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.back();
+      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
+      getSwitchList(pidId);
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
 
 }

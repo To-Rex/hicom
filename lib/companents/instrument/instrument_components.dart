@@ -224,7 +224,7 @@ class InstrumentComponents {
                       children: [
                         AppBar(
                           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                          title: Text('Foydalanuvchi nomini o\'zgartirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                          title: Text('Foydalanuvchi nomini o’zgartirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
                           centerTitle: false,
                           backgroundColor: Theme.of(context).colorScheme.background,
                           elevation: 0,
@@ -248,6 +248,65 @@ class InstrumentComponents {
                                     showToast(context, 'Qo`shimcha ma`lumot kiriting'.tr, 'Qo`shimcha ma`lumot kiriting'.tr, true, 3)
                                   } else {
                                     ApiController().renameProjects(pidId, _getController.nameProjectController.text, _getController.noteProjectController.text)
+                                  }
+                                },
+                                style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                                child: SizedBox(
+                                    width: _getController.width.value,
+                                    height: _getController.height.value * 0.06,
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                            )
+                        )
+                      ]
+                  )
+              );
+            })
+    );
+  }
+
+  bottomSwitchEditName(BuildContext context, pidId,sn,index,online) {
+    _getController.nameProjectController.text = online ? _getController.switchListModel.value.online![index].name! : _getController.switchListModel.value.offline![index].name!;
+    _getController.noteProjectController.text = online ? _getController.switchListModel.value.online![index].note! : _getController.switchListModel.value.offline![index].note!;
+    Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        enableDrag: true,
+        isScrollControlled: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                  height: _getController.height.value * 0.45,
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppBar(
+                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+                          title: Text('Qurilmani tahrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                          centerTitle: false,
+                          backgroundColor: Theme.of(context).colorScheme.background,
+                          elevation: 0,
+                          leadingWidth: 0,
+                          leading: Container(),
+                          actions: [
+                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                          ]
+                        ),
+                        SizedBox(height: _getController.height.value * 0.02),
+                        TextFields(title: 'Qurilmani nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        SizedBox(height: _getController.height.value * 0.02),
+                        TextFields(title: 'Qo`shimcha ma`lumot'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        SizedBox(height: _getController.height.value * 0.04),
+                        Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                            child: ElevatedButton(
+                                onPressed: () => {
+                                  if (_getController.nameProjectController.text == '') {
+                                    showToast(context, 'Diqqat!'.tr, 'Loyihani nomini kiriting'.tr, true, 3)
+                                  } else if (_getController.noteProjectController.text == '') {
+                                    showToast(context, 'Diqqat!'.tr, 'Qo`shimcha ma`lumot kiriting'.tr, true, 3)
+                                  } else {
+                                    ApiController().renameSwitch(pidId, sn)
                                   }
                                 },
                                 style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
@@ -477,7 +536,7 @@ class InstrumentComponents {
             })
     );
   }
-  //delete projekt dialog
+
   void deleteProject(BuildContext context, String? pid) {
     Get.dialog(
         AlertDialog(
@@ -499,6 +558,29 @@ class InstrumentComponents {
         )
     );
   }
+
+  void deleteSwitch(BuildContext context, String? pid, sn) {
+    Get.dialog(
+        AlertDialog(
+          title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.05)),
+          content: Text('Qurilma o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+          actions: [
+            TextButton(
+                onPressed: () => Get.back(),
+                child: Text('Bekor qilish'.tr)
+            ),
+            TextButton(
+                onPressed: () => {
+                  Get.back(),
+                  ApiController().deleteSwitch(pid,sn)
+                },
+                child: Text('O’chirish'.tr)
+            )
+          ],
+        )
+    );
+  }
+
 
 
 }

@@ -3,8 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../companents/instrument/instrument_components.dart';
 import '../../companents/sample/port_items.dart';
 import '../../controllers/get_controller.dart';
+import '../../controllers/tea.dart';
 
 class SwitchList extends StatelessWidget {
   SwitchList({super.key});
@@ -12,6 +14,8 @@ class SwitchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //get argument
+    var argument = Get.arguments;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.9),
       appBar: AppBar(
@@ -53,8 +57,13 @@ class SwitchList extends StatelessWidget {
                                     onSelected: (String value) {
                                       switch (value) {
                                         case 'edit':
+                                          _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
+                                          _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
+                                          //bottomSwitchEditName(pidId,Index)
+                                          InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.offline![index].sn, index,false);
                                           break;
                                         case 'delete':
+                                          InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.offline![index].sn);
                                           break;
                                       }
                                     },
