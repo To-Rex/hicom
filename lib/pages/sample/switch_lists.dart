@@ -89,7 +89,7 @@ class SwitchList extends StatelessWidget {
                                 )
                               ]
                             ),
-                            PortItems(one: '1', two: '2', three: '3', four: '4', five: '5', six: '6', seven: '7', eight: '8', nine: '', ten: 'L1', eleven: 'L2', twelve: 'SFF'),
+                            PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
                             Row(
                               children: [
                                 Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
