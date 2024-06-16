@@ -367,6 +367,48 @@ class GetController extends GetxController {
     return '$prefix$replacement$suffix';
   }
 
+  //{
+//     "errcode": 0,
+//     "settings": [
+//         {
+//             "name": "ContactAddress",
+//             "value": "Қўқон шаҳар, А.Навоий, 12 уй"
+//         },
+//         {
+//             "name": "ContactFacebook",
+//             "value": "https://www.facebook.com/hicom.uz"
+//         },
+//         {
+//             "name": "ContactInstagram",
+//             "value": "https://www.instagram.com/hicom.uz/"
+//         },
+//         {
+//             "name": "ContactMail",
+//             "value": "alisher.djalalov@gmail.com"
+//         },
+//         {
+//             "name": "ContactPhone",
+//             "value": "+998 (91) 684 8100"
+//         },
+//         {
+//             "name": "ContactSite",
+//             "value": "https://hicom.uz"
+//         },
+//         {
+//             "name": "ContactTelegram",
+//             "value": "Hicom_uz"
+//         }
+//     ]
+// }
 
+    String getSettings(String name) {
+    if (settingsInfoModel.value.settings == null) return "";
+    for (var i = 0; i < settingsInfoModel.value.settings!.length; i++) {
+      if (settingsInfoModel.value.settings![i].name == name) {
+        return settingsInfoModel.value.settings![i].value.toString();
+      }
+    }
+    return "";
+  }
 
 }
