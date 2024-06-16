@@ -7,6 +7,7 @@ import '../../companents/instrument/instrument_components.dart';
 import '../../companents/sample/port_items.dart';
 import '../../controllers/get_controller.dart';
 import '../../controllers/tea.dart';
+import 'add_switch_page.dart';
 
 class SwitchList extends StatelessWidget {
   SwitchList({super.key});
@@ -123,7 +124,9 @@ class SwitchList extends StatelessWidget {
           shape: const CircleBorder(),
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          onPressed: () {},
+          onPressed: () {
+            Get.to(AddSwitchPage(), arguments: Get.arguments);
+          },
           child: const Icon(Icons.add),
         )
     );
