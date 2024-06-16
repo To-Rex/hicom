@@ -15,8 +15,12 @@ class SwitchList extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.9),
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text('Qurilma ro’yxati'.tr),
         centerTitle: true,
+        actions: [
+          IconButton(icon: Icon(Icons.search, size: _getController.height.value * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
+        ],
       ),
       body: Obx(() =>  Column(
           children: [
@@ -27,7 +31,7 @@ class SwitchList extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01),
+                      margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
                       padding: EdgeInsets.all(_getController.height.value * 0.015),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
