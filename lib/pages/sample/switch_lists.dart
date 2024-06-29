@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
+import 'package:hicom/resource/colors.dart';
 import '../../companents/instrument/instrument_components.dart';
 import '../../companents/sample/port_items.dart';
 import '../../controllers/get_controller.dart';
@@ -132,7 +133,8 @@ class SwitchList extends StatelessWidget {
                                 children: [
                                   Text(_getController.switchListModel.value.online![index].name.toString(), style: TextStyle(fontSize:Get.textTheme.bodyMedium!.fontSize)),
                                   const Spacer(),
-                                  Icon(TablerIcons.circle_filled, color: Theme.of(context).colorScheme.error, size: Get.width * 0.025),
+                                  Icon(TablerIcons.circle_filled, color: AppColors.green,
+                                      size: Get.width * 0.025),
                                   PopupMenuButton<String>(
                                       icon: Icon(TablerIcons.dots, size: _getController.width.value * 0.05),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
