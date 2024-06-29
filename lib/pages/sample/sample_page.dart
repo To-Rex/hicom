@@ -224,17 +224,14 @@ class SamplePage extends StatelessWidget {
                                     Get.to(SwitchList(), arguments: _getController.projectModel.value.admin![index].pid)
                                   },
                                 child: Card(
-                                    color: Theme.of(context).colorScheme.background,
-                                    shadowColor: Theme.of(context).colorScheme.onBackground,
-                                    surfaceTintColor: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.surface,
+                                    shadowColor: Theme.of(context).colorScheme.onSurface,
+                                    surfaceTintColor: Theme.of(context).colorScheme.onSurface,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                     elevation: 3,
                                     margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
                                     child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                            color: Theme.of(context).colorScheme.background
-                                        ),
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
                                         child: Row(
                                             children: [
                                               Container(
@@ -245,7 +242,7 @@ class SamplePage extends StatelessWidget {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     SizedBox(height: _getController.height.value * 0.01),
-                                                    Text(_getController.projectModel.value.join![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
+                                                    Text(_getController.projectModel.value.join![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
                                                     Text(_getController.projectModel.value.join![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                                     Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -258,7 +255,7 @@ class SamplePage extends StatelessWidget {
                                                               margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
                                                               decoration: BoxDecoration(
                                                                   borderRadius: BorderRadius.circular(3),
-                                                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                               )
                                                           ),
                                                           Text('${'Yoniq'.tr} ${_getController.projectModel.value.join![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
@@ -268,7 +265,7 @@ class SamplePage extends StatelessWidget {
                                                               margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
                                                               decoration: BoxDecoration(
                                                                   borderRadius: BorderRadius.circular(3),
-                                                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                               )
                                                           ),
                                                           Text('${'Xato'.tr} ${_getController.projectModel.value.join![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
