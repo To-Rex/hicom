@@ -29,6 +29,8 @@ class GetController extends GetxController {
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
   RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
   var responseText = ''.obs;
+  var whileApi = false.obs;
+
 
   final qrKey = GlobalKey(debugLabel: 'QR');
   var result = Rxn<Barcode>();

@@ -150,6 +150,7 @@ class SwitchDetailPage extends StatelessWidget {
                                   Expanded(child: Center(child: Text('Status'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
                                 ]
                               ),
+                              Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
                               //{"errcode":0,"detail":{"note":"","tx":["97","100","250","117","7.5","0"],"rx":["2.1","2.8","6.0","1.1","503","10"],"ip":"192.168.1.133","pw":["2.4","2.5","2.6","2.6"],"link":[1,4,4,4,4,4],"poec":[1,1,1,1],"mac":"50547BC010A2","isoc":0,"uptime":"2:07:42:20","vol":"52.7","portNote":["","","","","",""],"V":"6.0.231023","snr":[0,0,0,0,0,0],"phyc":[1,4,4,4,4,4],"name":"тест","tp":"10.1"}}
                               //ItemPortData(portName: '', power: '', tx: '', rx: '', status: '',),
                               Column(
@@ -160,7 +161,8 @@ class SwitchDetailPage extends StatelessWidget {
                                     power: '${_getController.switchDetailModel.value.detail!.pw?[index]} W',
                                     tx: '${_getController.switchDetailModel.value.detail!.tx?[index]} kb',
                                     rx: '${_getController.switchDetailModel.value.detail!.rx?[index]} kb',
-                                    status: _getController.switchDetailModel.value.detail!.link?[index] == 1 ? 'Connected'.tr : 'Disconnected'.tr,
+                                    //status: 100M or Half 10M
+                                    status: '${_getController.switchDetailModel.value.detail!.pw?[index]} W',
                                   ),
                                 ),
                               ),
@@ -186,10 +188,47 @@ class SwitchDetailPage extends StatelessWidget {
                       width: Get.width,
                       child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),
                     ),
-                  Container(
-                    width: Get.width,
-                    child: Center(child: Text('Sozlamalar'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),
-                  ),
+                  if (_getController.switchDetailModel.value.detail != null)
+                    Padding(
+                        padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,top: Get.height * 0.03, bottom: Get.height * 0.02),
+                        child: Column(
+                            children: [
+                              Row(
+                                  children: [
+                                    Expanded(child: Center(child: Text('Port'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                    Expanded(child: Center(child: Text('POE'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                    Expanded(child: Center(child: Text('Extend'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                    Expanded(child: Center(child: Text('Reboot'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                  ]
+                              ),
+                              Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
+                              //{"errcode":0,"detail":{"note":"","tx":["97","100","250","117","7.5","0"],"rx":["2.1","2.8","6.0","1.1","503","10"],"ip":"192.168.1.133","pw":["2.4","2.5","2.6","2.6"],"link":[1,4,4,4,4,4],"poec":[1,1,1,1],"mac":"50547BC010A2","isoc":0,"uptime":"2:07:42:20","vol":"52.7","portNote":["","","","","",""],"V":"6.0.231023","snr":[0,0,0,0,0,0],"phyc":[1,4,4,4,4,4],"name":"тест","tp":"10.1"}}
+                              Column(
+                                children: [
+
+                                ]
+                              ),
+                              SizedBox(height: Get.height * 0.015),
+                              SizedBox(
+                                  width: Get.width,
+                                  height: Get.height * 0.07,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.blue,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+                                    ),
+                                    onPressed: () {  },
+                                    child: Text('Qurilmani o`\chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
+                                  )
+                              )
+                            ]
+                        )
+                    )
+                  else
+                    SizedBox(
+                      width: Get.width,
+                      child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),
+                    ),
                 ],
               )
           )
