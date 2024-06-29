@@ -13,7 +13,6 @@ class SwitchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var argument = Get.arguments;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
       appBar: AppBar(
@@ -103,9 +102,7 @@ class SwitchList extends StatelessWidget {
                             Row(
                               children: [
                                 Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
-                                //Text('${'MAC'.tr} ${_getController.maskString(_getController.switchListModel.value.offline![index].mac.toString())}'),
                                 const Spacer(),
-                                //Text(_getController.switchListModel.value.offline![index].sn.toString()),
                                 Text(_getController.maskString(_getController.switchListModel.value.offline![index].sn.toString())),
                               ],
                             )
