@@ -33,7 +33,7 @@ class SwitchList extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () => {
-                        Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.offline![index].sn,title: _getController.switchListModel.value.offline![index].name), arguments: Get.arguments)
+                        Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments, serialNumber: _getController.switchListModel.value.online![index].sn)),
                       },
                       child: Container(
                           margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
@@ -124,15 +124,12 @@ class SwitchList extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () => {
-                        Get.to(SwitchDetailPage(pidId: Get.arguments,sn: _getController.switchListModel.value.online![index].sn,title: _getController.switchListModel.value.online![index].name))
+                        Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments, serialNumber: _getController.switchListModel.value.online![index].sn)),
                       },
                       child: Container(
                           margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
                           padding: EdgeInsets.all(_getController.height.value * 0.015),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Theme.of(context).colorScheme.surface,
-                          ),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.surface),
                           child: Column(
                               children: [
                                 Row(

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
@@ -399,10 +401,14 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getSwitchDetail(pidId,sn) async {
+  Future<void> getSwitchDetail(String pidId, String sn) async {
+    debugPrint('suuu ${pidId+'   ' + sn}');
     //{"pid":"7f9478acb510fd3e6806b8a56fd3b79b","sn":"HIM42ECM11234700492BEKP5E","isJoin":1}
+    //http://185.196.213.76:8000/SSC_Switch/hicom?act=swdet&uid=c15aa0d7c5c439ebfe86457017890cbf&dt=XZwg2uEkqY1DV%2BPjx2JTgEkRqjKU4a%2F1itrnRFv%2BYThLPza18QrSxwbpuiQOh8fCT%2BUonnZ%2BbwNwjoN7%2Bx3VAC0zIYFifKjHtuxfyiUZkZ2priKakR0%3D&key=tdwsTt7q2Xw7pxBe
+    //http://185.196.213.76:8000/SSC_Switch/hicom?act=swdet&uid=736e7b7014d7c1c5250807a877258253&dt=gL%2FG4uDajAEfVUgNGjIHt60udDgXjPg64o5qy8eZKCauJw5yKytxPm%2FHGeYV%2FVY7KxV%2F%2BhsWNtBivQ%3D%3D&key=erw4pcrtAfG98svq
     debugPrint(jsonEncode({"pid": pidId, "sn": sn,'isJoin':"1"}));
-    var json = Tea.encryptTea(jsonEncode({"pid":"7f9478acb510fd3e6806b8a56fd3b79b","sn":"HIM42ECM11234700492BEKP5E","isJoin":1}),_getController.getKey());
+    //var json = Tea.encryptTea(jsonEncode({"pid":"7f9478acb510fd3e6806b8a56fd3b79b","sn":"HIM42ECM11234700492BEKP5E","isJoin":1}),_getController.getKey());
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn,'isJoin':"1"}),_getController.getKey());
     debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
