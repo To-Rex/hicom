@@ -323,6 +323,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSwitchList(pidId) async {
+    debugPrint(pidId);
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swmng', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers

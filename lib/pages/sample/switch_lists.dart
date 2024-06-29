@@ -15,7 +15,7 @@ class SwitchList extends StatelessWidget {
   Widget build(BuildContext context) {
     var argument = Get.arguments;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.9),
+      backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text('Qurilma ro’yxati'.tr),
@@ -26,7 +26,6 @@ class SwitchList extends StatelessWidget {
       ),
       body: Obx(() =>  Column(
           children: [
-            //if (_getController.projectModel.value.admin != null || _getController.projectModel.value.join != null)
             if (_getController.switchListModel.value.offline != null)
               ListView.builder(
                   itemCount: _getController.switchListModel.value.offline!.length,
@@ -37,7 +36,7 @@ class SwitchList extends StatelessWidget {
                       padding: EdgeInsets.all(_getController.height.value * 0.015),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Theme.of(context).colorScheme.background,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                         child: Column(
                           children: [
@@ -49,7 +48,7 @@ class SwitchList extends StatelessWidget {
                                 PopupMenuButton<String>(
                                     icon: Icon(TablerIcons.dots, size: _getController.width.value * 0.05),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                    color: Theme.of(context).colorScheme.background,
+                                    color: Theme.of(context).colorScheme.surface,
                                     surfaceTintColor: Colors.transparent,
                                     elevation: 4,
                                     onSelected: (String value) {
@@ -133,8 +132,7 @@ class SwitchList extends StatelessWidget {
                                 children: [
                                   Text(_getController.switchListModel.value.online![index].name.toString(), style: TextStyle(fontSize:Get.textTheme.bodyMedium!.fontSize)),
                                   const Spacer(),
-                                  Icon(TablerIcons.circle_filled, color: AppColors.green,
-                                      size: Get.width * 0.025),
+                                  Icon(TablerIcons.circle_filled, color: AppColors.green, size: Get.width * 0.025),
                                   PopupMenuButton<String>(
                                       icon: Icon(TablerIcons.dots, size: _getController.width.value * 0.05),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -195,9 +193,9 @@ class SwitchList extends StatelessWidget {
                                 Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
                                 const Spacer(),
                                 Text(_getController.maskString(_getController.switchListModel.value.online![index].sn.toString(),),style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
-                              ],
+                              ]
                             )
-                          ],
+                          ]
                         )
                     );
                   }
@@ -209,10 +207,9 @@ class SwitchList extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
-            //debugPrint(Tea.decryptTea('VxQB/CYRF1lcGsFgF9O+bh6987e7lnU5E5u3W2L8ckXgpXJSAh0=', _getController.getKey()));
             Get.to(AddSwitchPage(), arguments: Get.arguments);
           },
-          child: const Icon(Icons.add),
+          child: const Icon(Icons.add)
         )
     );
   }
