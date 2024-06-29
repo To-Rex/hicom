@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/resource/colors.dart';
 import '../../companents/sample/item_data.dart';
+import '../../companents/sample/item_port_data.dart';
 import '../../companents/sample/port_items.dart';
 import '../../controllers/get_controller.dart';
 
@@ -140,22 +141,20 @@ class SwitchDetailPage extends StatelessWidget {
                         padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,top: Get.height * 0.03, bottom: Get.height * 0.02),
                         child: Column(
                             children: [
-                              ItemData(title: 'Qurilma modeli'.tr, subtitle: _getController.switchDetailModel.value.detail!.name.toString()),
+                              Row(
+                                children: [
+                                  Expanded(child: Center(child: Text('Port'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                  Expanded(child: Center(child: Text('Power'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                  Expanded(child: Center(child: Text('TX'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                  Expanded(child: Center(child: Text('RX'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                  Expanded(child: Center(child: Text('Status'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                ]
+                              ),
+                              //{"errcode":0,"detail":{"note":"","tx":["97","100","250","117","7.5","0"],"rx":["2.1","2.8","6.0","1.1","503","10"],"ip":"192.168.1.133","pw":["2.4","2.5","2.6","2.6"],"link":[1,4,4,4,4,4],"poec":[1,1,1,1],"mac":"50547BC010A2","isoc":0,"uptime":"2:07:42:20","vol":"52.7","portNote":["","","","","",""],"V":"6.0.231023","snr":[0,0,0,0,0,0],"phyc":[1,4,4,4,4,4],"name":"тест","tp":"10.1"}}
+                              //ItemPortData(portName: '', power: '', tx: '', rx: '', status: '',),
+
                               SizedBox(height: Get.height * 0.015),
-                              ItemData(title: 'Seriya raqami'.tr, subtitle: serialNumber.toString()),
-                              SizedBox(height: Get.height * 0.015),
-                              ItemData(title: 'MAC adress'.tr, subtitle: _getController.switchDetailModel.value.detail!.mac.toString()),
-                              SizedBox(height: Get.height * 0.015),
-                              ItemData(title: 'Ip adress'.tr, subtitle: _getController.switchDetailModel.value.detail!.ip.toString()),
-                              SizedBox(height: Get.height * 0.015),
-                              ItemData(title: 'Dasturiy ta`minot'.tr,subtitle: _getController.switchDetailModel.value.detail!.v.toString()),
-                              SizedBox(height: Get.height * 0.015),
-                              ItemData(title: 'POE kuchlanishi'.tr, subtitle: '${_getController.switchDetailModel.value.detail!.vol} V'),
-                              SizedBox(height: Get.height * 0.015),
-                              ItemData(title: 'POE quvvati'.tr, subtitle: '${_getController.switchDetailModel.value.detail!.tp} W'),
-                              SizedBox(height: Get.height * 0.015),
-                              ItemData(title: 'Online davri'.tr, subtitle: _getController.switchDetailModel.value.detail!.uptime.toString()),
-                              SizedBox(height: Get.height * 0.05),
+
                               SizedBox(
                                   width: Get.width,
                                   height: Get.height * 0.07,
