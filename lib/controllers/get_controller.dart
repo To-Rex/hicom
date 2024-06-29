@@ -7,6 +7,7 @@ import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/models/settings_info.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
@@ -28,6 +29,49 @@ class GetController extends GetxController {
   RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
   var responseText = ''.obs;
 
+  final qrKey = GlobalKey(debugLabel: 'QR');
+  var result = Rxn<Barcode>();
+  QRViewController? controller;
+  var isLampOn = false.obs;
+  var cameraFacing = CameraFacing.back.obs;
+
+  void onQRViewCreated(QRViewController qrController) {
+    controller = qrController;
+    controller?.scannedDataStream.listen((scanData) {
+      result.value = scanData;
+      if (scanData.code != null) {
+        print(scanData.code.toString());
+        print(scanData.code.toString());
+
+        switchSerialProjectController.text = scanData.code.toString();
+        controller?.pauseCamera();
+        Get.back();
+      }
+    });
+  }
+
+  void reassembleCamera() {
+    if (GetPlatform.isAndroid) {
+      controller?.pauseCamera();
+    } else if (GetPlatform.isIOS) {
+      controller?.resumeCamera();
+    }
+  }
+
+  void toggleLamp() {
+    isLampOn.value = !isLampOn.value;
+    controller?.toggleFlash();
+  }
+
+  void toggleCamera() {
+    if (cameraFacing.value == CameraFacing.back) {
+      cameraFacing.value = CameraFacing.front;
+    } else {
+      cameraFacing.value = CameraFacing.back;
+    }
+    controller?.flipCamera();
+  }
+
   void changeDropDownItems(int index, int newValue) {
     if (index >= 0 && index < dropDownItems.length) {
       dropDownItems[index] = newValue;
@@ -40,11 +84,7 @@ class GetController extends GetxController {
     }
   }
 
-  changeFullName(String name) {
-    fullName.value = name;
-  }
-
-  //get token from storage
+  changeFullName(String name) {fullName.value = name;}
 
  String getKey() {
    if (GetStorage().read('key') != null) {
@@ -74,7 +114,6 @@ class GetController extends GetxController {
 
   void clearUser() {GetStorage().remove('user');}
 
-  //number and session
   void writeLogin(String number, String session) {
     GetStorage().write('number', number);
     GetStorage().write('session', session);
@@ -103,7 +142,6 @@ class GetController extends GetxController {
     InstrumentComponents().showToast(Get.context!, 'OK', 'Masulot saqlandi'.tr, false, 2);
   }
 
-  //{"Phone":"+998916848100","SessionToken""ivEWz4iyP2UZ348HRyF3JKNMuppBSGCNL3a2fnRJolJIpjQUEOlJH208aXBdQtfQ",KEY"a2tB333raC8y74dt",UID"2025b25f25ce9ad98d6047ff0dc105b5"}
   void addUserData(data){
     if (data != null) {
       var dataJson = jsonDecode(data.toString());
@@ -122,6 +160,12 @@ class GetController extends GetxController {
     width.value = Get.width;
   }
 
+  @override
+  void onClose() {
+    controller?.dispose();
+    super.onClose();
+  }
+
   var districtsModel = DistrictsModel().obs;
   var provinceModel = ProvinceModel().obs;
   var loginModel = LoginModel().obs;
@@ -131,9 +175,7 @@ class GetController extends GetxController {
   var switchListModel = SwitchListModel().obs;
   var settingsInfoModel = SettingsInfo().obs;
 
-  void changeSettingsInfoModel(SettingsInfo settingsInfo) {
-    settingsInfoModel.value = settingsInfo;
-  }
+  void changeSettingsInfoModel(SettingsInfo settingsInfo) {settingsInfoModel.value = settingsInfo;}
 
   void changeSwitchList(SwitchListModel switchLists) {switchListModel.value = switchLists;}
 

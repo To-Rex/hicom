@@ -27,7 +27,7 @@ class AddProjectPage extends StatelessWidget {
             SizedBox(height: _getController.height.value * 0.02),
             TextFields(title: 'Qurilma nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchNameProjectController),
             SizedBox(height: _getController.height.value * 0.02),
-            TextFields(title: 'Qurilmaning ishlab chiqarish raqami'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchSerialProjectController),
+            TextFields(title: 'Qurilmaning ishlab chiqarish raqami'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchSerialProjectController,isQrCode: true),
             SizedBox(height: _getController.height.value * 0.02),
             TextFields(title: 'Qurilma paroli'.tr,hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController),
             const Expanded(child: SizedBox()),

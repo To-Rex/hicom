@@ -11,6 +11,7 @@ import 'package:hicom/pages/user_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/search_fild.dart';
 import '../../controllers/get_controller.dart';
+import '../qr_scan_page.dart';
 
 class SamplePage extends StatelessWidget {
   SamplePage({super.key});
@@ -377,8 +378,8 @@ class SamplePage extends StatelessWidget {
                 '2025b25f25ce9ad98d6047ff0dc105b5'
             );*/
 
-            //Get.to(AddProjectPage());
-            ApiController().getSettings();
+            Get.to(AddProjectPage());
+            //Get.to(QRViewExample());
             //debugPrint(Tea.decryptTea('3yZ7oI51a6NU/CeZ3afmDWOfrEsHfudjby20hOBkhsLfMB695GrzyYGyd14tqnSt9qQ4nJcoL4irK5L3PjD+dWj7Jo2cOkFmb+A+JUoRpZW/Oyv8rcFAxxtYn4NNBe3y53Yv0guyPbh9h6qElKF6tcSrRRHgIo/AW2ZGfg8h+yi8D/lZp8kosEbfLKSxzaSE+AxXqHr5Xoc22IX67eu5t2MG4ToxrF1Zh1klbTRVaAE6217TBRLk/QtTuNxZRGw7ya+DlAW9IUZh5h8XrQWvOUbfLKSxzaSE+AxXqHr5XocJ4FPPJEENvqkilh1Wipi77vp/PP6xPrWP4Czn1UWcpCLQ0MtkRsUilhUzICWV8iwx4F8O7oqOs6MJTo0tX1Oz9oDydwewEeI+BErZ6zv2x8xNZOi1n4GsTvn0qEzRRCXWoKtxb7uH+I4wm3+RjDMmx1ju+nPf4NR0euP5lbuBk+aPVvV+V4l3rKBq+wbM26KhB0LO563vnKdcooZ7+f/ZoMtbltXhGT8iqgeEZbTUUO4zjdxmpaoWICN2XDpg098TO2fbjHXzON8wHr3kavPJSLJc501hONuzOcWCnsKgJaSD3Gt4UOriU/vrzdAJRJI=', '6VarcjE2oJ7tWX8z'));
             //InstrumentComponents().bottomCrackUser(context);
           },

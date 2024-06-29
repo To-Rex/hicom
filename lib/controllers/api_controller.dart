@@ -384,7 +384,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> addSwitch(pidId) async {
-    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sna": ["PS308G00112247000027B0BET"], "na": ["test"], "pda": ["123456"], "auto": 0}),_getController.getKey());
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sna": [_getController.switchSerialProjectController.text], "na": [_getController.switchNameProjectController.text], "pda": [_getController.passwordProjectController.text], "auto": 0}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
@@ -396,4 +396,5 @@ class ApiController extends GetxController {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
 }
