@@ -9,6 +9,7 @@ import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
 import '../models/register_model.dart';
+import '../models/sample/Switch_detail_model.dart';
 import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
 import '../models/sample/switch_list_model.dart';
@@ -398,4 +399,25 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> getSwitchDetail(pidId,sn) async {
+    //{"pid":"7f9478acb510fd3e6806b8a56fd3b79b","sn":"HIM42ECM11234700492BEKP5E","isJoin":1}
+    debugPrint(jsonEncode({"pid": pidId, "sn": sn,'isJoin':"1"}));
+    var json = Tea.encryptTea(jsonEncode({"pid":"7f9478acb510fd3e6806b8a56fd3b79b","sn":"HIM42ECM11234700492BEKP5E","isJoin":1}),_getController.getKey());
+    debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+      headers: headers
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+      if(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))['errcode'] == 0){
+        _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))));
+      } else {
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      }
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
 }

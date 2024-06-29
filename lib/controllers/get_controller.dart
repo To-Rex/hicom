@@ -12,6 +12,7 @@ import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
 import '../models/register_model.dart';
+import '../models/sample/Switch_detail_model.dart';
 import '../models/sample/get_users_model.dart';
 import '../models/sample/project_model.dart';
 import '../models/sample/switch_list_model.dart';
@@ -86,7 +87,7 @@ class GetController extends GetxController {
 
   changeFullName(String name) {fullName.value = name;}
 
- String getKey() {
+  String getKey() {
    if (GetStorage().read('key') != null) {
      return GetStorage().read('key').toString();
    } else {
@@ -174,6 +175,12 @@ class GetController extends GetxController {
   var getUsersModel = GetUsersModel().obs;
   var switchListModel = SwitchListModel().obs;
   var settingsInfoModel = SettingsInfo().obs;
+  //SwitchDetailModel
+  var switchDetailModel = SwitchDetailModel().obs;
+
+  void changeSwitchDetailModel(SwitchDetailModel switchDetailModels) {switchDetailModel.value = switchDetailModels;}
+
+  void clearSwitchDetailModel() {switchDetailModel.value = SwitchDetailModel();}
 
   void changeSettingsInfoModel(SettingsInfo settingsInfo) {settingsInfoModel.value = settingsInfo;}
 
@@ -399,6 +406,8 @@ class GetController extends GetxController {
   final TextEditingController noteProjectController = TextEditingController();
   final TextEditingController passwordProjectController = TextEditingController();
 
+
+  late TabController tabController;
 
 
   String maskString(String input) {
