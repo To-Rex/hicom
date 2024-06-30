@@ -9,6 +9,7 @@ class InstructionPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
   late final WebViewController _controller;
 
+  InstructionPage({super.key});
 
   @override
   Widget build(BuildContext context) {

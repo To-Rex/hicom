@@ -4,6 +4,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/resource/colors.dart';
+import '../../companents/instrument/instrument_components.dart';
 import '../../companents/sample/item_data.dart';
 import '../../companents/sample/item_port_data.dart';
 import '../../companents/sample/item_settings_data.dart';
@@ -45,6 +46,9 @@ class SwitchDetailPage extends StatelessWidget {
               child: Row(
                   children: [
                     InkWell(
+                      onTap: () {
+                        InstrumentComponents().infoPortDialog(context);
+                      },
                         child: Row(
                             children: [
                               Icon(TablerIcons.info_circle, color: AppColors.blue, size: Get.textTheme.headlineSmall!.fontSize),

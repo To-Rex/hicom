@@ -15,5 +15,6 @@ class AppColors{
   static const backgroundApp = Color(0xFFCB8D05);
   static const primaryColor3 = Color(0xFF2797A7);
   static const blue = Colors.blue;
+  static const yellow = Colors.yellow;
   static const blackTransparent = Colors.transparent;
 }

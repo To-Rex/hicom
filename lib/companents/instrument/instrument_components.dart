@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import '../../controllers/api_controller.dart';
@@ -581,6 +582,73 @@ class InstrumentComponents {
     );
   }
 
+  //info port dialog
 
+  void infoPortDialog(BuildContext context) {
+    Get.dialog(
+        AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          title: Text('Portlar holati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
+          content: SizedBox(
+            width: _getController.width.value,
+            height: _getController.height.value * 0.055,
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      child: Column(
+                          children: [
+                            SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03,colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn)),
+                            Text('Yaxshi',maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.027))
+                          ]
+                      )
+                  ),
+                  SizedBox(
+                      child: Column(
+                          children: [
+                            SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03,colorFilter: const ColorFilter.mode(AppColors.yellow, BlendMode.srcIn)),
+                            Text('Normal',maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.027))
+                          ]
+                      )
+                  ),
+                  SizedBox(
+                      child: Column(
+                          children: [
+                            SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03,colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn)),
+                            Text('Past', maxLines: 1,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.027))
+                          ]
+                      )
+                  ),
+                  SizedBox(
+                      child: Column(
+                          children: [
+                            SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn)),
+                            Text('O`chiq', maxLines: 1,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.027))
+                          ]
+                      )
+                  )
+                ]
+            ),
+          ),
+          actions: [
+            Column(
+              children: [
+                Text('Agar belgi sariq yoki to\'q sariq bo\'lsa, tarmoq kabeli va kristall boshini tekshiring, chiziq juda uzun yoki yomon simli material tufayli portning ultra uzoq masofali funksiyasini yoqishga harakat qiling.'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                Padding(padding: EdgeInsets.only(top: _getController.height.value * 0.01), child: const Divider()),
+                SizedBox(
+                  width: Get.width,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      overlayColor: AppColors.blue.withOpacity(0.1),),
+                      onPressed: () => {Get.back()}, child: Text('Ok'.tr, style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: _getController.width.value * 0.04)))
+                )
+              ],
+            )
 
+          ],
+        )
+    );
+  }
 }
