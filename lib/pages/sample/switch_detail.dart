@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -12,7 +10,6 @@ import '../../companents/sample/item_port_data.dart';
 import '../../companents/sample/item_settings_data.dart';
 import '../../companents/sample/port_items.dart';
 import '../../controllers/get_controller.dart';
-import '../../models/sample/Switch_detail_model.dart';
 
 class SwitchDetailPage extends StatelessWidget {
   final String? pidId;
@@ -133,7 +130,7 @@ class SwitchDetailPage extends StatelessWidget {
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                               ),
                               onPressed: () {  },
-                              child: Text('Qurilmani o`\chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
+                              child: Text('Qurilmani o\'chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
                             )
                           )
                         ]
@@ -214,7 +211,7 @@ class SwitchDetailPage extends StatelessWidget {
                                     itemBuilder: (context, index) {
                                       return ItemSettingsData(
                                           portName: _getController.getPortList(1).toList()[index+1],
-                                          extend: _getController.switchDetailModel.value.detail!.iSoc!.toString() ?? '--',
+                                          extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
                                           reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
                                           port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
                                           poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
