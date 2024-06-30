@@ -542,10 +542,7 @@ class GetController extends GetxController {
     //['', '', '', '1', '2', '3', '4', '', 'L1', 'L2', '', ''];  '' item from list remove
     for (int i = 0; i < result.length; i++) {
       if (result[i] == '') {
-        print('remove $result[$i]');
         result.removeAt(i);
-      } else {
-        print('keep $result[$i]');
       }
     }
     return result;

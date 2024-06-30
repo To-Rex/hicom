@@ -194,21 +194,20 @@ class SwitchDetailPage extends StatelessWidget {
                               Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
                               Column(
                                 children: [
-
                                   ListView.builder(
-                                    itemCount: _getController.switchDetailModel.value.detail!.poEc!.length,
+                                    itemCount: _getController.switchDetailModel.value.detail!.tx!.length,
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       return ItemSettingsData(
-                                        portName: '${index + 1}', poe: _getController.switchDetailModel.value.detail!.poEc![index].toString(),
-                                        extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
-                                        reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
-                                        port: int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()),
-                                        poEs: int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()),
-                                        phYc: int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()),
+                                          portName: _getController.getPortList(1).toList()[index+1],
+                                          extend: _getController.switchDetailModel.value.detail!.iSoc!.toString() ?? '--',
+                                          reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
+                                          port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
+                                          poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
+                                          phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0
                                       );
-                                    },
+                                    }
                                   )
                                 ]
                               )
