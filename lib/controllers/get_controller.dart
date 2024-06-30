@@ -420,41 +420,7 @@ class GetController extends GetxController {
     return '$prefix$replacement$suffix';
   }
 
-  //{
-//     "errcode": 0,
-//     "settings": [
-//         {
-//             "name": "ContactAddress",
-//             "value": "Қўқон шаҳар, А.Навоий, 12 уй"
-//         },
-//         {
-//             "name": "ContactFacebook",
-//             "value": "https://www.facebook.com/hicom.uz"
-//         },
-//         {
-//             "name": "ContactInstagram",
-//             "value": "https://www.instagram.com/hicom.uz/"
-//         },
-//         {
-//             "name": "ContactMail",
-//             "value": "alisher.djalalov@gmail.com"
-//         },
-//         {
-//             "name": "ContactPhone",
-//             "value": "+998 (91) 684 8100"
-//         },
-//         {
-//             "name": "ContactSite",
-//             "value": "https://hicom.uz"
-//         },
-//         {
-//             "name": "ContactTelegram",
-//             "value": "Hicom_uz"
-//         }
-//     ]
-// }
-
-    String getSettings(String name) {
+  String getSettings(String name) {
     if (settingsInfoModel.value.settings == null) return "";
     for (var i = 0; i < settingsInfoModel.value.settings!.length; i++) {
       if (settingsInfoModel.value.settings![i].name == name) {
@@ -463,5 +429,30 @@ class GetController extends GetxController {
     }
     return "";
   }
+
+  String formatPower(double? power) {
+    if (power! <= 0) return "--";
+    return "${power.toStringAsFixed(1)}W";
+  }
+
+  String trafficToString(double kb) {
+    if (kb <= 0) return "--";
+
+    double gb = kb / 1024 / 1024 / 1024;
+    if (gb >= 1) {
+      if (gb != gb.floor()) return "${gb.toStringAsFixed(0)}Gb";
+      return "${gb.toInt()}Gb";
+    }
+
+    double mb = kb / 1024 / 1024;
+    if (mb >= 1) {
+      if (mb != mb.floor()) return "${mb.toStringAsFixed(0)}Mb";
+      return "${mb.toInt()}Mb";
+    }
+
+    if (kb != kb.floor()) return "${kb.toStringAsFixed(0)}Kb";
+    return "${kb.toInt()}Kb";
+  }
+
 
 }
