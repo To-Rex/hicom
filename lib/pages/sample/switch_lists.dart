@@ -15,6 +15,8 @@ class SwitchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    debugPrint('type: ${_getController.typeFromSerialNumber('HIM42ECM11234700492BEKP5E')}');
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
       appBar: AppBar(
@@ -34,7 +36,7 @@ class SwitchList extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () => {
-                        Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments, serialNumber: _getController.switchListModel.value.online![index].sn)),
+                        Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))
                       },
                       child: Container(
                           margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
@@ -105,7 +107,7 @@ class SwitchList extends StatelessWidget {
                                   ]
                               ),
                               //PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
-                              PortItems(data: _getController.getPortMap(1)),
+                              PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()))),
                               Row(
                                 children: [
                                   Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
@@ -126,7 +128,7 @@ class SwitchList extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () => {
-                        Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments, serialNumber: _getController.switchListModel.value.online![index].sn)),
+                        Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments)),
                       },
                       child: Container(
                           margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
@@ -194,7 +196,8 @@ class SwitchList extends StatelessWidget {
                                     ]
                                 ),
                                 //PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
-                                PortItems(data: _getController.getPortMap(1)),
+                                //PortItems(data: _getController.getPortMap(1)),
+                                PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
                                 Row(
                                     children: [
                                       Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),

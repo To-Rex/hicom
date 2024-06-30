@@ -484,4 +484,46 @@ class GetController extends GetxController {
     return ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
   }
 
+  /*public static int typeFromSerialNumber(String serialNo) {
+    if (serialNo.startsWith("HIM42") || serialNo.startsWith("PS106D") || serialNo.startsWith("PS204DM"))
+      return SWITCH_TYPE_M42;
+    else if (serialNo.startsWith("HIF411") || serialNo.startsWith("GPS204"))
+      return SWITCH_TYPE_F411;
+    else if (serialNo.startsWith("HIF82") || serialNo.startsWith("GPS208"))
+      return SWITCH_TYPE_F82;
+    else if (serialNo.startsWith("HIM82") || serialNo.startsWith("PS208DM"))
+      return SWITCH_TYPE_M82;
+    else if (serialNo.startsWith("HIG82") || serialNo.startsWith("PS208G"))
+      return SWITCH_TYPE_G82;
+    else if (serialNo.startsWith("HIG83") || serialNo.startsWith("PS308G"))
+      return SWITCH_TYPE_G83;
+    else if (serialNo.startsWith("HIG163") || serialNo.startsWith("PS316G"))
+      return SWITCH_TYPE_G163;
+    else if (serialNo.startsWith("HIF163") || serialNo.startsWith("GPS316"))
+      return SWITCH_TYPE_F163;
+    else
+      return SWITCH_TYPE_F82;
+  }*/
+
+  int typeFromSerialNumber(String serialNo) {
+    if (serialNo.startsWith("HIM42") || serialNo.startsWith("PS106D") || serialNo.startsWith("PS204DM")) {
+      return switchTypeM42;
+    } else if (serialNo.startsWith("HIF411") || serialNo.startsWith("GPS204")) {
+      return switchTypeF411;
+    } else if (serialNo.startsWith("HIF82") || serialNo.startsWith("GPS208")) {
+      return switchTypeF82;
+    } else if (serialNo.startsWith("HIM82") || serialNo.startsWith("PS208DM")) {
+      return switchTypeM82;
+    } else if (serialNo.startsWith("HIG82") || serialNo.startsWith("PS208G")) {
+      return switchTypeG82;
+    } else if (serialNo.startsWith("HIG83") || serialNo.startsWith("PS308G")) {
+      return switchTypeG83;
+    } else if (serialNo.startsWith("HIG163") || serialNo.startsWith("PS316G")) {
+      return switchTypeG163;
+    } else if (serialNo.startsWith("HIF163") || serialNo.startsWith("GPS316")) {
+      return switchTypeF163;
+    } else {
+      return switchTypeF82;
+    }
+  }
 }

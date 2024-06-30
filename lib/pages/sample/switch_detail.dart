@@ -14,9 +14,8 @@ class SwitchDetailPage extends StatelessWidget {
   final String? pidId;
   final String? sn;
   final String? title;
-  final String? serialNumber;
 
-  SwitchDetailPage({super.key, required this.pidId,required  this.sn,required  this.title,required  this.serialNumber});
+  SwitchDetailPage({super.key, required this.pidId,required  this.sn,required  this.title});
 
   final GetController _getController = Get.put(GetController());
 
@@ -40,7 +39,7 @@ class SwitchDetailPage extends StatelessWidget {
           Center(child: Text(title!, style: TextStyle(fontSize: Get.textTheme.headlineSmall!.fontSize, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface))),
           SizedBox(height: _getController.height.value * 0.02),
           Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-            child: PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
+            child: PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)))
           ),
           Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
               child: Row(
@@ -104,7 +103,7 @@ class SwitchDetailPage extends StatelessWidget {
                         children: [
                           ItemData(title: 'Qurilma modeli'.tr, subtitle: _getController.switchDetailModel.value.detail!.name.toString()),
                           SizedBox(height: Get.height * 0.015),
-                          ItemData(title: 'Seriya raqami'.tr, subtitle: serialNumber.toString()),
+                          ItemData(title: 'Seriya raqami'.tr, subtitle: sn.toString()),
                           SizedBox(height: Get.height * 0.015),
                           ItemData(title: 'MAC adress'.tr, subtitle: _getController.switchDetailModel.value.detail!.mac.toString()),
                           SizedBox(height: Get.height * 0.015),
