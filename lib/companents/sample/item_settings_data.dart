@@ -19,10 +19,10 @@ class ItemSettingsData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
         children: [
-          Expanded(child: Center(child: Text(portName ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))),
+          Expanded(child: Center(child:Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(portName ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))))),
           if (port != null)
             if (port! <= 0)
-              Expanded(child: Center(child: Text(poe ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))
+              Expanded(child: Center(child:Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(poe ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))))))
             else
               Expanded(child: Center(child: CupertinoSwitch(
                   value:poEs! > 0 ? true : false,
@@ -34,10 +34,10 @@ class ItemSettingsData extends StatelessWidget {
                   applyTheme: true
               )))
           else
-            Expanded(child: Center(child: Text(reboot ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))),
+            Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child:Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))),
           if(port != null)
             if (port! <= 0)
-              Expanded(child: Center(child: Text(extend != '0' ? extend.toString() : '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))
+              Expanded(child: Center(child:Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(extend != '0' ? extend.toString() : '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))))))
             else
               Expanded(child: Center(child: CupertinoSwitch(
                   value:port != null && phYc! <= 1 ? true : false,
@@ -49,18 +49,21 @@ class ItemSettingsData extends StatelessWidget {
                   applyTheme: true
               )))
           else
-            Expanded(child: Center(child: Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))),
-
+            Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child:Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))),
           if(port != null && port! > 0)
-          Expanded(child: Center(child: ElevatedButton(onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-            ),
-            child: Icon(TablerIcons.refresh, color: Get.theme.colorScheme.onSurface, size: Get.textTheme.bodyMedium!.fontSize)
-          ))
-          )
+            Expanded(child: Center(child: ElevatedButton(onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                ),
+                child: Icon(TablerIcons.refresh, color: Get.theme.colorScheme.onSurface, size: Get.textTheme.bodyMedium!.fontSize)))
+            )
           else
-            Expanded(child: Center(child: Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))),
+            Expanded(child: Center(
+                child: Container(
+                  margin: EdgeInsets.only(top: Get.width * 0.04),
+                    child: Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))
+                )
+            ))
         ]
     );
   }
