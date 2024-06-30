@@ -582,8 +582,6 @@ class InstrumentComponents {
     );
   }
 
-  //info port dialog
-
   void infoPortDialog(BuildContext context) {
     Get.dialog(
         AlertDialog(
