@@ -101,7 +101,7 @@ class SwitchDetailPage extends StatelessWidget {
                       padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,top: Get.height * 0.03, bottom: Get.height * 0.02),
                       child: Column(
                         children: [
-                          ItemData(title: 'Qurilma modeli'.tr, subtitle: _getController.switchDetailModel.value.detail!.name.toString()),
+                          ItemData(title: 'Qurilma modeli'.tr, subtitle: _getController.getTypeName(_getController.typeFromSerialNumber(sn!))),
                           SizedBox(height: Get.height * 0.015),
                           ItemData(title: 'Seriya raqami'.tr, subtitle: sn.toString()),
                           SizedBox(height: Get.height * 0.015),

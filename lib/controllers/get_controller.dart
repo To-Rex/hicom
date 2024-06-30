@@ -484,27 +484,6 @@ class GetController extends GetxController {
     return ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
   }
 
-  /*public static int typeFromSerialNumber(String serialNo) {
-    if (serialNo.startsWith("HIM42") || serialNo.startsWith("PS106D") || serialNo.startsWith("PS204DM"))
-      return SWITCH_TYPE_M42;
-    else if (serialNo.startsWith("HIF411") || serialNo.startsWith("GPS204"))
-      return SWITCH_TYPE_F411;
-    else if (serialNo.startsWith("HIF82") || serialNo.startsWith("GPS208"))
-      return SWITCH_TYPE_F82;
-    else if (serialNo.startsWith("HIM82") || serialNo.startsWith("PS208DM"))
-      return SWITCH_TYPE_M82;
-    else if (serialNo.startsWith("HIG82") || serialNo.startsWith("PS208G"))
-      return SWITCH_TYPE_G82;
-    else if (serialNo.startsWith("HIG83") || serialNo.startsWith("PS308G"))
-      return SWITCH_TYPE_G83;
-    else if (serialNo.startsWith("HIG163") || serialNo.startsWith("PS316G"))
-      return SWITCH_TYPE_G163;
-    else if (serialNo.startsWith("HIF163") || serialNo.startsWith("GPS316"))
-      return SWITCH_TYPE_F163;
-    else
-      return SWITCH_TYPE_F82;
-  }*/
-
   int typeFromSerialNumber(String serialNo) {
     if (serialNo.startsWith("HIM42") || serialNo.startsWith("PS106D") || serialNo.startsWith("PS204DM")) {
       return switchTypeM42;
@@ -526,4 +505,29 @@ class GetController extends GetxController {
       return switchTypeF82;
     }
   }
+
+  String getTypeName(int type) {
+    //if type == 1 return "GPS208";
+    switch (type) {
+      case switchTypeM42:
+        return "GPS208";
+      case switchTypeF411:
+        return "HIF411";
+      case switchTypeF82:
+        return "HIF82";
+      case switchTypeM82:
+        return "HIM82";
+      case switchTypeG82:
+        return "HIG82";
+      case switchTypeG83:
+        return "HIG83";
+      case switchTypeG163:
+        return "HIG163";
+      case switchTypeF163:
+        return "HIF163";
+      default:
+        return "HIF82";
+    }
+  }
+
 }
