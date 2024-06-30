@@ -36,8 +36,9 @@ class SwitchDetailPage extends StatelessWidget {
             backgroundColor: Colors.transparent,
             title: Text('Qurilma Xaqida'.tr),
             centerTitle: true,
+            leading: IconButton(icon: Icon(Icons.arrow_back_ios, size:Get.height * 0.035), onPressed: () => {Get.back()}),
             actions: [
-              IconButton(icon: Icon(Icons.settings, size: _getController.height.value * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
+              IconButton(icon: Icon(Icons.settings, size: Get.height * 0.035), onPressed: () => {Get.back()})
             ],
           ),
           body: Obx(() =>_getController.switchDetailModel.value.detail != null?
@@ -45,12 +46,12 @@ class SwitchDetailPage extends StatelessWidget {
               children: [
                 Center(child: Text(title!, style: TextStyle(fontSize: Get.textTheme.headlineSmall!.fontSize, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface))),
                 SizedBox(height: _getController.height.value * 0.02),
-                Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                     child: PortItems(
                         data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!))
                     )
                 ),
-                Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
+                Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                     child: Row(
                         children: [
                           InkWell(
