@@ -62,7 +62,6 @@ class ApiController extends GetxController {
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 0) {
-        InstrumentComponents().showToast(Get.context!, 'OK', 'Kod jo‘natildi'.tr, false, 2);
         Get.to(VerifyPage());
       } else {
         InstrumentComponents().showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
@@ -84,7 +83,6 @@ class ApiController extends GetxController {
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.writeLogin(_getController.code.value+_getController.phoneController.text, jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['session']);
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 0) {
-        InstrumentComponents().showToast(Get.context!, 'OK', 'Kod to‘g‘ri'.tr, false, 2);
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['registered'] == 0) {
           Get.to(RegisterPage());
         } else {
@@ -139,7 +137,6 @@ class ApiController extends GetxController {
     debugPrint(response.statusCode.toString());
     debugPrint(Tea.decryptTea(response.body,key).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
       _getController.changeRegisterModel(RegisterModel.fromJson(jsonDecode(Tea.decryptTea(response.body,key).toString())));
       _getController.writeKey(_getController.registerModel.value.key.toString());
       _getController.writeUid(_getController.registerModel.value.uid.toString());
@@ -159,8 +156,6 @@ class ApiController extends GetxController {
     debugPrint(response.statusCode.toString());
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
-      //login(phone, session, keys)
       login(_getController.getNumber(),_getController.getSession(),key,false);
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
@@ -177,7 +172,7 @@ class ApiController extends GetxController {
     debugPrint(response.statusCode.toString());
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
+      InstrumentComponents().showToast(Get.context!, 'Muofaqqiyatli', 'Muvaffaqiyatli o\'chirildi'.tr, true, 3);
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
@@ -189,23 +184,17 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      debugPrint(Tea.decryptTea('3yZ7oI51a6NU/CeZ3afmDWOfrEsHfudjby20hOBkhsLfMB695GrzyYGyd14tqnSt9qQ4nJcoL4irK5L3PjD+dWj7Jo2cOkFmb+A+JUoRpZW/Oyv8rcFAxxtYn4NNBe3y53Yv0guyPbh9h6qElKF6tcSrRRHgIo/AW2ZGfg8h+yi8D/lZp8kosEbfLKSxzaSE+AxXqHr5Xoc22IX67eu5t2MG4ToxrF1Zh1klbTRVaAE6217TBRLk/QtTuNxZRGw7ya+DlAW9IUZh5h8XrQWvOUbfLKSxzaSE+AxXqHr5XocJ4FPPJEENvqkilh1Wipi77vp/PP6xPrWP4Czn1UWcpCLQ0MtkRsUilhUzICWV8iwx4F8O7oqOs6MJTo0tX1Oz9oDydwewEeI+BErZ6zv2x8xNZOi1n4GsTvn0qEzRRCXWoKtxb7uH+I4wm3+RjDMmx1ju+nPf4NR0euP5lbuBk+aPVvV+V4l3rKBq+wbM26KhB0LO563vnKdcooZ7+f/ZoMtbltXhGT8iqgeEZbTUUO4zjdxmpaoWICN2XDpg098TO2fbjHXzON8wHr3kavPJSLJc501hONuzOcWCnsKgJaSD3Gt4UOriU/vrzdAJRJI=', '6VarcjE2oJ7tWX8z'));
       _getController.changeSettingsInfoModel(SettingsInfo.fromJson(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())));
-      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
   Future<void> getProjects() async {
-    print('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'),
       headers: headers
     );
-    debugPrint(response.body);
-    debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'Ajoyib', 'Malumotlarni yuklandi'.tr, false, 2);
       try {
         debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n',''),_getController.getKey()));
         _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
@@ -226,7 +215,6 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
       await renameProjectsNote(pidId, note);
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
@@ -242,7 +230,6 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
       getProjects();
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
@@ -257,7 +244,6 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      //InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
       try {
         _getController.getUsersModel(GetUsersModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
       }catch(e){
@@ -302,7 +288,6 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'OK', 'Ajoyiiiibbbbb'.tr, false, 2);
       getProjects();
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
