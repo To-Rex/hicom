@@ -15,8 +15,6 @@ class SwitchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    debugPrint('type: ${_getController.typeFromSerialNumber('HIM42ECM11234700492BEKP5E')}');
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
       appBar: AppBar(

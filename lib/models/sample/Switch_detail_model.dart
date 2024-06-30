@@ -2,14 +2,14 @@
 
 class SwitchDetailModel {
   int? errCode;
-  Detail? detail;
+  SwitchDetailModelDetail? detail;
 
   SwitchDetailModel({this.errCode, this.detail});
 
   SwitchDetailModel.fromJson(Map<String, dynamic> json) {
     errCode = json['errcode'];
     detail =
-    json['detail'] != null ? Detail.fromJson(json['detail']) : null;
+    json['detail'] != null ? SwitchDetailModelDetail.fromJson(json['detail']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,60 +22,60 @@ class SwitchDetailModel {
   }
 }
 
-class Detail {
+class SwitchDetailModelDetail {
   String? note;
   List<String>? tx;
   List<String>? rx;
   String? ip;
   List<String>? pw;
   List<int>? link;
-  List<int>? poec;
+  List<int>? poEc;
   String? mac;
-  int? isoc;
+  int? iSoc;
   String? uptime;
   String? vol;
   List<String>? portNote;
   String? v;
   List<int>? snr;
-  List<int>? phyc;
+  List<int>? phYc;
   String? name;
   String? tp;
 
-  Detail(
+  SwitchDetailModelDetail(
       {this.note,
         this.tx,
         this.rx,
         this.ip,
         this.pw,
         this.link,
-        this.poec,
+        this.poEc,
         this.mac,
-        this.isoc,
+        this.iSoc,
         this.uptime,
         this.vol,
         this.portNote,
         this.v,
         this.snr,
-        this.phyc,
+        this.phYc,
         this.name,
         this.tp});
 
-  Detail.fromJson(Map<String, dynamic> json) {
+  SwitchDetailModelDetail.fromJson(Map<String, dynamic> json) {
     note = json['note'];
     tx = json['tx'].cast<String>();
     rx = json['rx'].cast<String>();
     ip = json['ip'];
     pw = json['pw'].cast<String>();
     link = json['link'].cast<int>();
-    poec = json['poec'].cast<int>();
+    poEc = json['poec'].cast<int>();
     mac = json['mac'];
-    isoc = json['isoc'];
+    iSoc = json['isoc'];
     uptime = json['uptime'];
     vol = json['vol'];
     portNote = json['portNote'].cast<String>();
     v = json['V'];
     snr = json['snr'].cast<int>();
-    phyc = json['phyc'].cast<int>();
+    phYc = json['phyc'].cast<int>();
     name = json['name'];
     tp = json['tp'];
   }
@@ -88,15 +88,15 @@ class Detail {
     data['ip'] = ip;
     data['pw'] = pw;
     data['link'] = link;
-    data['poec'] = poec;
+    data['poec'] = poEc;
     data['mac'] = mac;
-    data['isoc'] = isoc;
+    data['isoc'] = iSoc;
     data['uptime'] = uptime;
     data['vol'] = vol;
     data['portNote'] = portNote;
     data['V'] = v;
     data['snr'] = snr;
-    data['phyc'] = phyc;
+    data['phyc'] = phYc;
     data['name'] = name;
     data['tp'] = tp;
     return data;

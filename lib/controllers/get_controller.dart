@@ -464,6 +464,14 @@ class GetController extends GetxController {
   static const int switchTypeG163 = 7;
   static const int switchTypeF163 = 8;
 
+  static const int portDetailsHeader = -200;
+  static const int portTypeLan1 = -100;
+  static const int portTypeLan2 = -99;
+  static const int portTypeLan3 = -98;
+  static const int portTypeLan4 = -97;
+  static const int portTypeSfp = -50;
+
+
   List<String> getPortMap(int type) {
     switch (type) {
       case switchTypeF411:
@@ -528,5 +536,20 @@ class GetController extends GetxController {
         return "HIF82";
     }
   }
+
+  List<String> getPortList(int type) {
+    List<String> result = getPortMap(type);
+    //['', '', '', '1', '2', '3', '4', '', 'L1', 'L2', '', ''];  '' item from list remove
+    for (int i = 0; i < result.length; i++) {
+      if (result[i] == '') {
+        print('remove $result[$i]');
+        result.removeAt(i);
+      } else {
+        print('keep $result[$i]');
+      }
+    }
+    return result;
+  }
+
 
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -10,6 +12,7 @@ import '../../companents/sample/item_port_data.dart';
 import '../../companents/sample/item_settings_data.dart';
 import '../../companents/sample/port_items.dart';
 import '../../controllers/get_controller.dart';
+import '../../models/sample/Switch_detail_model.dart';
 
 class SwitchDetailPage extends StatelessWidget {
   final String? pidId;
@@ -156,32 +159,16 @@ class SwitchDetailPage extends StatelessWidget {
                                 ]
                               ),
                               Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
-                              //{"errcode":0,"detail":{"note":"","tx":["97","100","250","117","7.5","0"],"rx":["2.1","2.8","6.0","1.1","503","10"],"ip":"192.168.1.133","pw":["2.4","2.5","2.6","2.6"],"link":[1,4,4,4,4,4],"poec":[1,1,1,1],"mac":"50547BC010A2","isoc":0,"uptime":"2:07:42:20","vol":"52.7","portNote":["","","","","",""],"V":"6.0.231023","snr":[0,0,0,0,0,0],"phyc":[1,4,4,4,4,4],"name":"тест","tp":"10.1"}}
-                              //ItemPortData(portName: '', power: '', tx: '', rx: '', status: '',),
                               Column(
                                 children: List.generate(
-                                  _getController.switchDetailModel.value.detail!.pw!.length, (index) => ItemPortData(
-                                    portName: '${index + 1}',
-                                    power: _getController.formatPower(double.parse(_getController.switchDetailModel.value.detail!.pw![index].toString())),
-                                    tx: _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.tx![index].toString())),
-                                    rx: _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.rx![index].toString())),
+                                  _getController.switchDetailModel.value.detail!.tx!.length, (index) => ItemPortData(
+                                    portName: _getController.getPortList(1).toList()[index+1],
+                                    power: _getController.switchDetailModel.value.detail!.pw!.length > index ? _getController.formatPower(double.parse(_getController.switchDetailModel.value.detail!.pw![index].toString())) : '-',
+                                    tx: _getController.switchDetailModel.value.detail!.tx!.length > index ? _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.tx![index].toString())) : '-',
+                                    rx: _getController.switchDetailModel.value.detail!.rx!.length > index ? _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.rx![index].toString())) : '-',
                                     status: switch (int.parse(_getController.switchDetailModel.value.detail!.link![index].toString())) {0 => "Offline", 1 => "Half 10M", 2 => "10M", 3 => "Half 100M", 4 => "100M", 5 => "1000M", _ => "Offline"}
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: Get.height * 0.015),
-
-                              SizedBox(
-                                  width: Get.width,
-                                  height: Get.height * 0.07,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.blue,
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
-                                    ),
-                                    onPressed: () {  },
-                                    child: Text('Qurilmani o`\chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
                                   )
+                                )
                               )
                             ]
                         )
@@ -205,38 +192,25 @@ class SwitchDetailPage extends StatelessWidget {
                                   ]
                               ),
                               Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
-                              //{"errcode":0,"detail":{"note":"","tx":["97","100","250","117","7.5","0"],"rx":["2.1","2.8","6.0","1.1","503","10"],"ip":"192.168.1.133","pw":["2.4","2.5","2.6","2.6"],"link":[1,4,4,4,4,4],"poec":[1,1,1,1],"mac":"50547BC010A2","isoc":0,"uptime":"2:07:42:20","vol":"52.7","portNote":["","","","","",""],"V":"6.0.231023","snr":[0,0,0,0,0,0],"phyc":[1,4,4,4,4,4],"name":"тест","tp":"10.1"}}
                               Column(
                                 children: [
+
                                   ListView.builder(
-                                    itemCount: _getController.switchDetailModel.value.detail!.poec!.length,
+                                    itemCount: _getController.switchDetailModel.value.detail!.poEc!.length,
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       return ItemSettingsData(
-                                        portName: '${index + 1}', poe: _getController.switchDetailModel.value.detail!.poec![index].toString(),
-                                        extend: _getController.switchDetailModel.value.detail!.isoc!.toString(),
+                                        portName: '${index + 1}', poe: _getController.switchDetailModel.value.detail!.poEc![index].toString(),
+                                        extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
                                         reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
-                                        port: int.parse(_getController.switchDetailModel.value.detail!.poec![index].toString()),
-                                        poEs: int.parse(_getController.switchDetailModel.value.detail!.poec![index].toString()),
-                                        phYc: int.parse(_getController.switchDetailModel.value.detail!.phyc![index].toString()),
+                                        port: int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()),
+                                        poEs: int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()),
+                                        phYc: int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()),
                                       );
                                     },
                                   )
                                 ]
-                              ),
-                              SizedBox(height: Get.height * 0.015),
-                              SizedBox(
-                                  width: Get.width,
-                                  height: Get.height * 0.07,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.blue,
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
-                                    ),
-                                    onPressed: () {  },
-                                    child: Text('Qurilmani o`\chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
-                                  )
                               )
                             ]
                         )
