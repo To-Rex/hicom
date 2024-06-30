@@ -15,7 +15,7 @@ class InstrumentComponents {
     Get.snackbar(
       title.tr,
       message.tr,
-      backgroundColor: error ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onBackground,
+      backgroundColor: error ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onSurface,
       colorText: error ? Theme.of(context).colorScheme.onError : Theme.of(context).colorScheme.surface,
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.only(
@@ -57,7 +57,7 @@ class InstrumentComponents {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return SizedBox(
@@ -65,8 +65,8 @@ class InstrumentComponents {
                   width: double.infinity,
                   child: Column(
                       children: [
-                        Container(height: _getController.height.value * 0.005, width: _getController.width.value * 0.2, margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03), decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(10.0))),
-                        Text(title.toString().tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                        Container(height: _getController.height.value * 0.005, width: _getController.width.value * 0.2, margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03), decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface, borderRadius: BorderRadius.circular(10.0))),
+                        Text(title.toString().tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045)),
                         SizedBox(height: _getController.height.value * 0.02),
                         if (cat == 0)
                           Expanded(
@@ -94,12 +94,12 @@ class InstrumentComponents {
                                                       child: Center(
                                                           child: Row(
                                                               children: [
-                                                                Text(_getController.provinceModel.value.regions![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
+                                                                Text(_getController.provinceModel.value.regions![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04),),
                                                                 const Spacer(),
                                                                 if (_getController.dropDownItems[0] == index)
-                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
+                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onSurface)
                                                                 else
-                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                               ]
                                                           )
                                                       )
@@ -140,12 +140,12 @@ class InstrumentComponents {
                                                           child: Row(
                                                               children: [
                                                                 Text(_getController.districtsModel.value.districts![index].name.toString(),
-                                                                    style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+                                                                    style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                                                 const Spacer(),
                                                                 if (_getController.dropDownItems[1] == index)
-                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
+                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onSurface)
                                                                 else
-                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                               ]
                                                           )
                                                       )
@@ -182,12 +182,12 @@ class InstrumentComponents {
                                                       child: Center(
                                                           child: Row(
                                                               children: [
-                                                                Text(_getController.dropDownItem[index].tr,style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),),
+                                                                Text(_getController.dropDownItem[index].tr,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04),),
                                                                 const Spacer(),
                                                                 if (_getController.dropDownItems[2] == index)
-                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground)
+                                                                  Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onSurface)
                                                                 else
-                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                                  Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                               ]
                                                           )
                                                       )
@@ -213,26 +213,26 @@ class InstrumentComponents {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
                   height: _getController.height.value * 0.45,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppBar(
                           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                          title: Text('Foydalanuvchi nomini o’zgartirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                          title: Text('Foydalanuvchi nomini o’zgartirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045)),
                           centerTitle: false,
-                          backgroundColor: Theme.of(context).colorScheme.background,
+                          backgroundColor: Theme.of(context).colorScheme.surface,
                           elevation: 0,
                           leadingWidth: 0,
                           leading: Container(),
                           actions: [
-                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.05))
                           ]
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
@@ -255,7 +255,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: _getController.width.value,
                                     height: _getController.height.value * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.04))))
                             )
                         )
                       ]
@@ -272,26 +272,26 @@ class InstrumentComponents {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
                   height: _getController.height.value * 0.45,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppBar(
                           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                          title: Text('Qurilmani tahrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                          title: Text('Qurilmani tahrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045)),
                           centerTitle: false,
-                          backgroundColor: Theme.of(context).colorScheme.background,
+                          backgroundColor: Theme.of(context).colorScheme.surface,
                           elevation: 0,
                           leadingWidth: 0,
                           leading: Container(),
                           actions: [
-                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.05))
                           ]
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
@@ -314,7 +314,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: _getController.width.value,
                                     height: _getController.height.value * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.04))))
                             )
                         )
                       ]
@@ -329,26 +329,26 @@ class InstrumentComponents {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
                   height: _getController.height.value * 0.6,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Obx(() => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppBar(
                             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                            title: Text('Loyihani kuzatuvchilari'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                            title: Text('Loyihani kuzatuvchilari'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045)),
                             centerTitle: false,
-                            backgroundColor: Theme.of(context).colorScheme.background,
+                            backgroundColor: Theme.of(context).colorScheme.surface,
                             elevation: 0,
                             leadingWidth: 0,
                             leading: Container(),
                             actions: [
-                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.05))
                             ]
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
@@ -359,9 +359,9 @@ class InstrumentComponents {
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return ListTile(
-                                    leading: Icon(Icons.person, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05),
+                                    leading: Icon(Icons.person, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.05),
                                     title: Text(_getController.getUsersModel.value.join![index].name.toString()),
-                                    trailing: Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                    trailing: Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                 );
                               }
                           )
@@ -377,26 +377,26 @@ class InstrumentComponents {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
                   height: _getController.height.value * 0.6,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppBar(
                           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                          title: Text('User crack'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                          title: Text('User crack'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045)),
                           centerTitle: false,
-                          backgroundColor: Theme.of(context).colorScheme.background,
+                          backgroundColor: Theme.of(context).colorScheme.surface,
                           elevation: 0,
                           leadingWidth: 0,
                           leading: Container(),
                           actions: [
-                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.05))
                           ]
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
@@ -411,7 +411,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: _getController.width.value,
                                     height: _getController.height.value * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.04))))
                             )
                         ),
                         SizedBox(height: _getController.height.value * 0.02)
@@ -427,26 +427,26 @@ class InstrumentComponents {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
                   height: _getController.height.value * 0.45,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppBar(
                             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                            title: Text('Loyihani ulashish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                            title: Text('Loyihani ulashish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045)),
                             centerTitle: false,
-                            backgroundColor: Theme.of(context).colorScheme.background,
+                            backgroundColor: Theme.of(context).colorScheme.surface,
                             elevation: 0,
                             leadingWidth: 0,
                             leading: Container(),
                             actions: [
-                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.05))
                             ]
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
@@ -471,7 +471,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: _getController.width.value,
                                     height: _getController.height.value * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.04))))
                             )
                         )
                       ]
@@ -486,26 +486,26 @@ class InstrumentComponents {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
                   height: _getController.height.value * 0.45,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppBar(
                             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                            title: Text('Loyihani ulashish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045)),
+                            title: Text('Loyihani ulashish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045)),
                             centerTitle: false,
-                            backgroundColor: Theme.of(context).colorScheme.background,
+                            backgroundColor: Theme.of(context).colorScheme.surface,
                             elevation: 0,
                             leadingWidth: 0,
                             leading: Container(),
                             actions: [
-                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.05))
+                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.05))
                             ]
                         ),
                         SizedBox(height: _getController.height.value * 0.02),
@@ -524,11 +524,12 @@ class InstrumentComponents {
                                     ApiController().projectShare(pidId)
                                   }
                                 },
+                                //RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                                 style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
                                 child: SizedBox(
                                     width: _getController.width.value,
                                     height: _getController.height.value * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.04))))
                             )
                         )
                       ]
@@ -542,7 +543,7 @@ class InstrumentComponents {
     Get.dialog(
         AlertDialog(
           title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.05)),
-          content: Text('Loyiha o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+          content: Text('Loyiha o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
           actions: [
             TextButton(
                 onPressed: () => Get.back(),
@@ -564,7 +565,7 @@ class InstrumentComponents {
     Get.dialog(
         AlertDialog(
           title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.05)),
-          content: Text('Qurilma o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+          content: Text('Qurilma o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
           actions: [
             TextButton(
                 onPressed: () => Get.back(),
@@ -649,4 +650,5 @@ class InstrumentComponents {
         )
     );
   }
+
 }
