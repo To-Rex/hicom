@@ -160,7 +160,7 @@ class SwitchDetailPage extends StatelessWidget {
                               ),
                               Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
                               Column(
-                                children: List.generate(
+                                /*children: List.generate(
                                   _getController.switchDetailModel.value.detail!.tx!.length, (index) => ItemPortData(
                                     portName: _getController.getPortList(1).toList()[index+1],
                                     power: _getController.switchDetailModel.value.detail!.pw!.length > index ? _getController.formatPower(double.parse(_getController.switchDetailModel.value.detail!.pw![index].toString())) : '-',
@@ -168,7 +168,20 @@ class SwitchDetailPage extends StatelessWidget {
                                     rx: _getController.switchDetailModel.value.detail!.rx!.length > index ? _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.rx![index].toString())) : '-',
                                     status: switch (int.parse(_getController.switchDetailModel.value.detail!.link![index].toString())) {0 => "Offline", 1 => "Half 10M", 2 => "10M", 3 => "Half 100M", 4 => "100M", 5 => "1000M", _ => "Offline"}
                                   )
-                                )
+                                )*/
+                                children: [
+                                  ListView.builder(
+                                    itemCount: _getController.switchDetailModel.value.detail!.tx!.length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) => ItemPortData(
+                                        portName: _getController.getPortList(1).toList()[index+1],
+                                        power: _getController.switchDetailModel.value.detail!.pw!.length > index ? _getController.formatPower(double.parse(_getController.switchDetailModel.value.detail!.pw![index].toString())) : '-',
+                                        tx: _getController.switchDetailModel.value.detail!.tx!.length > index ? _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.tx![index].toString())) : '-',
+                                        rx: _getController.switchDetailModel.value.detail!.rx!.length > index ? _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.rx![index].toString())) : '-',
+                                        status: switch (int.parse(_getController.switchDetailModel.value.detail!.link![index].toString())) {0 => "Offline", 1 => "Half 10M", 2 => "10M", 3 => "Half 100M", 4 => "100M", 5 => "1000M", _ => "Offline"}
+                                    )
+                                  )
+                                ]
                               )
                             ]
                         )
@@ -197,7 +210,7 @@ class SwitchDetailPage extends StatelessWidget {
                                   ListView.builder(
                                     itemCount: _getController.switchDetailModel.value.detail!.tx!.length,
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    //physics: const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       return ItemSettingsData(
                                           portName: _getController.getPortList(1).toList()[index+1],
