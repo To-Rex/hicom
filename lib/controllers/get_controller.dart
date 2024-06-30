@@ -507,7 +507,6 @@ class GetController extends GetxController {
   }
 
   String getTypeName(int type) {
-    //if type == 1 return "GPS208";
     switch (type) {
       case switchTypeM42:
         return "GPS208";
