@@ -99,7 +99,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> login (phone,session,keys,enter) async {
-    _getController.whileApi.value = false;
     var json = Tea.encryptTea('{"phone": "$phone","session":"$session"}',keys);
     var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('login', 'null') + json.toString()}&key=$keys'), headers: headers);
     debugPrint(response.statusCode.toString());
@@ -199,7 +198,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProjects() async {
-    _getController.whileApi.value = false;
     print('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'),
       headers: headers
@@ -252,7 +250,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProjectsUsers(pidId) async {
-    _getController.whileApi.value = false;
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjjoin', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
@@ -329,7 +326,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSwitchList(pidId) async {
-    _getController.whileApi.value = false;
     debugPrint(pidId);
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swmng', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
@@ -406,14 +402,11 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSwitchDetail(String pidId, String sn) async {
-    _getController.whileApi.value = false;
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn,'isJoin':"1"}),_getController.getKey());
     debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
     );
-    debugPrint(response.body);
-    debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
       if(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))['errcode'] == 0){
@@ -424,7 +417,7 @@ class ApiController extends GetxController {
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
-    Timer(const Duration(seconds: 10), () {
+    Timer(const Duration(seconds: 5), () {
       if (_getController.whileApi.isTrue){
         getSwitchDetail(pidId, sn);
       }

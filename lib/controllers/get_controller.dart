@@ -539,7 +539,6 @@ class GetController extends GetxController {
 
   List<String> getPortList(int type) {
     List<String> result = getPortMap(type);
-    //['', '', '', '1', '2', '3', '4', '', 'L1', 'L2', '', ''];  '' item from list remove
     for (int i = 0; i < result.length; i++) {
       if (result[i] == '') {
         result.removeAt(i);
@@ -548,5 +547,47 @@ class GetController extends GetxController {
     return result;
   }
 
+  List<int> portModification(List data,int type) {
+    switch (type) {
+      case switchTypeF411:
+        return  [3, 3, 3, data[0], data[1], data[2], data[3], 3, data[4], data[5], 3, 3];
+      case switchTypeM42:
+        return [3, 3, 3, data[0], data[1], data[2], data[3], 3, data[4], data[5], 3, 3];
+      case switchTypeF82:
+      case switchTypeM82:
+        return [3, data[0], data[1], data[2], data[3], data[4], data[5], 3, data[6], data[7]];
+      case switchTypeG82:
+        return [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], 3, data[8], data[9]];
+      case switchTypeG83:
+        return [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], 3, data[8], data[9]];
+      case switchTypeF163:
+      case switchTypeG163:
+        return [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]];
+    }
+    return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+  }
 
+  List<int> getPortType(link, snr, type) {
+    if (link == null) {
+      return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+    }
+    if (link.length != snr.length) {
+      return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+    }
+    List<int> result = [];
+    for (int i = 0; i < link.length; i++) {
+      if (link[i] > 0) {
+        if (snr[i] == 0) {
+          result.add(1);
+        } else if (snr[i] == 1) {
+          result.add(2);
+        } else if (snr[i] == 2) {
+          result.add(0);
+        }
+      } else {
+        result.add(3);
+      }
+    }
+    return portModification(result, type);
+  }
 }

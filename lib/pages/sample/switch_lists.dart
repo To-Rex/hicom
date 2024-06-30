@@ -104,8 +104,8 @@ class SwitchList extends StatelessWidget {
                                     )
                                   ]
                               ),
-                              //PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
-                              PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()))),
+                              //PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),ports: [1,1,1,1,1,1,1,2,2,2,2,2]),
+                              PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),),
                               Row(
                                 children: [
                                   Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
@@ -195,7 +195,8 @@ class SwitchList extends StatelessWidget {
                                 ),
                                 //PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
                                 //PortItems(data: _getController.getPortMap(1)),
-                                PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
+                                PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
+                                ),
                                 Row(
                                     children: [
                                       Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
