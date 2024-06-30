@@ -21,94 +21,6 @@ class PortItems extends StatelessWidget {
         ),
         margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
         padding: EdgeInsets.all(_getController.height.value * 0.01),
-        /*child: Column(
-            children: [
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                        children: [
-                          if (one != '')
-                            SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn))
-                          else
-                            SizedBox(width: _getController.width.value * 0.03, height: _getController.height.value * 0.022),
-                          Text(one.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(two.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(three.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(four.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(five.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(six.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(seven.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(eight.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          if (nine != '')
-                            SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn))
-                          else
-                            SizedBox(width: _getController.width.value * 0.03, height: _getController.height.value * 0.022),
-                          Text(nine.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(ten.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(eleven.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    ),
-                    Column(
-                        children: [
-                          SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)),
-                          Text(twelve.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
-                        ]
-                    )
-                  ]
-              )
-
-            ]
-        )*/
         child:  Row(
           children: [
             Expanded(
@@ -211,7 +123,7 @@ class PortItems extends StatelessWidget {
                             SvgPicture.asset('assets/svg_assets/port.svg', width: _getController.width.value * 0.022, height: _getController.height.value * 0.022,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn))
                           else
                             SizedBox(width: _getController.width.value * 0.03, height: _getController.height.value * 0.022),
-                          Text(data[6].tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03))
+                          Text(data[6].tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.03))
                         ]
                     )
                 )

@@ -70,7 +70,7 @@ class SamplePage extends StatelessWidget {
                               return InkWell(
                                 onTap: () => {
                                   ApiController().getSwitchList(_getController.projectModel.value.admin![index].pid),
-                                  Get.to(SwitchList(), arguments: _getController.projectModel.value.admin![index].pid)
+                                  Get.to(SwitchList(lsc: int.parse(_getController.projectModel.value.admin![index].lsc.toString())), arguments: _getController.projectModel.value.admin![index].pid)
                                 },
                                 child: Card(
                                     color: Theme.of(context).colorScheme.background,
@@ -139,7 +139,6 @@ class SamplePage extends StatelessWidget {
                                                   onSelected: (String value) {
                                                     switch (value) {
                                                       case 'edit':
-                                                      //nameProjectController
                                                         _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
                                                         _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
                                                         InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
@@ -224,7 +223,7 @@ class SamplePage extends StatelessWidget {
                               return InkWell(
                                   onTap: () => {
                                     ApiController().getSwitchList(_getController.projectModel.value.admin![index].pid),
-                                    Get.to(SwitchList(), arguments: _getController.projectModel.value.admin![index].pid)
+                                    Get.to(SwitchList(lsc: int.parse(_getController.projectModel.value.admin![index].lsc.toString())), arguments: _getController.projectModel.value.admin![index].pid)
                                   },
                                 child: Card(
                                     color: Theme.of(context).colorScheme.surface,

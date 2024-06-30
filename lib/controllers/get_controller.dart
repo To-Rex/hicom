@@ -454,5 +454,34 @@ class GetController extends GetxController {
     return "${kb.toInt()}Kb";
   }
 
+  static const int switchTypeUnknown = 0;
+  static const int switchTypeM42 = 1;
+  static const int switchTypeF411 = 2;
+  static const int switchTypeF82 = 3;
+  static const int switchTypeM82 = 4;
+  static const int switchTypeG82 = 5;
+  static const int switchTypeG83 = 6;
+  static const int switchTypeG163 = 7;
+  static const int switchTypeF163 = 8;
+
+  List<String> getPortMap(int type) {
+    switch (type) {
+      case switchTypeF411:
+        return ['', '', '', '1', '2', '3', '4', '', 'L1', 'SFP', '', ''];
+      case switchTypeM42:
+        return ['', '', '', '1', '2', '3', '4', '', 'L1', 'L2', '', ''];
+      case switchTypeF82:
+      case switchTypeM82:
+        return ['', '', '', '1', '2', '3', '4', '5', '6', '7', '8', 'L1', 'L2'];
+      case switchTypeG82:
+        return ['', '', '', '1', '2', '3', '4', '5', '6', '7', '8', 'L1', 'L2', 'SFP'];
+      case switchTypeG83:
+        return ['', '', '', '1', '2', '3', '4', '5', '6', '7', '8', 'L1', 'L2', 'SFP'];
+      case switchTypeF163:
+      case switchTypeG163:
+        return ['', '', '', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', 'L1', 'L2', 'SFP'];
+    }
+    return ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+  }
 
 }

@@ -9,7 +9,8 @@ import '../../controllers/get_controller.dart';
 import 'add_switch_page.dart';
 
 class SwitchList extends StatelessWidget {
-  SwitchList({super.key});
+  final int lsc;
+  SwitchList({super.key, required this.lsc});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -22,7 +23,7 @@ class SwitchList extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(icon: Icon(Icons.search, size: _getController.height.value * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
-        ],
+        ]
       ),
       body: Obx(() =>  Column(
           children: [
@@ -103,7 +104,8 @@ class SwitchList extends StatelessWidget {
                                     )
                                   ]
                               ),
-                              PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
+                              //PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
+                              PortItems(data: _getController.getPortMap(1)),
                               Row(
                                 children: [
                                   Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
@@ -191,7 +193,8 @@ class SwitchList extends StatelessWidget {
                                       )
                                     ]
                                 ),
-                                PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
+                                //PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
+                                PortItems(data: _getController.getPortMap(1)),
                                 Row(
                                     children: [
                                       Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
