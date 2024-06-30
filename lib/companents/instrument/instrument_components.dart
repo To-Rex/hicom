@@ -589,8 +589,8 @@ class InstrumentComponents {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           title: Text('Portlar holati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
           content: SizedBox(
-            width: _getController.width.value,
-            height: _getController.height.value * 0.055,
+            width: Get.width,
+            height: Get.height* 0.055,
             child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -603,6 +603,7 @@ class InstrumentComponents {
                           ]
                       )
                   ),
+                  SizedBox(width: Get.width * 0.01),
                   SizedBox(
                       child: Column(
                           children: [
@@ -611,6 +612,7 @@ class InstrumentComponents {
                           ]
                       )
                   ),
+                  SizedBox(width: Get.width * 0.01),
                   SizedBox(
                       child: Column(
                           children: [
@@ -619,6 +621,7 @@ class InstrumentComponents {
                           ]
                       )
                   ),
+                  SizedBox(width: Get.width * 0.01),
                   SizedBox(
                       child: Column(
                           children: [
