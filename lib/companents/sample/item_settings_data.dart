@@ -18,13 +18,14 @@ class ItemSettingsData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Expanded(child: Center(child:Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(portName ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))))),
+          Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(portName ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))),
           if (port != null)
             if (port! <= 0)
-              Expanded(child: Center(child:Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(poe ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))))))
+              Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(poe ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))
             else
-              Expanded(child: Center(child: CupertinoSwitch(
+              Center(child: CupertinoSwitch(
                   value:poEs! > 0 ? true : false,
                   onChanged: (value) {},
                   activeColor: AppColors.green,
@@ -32,14 +33,14 @@ class ItemSettingsData extends StatelessWidget {
                   focusColor: AppColors.green,
                   thumbColor: Theme.of(context).colorScheme.surface,
                   applyTheme: true
-              )))
+              ))
           else
-            Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child:Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))),
+            Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child:Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))),
           if(port != null)
             if (port! <= 0)
-              Expanded(child: Center(child:Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(extend != '0' ? extend.toString() : '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))))))
+              Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(extend != '0' ? extend.toString() : '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))
             else
-              Expanded(child: Center(child: CupertinoSwitch(
+              Center(child: CupertinoSwitch(
                   value:port != null && phYc! <= 1 ? true : false,
                   onChanged: (value) {},
                   activeColor: AppColors.green,
@@ -47,23 +48,22 @@ class ItemSettingsData extends StatelessWidget {
                   focusColor: AppColors.green,
                   thumbColor: Theme.of(context).colorScheme.surface,
                   applyTheme: true
-              )))
+              ))
           else
-            Expanded(child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child:Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))),
+            Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child:Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))),
           if(port != null && port! > 0)
-            Expanded(child: Center(child: ElevatedButton(onPressed: () {},
+            Center(child: ElevatedButton(onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 ),
                 child: Icon(TablerIcons.refresh, color: Get.theme.colorScheme.onSurface, size: Get.textTheme.bodyMedium!.fontSize)))
-            )
           else
-            Expanded(child: Center(
+            Center(
                 child: Container(
                   margin: EdgeInsets.only(top: Get.width * 0.04),
                     child: Text('--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))
                 )
-            ))
+            )
         ]
     );
   }
