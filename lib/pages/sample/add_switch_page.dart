@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
@@ -51,7 +50,7 @@ class AddSwitchPage extends StatelessWidget {
                       child: SizedBox(
                           width: _getController.width.value,
                           height: _getController.height.value * 0.06,
-                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.04))))
                   )
               ),
               SizedBox(height: _getController.height.value * 0.03),
