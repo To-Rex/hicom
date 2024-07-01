@@ -71,10 +71,10 @@ class SamplePage extends StatelessWidget {
                                 },
                                 child: Card(
                                     color: Theme.of(context).colorScheme.surface,
-                                    shadowColor: Theme.of(context).colorScheme.onSurface,
-                                    surfaceTintColor: Theme.of(context).colorScheme.onSurface,
+                                    shadowColor: Theme.of(context).colorScheme.surface,
+                                    surfaceTintColor: Theme.of(context).colorScheme.surface,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                    elevation: 3,
+                                    elevation: 1,
                                     margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
                                     child: Container(
                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
@@ -224,10 +224,10 @@ class SamplePage extends StatelessWidget {
                                   },
                                 child: Card(
                                     color: Theme.of(context).colorScheme.surface,
-                                    shadowColor: Theme.of(context).colorScheme.onSurface,
-                                    surfaceTintColor: Theme.of(context).colorScheme.onSurface,
+                                    shadowColor: Theme.of(context).colorScheme.surface,
+                                    surfaceTintColor: Theme.of(context).colorScheme.surface,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                    elevation: 3,
+                                    elevation: 1,
                                     margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
                                     child: Container(
                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
