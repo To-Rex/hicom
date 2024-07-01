@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -25,10 +26,15 @@ class SwitchDetailPage extends StatelessWidget {
     _getController.whileApi.value = true;
     ApiController().getSwitchDetail(pidId.toString(), sn.toString());
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
+    _getController.tabController.animateTo(1);
     return PopScope(
       canPop: false,
       onPopInvoked : (didPop){
         _getController.whileApi.value = false;
+        if (didPop) {
+          return;
+        }
+        Get.back();
       },
       child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
