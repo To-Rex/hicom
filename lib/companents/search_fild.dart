@@ -12,13 +12,13 @@ class SearchFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(child: Container(
         margin: EdgeInsets.only(
-            left: _getController.width.value * 0.15,
-            top: _getController.height.value * 0.01,
-            right: _getController.width.value * 0.03
+            left: Get.width * 0.15,
+            top: Get.height * 0.01,
+            right: Get.width * 0.03
         ),
-        height: _getController.height.value * 0.05,
-        //width: _getController.width.value * 0.7,
-        padding: EdgeInsets.only(right: _getController.width.value * 0.01),
+        height: Get.height * 0.05,
+        //width: Get.width * 0.7,
+        padding: EdgeInsets.only(right: Get.width * 0.01),
         decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), borderRadius: BorderRadius.circular(13)),
         child: TextField(
             controller: _getController.searchController,
@@ -26,8 +26,8 @@ class SearchFields extends StatelessWidget {
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
                 hintText: 'Qidirish'.tr,
-                hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: _getController.width.value * 0.04),
-                prefixIcon: Padding(padding: EdgeInsets.all(_getController.height.value * 0.013), child: Icon(Icons.search, color: Theme.of(context).colorScheme.onSurface)),
+                hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.04),
+                prefixIcon: Padding(padding: EdgeInsets.all(Get.height * 0.013), child: Icon(Icons.search, color: Theme.of(context).colorScheme.onSurface)),
                 border: InputBorder.none
             )
         )

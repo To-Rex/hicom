@@ -45,7 +45,7 @@ class LoginPage extends StatelessWidget {
                   controller: _getController.phoneController,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
-                  flagsButtonPadding: EdgeInsets.only(left: _getController.width.value * 0.01, right: _getController.width.value * 0.01),
+                  flagsButtonPadding: EdgeInsets.only(left: Get.width * 0.01, right: Get.width * 0.01),
                   onChanged: (phone) {},
                 invalidNumberMessage: null,
                   decoration: InputDecoration(

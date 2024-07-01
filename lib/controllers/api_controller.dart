@@ -199,6 +199,7 @@ class ApiController extends GetxController {
         debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n',''),_getController.getKey()));
         _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
       }catch(e){
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
         debugPrint(e.toString());
       }
     } else {

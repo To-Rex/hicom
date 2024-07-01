@@ -50,7 +50,7 @@ class SwitchDetailPage extends StatelessWidget {
           Column(
               children: [
                 Center(child: Text(title!, style: TextStyle(fontSize: Get.textTheme.headlineSmall!.fontSize, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface))),
-                SizedBox(height: _getController.height.value * 0.02),
+                SizedBox(height: Get.height * 0.02),
                 Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                     child: PortItems(
                         data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!))
@@ -66,14 +66,14 @@ class SwitchDetailPage extends StatelessWidget {
                               child: Row(
                                   children: [
                                     Icon(TablerIcons.info_circle, color: AppColors.blue, size: Get.textTheme.headlineSmall!.fontSize),
-                                    SizedBox(width: _getController.width.value * 0.01),
+                                    SizedBox(width: Get.width * 0.01),
                                     Text('Portlar holati xaqida'.tr, style: TextStyle(color: AppColors.blue, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500))
                                   ]
                               )
                           ),
                           const Spacer(),
                           Text('MTU VLAN'.tr, style: TextStyle(color: Get.theme.colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)),
-                          SizedBox(width: _getController.width.value * 0.01),
+                          SizedBox(width: Get.width * 0.01),
                           CupertinoSwitch(
                               activeColor: AppColors.green,
                               trackColor: Colors.grey.withOpacity(0.5),

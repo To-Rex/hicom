@@ -36,46 +36,46 @@ class UserPage extends StatelessWidget {
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return SizedBox(
-                height: _getController.height.value * 0.5,
+                height: Get.height * 0.5,
                 width: double.infinity,
                 child: Column(
                   children: [
                     Container(
-                      height: _getController.height.value * 0.005,
-                      width: _getController.width.value * 0.2,
-                      margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03),
-                      decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(10.0))
+                      height: Get.height * 0.005,
+                      width: Get.width * 0.2,
+                      margin: EdgeInsets.only(top: Get.height * 0.02, bottom: Get.height * 0.03),
+                      decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface, borderRadius: BorderRadius.circular(10.0))
                     ),
                     Text('Tilni tanlang'.tr,
-                      style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.045),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045),
                     ),
                     Expanded(
                         child: ListView.builder(
                             itemCount: locale.length,
                             itemBuilder: (context, index){
                               return Container(
-                                height: _getController.height.value * 0.07,
+                                height: Get.height * 0.07,
                                 width: double.infinity,
-                                padding: EdgeInsets.only(left: _getController.width.value * 0.035, right: _getController.width.value * 0.035),
+                                padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
                                 child: Column(
                                   children: [
                                     InkWell(
                                         overlayColor: MaterialStateProperty.all(Colors.transparent),
                                         child: SizedBox(
-                                            height: _getController.height.value * 0.05,
+                                            height: Get.height * 0.05,
                                             child: Center(
                                                 child: Row(
                                                     children: [
-                                                      Text(locale[index]['name'], style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),
+                                                      Text(locale[index]['name'], style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                       const Spacer(),
                                                       if (locale[index]['locale'] == Get.locale)
-                                                        Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onBackground),
+                                                        Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onSurface),
                                                       if (locale[index]['locale'] != Get.locale)
-                                                        Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                        Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                     ]
                                                 )
                                             )
@@ -100,16 +100,16 @@ class UserPage extends StatelessWidget {
   void showRateDialog(BuildContext context) {
     Get.defaultDialog(
       title: 'Dasturni baholash'.tr,
-      titleStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      titleStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04),
+      backgroundColor: Theme.of(context).colorScheme.surface,
         confirm: ElevatedButton(
             onPressed: () => Get.back(),
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 backgroundColor: AppColors.primaryColor,
-                minimumSize: Size(_getController.width.value * 0.4, _getController.height.value * 0.05),
+                minimumSize: Size(Get.width * 0.4, Get.height * 0.05),
             ),
-            child: Text('Bekor qilish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))
+            child: Text('Bekor qilish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))
         ),
 
         content: Column(
@@ -136,7 +136,7 @@ class UserPage extends StatelessWidget {
               )
             }
           ),
-          SizedBox(height: _getController.height.value * 0.01),
+          SizedBox(height: Get.height * 0.01),
         ]
       )
     );
@@ -153,13 +153,13 @@ class UserPage extends StatelessWidget {
     _getController.nameController.text = _getController.loginModel.value.user?.name ?? '';
     ApiController().getSettings();
     return Scaffold(
-        appBar: AppBar(leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05),)),
+        appBar: AppBar(leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05),)),
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
             physics: const BouncingScrollPhysics(),
-            header: CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
-            footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
+            header: CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {return SizedBox(height: Get.height * 0.1);}),
+            footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: Get.height * 0.1);}),
             onLoading: _onLoading,
             onRefresh: _getData,
             controller: _refreshController,
@@ -167,16 +167,16 @@ class UserPage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: Obx(() => Column(
                     children: [
-                      SizedBox(height: _getController.height.value * 0.02),
+                      SizedBox(height: Get.height * 0.02),
                       Container(
-                          width: _getController.width.value,
-                          margin: EdgeInsets.symmetric(horizontal: _getController.height.value * 0.015, vertical: _getController.height.value * 0.01),
-                          padding: EdgeInsets.all(_getController.height.value * 0.02),
+                          width: Get.width,
+                          margin: EdgeInsets.symmetric(horizontal: Get.height * 0.015, vertical: Get.height * 0.01),
+                          padding: EdgeInsets.all(Get.height * 0.02),
                           decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
+                              color: Theme.of(context).colorScheme.surface,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
-                                BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
+                                BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
                               ]),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,33 +187,33 @@ class UserPage extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           if (_getController.loginModel.value.user != null)
-                                            Text(_getController.loginModel.value.user!.name.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
-                                          SizedBox(height: _getController.height.value * 0.01),
+                                            Text(_getController.loginModel.value.user!.name.toString(), style: TextStyle(fontSize: Get.height * 0.025, fontWeight: FontWeight.w500)),
+                                          SizedBox(height: Get.height * 0.01),
                                           if (_getController.loginModel.value.user != null)
-                                            Text(_getController.loginModel.value.user!.phone.toString(), style: TextStyle(fontSize: _getController.height.value * 0.025, fontWeight: FontWeight.w500)),
+                                            Text(_getController.loginModel.value.user!.phone.toString(), style: TextStyle(fontSize: Get.height * 0.025, fontWeight: FontWeight.w500)),
                                         ],
                                       ),
                                       const Spacer(),
-                                      //Icon(Icons.account_circle, color: AppColors.primaryColor, size: _getController.height.value * 0.08),
-                                      SvgPicture.asset('assets/svg_assets/user.svg', width: _getController.height.value * 0.08, height: _getController.height.value * 0.08)
+                                      //Icon(Icons.account_circle, color: AppColors.primaryColor, size: Get.height * 0.08),
+                                      SvgPicture.asset('assets/svg_assets/user.svg', width: Get.height * 0.08, height: Get.height * 0.08)
                                     ]
                                 ),
-                                SizedBox(height: _getController.height.value * 0.01),
+                                SizedBox(height: Get.height * 0.01),
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                     onPressed: () {
                                       Get.to(() => EditUser(), transition: Transition.fadeIn);
                                     },
-                                    child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: _getController.height.value * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))),
-                                SizedBox(height: _getController.height.value * 0.01),
+                                    child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: Get.height * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.surface))),
+                                SizedBox(height: Get.height * 0.01),
                                 const Divider(),
                                 InkWell(
                                   overlayColor: MaterialStateProperty.all(Colors.transparent),
                                   child: Row(
                                       children: [
-                                        Icon(TablerIcons.logout, color: AppColors.red, size: _getController.height.value * 0.035),
-                                        SizedBox(width: _getController.height.value * 0.01),
-                                        Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
+                                        Icon(TablerIcons.logout, color: AppColors.red, size: Get.height * 0.035),
+                                        SizedBox(width: Get.height * 0.01),
+                                        Text('Hisobdan chiqish'.tr, style: TextStyle(fontSize: Get.width * 0.045, fontWeight: FontWeight.w500, color: AppColors.red))
                                       ]
                                   ),
                                   onTap: (){
@@ -227,74 +227,74 @@ class UserPage extends StatelessWidget {
                                   },
                                 )
                               ])),
-                      SizedBox(height: _getController.height.value * 0.02),
+                      SizedBox(height: Get.height * 0.02),
                       Container(
-                          width: _getController.width.value,
-                          margin: EdgeInsets.symmetric(horizontal: _getController.height.value * 0.015, vertical: _getController.height.value * 0.01),
-                          padding: EdgeInsets.all(_getController.height.value * 0.01),
-                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))]),
+                          width: Get.width,
+                          margin: EdgeInsets.symmetric(horizontal: Get.height * 0.015, vertical: Get.height * 0.01),
+                          padding: EdgeInsets.all(Get.height * 0.01),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))]),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SettingsItem(
-                                    icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                     title: 'Dastur mavzusi'.tr,
                                     onTap: () {
                                       AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
                                     },
-                                    color: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                     isNightMode: true,
                                     isLanguage: false
                                 ),
                                 const Divider(),
                                 SettingsItem(
-                                    icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                     title: 'Dastur tili'.tr,
                                     onTap: () {bottomBuildLanguageDialog(context);},
-                                    color: Theme.of(context).colorScheme.onBackground, isNightMode: false,
+                                    color: Theme.of(context).colorScheme.onSurface, isNightMode: false,
                                     isLanguage: true
                                 ),
                                 const Divider(),
                                 SettingsItem(
-                                    icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                     title: 'Foydalanish yo\'riqnomasi'.tr,
                                     onTap: () {
                                       Get.to(() => InstructionPage(), transition: Transition.fadeIn);
                                     },
-                                    color: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                     isNightMode: false,
                                     isLanguage: false
                                 ),
                                 const Divider(),
                                 SettingsItem(
-                                    icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                     title: 'Qo\'llab quvvatlash'.tr,
                                     onTap: () {
                                       Get.to(() => SupportPage(), transition: Transition.fadeIn);
                                     },
-                                    color: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                     isNightMode: false,
                                     isLanguage: false
                                 ),
                                 const Divider(),
                                 SettingsItem(
-                                    icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                     title: 'Dasturni baholash'.tr,
                                     onTap: () {
                                       showRateDialog(context);
                                     },
-                                    color: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                     isNightMode: false,
                                     isLanguage: false
                                 ),
                                 const Divider(),
                                 SettingsItem(
-                                    icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.height.value * 0.04),
+                                    icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                     title: 'Dasturni ulashish'.tr,
                                     onTap: () {
                                       ShareLink.shareUri(Uri.parse('http://play.google.com/store/apps/details?id=com.uz.hicom'), subject: 'Hicom.uz');
                                     },
-                                    color: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                     isNightMode: false,
                                     isLanguage: false
                                 )

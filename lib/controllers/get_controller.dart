@@ -19,8 +19,6 @@ import '../models/sample/switch_list_model.dart';
 
 
 class GetController extends GetxController {
-  var height = 0.0.obs;
-  var width = 0.0.obs;
   var fullName = 'Dilshodjon Haydarov'.obs;
   var isSearch = false.obs;
   var isNightMode = false.obs;
@@ -156,12 +154,6 @@ class GetController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-    height.value = Get.height;
-    width.value = Get.width;
-  }
 
   @override
   void onClose() {

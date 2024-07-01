@@ -31,10 +31,10 @@ class RegisterPage extends StatelessWidget{
                 children: [
                   SizedBox(height: Get.height * 0.05),
                   TextFields(title: 'Ism-familiyangizni kiriting'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameController),
-                  SizedBox(height: _getController.height.value * 0.02),
-                  Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04)),),
+                  SizedBox(height: Get.height * 0.02),
+                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04)),),
                   Container(
-                    margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.02, top: _getController.height.value * 0.01),
+                    margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, bottom: Get.height * 0.02, top: Get.height * 0.01),
                     child: DropdownItem(
                         title: _getController.dropDownItemsTitle.first,
                         onTap: () => {
@@ -49,20 +49,20 @@ class RegisterPage extends StatelessWidget{
                               useRootNavigator: true,
                               favorite: ['UZ','RU','KZ','TJ','KG','AF'],
                               countryListTheme: CountryListThemeData(
-                                  bottomSheetHeight: _getController.height.value * 0.7,
+                                  bottomSheetHeight: Get.height * 0.7,
                                   borderRadius: BorderRadius.circular(10),
-                                  bottomSheetWidth: _getController.width.value,
-                                  flagSize: _getController.width.value * 0.06,
+                                  bottomSheetWidth: Get.width,
+                                  flagSize: Get.width * 0.06,
                                   inputDecoration: InputDecoration(
                                       fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
                                       filled: true,
                                       disabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
                                       focusColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: _getController.width.value * 0.04),
-                                      contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
+                                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.04),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
                                       border: InputBorder.none,
                                       labelText: 'Mamlakatlarni qidirish'.tr,
-                                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04),
                                       enabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
                                       focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10))
                                   )
@@ -83,12 +83,12 @@ class RegisterPage extends StatelessWidget{
                         }),
                   ),
                   if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
+                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04))),
                   if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                    SizedBox(height: _getController.height.value * 0.01),
+                    SizedBox(height: Get.height * 0.01),
                   if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Container(
-                      margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
+                      margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.02),
                       child: DropdownItem(
                           title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                           onTap: () => {
@@ -97,29 +97,29 @@ class RegisterPage extends StatelessWidget{
                           })
                     ),
                   if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
+                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04))),
                   if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                    SizedBox(height: _getController.height.value * 0.01),
+                    SizedBox(height: Get.height * 0.01),
                   if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Container(
-                      margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02),
+                      margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.02),
                       child: DropdownItem(
                           title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
                           onTap: () => {
                             InstrumentComponents().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
                           })
                     ),
-                  Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04))),
+                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04))),
                   Container(
-                    margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.02,top: _getController.height.value * 0.02),
+                    margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.02,top: Get.height * 0.02),
                     child: DropdownItem(
                         title: _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
                         onTap: () => {
                           InstrumentComponents().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
                         }),
                   ),
-                  SizedBox(height: _getController.height.value * 0.05),
-                  Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                  SizedBox(height: Get.height * 0.05),
+                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                       child: ElevatedButton(
                           onPressed: () => {
                             if (_getController.nameController.text.isEmpty) {
@@ -146,12 +146,12 @@ class RegisterPage extends StatelessWidget{
                           },
                           style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)),
                           child: SizedBox(
-                              width: _getController.width.value,
-                              height: _getController.height.value * 0.06,
-                              child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.04))))
+                              width: Get.width,
+                              height: Get.height * 0.06,
+                              child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                       )
                   ),
-                  SizedBox(height: _getController.height.value * 0.01),
+                  SizedBox(height: Get.height * 0.01),
                 ]
           )))
     );

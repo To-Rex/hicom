@@ -5,17 +5,21 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hicom/resource/srting.dart';
 import 'package:hicom/splash_screen.dart';
 
+import 'controllers/get_controller.dart';
+
 
 main() async {
   await GetStorage.init();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
+  final GetController _getController = Get.put(GetController());
   @override
   Widget build(BuildContext context) {
+    //_getController.setHeightWidth(context);
     return AdaptiveTheme(
         debugShowFloatingThemeButton: false,
         initial: AdaptiveThemeMode.dark,

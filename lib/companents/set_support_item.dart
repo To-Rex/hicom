@@ -26,19 +26,19 @@ class SettingsSupportItem extends StatelessWidget {
       child: Row(
         children: [
           icon,
-          SizedBox(width: _getController.width.value * 0.03),
+          SizedBox(width: Get.width * 0.03),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: TextStyle(color: color, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
-              Text(subTitle, style: TextStyle(color: color.withOpacity(0.5), fontSize: _getController.width.value * 0.03, fontWeight: FontWeight.w500))
+              Text(title, style: TextStyle(color: color, fontSize: Get.width * 0.04, fontWeight: FontWeight.w500)),
+              Text(subTitle, style: TextStyle(color: color.withOpacity(0.5), fontSize: Get.width * 0.03, fontWeight: FontWeight.w500))
             ]
           ),
           const Spacer(),
           if (isLanguage)
-            Text(Get.locale == const Locale('uz', 'UZ') ? 'O\'zbekcha' : Get.locale == const Locale('oz', 'OZ') ? 'Узбекча' : Get.locale == const Locale('ru', 'RU') ? 'Русский' : 'English', style: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5), fontSize: _getController.width.value * 0.035, fontWeight: FontWeight.w500)),
+            Text(Get.locale == const Locale('uz', 'UZ') ? 'O\'zbekcha' : Get.locale == const Locale('oz', 'OZ') ? 'Узбекча' : Get.locale == const Locale('ru', 'RU') ? 'Русский' : 'English', style: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5), fontSize: Get.width * 0.035, fontWeight: FontWeight.w500)),
           if (!isNightMode)
-            IconButton(onPressed: () => onTap(), icon: Icon(Icons.chevron_right, size: _getController.height.value * 0.035, color: color))
+            IconButton(onPressed: () => onTap(), icon: Icon(Icons.chevron_right, size: Get.height * 0.035, color: color))
           else
             CupertinoSwitch(
               value: Theme.of(context).brightness == Brightness.dark,

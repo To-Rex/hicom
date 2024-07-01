@@ -22,16 +22,16 @@ class AddSwitchPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
             children: [
-              SizedBox(height: _getController.height.value * 0.05),
+              SizedBox(height: Get.height * 0.05),
               TextFields(title: 'Loyiha nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController,isEnabled: false),
-              SizedBox(height: _getController.height.value * 0.02),
+              SizedBox(height: Get.height * 0.02),
               TextFields(title: 'Qurilma nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchNameProjectController),
-              SizedBox(height: _getController.height.value * 0.02),
+              SizedBox(height: Get.height * 0.02),
               TextFields(title: 'Qurilmaning ishlab chiqarish raqami'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchSerialProjectController,isQrCode: true),
-              SizedBox(height: _getController.height.value * 0.02),
+              SizedBox(height: Get.height * 0.02),
               TextFields(title: 'Qurilma paroli'.tr,hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController),
-              SizedBox(height: _getController.height.value * 0.2),
-              Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+              SizedBox(height: Get.height * 0.2),
+              Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                   child: ElevatedButton(
                       onPressed: () => {
                         if(_getController.nameProjectController.text.isEmpty){
@@ -48,12 +48,12 @@ class AddSwitchPage extends StatelessWidget {
                       },
                       style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
                       child: SizedBox(
-                          width: _getController.width.value,
-                          height: _getController.height.value * 0.06,
-                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.04))))
+                          width: Get.width,
+                          height: Get.height * 0.06,
+                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
                   )
               ),
-              SizedBox(height: _getController.height.value * 0.03),
+              SizedBox(height: Get.height * 0.03),
             ]
         )
       )

@@ -51,7 +51,7 @@ class VerifyPage extends StatelessWidget {
                 obscureText: true,
                 focusNode: FocusNode(),
                 style: TextStyle(
-                  fontSize: _getController.width.value * 0.04,
+                  fontSize: Get.width * 0.04,
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
                 maxLength: 5,
@@ -68,13 +68,13 @@ class VerifyPage extends StatelessWidget {
                   errorBorder: InputBorder.none,
                   fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
                   hintStyle: TextStyle(
-                    fontSize: _getController.width.value * 0.04,
+                    fontSize: Get.width * 0.04,
                     color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                   ),
                 )
             ))
           ),
-          const Spacer(),
+          const Expanded(child: SizedBox()),
           Container(
               width: Get.width,
               margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
@@ -85,7 +85,7 @@ class VerifyPage extends StatelessWidget {
                     ApiController().checkCode(),
                     //Get.to(() => SamplePage())
                   },
-                  child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
+                  child: Text('Tasdiqlash'.tr, style: TextStyle(color: Colors.white, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )
           ),
           SizedBox(height: Get.height * 0.05)

@@ -14,44 +14,45 @@ class SamplePage extends StatelessWidget {
   SamplePage({super.key});
 
   final GetController _getController = Get.put(GetController());
+  final RefreshController refreshController = RefreshController(initialRefresh: false);
 
   void _onLoading() {
-    _getController.refreshController.loadComplete();
+    refreshController.loadComplete();
   }
 
   void _getData() {
-    _getController.refreshController.refreshCompleted();
+    refreshController.refreshCompleted();
     ApiController().getProjects();
   }
 
   @override
   Widget build(BuildContext context) {
     ApiController().login(_getController.getNumber(),_getController.getSession(),'50UvFayZ2w5u3O9B',false).then((_) => {
-      _getController.refreshController.requestRefresh(),
+      refreshController.requestRefresh(),
       _getData()
     });
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
         appBar: AppBar(
             backgroundColor: Colors.transparent,
-            title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05))),
-            leading: Obx(() => IconButton(icon: Icon(_getController.isSearch.value ? Icons.arrow_back : Icons.account_circle_outlined, size: _getController.height.value * 0.035), onPressed: () => {if (_getController.isSearch.value){_getController.isSearch.value = !_getController.isSearch.value} else {Get.to(UserPage(), transition: Transition.fadeIn)}})),
+            title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05))),
+            leading: Obx(() => IconButton(icon: Icon(_getController.isSearch.value ? Icons.arrow_back : Icons.account_circle_outlined, size: Get.height * 0.035), onPressed: () => {if (_getController.isSearch.value){_getController.isSearch.value = !_getController.isSearch.value} else {Get.to(UserPage(), transition: Transition.fadeIn)}})),
             centerTitle: true,
             actions: [
               Obx(() => _getController.isSearch.value
                   ? SearchFields(onChanged: (String value) {})
-                  : IconButton(icon: Icon(Icons.search, size: _getController.height.value * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
+                  : IconButton(icon: Icon(Icons.search, size: Get.height * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
               )
             ]),
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
             physics: const BouncingScrollPhysics(),
-            header: CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
-            footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: _getController.height.value * 0.1);}),
+            header: CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {return SizedBox(height: Get.height * 0.1);}),
+            footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: Get.height * 0.1);}),
             onLoading: _onLoading,
             onRefresh: _getData,
-            controller: _getController.refreshController,
+            controller: refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Obx(() => _getController.projectModel.value.admin != null || _getController.projectModel.value.join != null
@@ -72,15 +73,15 @@ class SamplePage extends StatelessWidget {
                                       Get.to(SwitchList(name: _getController.projectModel.value.admin![index].name.toString()), arguments: _getController.projectModel.value.admin![index].pid)
                                     },
                                     child: SizedBox(
-                                      //height: Get.height * 0.12,
+                                      height: 110,
                                       width: Get.width,
-                                      child: Card(
+                                      /*child: Card(
                                           color: Theme.of(context).colorScheme.surface,
                                           shadowColor: Theme.of(context).colorScheme.surface,
                                           surfaceTintColor: Theme.of(context).colorScheme.surface,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                           elevation: 1,
-                                          margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
+                                          margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03, vertical: Get.height * 0.01),
                                           child: Container(
                                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
                                               child: Row(
@@ -89,11 +90,11 @@ class SamplePage extends StatelessWidget {
                                                         margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
                                                         child: Stack(
                                                             children: [
-                                                              SvgPicture.asset('assets/svg_assets/folde.svg', width: _getController.width.value * 0.06, height: _getController.height.value * 0.06),
+                                                              SvgPicture.asset('assets/svg_assets/folde.svg', width: Get.width * 0.06, height: Get.height * 0.06),
                                                               Positioned(
-                                                                top: _getController.height.value * 0.026,
-                                                                left: _getController.width.value * 0.056,
-                                                                child: SvgPicture.asset('assets/svg_assets/user.svg', width: _getController.width.value * 0.03, height: _getController.height.value * 0.03),
+                                                                top: Get.height * 0.026,
+                                                                left: Get.width * 0.056,
+                                                                child: SvgPicture.asset('assets/svg_assets/user.svg', width: Get.width * 0.03, height: Get.height * 0.03),
                                                               )
                                                             ]
                                                         )
@@ -101,38 +102,38 @@ class SamplePage extends StatelessWidget {
                                                     Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          SizedBox(height: _getController.height.value * 0.01),
-                                                          Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
-                                                          Text(_getController.projectModel.value.admin![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                          SizedBox(height: Get.height * 0.01),
+                                                          Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                                          Text(_getController.projectModel.value.admin![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                           Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: [
-                                                                Text('${'Jami'.tr} ${_getController.projectModel.value.admin![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                                Text('${'Jami'.tr} ${_getController.projectModel.value.admin![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                                 Container(
                                                                     width: 2,
-                                                                    height: _getController.height.value * 0.025,
-                                                                    margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
                                                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                                 ),
-                                                                Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                                Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                                 Container(
                                                                     width: 2,
-                                                                    height: _getController.height.value * 0.025,
-                                                                    margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
                                                                     decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(3),
                                                                         color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                                     )
                                                                 ),
-                                                                Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                                Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                               ]
                                                           )
                                                         ]
                                                     ),
-                                                    const Spacer(),
+                                                    const Expanded(child: SizedBox()),
                                                     PopupMenuButton<String>(
-                                                        icon: Icon(Icons.menu, size: _getController.width.value * 0.05),
+                                                        icon: Icon(Icons.menu, size: Get.width * 0.05),
                                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                                         color: Theme.of(context).colorScheme.surface,
                                                         surfaceTintColor: Colors.transparent,
@@ -162,8 +163,8 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'edit',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.edit, size: _getController.width.value * 0.04),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
+                                                                    Icon(Icons.edit, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
                                                                     Text('Tahrirlash'.tr)
                                                                   ],
                                                                 )
@@ -172,8 +173,8 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'watchers',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.person, size: _getController.width.value * 0.04),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
+                                                                    Icon(Icons.person, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
                                                                     Text('Kuzatuvchilar'.tr)
                                                                   ],
                                                                 )
@@ -182,8 +183,8 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'share',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.share, size: _getController.width.value * 0.04),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
+                                                                    Icon(Icons.share, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
                                                                     Text('Ulashish'.tr)
                                                                   ],
                                                                 )
@@ -200,9 +201,9 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'delete',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.delete, size: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.error),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
-                                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.04))
+                                                                    Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
                                                                   ],
                                                                 )
                                                             )
@@ -212,7 +213,141 @@ class SamplePage extends StatelessWidget {
                                                   ]
                                               )
                                           )
-                                      )
+                                      )*/
+                                        child: Container(
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
+                                            child: Center(
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
+                                                        child: Stack(
+                                                            children: [
+                                                              SvgPicture.asset('assets/svg_assets/folde.svg', width: Get.width * 0.06, height: Get.height * 0.06),
+                                                              Positioned(
+                                                                top: Get.height * 0.026,
+                                                                left: Get.width * 0.056,
+                                                                child: SvgPicture.asset('assets/svg_assets/user.svg', width: Get.width * 0.03, height: Get.height * 0.03),
+                                                              )
+                                                            ]
+                                                        )
+                                                    ),
+                                                    Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          SizedBox(height: Get.height * 0.01),
+                                                          Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                                          Text(_getController.projectModel.value.admin![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                          Row(
+                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                              children: [
+                                                                Text('${'Jami'.tr} ${_getController.projectModel.value.admin![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                                Container(
+                                                                    width: 2,
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
+                                                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
+                                                                ),
+                                                                Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                                Container(
+                                                                    width: 2,
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(3),
+                                                                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
+                                                                    )
+                                                                ),
+                                                                Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                              ]
+                                                          )
+                                                        ]
+                                                    ),
+                                                    PopupMenuButton<String>(
+                                                        icon: Icon(Icons.menu, size: Get.width * 0.05),
+                                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                                        color: Theme.of(context).colorScheme.surface,
+                                                        surfaceTintColor: Colors.transparent,
+                                                        elevation: 4,
+                                                        onSelected: (String value) {
+                                                          switch (value) {
+                                                            case 'edit':
+                                                              _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
+                                                              _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
+                                                              InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                            case 'watchers':
+                                                              InstrumentComponents().bottomSheetUsers(context, _getController.projectModel.value.admin![index].pid);
+                                                              ApiController().getProjectsUsers(_getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                            case 'share':
+                                                              InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                            case 'delete':
+                                                              InstrumentComponents().deleteProject(context, _getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                          }
+                                                        },
+                                                        itemBuilder: (BuildContext context) {
+                                                          return [
+                                                            PopupMenuItem(
+                                                                value: 'edit',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.edit, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('Tahrirlash'.tr)
+                                                                  ],
+                                                                )
+                                                            ),
+                                                            PopupMenuItem(
+                                                                value: 'watchers',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.person, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('Kuzatuvchilar'.tr)
+                                                                  ],
+                                                                )
+                                                            ),
+                                                            PopupMenuItem(
+                                                                value: 'share',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.share, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('Ulashish'.tr)
+                                                                  ],
+                                                                )
+                                                            ),
+                                                            //line
+                                                            //const Divider(),
+                                                            const PopupMenuItem(
+                                                              height: 0,
+                                                              padding: EdgeInsets.all(0),
+                                                              value: 'watcher',
+                                                              child: Divider(),
+                                                            ),
+                                                            PopupMenuItem(
+                                                                value: 'delete',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
+                                                                  ],
+                                                                )
+                                                            )
+                                                          ];
+                                                        }
+                                                    )
+                                                  ]
+                                              )
+                                            )
+                                        )
                                     )
                                 );
                               })
@@ -231,60 +366,61 @@ class SamplePage extends StatelessWidget {
                                       Get.to(SwitchList(name: _getController.projectModel.value.admin![index].name.toString()), arguments: _getController.projectModel.value.admin![index].pid)
                                     },
                                     child: SizedBox(
+                                      height: 110,
                                      width: Get.width,
-                                      child: Card(
+                                      /*child: Card(
                                           color: Theme.of(context).colorScheme.surface,
                                           shadowColor: Theme.of(context).colorScheme.surface,
                                           surfaceTintColor: Theme.of(context).colorScheme.surface,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                           elevation: 1,
-                                          margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
+                                          margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03, vertical: Get.height * 0.01),
                                           child: Container(
                                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
                                               child: Row(
                                                   children: [
                                                     Container(
-                                                      margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02,),
-                                                      child: SvgPicture.asset('assets/svg_assets/folde.svg', width: _getController.width.value * 0.06, height: _getController.height.value * 0.06),
+                                                      margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02,),
+                                                      child: SvgPicture.asset('assets/svg_assets/folde.svg', width: Get.width * 0.06, height: Get.height * 0.06),
                                                     ),
                                                     Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          SizedBox(height: _getController.height.value * 0.01),
-                                                          Text(_getController.projectModel.value.join![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
-                                                          Text(_getController.projectModel.value.join![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                          SizedBox(height: Get.height * 0.01),
+                                                          Text(_getController.projectModel.value.join![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                                          Text(_getController.projectModel.value.join![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                           Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: [
-                                                                Text('${'Jami'.tr} ${_getController.projectModel.value.join![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                                Text('${'Jami'.tr} ${_getController.projectModel.value.join![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                                 Container(
                                                                     width: 2,
-                                                                    height: _getController.height.value * 0.025,
-                                                                    margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
                                                                     decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(3),
                                                                         color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                                     )
                                                                 ),
-                                                                Text('${'Yoniq'.tr} ${_getController.projectModel.value.join![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                                Text('${'Yoniq'.tr} ${_getController.projectModel.value.join![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                                 Container(
                                                                     width: 2,
-                                                                    height: _getController.height.value * 0.025,
-                                                                    margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
                                                                     decoration: BoxDecoration(
                                                                         borderRadius: BorderRadius.circular(3),
                                                                         color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                                     )
                                                                 ),
-                                                                Text('${'Xato'.tr} ${_getController.projectModel.value.join![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                                                Text('${'Xato'.tr} ${_getController.projectModel.value.join![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                               ]
                                                           )
                                                         ]
                                                     ),
-                                                    const Spacer(),
+                                                    const Expanded(child: SizedBox()),
                                                     PopupMenuButton<String>(
-                                                        icon: Icon(Icons.menu, size: _getController.width.value * 0.05),
+                                                        icon: Icon(Icons.menu, size: Get.width * 0.05),
                                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                                         color: Theme.of(context).colorScheme.surface,
                                                         surfaceTintColor: Colors.transparent,
@@ -307,8 +443,8 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'edit',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.edit, size: _getController.width.value * 0.04),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
+                                                                    Icon(Icons.edit, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
                                                                     Text('Tahrirlash'.tr)
                                                                   ],
                                                                 )
@@ -317,8 +453,8 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'watchers',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.person, size: _getController.width.value * 0.04),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
+                                                                    Icon(Icons.person, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
                                                                     Text('Kuzatuvchilar'.tr)
                                                                   ],
                                                                 )
@@ -327,8 +463,8 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'share',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.share, size: _getController.width.value * 0.04),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
+                                                                    Icon(Icons.share, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
                                                                     Text('Ulashish'.tr)
                                                                   ],
                                                                 )
@@ -345,9 +481,9 @@ class SamplePage extends StatelessWidget {
                                                                 value: 'delete',
                                                                 child: Row(
                                                                   children: [
-                                                                    Icon(Icons.delete, size: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.error),
-                                                                    SizedBox(width: _getController.width.value * 0.015),
-                                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.04))
+                                                                    Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
                                                                   ],
                                                                 )
                                                             )
@@ -357,7 +493,141 @@ class SamplePage extends StatelessWidget {
                                                   ]
                                               )
                                           )
-                                      )
+                                      )*/
+                                        child: Container(
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
+                                            child: Center(
+                                              child: Row(
+                                                  children: [
+                                                    Container(
+                                                        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
+                                                        child: Stack(
+                                                            children: [
+                                                              SvgPicture.asset('assets/svg_assets/folde.svg', width: Get.width * 0.06, height: Get.height * 0.06),
+                                                              Positioned(
+                                                                top: Get.height * 0.026,
+                                                                left: Get.width * 0.056,
+                                                                child: SvgPicture.asset('assets/svg_assets/user.svg', width: Get.width * 0.03, height: Get.height * 0.03),
+                                                              )
+                                                            ]
+                                                        )
+                                                    ),
+                                                    Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          SizedBox(height: Get.height * 0.01),
+                                                          Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                                          Text(_getController.projectModel.value.admin![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                          Row(
+                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                              children: [
+                                                                Text('${'Jami'.tr} ${_getController.projectModel.value.admin![index].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                                Container(
+                                                                    width: 2,
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
+                                                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
+                                                                ),
+                                                                Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                                Container(
+                                                                    width: 2,
+                                                                    height: Get.height * 0.025,
+                                                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(3),
+                                                                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
+                                                                    )
+                                                                ),
+                                                                Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                              ]
+                                                          )
+                                                        ]
+                                                    ),
+                                                    const Expanded(child: SizedBox()),
+                                                    PopupMenuButton<String>(
+                                                        icon: Icon(Icons.menu, size: Get.width * 0.05),
+                                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                                        color: Theme.of(context).colorScheme.surface,
+                                                        surfaceTintColor: Colors.transparent,
+                                                        elevation: 4,
+                                                        onSelected: (String value) {
+                                                          switch (value) {
+                                                            case 'edit':
+                                                              _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
+                                                              _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
+                                                              InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                            case 'watchers':
+                                                              InstrumentComponents().bottomSheetUsers(context, _getController.projectModel.value.admin![index].pid);
+                                                              ApiController().getProjectsUsers(_getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                            case 'share':
+                                                              InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                            case 'delete':
+                                                              InstrumentComponents().deleteProject(context, _getController.projectModel.value.admin![index].pid);
+                                                              break;
+                                                          }
+                                                        },
+                                                        itemBuilder: (BuildContext context) {
+                                                          return [
+                                                            PopupMenuItem(
+                                                                value: 'edit',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.edit, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('Tahrirlash'.tr)
+                                                                  ],
+                                                                )
+                                                            ),
+                                                            PopupMenuItem(
+                                                                value: 'watchers',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.person, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('Kuzatuvchilar'.tr)
+                                                                  ],
+                                                                )
+                                                            ),
+                                                            PopupMenuItem(
+                                                                value: 'share',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.share, size: Get.width * 0.04),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('Ulashish'.tr)
+                                                                  ],
+                                                                )
+                                                            ),
+                                                            //line
+                                                            //const Divider(),
+                                                            const PopupMenuItem(
+                                                              height: 0,
+                                                              padding: EdgeInsets.all(0),
+                                                              value: 'watcher',
+                                                              child: Divider(),
+                                                            ),
+                                                            PopupMenuItem(
+                                                                value: 'delete',
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                                    SizedBox(width: Get.width * 0.015),
+                                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
+                                                                  ],
+                                                                )
+                                                            )
+                                                          ];
+                                                        }
+                                                    )
+                                                  ]
+                                              )
+                                            )
+                                        )
+
                                     )
                                 );
                               })
@@ -367,7 +637,7 @@ class SamplePage extends StatelessWidget {
                       SizedBox(
                           height: Get.height* 0.9,
                           width: Get.width,
-                          child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)))
+                          child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)))
                       )
                     ])
                 )

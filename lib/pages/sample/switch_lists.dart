@@ -22,7 +22,7 @@ class SwitchList extends StatelessWidget {
         title: Text('Qurilma ro’yxati'.tr),
         centerTitle: true,
         actions: [
-          IconButton(icon: Icon(Icons.search, size: _getController.height.value * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
+          IconButton(icon: Icon(Icons.search, size: Get.height * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
         ]
       ),
       body: Obx(() =>  Column(
@@ -37,8 +37,8 @@ class SwitchList extends StatelessWidget {
                         Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))
                       },
                       child: Container(
-                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
-                          padding: EdgeInsets.all(_getController.height.value * 0.015),
+                          margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
+                          padding: EdgeInsets.all(Get.height * 0.015),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).colorScheme.surface,
@@ -49,9 +49,9 @@ class SwitchList extends StatelessWidget {
                                   children: [
                                     Text(_getController.switchListModel.value.offline![index].name.toString()),
                                     const Spacer(),
-                                    Icon(TablerIcons.circle_filled, color: Theme.of(context).colorScheme.error, size: _getController.width.value * 0.025),
+                                    Icon(TablerIcons.circle_filled, color: Theme.of(context).colorScheme.error, size: Get.width * 0.025),
                                     PopupMenuButton<String>(
-                                        icon: Icon(TablerIcons.dots, size: _getController.width.value * 0.05),
+                                        icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                         color: Theme.of(context).colorScheme.surface,
                                         surfaceTintColor: Colors.transparent,
@@ -72,12 +72,12 @@ class SwitchList extends StatelessWidget {
                                         itemBuilder: (BuildContext context) {
                                           return [
                                             PopupMenuItem(
-                                                height: _getController.height.value * 0.03,
+                                                height: Get.height * 0.03,
                                                 value: 'edit',
                                                 child: Row(
                                                   children: [
-                                                    Icon(Icons.edit, size: _getController.width.value * 0.04),
-                                                    SizedBox(width: _getController.width.value * 0.015),
+                                                    Icon(Icons.edit, size: Get.width * 0.04),
+                                                    SizedBox(width: Get.width * 0.015),
                                                     Text('Tahrirlash'.tr)
                                                   ],
                                                 )
@@ -89,13 +89,13 @@ class SwitchList extends StatelessWidget {
                                               child: Divider(),
                                             ),
                                             PopupMenuItem(
-                                                height: _getController.height.value * 0.03,
+                                                height: Get.height * 0.03,
                                                 value: 'delete',
                                                 child: Row(
                                                   children: [
-                                                    Icon(Icons.delete, size: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.error),
-                                                    SizedBox(width: _getController.width.value * 0.015),
-                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.04))
+                                                    Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                    SizedBox(width: Get.width * 0.015),
+                                                    Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
                                                   ],
                                                 )
                                             )
@@ -128,8 +128,8 @@ class SwitchList extends StatelessWidget {
                         Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments)),
                       },
                       child: Container(
-                          margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
-                          padding: EdgeInsets.all(_getController.height.value * 0.015),
+                          margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
+                          padding: EdgeInsets.all(Get.height * 0.015),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.surface),
                           child: Column(
                               children: [
@@ -139,7 +139,7 @@ class SwitchList extends StatelessWidget {
                                       const Spacer(),
                                       Icon(TablerIcons.circle_filled, color: AppColors.green, size: Get.width * 0.025),
                                       PopupMenuButton<String>(
-                                          icon: Icon(TablerIcons.dots, size: _getController.width.value * 0.05),
+                                          icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                           color: Theme.of(context).colorScheme.surface,
                                           surfaceTintColor: Colors.transparent,
@@ -160,12 +160,12 @@ class SwitchList extends StatelessWidget {
                                           itemBuilder: (BuildContext context) {
                                             return [
                                               PopupMenuItem(
-                                                  height: _getController.height.value * 0.03,
+                                                  height: Get.height * 0.03,
                                                   value: 'edit',
                                                   child: Row(
                                                     children: [
-                                                      Icon(Icons.edit, size: _getController.width.value * 0.04),
-                                                      SizedBox(width: _getController.width.value * 0.015),
+                                                      Icon(Icons.edit, size: Get.width * 0.04),
+                                                      SizedBox(width: Get.width * 0.015),
                                                       Text('Tahrirlash'.tr)
                                                     ],
                                                   )
@@ -177,13 +177,13 @@ class SwitchList extends StatelessWidget {
                                                 child: Divider(),
                                               ),
                                               PopupMenuItem(
-                                                  height: _getController.height.value * 0.03,
+                                                  height: Get.height * 0.03,
                                                   value: 'delete',
                                                   child: Row(
                                                     children: [
-                                                      Icon(Icons.delete, size: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.error),
-                                                      SizedBox(width: _getController.width.value * 0.015),
-                                                      Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: _getController.width.value * 0.04))
+                                                      Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                      SizedBox(width: Get.width * 0.015),
+                                                      Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
                                                     ],
                                                   )
                                               )
