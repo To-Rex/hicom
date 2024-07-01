@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
-import 'package:hicom/pages/sample/sample_page.dart';
 import 'package:hicom/resource/colors.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../controllers/get_controller.dart';
 
@@ -40,44 +38,40 @@ class VerifyPage extends StatelessWidget {
           Container(
               width: Get.width,
               margin: EdgeInsets.only(top: Get.height * 0.01, left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.03),
-              child: Text('Telefoningizga faollashtirish kodi SMS tarzida yuborildi.'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7), fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
+              child: Text('Telefoningizga faollashtirish kodi SMS tarzida yuborildi.'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
           ),
           Container(
               width: Get.width,
               height: Get.height * 0.06,
               margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-              ),
-            child: Obx(() => TextField(
-              enabled: true,
-              controller: _getController.codeController,
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
-              focusNode: FocusNode(),
-              style: TextStyle(
-                fontSize: _getController.width.value * 0.04,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-              maxLength: 5,
-              buildCounter: (BuildContext context, {required int currentLength, required int? maxLength, required bool isFocused}) => null,
-              //inputFormatters: [mackFormater],
-              decoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                hintText: '00000'.tr,
-                filled: true,
-                isDense: true,
-                fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                hintStyle: TextStyle(
+              child: Obx(() => TextField(
+                controller: _getController.codeController,
+                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.done,
+                obscureText: true,
+                focusNode: FocusNode(),
+                style: TextStyle(
                   fontSize: _getController.width.value * 0.04,
-                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,              // No border
-                  borderRadius: BorderRadius.circular(12)
+                maxLength: 5,
+                buildCounter: (BuildContext context, {required int currentLength, required int? maxLength, required bool isFocused}) => null,
+                decoration: InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  hintText: '00000'.tr,
+                  filled: true,
+                  isDense: true,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none, // No border
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  errorBorder: InputBorder.none,
+                  fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                  hintStyle: TextStyle(
+                    fontSize: _getController.width.value * 0.04,
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  ),
                 )
-              )
             ))
           ),
           const Spacer(),
@@ -91,7 +85,7 @@ class VerifyPage extends StatelessWidget {
                     ApiController().checkCode(),
                     //Get.to(() => SamplePage())
                   },
-                  child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
+                  child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )
           ),
           SizedBox(height: Get.height * 0.05)

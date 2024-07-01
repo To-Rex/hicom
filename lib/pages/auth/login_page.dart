@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
           ),
           Container(
               width: Get.width,
-              //height: Get.height * 0.06,
+              height: Get.height * 0.06,
               margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
