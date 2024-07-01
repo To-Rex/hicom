@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
-import 'package:hicom/controllers/tea.dart';
 import 'package:hicom/pages/sample/add_project_page.dart';
 import 'package:hicom/pages/sample/switch_lists.dart';
 import 'package:hicom/pages/user_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/search_fild.dart';
 import '../../controllers/get_controller.dart';
-import '../qr_scan_page.dart';
 
 class SamplePage extends StatelessWidget {
   SamplePage({super.key});
@@ -34,10 +31,10 @@ class SamplePage extends StatelessWidget {
       _getData()
     });
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.9),
+        backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
         appBar: AppBar(
             backgroundColor: Colors.transparent,
-            title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05))),
+            title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05))),
             leading: Obx(() => IconButton(icon: Icon(_getController.isSearch.value ? Icons.arrow_back : Icons.account_circle_outlined, size: _getController.height.value * 0.035), onPressed: () => {if (_getController.isSearch.value){_getController.isSearch.value = !_getController.isSearch.value} else {Get.to(UserPage(), transition: Transition.fadeIn)}})),
             centerTitle: true,
             actions: [
@@ -70,17 +67,17 @@ class SamplePage extends StatelessWidget {
                               return InkWell(
                                 onTap: () => {
                                   ApiController().getSwitchList(_getController.projectModel.value.admin![index].pid),
-                                  Get.to(SwitchList(lsc: int.parse(_getController.projectModel.value.admin![index].lsc.toString())), arguments: _getController.projectModel.value.admin![index].pid)
+                                  Get.to(SwitchList(name: _getController.projectModel.value.admin![index].name.toString()), arguments: _getController.projectModel.value.admin![index].pid)
                                 },
                                 child: Card(
-                                    color: Theme.of(context).colorScheme.background,
-                                    shadowColor: Theme.of(context).colorScheme.onBackground,
-                                    surfaceTintColor: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.surface,
+                                    shadowColor: Theme.of(context).colorScheme.onSurface,
+                                    surfaceTintColor: Theme.of(context).colorScheme.onSurface,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                     elevation: 3,
                                     margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
                                     child: Container(
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.background),
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
                                         child: Row(
                                             children: [
                                               Container(
@@ -100,7 +97,7 @@ class SamplePage extends StatelessWidget {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     SizedBox(height: _getController.height.value * 0.01),
-                                                    Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)),
+                                                    Text(_getController.projectModel.value.admin![index].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
                                                     Text(_getController.projectModel.value.admin![index].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                                     Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,7 +108,7 @@ class SamplePage extends StatelessWidget {
                                                               width: 2,
                                                               height: _getController.height.value * 0.025,
                                                               margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
-                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                           ),
                                                           Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![index].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
                                                           Container(
@@ -120,7 +117,7 @@ class SamplePage extends StatelessWidget {
                                                               margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.01),
                                                               decoration: BoxDecoration(
                                                                   borderRadius: BorderRadius.circular(3),
-                                                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                               )
                                                           ),
                                                           Text('${'Xato'.tr} ${_getController.projectModel.value.admin![index].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
@@ -133,7 +130,7 @@ class SamplePage extends StatelessWidget {
                                               PopupMenuButton<String>(
                                                   icon: Icon(Icons.menu, size: _getController.width.value * 0.05),
                                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                                  color: Theme.of(context).colorScheme.background,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                   surfaceTintColor: Colors.transparent,
                                                   elevation: 4,
                                                   onSelected: (String value) {
@@ -223,7 +220,7 @@ class SamplePage extends StatelessWidget {
                               return InkWell(
                                   onTap: () => {
                                     ApiController().getSwitchList(_getController.projectModel.value.admin![index].pid),
-                                    Get.to(SwitchList(lsc: int.parse(_getController.projectModel.value.admin![index].lsc.toString())), arguments: _getController.projectModel.value.admin![index].pid)
+                                    Get.to(SwitchList(name: _getController.projectModel.value.admin![index].name.toString()), arguments: _getController.projectModel.value.admin![index].pid)
                                   },
                                 child: Card(
                                     color: Theme.of(context).colorScheme.surface,
@@ -279,7 +276,7 @@ class SamplePage extends StatelessWidget {
                                               PopupMenuButton<String>(
                                                   icon: Icon(Icons.menu, size: _getController.width.value * 0.05),
                                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                                  color: Theme.of(context).colorScheme.background,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                   surfaceTintColor: Colors.transparent,
                                                   elevation: 4,
                                                   onSelected: (String value) {
@@ -358,7 +355,7 @@ class SamplePage extends StatelessWidget {
                     SizedBox(
                         height: _getController.height.value * 0.9,
                         width: double.infinity,
-                        child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05)))
+                        child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)))
                     )
                 ])
                 )

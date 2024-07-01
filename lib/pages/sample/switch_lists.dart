@@ -9,8 +9,8 @@ import '../../controllers/get_controller.dart';
 import 'add_switch_page.dart';
 
 class SwitchList extends StatelessWidget {
-  final int lsc;
-  SwitchList({super.key, required this.lsc});
+  final String name;
+  SwitchList({super.key, required this.name});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -104,7 +104,6 @@ class SwitchList extends StatelessWidget {
                                     )
                                   ]
                               ),
-                              //PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),ports: [1,1,1,1,1,1,1,2,2,2,2,2]),
                               PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),),
                               Row(
                                 children: [
@@ -193,10 +192,7 @@ class SwitchList extends StatelessWidget {
                                       )
                                     ]
                                 ),
-                                //PortItems(data: const ['1', '2', '3', '4', '5', '6', '7', '8', '', 'L1', 'L2', 'SFF']),
-                                //PortItems(data: _getController.getPortMap(1)),
-                                PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
-                                ),
+                                PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
                                 Row(
                                     children: [
                                       Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
@@ -217,6 +213,7 @@ class SwitchList extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
+            _getController.nameProjectController.text = name;
             Get.to(AddSwitchPage(), arguments: Get.arguments);
           },
           child: const Icon(Icons.add)
