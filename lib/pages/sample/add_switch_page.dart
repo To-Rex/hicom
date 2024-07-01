@@ -24,7 +24,7 @@ class AddSwitchPage extends StatelessWidget {
         child: Column(
             children: [
               SizedBox(height: _getController.height.value * 0.05),
-              TextFields(title: 'Loyiha nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+              TextFields(title: 'Loyiha nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController,isEnabled: false),
               SizedBox(height: _getController.height.value * 0.02),
               TextFields(title: 'Qurilma nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchNameProjectController),
               SizedBox(height: _getController.height.value * 0.02),

@@ -10,7 +10,8 @@ class TextFields extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final bool isQrCode;
-  const TextFields({super.key,required this.title, required this.hintText, required this.controller, this.isQrCode = false});
+  final bool? isEnabled;
+  const TextFields({super.key,required this.title, required this.hintText, required this.controller, this.isQrCode = false, this.isEnabled});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,6 +26,7 @@ class TextFields extends StatelessWidget {
             child: TextField(
               controller: controller,
               cursorColor: Theme.of(context).colorScheme.onSurface,
+              enabled: isEnabled ?? true,
               decoration: InputDecoration(
                 fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
                 filled: true,
