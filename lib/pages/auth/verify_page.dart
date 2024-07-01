@@ -44,35 +44,35 @@ class VerifyPage extends StatelessWidget {
               width: Get.width,
               height: Get.height * 0.06,
               margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-              child: Obx(() => TextField(
-                controller: _getController.codeController,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.done,
-                obscureText: true,
-                focusNode: FocusNode(),
-                style: TextStyle(
-                  fontSize: Get.width * 0.04,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-                maxLength: 5,
-                buildCounter: (BuildContext context, {required int currentLength, required int? maxLength, required bool isFocused}) => null,
-                decoration: InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  hintText: '00000'.tr,
-                  filled: true,
-                  isDense: true,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none, // No border
-                    borderRadius: BorderRadius.circular(12),
+              child: TextField(
+                  controller: _getController.codeController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  obscureText: true,
+                  focusNode: FocusNode(),
+                  style: TextStyle(
+                      fontSize: Get.width * 0.04,
+                      color: Theme.of(context).colorScheme.onSurface
                   ),
-                  errorBorder: InputBorder.none,
-                  fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
-                  hintStyle: TextStyle(
-                    fontSize: Get.width * 0.04,
-                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                  ),
-                )
-            ))
+                  maxLength: 5,
+                  buildCounter: (BuildContext context, {required int currentLength, required int? maxLength, required bool isFocused}) => null,
+                  decoration: InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      hintText: '00000'.tr,
+                      filled: true,
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none, // No border
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      errorBorder: InputBorder.none,
+                      fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                      hintStyle: TextStyle(
+                          fontSize: Get.width * 0.04,
+                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
+                      )
+                  )
+              )
           ),
           const Expanded(child: SizedBox()),
           Container(
