@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -233,12 +235,15 @@ class SwitchDetailPage extends StatelessWidget {
                                           )*/
                                           for(int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
                                             ItemSettingsData(
+                                                projectId: pidId,
+                                                serialNumber: sn,
                                                 portName: _getController.getPortList(1).toList()[index+1],
                                                 extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
                                                 reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
-                                                port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
+                                                port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
                                                 poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
-                                                phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0
+                                                phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
+                                                index: index + 1
                                             )
                                         ]
                                     )

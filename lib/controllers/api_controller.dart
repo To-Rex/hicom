@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
@@ -74,8 +72,6 @@ class ApiController extends GetxController {
 
   Future<void> checkCode() async {
     var json = Tea.encryptTea('{"phone": "${_getController.code.value+_getController.phoneController.text}","code":"${_getController.codeController.text}"}',_getController.getKey());
-    print(json);
-    print(Tea.decryptTea(json,key).toString());
     var response = await post( Uri.parse('${_baseUrl+_getController.getQueryString('checkcode', 'null') + json.toString()}&key=${_getController.getKey()}'),
         headers: headers
     );
@@ -166,7 +162,6 @@ class ApiController extends GetxController {
 
   Future<void> deleteUser() async {
     var json = Tea.encryptTea(jsonEncode(_getController.loginModel.value),_getController.getKey());
-    print('${_getController.getQueryString('logout', _getController.getUid())}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('logout', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
     );
@@ -211,7 +206,6 @@ class ApiController extends GetxController {
 
   Future<void> renameProjects(pidId, name, note) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "name": name}),_getController.getKey());
-    print('${_baseUrl + _getController.getQueryString('prjren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
     );
@@ -226,7 +220,6 @@ class ApiController extends GetxController {
 
   Future<void> renameProjectsNote(pidId, note) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "note": note}),_getController.getKey());
-    print('${_baseUrl + _getController.getQueryString('prjnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
     );
@@ -411,4 +404,33 @@ class ApiController extends GetxController {
       }
     });
   }
+
+  Future<void> portPOESwitch(String projectId, String serialNo, int port, bool state) async {
+    // 1 00000 0010
+    // [0-3] bitlar: 0010 - POE switch holatini o'zgartirish
+    // [4-8] bitlar: 00000 - Port indeksi (0 dan boshlanadi, ya'ni 1-port = 00000, 2-port = 00001 va hok)
+    // [9] bit: 0 - POE o'chirish, 1 - yoqish
+    debugPrint('$projectId, $serialNo, $port, $state');
+
+    int opcode = 2 | ((port - 1) << 4);
+    if (state) opcode |= 1 << 9;
+    await switchConfig(projectId, serialNo, opcode);
+  }
+
+  Future<void> switchConfig(pidId,sn,opcode) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "opcode": opcode}),_getController.getKey());
+    debugPrint(Tea.decryptTea(json.toString(),_getController.getKey()).toString());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+      headers: headers
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
 }
