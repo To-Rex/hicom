@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
+import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/models/settings_info.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -41,10 +42,8 @@ class GetController extends GetxController {
     controller?.scannedDataStream.listen((scanData) {
       result.value = scanData;
       if (scanData.code != null) {
-        print(scanData.code.toString());
-        print(scanData.code.toString());
-
         switchSerialProjectController.text = scanData.code.toString();
+        passwordProjectController.text = ApiController.switchPassword;
         controller?.pauseCamera();
         Get.back();
       }

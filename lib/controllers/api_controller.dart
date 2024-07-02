@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:http/http.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
@@ -19,14 +18,13 @@ import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/sample/sample_page.dart';
 import 'get_controller.dart';
-import 'package:flutter_web_socket/flutter_web_socket.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
 
   static const String _baseUrl = 'http://185.196.213.76:8000/SSC_Switch/hicom?';
   static const String key = '50UvFayZ2w5u3O9B';
-  static const String _switchPassword = '123456';
+  static const String switchPassword = '123456';
 
   Map<String, String> headers = {
     'Content-Type': 'application/json; charset=UTF-8',
