@@ -452,8 +452,11 @@ class ApiController extends GetxController {
     debugPrint(response.statusCode.toString());
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
-      getSwitchDetail(pidId, sn, false);
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))['data']['config'] == 'fail') {
+        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
+      } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))['errcode'] == 0) {
+        getSwitchDetail(pidId, sn, false);
+      }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
@@ -477,7 +480,5 @@ class ApiController extends GetxController {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
-
-
 
 }
