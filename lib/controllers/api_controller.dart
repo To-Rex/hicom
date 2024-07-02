@@ -62,6 +62,7 @@ class ApiController extends GetxController {
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['errcode'] == 0) {
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value+_getController.phoneController.text} raqamiga Kod yuborildi'.tr, false, 2);
         Get.to(VerifyPage());
       } else {
         InstrumentComponents().showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
@@ -86,6 +87,7 @@ class ApiController extends GetxController {
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['registered'] == 0) {
           Get.to(RegisterPage());
         } else {
+          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Kiritilgan kod tasdiqlandi'.tr, false, 2);
           login(_getController.code.value+_getController.phoneController.text,jsonDecode(utf8.decode(Tea.decryptTea(response.body,_getController.getKey()).toString().codeUnits))['session'],key,true);
         }
       } else {
