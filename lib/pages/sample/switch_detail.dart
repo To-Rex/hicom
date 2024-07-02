@@ -25,7 +25,7 @@ class SwitchDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _getController.whileApi.value = true;
-    ApiController().getSwitchDetail(pidId.toString(), sn.toString());
+    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),true);
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
     _getController.tabController.animateTo(1);
     return PopScope(
@@ -145,7 +145,10 @@ class SwitchDetailPage extends StatelessWidget {
                                               backgroundColor: AppColors.blue,
                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                                           ),
-                                          onPressed: () {  },
+                                          onPressed: () {
+                                            //switchReboot
+                                            ApiController().switchReboot(pidId.toString(), sn.toString());
+                                          },
                                           child: Text('Qurilmani o\'chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
                                         )
                                     )
@@ -220,31 +223,25 @@ class SwitchDetailPage extends StatelessWidget {
                                     Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
                                     Column(
                                         children: [
-                                          /*ListView.builder(
+                                          ListView.builder(
+                                              shrinkWrap: true,
                                               itemCount: _getController.switchDetailModel.value.detail!.tx!.length,
                                               itemBuilder: (context, index) {
                                                 return ItemSettingsData(
+                                                    projectId: pidId,
+                                                    serialNumber: sn,
                                                     portName: _getController.getPortList(1).toList()[index+1],
                                                     extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
                                                     reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
-                                                    port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
+                                                    port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
                                                     poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
-                                                    phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0
+                                                    phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
+                                                    version: _getController.switchDetailModel.value.detail!.v!.length > index ? _getController.switchDetailModel.value.detail!.v![index].toString() : null,
+                                                    index: index + 1
                                                 );
                                               }
-                                          )*/
-                                          for(int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
-                                            ItemSettingsData(
-                                                projectId: pidId,
-                                                serialNumber: sn,
-                                                portName: _getController.getPortList(1).toList()[index+1],
-                                                extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
-                                                reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
-                                                port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
-                                                poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
-                                                phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
-                                                index: index + 1
-                                            )
+                                          )
+                                          //for(int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
                                         ]
                                     )
                                   ]

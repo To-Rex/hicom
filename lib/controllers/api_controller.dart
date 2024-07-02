@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/tea.dart';
 import 'package:http/http.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 import '../models/districts_model.dart';
 import '../models/login_model.dart';
 import '../models/province_model.dart';
@@ -18,6 +19,7 @@ import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/sample/sample_page.dart';
 import 'get_controller.dart';
+import 'package:flutter_web_socket/flutter_web_socket.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
@@ -382,7 +384,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getSwitchDetail(String pidId, String sn) async {
+  Future<void> getSwitchDetail(String pidId, String sn,bool realTime) async {
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn,'isJoin':"1"}),_getController.getKey());
     debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
@@ -392,28 +394,53 @@ class ApiController extends GetxController {
       debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
       if(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))['errcode'] == 0){
         _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))));
-      } else {
+      } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()))['errcode'] == 10002) {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Iltimos hisobingizga qaytadan kiriting'.tr, true, 3);
+      }
+      else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
       }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
-    Timer(const Duration(seconds: 5), () {
-      if (_getController.whileApi.isTrue){
-        getSwitchDetail(pidId, sn);
-      }
-    });
+    if (realTime) {
+      Timer(const Duration(seconds: 5), () {
+        if (_getController.whileApi.isTrue){
+          getSwitchDetail(pidId, sn, realTime);
+        }
+      });
+    }
   }
 
   Future<void> portPOESwitch(String projectId, String serialNo, int port, bool state) async {
-    // 1 00000 0010
-    // [0-3] bitlar: 0010 - POE switch holatini o'zgartirish
-    // [4-8] bitlar: 00000 - Port indeksi (0 dan boshlanadi, ya'ni 1-port = 00000, 2-port = 00001 va hok)
-    // [9] bit: 0 - POE o'chirish, 1 - yoqish
-    debugPrint('$projectId, $serialNo, $port, $state');
-
     int opcode = 2 | ((port - 1) << 4);
     if (state) opcode |= 1 << 9;
+    await switchConfig(projectId, serialNo, opcode);
+  }
+
+  Future<void> portExtendSwitch(String projectId, String serialNo, int port, bool state, String firmware) async {
+    int opcode = ((port - 1) << 4);
+
+    if (firmware.startsWith('0.') || firmware.startsWith('1.') || firmware.startsWith('2.0.')) {
+      if (state) {
+        opcode |= 1 << 9; // Full 10M
+      } else {
+        opcode |= 4 << 9; // Full 1000M
+      }
+    } else {
+      if (state) {
+        opcode |= 1 << 9; // Full 10M
+      } else {
+        opcode |= 5 << 9; // Full 1000M
+      }
+    }
+    await switchConfig(projectId, serialNo, opcode);
+  }
+
+  Future<void> portRestart(String projectId, String serialNo, int port) async {
+    int opcode = 3 | ((port - 1) << 4);
+    opcode |= 1 << 9; // Restart
     await switchConfig(projectId, serialNo, opcode);
   }
 
@@ -428,9 +455,31 @@ class ApiController extends GetxController {
     debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
+      getSwitchDetail(pidId, sn, false);
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
+
+  Future<void> switchReboot(pidId,sn) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn}),_getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swreb', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
+      headers: headers
+    );
+    debugPrint(response.body);
+    debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0) {
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Qurilma qayta ishga tushdi'.tr, false, 2);
+      } else {
+        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Xatolik yuz berdi'.tr, true, 3);
+      }
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
+
 
 }
