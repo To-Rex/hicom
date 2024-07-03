@@ -6,6 +6,7 @@ import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/pages/sample/add_project_page.dart';
 import 'package:hicom/pages/sample/switch_lists.dart';
 import 'package:hicom/pages/user_page.dart';
+import 'package:hicom/resource/colors.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/search_fild.dart';
 import '../../controllers/get_controller.dart';
@@ -358,7 +359,7 @@ class SamplePage extends StatelessWidget {
           onPressed: () {
             Get.to(AddProjectPage());
           },
-          child: const Icon(Icons.add)
+          child: Icon(Icons.add,color: AppColors.white,size: Get.width * 0.06),
         )
     );
   }

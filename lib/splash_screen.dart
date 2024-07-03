@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     //_getController.addUserData(' {"Phone":"+998916848100","SessionToken":"ivEWz4iyP2UZ348HRyF3JKNMuppBSGCNL3a2fnRJolJIpjQUEOlJH208aXBdQtfQ","KEY":"a2tB333raC8y74dt","UID":"2025b25f25ce9ad98d6047ff0dc105b5"}');
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 10), () {
       if(_getController.getUid() != '' && _getController.getKey() != '50UvFayZ2w5u3O9B') {
         Get.off(SamplePage());
       } else {
@@ -25,12 +25,10 @@ class SplashScreen extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: Get.height * 0.4),
-            SizedBox(
-              width: Get.width * 0.35,
-              child: Image.asset('assets/images/logo.png', fit: BoxFit.cover)
-            ),
+            Flexible(child: Container()),
+            SizedBox(width: Get.width * 0.35, child: Image.asset('assets/images/logo.png', fit: BoxFit.cover)),
             Flexible(child: Container()),
             CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
             SizedBox(height: Get.height * 0.04),
