@@ -408,6 +408,17 @@ class GetController extends GetxController {
   final TextEditingController noteProjectController = TextEditingController();
   final TextEditingController passwordProjectController = TextEditingController();
 
+  void clearControllers() {
+    nameController.clear();
+    phoneController.clear();
+    codeController.clear();
+    nameProjectController.clear();
+    switchNameProjectController.clear();
+    switchSerialProjectController.clear();
+    noteProjectController.clear();
+    passwordProjectController.clear();
+  }
+
 
   late TabController tabController;
 

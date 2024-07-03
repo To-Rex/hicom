@@ -324,11 +324,14 @@ class ApiController extends GetxController {
       if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 29999) {
         InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma\'lumotlar (Masalan, seriya raqam) noto\'g\'ri!'.tr, true, 1);
       }
-      else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['bound'] != null || jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['bound'] != []) {
+      else
+        if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['bound'].length != 0) {
         InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu loyiha boshqa foydalanuvchida mavjud'.tr, false, 3);
       } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0) {
         Get.back();
+        _getController.clearControllers();
         InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo\'shildi'.tr, false, 2);
+        getProjects();
       }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Xatolik yuz berdi'.tr, true, 3);
