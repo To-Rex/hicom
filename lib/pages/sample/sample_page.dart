@@ -355,20 +355,10 @@ class SamplePage extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {
-            //debugPrint(Tea.decryptTea('2n24x4rCjXpfnwgCrVP7FrJXSgrdxKI4z2Lx8vEdDR4qeN8Q7JzuNviHB/oSkAbxlXKuEcY+bBfe9XL5r6+5RGv5iwLuiP72RQl6KDDpaOGbvxXxh+Gr8lhfZ4GoiH/u32dFwwOuU8XOPmqJWkjlBoVNFvnc5npHDVuu7gMbB1r6JYV/xAhEgalm2GzvxM65tCEiHf3d', _getController.getKey()).toString());
-            /*_getController.addAllData(
-                '+998916848100',
-                'ivEWz4iyP2UZ348HRyF3JKNMuppBSGCNL3a2fnRJolJIpjQUEOlJH208aXBdQtfQ',
-                'a2tB333raC8y74dt',
-                '2025b25f25ce9ad98d6047ff0dc105b5'
-            );*/
-
             Get.to(AddProjectPage());
-            //Get.to(QRViewExample());
-            //debugPrint(Tea.decryptTea('3yZ7oI51a6NU/CeZ3afmDWOfrEsHfudjby20hOBkhsLfMB695GrzyYGyd14tqnSt9qQ4nJcoL4irK5L3PjD+dWj7Jo2cOkFmb+A+JUoRpZW/Oyv8rcFAxxtYn4NNBe3y53Yv0guyPbh9h6qElKF6tcSrRRHgIo/AW2ZGfg8h+yi8D/lZp8kosEbfLKSxzaSE+AxXqHr5Xoc22IX67eu5t2MG4ToxrF1Zh1klbTRVaAE6217TBRLk/QtTuNxZRGw7ya+DlAW9IUZh5h8XrQWvOUbfLKSxzaSE+AxXqHr5XocJ4FPPJEENvqkilh1Wipi77vp/PP6xPrWP4Czn1UWcpCLQ0MtkRsUilhUzICWV8iwx4F8O7oqOs6MJTo0tX1Oz9oDydwewEeI+BErZ6zv2x8xNZOi1n4GsTvn0qEzRRCXWoKtxb7uH+I4wm3+RjDMmx1ju+nPf4NR0euP5lbuBk+aPVvV+V4l3rKBq+wbM26KhB0LO563vnKdcooZ7+f/ZoMtbltXhGT8iqgeEZbTUUO4zjdxmpaoWICN2XDpg098TO2fbjHXzON8wHr3kavPJSLJc501hONuzOcWCnsKgJaSD3Gt4UOriU/vrzdAJRJI=', '6VarcjE2oJ7tWX8z'));
-            //InstrumentComponents().bottomCrackUser(context);
           },
-          child: const Icon(Icons.add),
-        ));
+          child: const Icon(Icons.add)
+        )
+    );
   }
 }

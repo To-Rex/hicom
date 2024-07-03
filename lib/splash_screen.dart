@@ -29,23 +29,12 @@ class SplashScreen extends StatelessWidget {
             SizedBox(height: Get.height * 0.4),
             SizedBox(
               width: Get.width * 0.35,
-              child: Image.asset(
-                'assets/images/logo.png',
-                fit: BoxFit.cover
-              )
+              child: Image.asset('assets/images/logo.png', fit: BoxFit.cover)
             ),
-            const Spacer(),
-            CircularProgressIndicator(
-              color: Theme.of(context).colorScheme.primary
-            ),
+            Flexible(child: Container()),
+            CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
             SizedBox(height: Get.height * 0.04),
-            Text('versiya'.tr,
-              style: TextStyle(
-                fontSize: Get.width * 0.035,
-                fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.onSurface
-              )
-            ),
+            Text('versiya'.tr, style: TextStyle(fontSize: Get.width * 0.035, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
             SizedBox(height: Get.height * 0.02),
           ]
         )
