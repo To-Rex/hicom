@@ -1,9 +1,9 @@
 class SwitchListModel {
   int? errCode;
   String? note;
-  List<Offline>? offline;
+  List<SwitchListModelOffline>? offline;
   String? name;
-  List<Online>? online;
+  List<SwitchListModelOnline>? online;
 
   SwitchListModel({this.errCode, this.note, this.offline, this.name, this.online});
 
@@ -11,16 +11,16 @@ class SwitchListModel {
     errCode = json['errcode'];
     note = json['note'];
     if (json['offline'] != null) {
-      offline = <Offline>[];
+      offline = <SwitchListModelOffline>[];
       json['offline'].forEach((v) {
-        offline!.add(Offline.fromJson(v));
+        offline!.add(SwitchListModelOffline.fromJson(v));
       });
     }
     name = json['name'];
     if (json['online'] != null) {
-      online = <Online>[];
+      online = <SwitchListModelOnline>[];
       json['online'].forEach((v) {
-        online!.add(Online.fromJson(v));
+        online!.add(SwitchListModelOnline.fromJson(v));
       });
     }
   }
@@ -40,16 +40,16 @@ class SwitchListModel {
   }
 }
 
-class Offline {
+class SwitchListModelOffline {
   String? note;
   String? v;
   String? name;
   String? sn;
   String? mac;
 
-  Offline({this.note, this.v, this.name, this.sn, this.mac});
+  SwitchListModelOffline({this.note, this.v, this.name, this.sn, this.mac});
 
-  Offline.fromJson(Map<String, dynamic> json) {
+  SwitchListModelOffline.fromJson(Map<String, dynamic> json) {
     note = json['note'];
     v = json['V'];
     name = json['name'];
@@ -68,7 +68,7 @@ class Offline {
   }
 }
 
-class Online {
+class SwitchListModelOnline {
   String? note;
   String? activeState;
   List<int>? snr;
@@ -79,9 +79,9 @@ class Online {
   String? sn;
   String? mac;
 
-  Online({this.note, this.activeState, this.snr, this.v, this.pw, this.link, this.name, this.sn, this.mac});
+  SwitchListModelOnline({this.note, this.activeState, this.snr, this.v, this.pw, this.link, this.name, this.sn, this.mac});
 
-  Online.fromJson(Map<String, dynamic> json) {
+  SwitchListModelOnline.fromJson(Map<String, dynamic> json) {
     note = json['note'];
     activeState = json['Active_state'];
     snr = json['snr'].cast<int>();

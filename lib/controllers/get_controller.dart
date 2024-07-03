@@ -176,9 +176,9 @@ class GetController extends GetxController {
   var searchProjectModel = ProjectModel().obs;
   var getUsersModel = GetUsersModel().obs;
   var switchListModel = SwitchListModel().obs;
+  var searchSwitchListModel = SwitchListModel().obs;
   var settingsInfoModel = SettingsInfo().obs;
   var switchDetailModel = SwitchDetailModel().obs;
-
   void changeSwitchDetailModel(SwitchDetailModel switchDetailModels) {switchDetailModel.value = switchDetailModels;}
 
   void clearSwitchDetailModel() {switchDetailModel.value = SwitchDetailModel();}
@@ -608,6 +608,19 @@ class GetController extends GetxController {
     List<ProjectModelAdmin>? filteredJoin = projectModel.value.join?.where((element) => element.name?.toLowerCase().contains(lowerCaseValue) ?? false).toList();
     if (!listEquals(searchProjectModel.value.admin, filteredAdmin) || !listEquals(searchProjectModel.value.join, filteredJoin)) {
       searchProjectModel.value = ProjectModel(admin: filteredAdmin, join: filteredJoin);
+    }
+  }
+
+  void searchSwitch(String value) {
+    if (value.isEmpty) {
+      switchListModel.value = switchListModel.value;
+      return;
+    }
+    String lowerCaseValue = value.toLowerCase();
+    List<SwitchListModelOnline>? filteredAdmin = switchListModel.value.online?.where((element) => element.name?.toLowerCase().contains(lowerCaseValue) ?? false).toList();
+    List<SwitchListModelOffline>? filteredJoin = switchListModel.value.offline?.where((element) => element.name?.toLowerCase().contains(lowerCaseValue) ?? false).toList();
+    if (!listEquals(switchListModel.value.online, filteredAdmin) || !listEquals(switchListModel.value.offline, filteredJoin)) {
+      switchListModel.value = SwitchListModel(offline: filteredJoin, online: filteredAdmin);
     }
   }
 
