@@ -65,85 +65,85 @@ class SwitchList extends StatelessWidget {
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return InkWell(
-                                  onTap: () => {
-                                    Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))
-                                  },
-                                  child: Container(
+                                  overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                  onTap: () => {Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))},
+                                  child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
-                                      padding: EdgeInsets.all(Get.height * 0.015),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Theme.of(context).colorScheme.surface,
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                              children: [
-                                                Text(_getController.switchListModel.value.offline![index].name.toString()),
-                                                const Spacer(),
-                                                Icon(TablerIcons.circle_filled, color: Theme.of(context).colorScheme.error, size: Get.width * 0.025),
-                                                PopupMenuButton<String>(
-                                                    icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
-                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                                    color: Theme.of(context).colorScheme.surface,
-                                                    surfaceTintColor: Colors.transparent,
-                                                    elevation: 4,
-                                                    onSelected: (String value) {
-                                                      switch (value) {
-                                                        case 'edit':
-                                                          _getController.nameProjectController.text = _getController.switchListModel.value.offline![index].name.toString();
-                                                          _getController.noteProjectController.text = _getController.switchListModel.value.offline![index].note.toString();
-                                                          InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.offline![index].sn, index,false);
-                                                          break;
-                                                        case 'delete':
-                                                          InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.offline![index].sn);
-                                                          break;
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                      elevation: 5,
+                                      color: Theme.of(context).colorScheme.surface,
+                                      child: Padding(
+                                          padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, bottom: Get.height * 0.01),
+                                          child: Column(
+                                          children: [
+                                            Row(
+                                                children: [
+                                                  Text(_getController.switchListModel.value.offline![index].name.toString()),
+                                                  const Spacer(),
+                                                  Icon(TablerIcons.circle_filled, color: Theme.of(context).colorScheme.error, size: Get.width * 0.025),
+                                                  PopupMenuButton<String>(
+                                                      icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
+                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                                      color: Theme.of(context).colorScheme.surface,
+                                                      surfaceTintColor: Colors.transparent,
+                                                      elevation: 4,
+                                                      onSelected: (String value) {
+                                                        switch (value) {
+                                                          case 'edit':
+                                                            _getController.nameProjectController.text = _getController.switchListModel.value.offline![index].name.toString();
+                                                            _getController.noteProjectController.text = _getController.switchListModel.value.offline![index].note.toString();
+                                                            InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.offline![index].sn, index,false);
+                                                            break;
+                                                          case 'delete':
+                                                            InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.offline![index].sn);
+                                                            break;
+                                                        }
+                                                      },
+                                                      itemBuilder: (BuildContext context) {
+                                                        return [
+                                                          PopupMenuItem(
+                                                              height: Get.height * 0.03,
+                                                              value: 'edit',
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(Icons.edit, size: Get.width * 0.04),
+                                                                  SizedBox(width: Get.width * 0.015),
+                                                                  Text('Tahrirlash'.tr)
+                                                                ],
+                                                              )
+                                                          ),
+                                                          const PopupMenuItem(
+                                                            height: 0,
+                                                            padding: EdgeInsets.all(0),
+                                                            value: 'watcher',
+                                                            child: Divider(),
+                                                          ),
+                                                          PopupMenuItem(
+                                                              height: Get.height * 0.03,
+                                                              value: 'delete',
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                                  SizedBox(width: Get.width * 0.015),
+                                                                  Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
+                                                                ],
+                                                              )
+                                                          )
+                                                        ];
                                                       }
-                                                    },
-                                                    itemBuilder: (BuildContext context) {
-                                                      return [
-                                                        PopupMenuItem(
-                                                            height: Get.height * 0.03,
-                                                            value: 'edit',
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(Icons.edit, size: Get.width * 0.04),
-                                                                SizedBox(width: Get.width * 0.015),
-                                                                Text('Tahrirlash'.tr)
-                                                              ],
-                                                            )
-                                                        ),
-                                                        const PopupMenuItem(
-                                                          height: 0,
-                                                          padding: EdgeInsets.all(0),
-                                                          value: 'watcher',
-                                                          child: Divider(),
-                                                        ),
-                                                        PopupMenuItem(
-                                                            height: Get.height * 0.03,
-                                                            value: 'delete',
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
-                                                                SizedBox(width: Get.width * 0.015),
-                                                                Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
-                                                              ],
-                                                            )
-                                                        )
-                                                      ];
-                                                    }
-                                                )
-                                              ]
-                                          ),
-                                          PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),),
-                                          Row(
-                                            children: [
-                                              Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
-                                              const Spacer(),
-                                              Text(_getController.maskString(_getController.switchListModel.value.offline![index].sn.toString())),
-                                            ],
-                                          )
-                                        ],
+                                                  )
+                                                ]
+                                            ),
+                                            PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),),
+                                            Row(
+                                              children: [
+                                                Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
+                                                const Spacer(),
+                                                Text(_getController.maskString(_getController.switchListModel.value.offline![index].sn.toString())),
+                                              ],
+                                            )
+                                          ],
+                                        )
                                       )
                                   )
                               );
@@ -154,16 +154,18 @@ class SwitchList extends StatelessWidget {
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return InkWell(
-                                  onTap: () => {
-                                    Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments)),
-                                  },
-                                  child: Container(
+                                  overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                  onTap: () => {Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))},
+                                  child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
-                                      padding: EdgeInsets.all(Get.height * 0.015),
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.surface),
-                                      child: Column(
-                                          children: [
-                                            Row(
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                      elevation: 5,
+                                      color: Theme.of(context).colorScheme.surface,
+                                      child: Padding(
+                                          padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, bottom: Get.height * 0.01),
+                                          child: Column(
+                                              children: [
+                                                Row(
                                                 children: [
                                                   Text(_getController.switchListModel.value.online![index].name.toString(), style: TextStyle(fontSize:Get.textTheme.bodyMedium!.fontSize)),
                                                   const Spacer(),
@@ -221,15 +223,16 @@ class SwitchList extends StatelessWidget {
                                                   )
                                                 ]
                                             ),
-                                            PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
-                                            Row(
+                                                PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
+                                                Row(
                                                 children: [
                                                   Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
                                                   const Spacer(),
                                                   Text(_getController.maskString(_getController.switchListModel.value.online![index].sn.toString(),),style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
                                                 ]
                                             )
-                                          ]
+                                              ]
+                                          )
                                       )
                                   )
                               );
