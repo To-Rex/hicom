@@ -248,7 +248,7 @@ class SamplePage extends StatelessWidget {
                                                                 color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                             )
                                                         ),
-                                                        Text('${'Xato'.tr} ${_getController.projectModel.value.join![i].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                        Text('${'Xato'.tr} ${_getController.projectModel.value.join![i].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
                                                       ]
                                                   )
                                                 ]
