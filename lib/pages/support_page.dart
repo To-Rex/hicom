@@ -27,53 +27,58 @@ class SupportPage extends StatelessWidget {
         children: [
           SizedBox(height: Get.height * 0.02),
           if (_getController.settingsInfoModel.value.settings != null)
-          Container(
-              width: Get.width,
-              margin: EdgeInsets.symmetric(horizontal: Get.height * 0.015, vertical: Get.height * 0.01),
-              padding: EdgeInsets.all(Get.height * 0.01),
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))]),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (_getController.getSettings('ContactPhone') != '')
-                      SettingsSupportItem(
-                          icon: Icon(TablerIcons.device_mobile, color: AppColors.primaryColor, size: Get.height * 0.04),
-                          title: 'Bog’lanish'.tr,
-                          onTap: () {launchUrl(Uri.parse('tel:${_getController.getSettings('ContactPhone')}'));},
-                          color: Theme.of(context).colorScheme.onSurface,
-                          isNightMode: false,
-                          isLanguage: false,
-                          subTitle: _getController.getSettings('ContactPhone')
-                      ),
-                    if (_getController.getSettings('ContactPhone') != '')
-                      const Divider(),
-                    if (_getController.getSettings('ContactSite') != '')
-                      SettingsSupportItem(
-                      icon: Icon(TablerIcons.app_window, color: AppColors.primaryColor, size: Get.height * 0.04),
-                      title: 'Web sahifa'.tr,
-                      onTap: () {
-                        launchUrl(Uri.parse(_getController.getSettings('ContactSite')));
-                      },
-                      color: Theme.of(context).colorScheme.onSurface,
-                      isNightMode: false,
-                      isLanguage: false,
-                      subTitle: _getController.getSettings('ContactSite')
-                    ),
-                    if (_getController.getSettings('ContactSite') != '')
-                      const Divider(),
-                    if (_getController.getSettings('ContactAddress') != '')
-                      SettingsSupportItem(
-                      icon: Icon(TablerIcons.map_pin, color: AppColors.primaryColor, size: Get.height * 0.04),
-                      title: 'Manzil'.tr,
-                      onTap: () {
-                        launchUrl(Uri.parse('https://www.google.com/maps/place/${_getController.getSettings('ContactAddress')}'));
-                      },
-                      color: Theme.of(context).colorScheme.onSurface,
-                      isNightMode: false,
-                      isLanguage: false,
-                      subTitle: _getController.getSettings('ContactAddress')
-                    ),
-                  ])),
+            Card(
+                color: Theme.of(context).colorScheme.surface,
+                margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                elevation: 5,
+                child: Padding(
+                    padding: EdgeInsets.only(left: Get.width * 0.02, right: Get.width * 0.02, top: Get.height * 0.01, bottom: Get.height * 0.01),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (_getController.getSettings('ContactPhone') != '')
+                            SettingsSupportItem(
+                                icon: Icon(TablerIcons.device_mobile, color: AppColors.primaryColor, size: Get.height * 0.04),
+                                title: 'Bog’lanish'.tr,
+                                onTap: () {launchUrl(Uri.parse('tel:${_getController.getSettings('ContactPhone')}'));},
+                                color: Theme.of(context).colorScheme.onSurface,
+                                isNightMode: false,
+                                isLanguage: false,
+                                subTitle: _getController.getSettings('ContactPhone')
+                            ),
+                          if (_getController.getSettings('ContactPhone') != '')
+                            const Divider(),
+                          if (_getController.getSettings('ContactSite') != '')
+                            SettingsSupportItem(
+                                icon: Icon(TablerIcons.app_window, color: AppColors.primaryColor, size: Get.height * 0.04),
+                                title: 'Web sahifa'.tr,
+                                onTap: () {
+                                  launchUrl(Uri.parse(_getController.getSettings('ContactSite')));
+                                },
+                                color: Theme.of(context).colorScheme.onSurface,
+                                isNightMode: false,
+                                isLanguage: false,
+                                subTitle: _getController.getSettings('ContactSite')
+                            ),
+                          if (_getController.getSettings('ContactSite') != '')
+                            const Divider(),
+                          if (_getController.getSettings('ContactAddress') != '')
+                            SettingsSupportItem(
+                                icon: Icon(TablerIcons.map_pin, color: AppColors.primaryColor, size: Get.height * 0.04),
+                                title: 'Manzil'.tr,
+                                onTap: () {
+                                  launchUrl(Uri.parse('https://www.google.com/maps/place/${_getController.getSettings('ContactAddress')}'));
+                                },
+                                color: Theme.of(context).colorScheme.onSurface,
+                                isNightMode: false,
+                                isLanguage: false,
+                                subTitle: _getController.getSettings('ContactAddress')
+                            )
+                        ]
+                    )
+                )
+            ),
           const Spacer(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,

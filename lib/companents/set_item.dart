@@ -19,6 +19,7 @@ class SettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      overlayColor: const WidgetStatePropertyAll(AppColors.blackTransparent),
       child: Row(
         children: [
           icon,

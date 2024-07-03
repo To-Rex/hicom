@@ -28,9 +28,7 @@ class UserPage extends StatelessWidget {
     {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
   ];
 
-  updateLanguage(Locale locale){
-    Get.updateLocale(locale);
-  }
+  updateLanguage(Locale locale){Get.updateLocale(locale);}
 
   bottomBuildLanguageDialog(BuildContext context){
     Get.bottomSheet(
@@ -168,16 +166,13 @@ class UserPage extends StatelessWidget {
                 child: Obx(() => Column(
                     children: [
                       SizedBox(height: Get.height * 0.02),
-                      Container(
-                          width: Get.width,
-                          margin: EdgeInsets.symmetric(horizontal: Get.height * 0.015, vertical: Get.height * 0.01),
+                      Card(
+                        margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        elevation: 5,
+                        color: Theme.of(context).colorScheme.surface,
+                        child: Padding(
                           padding: EdgeInsets.all(Get.height * 0.02),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.surface,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))
-                              ]),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -194,7 +189,6 @@ class UserPage extends StatelessWidget {
                                         ],
                                       ),
                                       const Spacer(),
-                                      //Icon(Icons.account_circle, color: AppColors.primaryColor, size: Get.height * 0.08),
                                       SvgPicture.asset('assets/svg_assets/user.svg', width: Get.height * 0.08, height: Get.height * 0.08)
                                     ]
                                 ),
@@ -207,6 +201,7 @@ class UserPage extends StatelessWidget {
                                     child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: Get.height * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.surface))),
                                 SizedBox(height: Get.height * 0.01),
                                 const Divider(),
+                                SizedBox(height: Get.height * 0.01),
                                 InkWell(
                                   overlayColor: MaterialStateProperty.all(Colors.transparent),
                                   child: Row(
@@ -226,79 +221,84 @@ class UserPage extends StatelessWidget {
                                     ApiController().deleteUser();
                                   },
                                 )
-                              ])),
+                              ])
+                        )
+                      ),
                       SizedBox(height: Get.height * 0.02),
-                      Container(
-                          width: Get.width,
-                          margin: EdgeInsets.symmetric(horizontal: Get.height * 0.015, vertical: Get.height * 0.01),
-                          padding: EdgeInsets.all(Get.height * 0.01),
-                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), spreadRadius: 2, blurRadius: 2, offset: const Offset(1, 2))]),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SettingsItem(
-                                    icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                    title: 'Dastur mavzusi'.tr,
-                                    onTap: () {
-                                      AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
-                                    },
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                    isNightMode: true,
-                                    isLanguage: false
-                                ),
-                                const Divider(),
-                                SettingsItem(
-                                    icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                    title: 'Dastur tili'.tr,
-                                    onTap: () {bottomBuildLanguageDialog(context);},
-                                    color: Theme.of(context).colorScheme.onSurface, isNightMode: false,
-                                    isLanguage: true
-                                ),
-                                const Divider(),
-                                SettingsItem(
-                                    icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                    title: 'Foydalanish yo\'riqnomasi'.tr,
-                                    onTap: () {
-                                      Get.to(() => InstructionPage(), transition: Transition.fadeIn);
-                                    },
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                    isNightMode: false,
-                                    isLanguage: false
-                                ),
-                                const Divider(),
-                                SettingsItem(
-                                    icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                    title: 'Qo\'llab quvvatlash'.tr,
-                                    onTap: () {
-                                      Get.to(() => SupportPage(), transition: Transition.fadeIn);
-                                    },
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                    isNightMode: false,
-                                    isLanguage: false
-                                ),
-                                const Divider(),
-                                SettingsItem(
-                                    icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                    title: 'Dasturni baholash'.tr,
-                                    onTap: () {
-                                      showRateDialog(context);
-                                    },
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                    isNightMode: false,
-                                    isLanguage: false
-                                ),
-                                const Divider(),
-                                SettingsItem(
-                                    icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                    title: 'Dasturni ulashish'.tr,
-                                    onTap: () {
-                                      ShareLink.shareUri(Uri.parse('http://play.google.com/store/apps/details?id=com.uz.hicom'), subject: 'Hicom.uz');
-                                    },
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                    isNightMode: false,
-                                    isLanguage: false
-                                )
-                              ]
+                      Card(
+                          margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          elevation: 5,
+                          color: Theme.of(context).colorScheme.surface,
+                          child: Padding(
+                            padding: EdgeInsets.all(Get.height * 0.02),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SettingsItem(
+                                      icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
+                                      title: 'Dastur mavzusi'.tr,
+                                      onTap: () {
+                                        AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
+                                      },
+                                      color: Theme.of(context).colorScheme.onSurface,
+                                      isNightMode: true,
+                                      isLanguage: false
+                                  ),
+                                  const Divider(),
+                                  SettingsItem(
+                                      icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
+                                      title: 'Dastur tili'.tr,
+                                      onTap: () {bottomBuildLanguageDialog(context);},
+                                      color: Theme.of(context).colorScheme.onSurface, isNightMode: false,
+                                      isLanguage: true
+                                  ),
+                                  const Divider(),
+                                  SettingsItem(
+                                      icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
+                                      title: 'Foydalanish yo\'riqnomasi'.tr,
+                                      onTap: () {
+                                        Get.to(() => InstructionPage(), transition: Transition.fadeIn);
+                                      },
+                                      color: Theme.of(context).colorScheme.onSurface,
+                                      isNightMode: false,
+                                      isLanguage: false
+                                  ),
+                                  const Divider(),
+                                  SettingsItem(
+                                      icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
+                                      title: 'Qo\'llab quvvatlash'.tr,
+                                      onTap: () {
+                                        Get.to(() => SupportPage(), transition: Transition.fadeIn);
+                                      },
+                                      color: Theme.of(context).colorScheme.onSurface,
+                                      isNightMode: false,
+                                      isLanguage: false
+                                  ),
+                                  const Divider(),
+                                  SettingsItem(
+                                      icon: Icon(TablerIcons.star, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
+                                      title: 'Dasturni baholash'.tr,
+                                      onTap: () {
+                                        showRateDialog(context);
+                                      },
+                                      color: Theme.of(context).colorScheme.onSurface,
+                                      isNightMode: false,
+                                      isLanguage: false
+                                  ),
+                                  const Divider(),
+                                  SettingsItem(
+                                      icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
+                                      title: 'Dasturni ulashish'.tr,
+                                      onTap: () {
+                                        ShareLink.shareUri(Uri.parse('http://play.google.com/store/apps/details?id=com.uz.hicom'), subject: 'Hicom.uz');
+                                      },
+                                      color: Theme.of(context).colorScheme.onSurface,
+                                      isNightMode: false,
+                                      isLanguage: false
+                                  )
+                                ]
+                            )
                           )
                       )
                     ]
