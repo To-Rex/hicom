@@ -654,4 +654,24 @@ class InstrumentComponents {
     );
   }
 
+  void loadingDialog(BuildContext context) {
+    Get.dialog(
+        AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          title: Text('Kuting'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+          content: SizedBox(
+            width: Get.width,
+            height: Get.height* 0.055,
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(color: Theme.of(context).colorScheme.primary,)
+                ]
+            )
+          )
+        )
+    );
+  }
+
 }

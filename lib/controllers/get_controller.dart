@@ -6,7 +6,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/models/settings_info.dart';
-import 'package:intl_phone_field/countries.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../models/districts_model.dart';
@@ -29,13 +28,23 @@ class GetController extends GetxController {
   RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
   var responseText = ''.obs;
   var whileApi = false.obs;
-
+  var onLoading = false.obs;
+  var onLoadingSwitch = false.obs;
 
   final qrKey = GlobalKey(debugLabel: 'QR');
   var result = Rxn<Barcode>();
   QRViewController? controller;
   var isLampOn = false.obs;
   var cameraFacing = CameraFacing.back.obs;
+
+  void onLoad() {onLoading.value = true;}
+
+  void onLoaded() {onLoading.value = false;}
+
+  void onLoadSwitch() {onLoadingSwitch.value = true;}
+
+  void onLoadedSwitch() {onLoadingSwitch.value = false;}
+
 
   void onQRViewCreated(QRViewController qrController) {
     controller = qrController;
