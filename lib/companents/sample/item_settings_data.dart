@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -75,7 +73,11 @@ class ItemSettingsData extends StatelessWidget {
                   child: Center(child: CupertinoSwitch(
                       value:port != null && phYc! <= 1 ? true : false,
                       onChanged: (value) {
-                        ApiController().portExtendSwitch(projectId!, serialNumber!, index!, value, version!);
+                        if (value == false) {
+                          ApiController().portExtendSwitchOff(projectId!, serialNumber!, index!, value, version!);
+                        } else {
+                          ApiController().portExtendSwitchOn(projectId!, serialNumber!, index!, value, version!);
+                        }
                       },
                       activeColor: AppColors.green,
                       trackColor: AppColors.grey.withOpacity(0.5),

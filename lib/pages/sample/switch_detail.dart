@@ -25,7 +25,7 @@ class SwitchDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _getController.whileApi.value = true;
-    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),true);
+    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),false);
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
     _getController.tabController.animateTo(1);
     return PopScope(
@@ -82,7 +82,10 @@ class SwitchDetailPage extends StatelessWidget {
                               focusColor: AppColors.green,
                               thumbColor: Theme.of(context).colorScheme.surface,
                               applyTheme: true,
-                              onChanged: (value) {}, value: false
+                              onChanged: (value) {
+                                //getSwF
+                                ApiController().getSwF(pidId!, sn!);
+                              }, value: false
                           ),
                         ]
                     )
