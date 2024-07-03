@@ -212,7 +212,12 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      await renameProjectsNote(pidId, note);
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 20000) {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq yo\'q'.tr, true, 3);
+      }else {
+        await renameProjectsNote(pidId, note);
+      }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
@@ -226,7 +231,12 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      getProjects();
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 20000) {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Sizda bunday huquq yo\'q'.tr, true, 3);
+      } else {
+        getProjects();
+      }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
@@ -239,12 +249,18 @@ class ApiController extends GetxController {
     );
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body,_getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      try {
-        _getController.getUsersModel(GetUsersModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
-      }catch(e){
-        debugPrint(e.toString());
-        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 20000) {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq yo\'q'.tr, true, 3);
+      }else {
+        try {
+          _getController.getUsersModel(GetUsersModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(),_getController.getKey()))));
+        }catch(e){
+          debugPrint(e.toString());
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+        }
       }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
@@ -284,7 +300,11 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      getProjects();
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0) {
+        getProjects();
+      } else {
+        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Xatolik yuz berdi'.tr, true, 3);
+      }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
@@ -304,7 +324,6 @@ class ApiController extends GetxController {
       if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 29999) {
         InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma\'lumotlar (Masalan, seriya raqam) noto\'g\'ri!'.tr, true, 1);
       }
-      //{"errcode":0,"noact":[],"noauth":[],"bound":["HIM42ECM11234700489QP94BV"],"noonline":[],"noexit":[]}
       else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['bound'] != null || jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['bound'] != []) {
         InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu loyiha boshqa foydalanuvchida mavjud'.tr, false, 3);
       } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0) {
