@@ -406,9 +406,16 @@ class ApiController extends GetxController {
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      Get.back();
-      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
-      getSwitchList(pidId);
+      if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 29999) {
+        InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma\'lumotlar (Masalan, seriya raqam) noto\'g\'ri!'.tr, true, 1);
+      } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0) {
+        Get.back();
+        _getController.clearControllers();
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo\'shildi'.tr, false, 2);
+        getSwitchList(pidId);
+      } else {
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
