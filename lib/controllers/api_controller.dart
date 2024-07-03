@@ -291,7 +291,10 @@ class ApiController extends GetxController {
   }
 
   Future<void> addProjects() async {
-    var json = Tea.encryptTea(jsonEncode({"sna": _getController.switchSerialProjectController.text, "na": _getController.switchNameProjectController.text, "pda": _getController.passwordProjectController.text, "name":_getController.nameProjectController.text, "note": "", "auto": 0}),_getController.getKey());
+    var json = Tea.encryptTea(jsonEncode({'sna': [_getController.switchSerialProjectController.text], 'na': [_getController.switchNameProjectController.text], 'pda': [_getController.passwordProjectController.text], 'name':_getController.nameProjectController.text, 'note':'', 'auto': 0}),_getController.getKey());
+    debugPrint(jsonDecode(Tea.decryptTea(json.toString(),_getController.getKey())).toString());
+    debugPrint(Tea.decryptTea(json.toString(),_getController.getKey()).toString());
+    debugPrint('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
     );
@@ -300,6 +303,13 @@ class ApiController extends GetxController {
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 29999) {
         InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma\'lumotlar (Masalan, seriya raqam) noto\'g\'ri!'.tr, true, 1);
+      }
+      //{"errcode":0,"noact":[],"noauth":[],"bound":["HIM42ECM11234700489QP94BV"],"noonline":[],"noexit":[]}
+      else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['bound'] != null || jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['bound'] != []) {
+        InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu loyiha boshqa foydalanuvchida mavjud'.tr, false, 3);
+      } else if (jsonDecode(Tea.decryptTea(response.body,_getController.getKey()).toString())['errcode'] == 0) {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo\'shildi'.tr, false, 2);
       }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Xatolik yuz berdi'.tr, true, 3);
