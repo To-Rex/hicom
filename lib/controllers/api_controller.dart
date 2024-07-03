@@ -339,7 +339,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSwitchList(pidId) async {
-    debugPrint(pidId);
+    _getController.clearSwitchList();
     var json = Tea.encryptTea(jsonEncode({"pid": pidId}),_getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swmng', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
       headers: headers
@@ -422,6 +422,9 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSwitchDetail(String pidId, String sn,bool realTime) async {
+    if (!realTime) {
+      _getController.clearSwitchDetailModel();
+    }
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn,'isJoin':"1"}),_getController.getKey());
     debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),

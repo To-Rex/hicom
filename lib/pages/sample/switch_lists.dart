@@ -66,7 +66,7 @@ class SwitchList extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return InkWell(
                                   overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                  onTap: () => {Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))},
+                                  onTap: () => {_getController.clearSwitchDetailModel(), Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))},
                                   child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -155,7 +155,7 @@ class SwitchList extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return InkWell(
                                   overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                  onTap: () => {Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))},
+                                  onTap: () => {_getController.clearSwitchDetailModel(), Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))},
                                   child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
