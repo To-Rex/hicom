@@ -92,7 +92,8 @@ class SamplePage extends StatelessWidget {
                                             children: [
                                               SizedBox(height: Get.height * 0.01),
                                               Text(_getController.projectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                              Text(_getController.projectModel.value.admin![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                              Text(_getController.projectModel.value.admin![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.projectModel.value.admin![i].note.toString(),
+                                                  style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                               Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -228,7 +229,7 @@ class SamplePage extends StatelessWidget {
                                               children: [
                                                 SizedBox(height: Get.height * 0.01),
                                                 Text(_getController.projectModel.value.join![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                                Text(_getController.projectModel.value.join![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                Text(_getController.projectModel.value.join![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.projectModel.value.join![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                 Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
