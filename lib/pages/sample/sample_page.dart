@@ -219,16 +219,7 @@ class SamplePage extends StatelessWidget {
                                           children: [
                                             Container(
                                                 margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
-                                                child: Stack(
-                                                    children: [
-                                                      SvgPicture.asset('assets/svg_assets/folde.svg', width: Get.width * 0.06, height: Get.height * 0.06),
-                                                      Positioned(
-                                                        top: Get.height * 0.026,
-                                                        left: Get.width * 0.056,
-                                                        child: SvgPicture.asset('assets/svg_assets/user.svg', width: Get.width * 0.03, height: Get.height * 0.03),
-                                                      )
-                                                    ]
-                                                )
+                                                child: SvgPicture.asset('assets/svg_assets/folde.svg', width: Get.width * 0.06, height: Get.height * 0.06)
                                             ),
                                             Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
