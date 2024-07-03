@@ -59,9 +59,8 @@ class SwitchList extends StatelessWidget {
                                         onSelected: (String value) {
                                           switch (value) {
                                             case 'edit':
-                                              _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
-                                              _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
-                                              //bottomSwitchEditName(pidId,Index)
+                                              _getController.nameProjectController.text = _getController.switchListModel.value.offline![index].name.toString();
+                                              _getController.noteProjectController.text = _getController.switchListModel.value.offline![index].note.toString();
                                               InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.offline![index].sn, index,false);
                                               break;
                                             case 'delete':
@@ -147,9 +146,8 @@ class SwitchList extends StatelessWidget {
                                           onSelected: (String value) {
                                             switch (value) {
                                               case 'edit':
-                                                _getController.nameProjectController.text = _getController.projectModel.value.admin![index].name.toString();
-                                                _getController.noteProjectController.text = _getController.projectModel.value.admin![index].note.toString();
-                                                //bottomSwitchEditName(pidId,Index)
+                                                _getController.nameProjectController.text = _getController.switchListModel.value.online![index].name.toString();
+                                                _getController.noteProjectController.text = _getController.switchListModel.value.online![index].note.toString();
                                                 InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.online![index].sn, index,false);
                                                 break;
                                               case 'delete':
