@@ -41,7 +41,9 @@ class SamplePage extends StatelessWidget {
             centerTitle: true,
             actions: [
               Obx(() => _getController.isSearch.value
-                  ? SearchFields(onChanged: (String value) {})
+                  ? SearchFields(onChanged: (String value) {
+                _getController.searchProject(value);
+              })
                   : IconButton(icon: Icon(Icons.search, size: Get.height * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
               )
             ]),
@@ -56,16 +58,16 @@ class SamplePage extends StatelessWidget {
             controller: refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Obx(() => _getController.projectModel.value.admin != null || _getController.projectModel.value.join != null
+                child: Obx(() => _getController.searchProjectModel.value.admin != null || _getController.searchProjectModel.value.join != null
                     ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (_getController.projectModel.value.admin!.isNotEmpty)
-                        for(var i = 0; i < _getController.projectModel.value.admin!.length; i++)
+                      if (_getController.searchProjectModel.value.admin!.isNotEmpty)
+                        for(var i = 0; i < _getController.searchProjectModel.value.admin!.length; i++)
                           InkWell(
                               onTap: () => {
-                                ApiController().getSwitchList(_getController.projectModel.value.admin![i].pid),
-                                Get.to(SwitchList(name: _getController.projectModel.value.admin![i].name.toString()), arguments: _getController.projectModel.value.admin![i].pid)
+                                ApiController().getSwitchList(_getController.searchProjectModel.value.admin![i].pid),
+                                Get.to(SwitchList(name: _getController.searchProjectModel.value.admin![i].name.toString()), arguments: _getController.searchProjectModel.value.admin![i].pid)
                               },
                               child: Card(
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -92,21 +94,21 @@ class SamplePage extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(height: Get.height * 0.01),
-                                              Text(_getController.projectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                              Text(_getController.projectModel.value.admin![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.projectModel.value.admin![i].note.toString(),
+                                              Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                              Text(_getController.searchProjectModel.value.admin![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.searchProjectModel.value.admin![i].note.toString(),
                                                   style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                               Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
-                                                    Text('${'Jami'.tr} ${_getController.projectModel.value.admin![i].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                    Text('${'Jami'.tr} ${_getController.searchProjectModel.value.admin![i].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                     Container(
                                                         width: 2,
                                                         height: Get.height * 0.025,
                                                         margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
                                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                     ),
-                                                    Text('${'Yoniq'.tr} ${_getController.projectModel.value.admin![i].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                    Text('${'Yoniq'.tr} ${_getController.searchProjectModel.value.admin![i].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                     Container(
                                                         width: 2,
                                                         height: Get.height * 0.025,
@@ -116,7 +118,7 @@ class SamplePage extends StatelessWidget {
                                                             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                         )
                                                     ),
-                                                    Text('${'Xato'.tr} ${_getController.projectModel.value.admin![i].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                    Text('${'Xato'.tr} ${_getController.searchProjectModel.value.admin![i].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                   ]
                                               )
                                             ]
@@ -131,19 +133,19 @@ class SamplePage extends StatelessWidget {
                                             onSelected: (String value) {
                                               switch (value) {
                                                 case 'edit':
-                                                  _getController.nameProjectController.text = _getController.projectModel.value.admin![i].name.toString();
-                                                  _getController.noteProjectController.text = _getController.projectModel.value.admin![i].note.toString();
-                                                  InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.admin![i].pid);
+                                                  _getController.nameProjectController.text = _getController.searchProjectModel.value.admin![i].name.toString();
+                                                  _getController.noteProjectController.text = _getController.searchProjectModel.value.admin![i].note.toString();
+                                                  InstrumentComponents().bottomSheetEditName(context,_getController.searchProjectModel.value.admin![i].pid);
                                                   break;
                                                 case 'watchers':
-                                                  InstrumentComponents().bottomSheetUsers(context, _getController.projectModel.value.admin![i].pid);
-                                                  ApiController().getProjectsUsers(_getController.projectModel.value.admin![i].pid);
+                                                  InstrumentComponents().bottomSheetUsers(context, _getController.searchProjectModel.value.admin![i].pid);
+                                                  ApiController().getProjectsUsers(_getController.searchProjectModel.value.admin![i].pid);
                                                   break;
                                                 case 'share':
-                                                  InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.admin![i].pid);
+                                                  InstrumentComponents().bottomSheetShare(context, _getController.searchProjectModel.value.admin![i].pid);
                                                   break;
                                                 case 'delete':
-                                                  InstrumentComponents().deleteProject(context, _getController.projectModel.value.admin![i].pid);
+                                                  InstrumentComponents().deleteProject(context, _getController.searchProjectModel.value.admin![i].pid);
                                                   break;
                                               }
                                             },
@@ -205,12 +207,12 @@ class SamplePage extends StatelessWidget {
                               )
 
                           ),
-                      if (_getController.projectModel.value.join!.isNotEmpty)
-                        for(var i = 0; i < _getController.projectModel.value.join!.length; i++)
+                      if (_getController.searchProjectModel.value.join != null && _getController.searchProjectModel.value.join!.isNotEmpty)
+                        for(var i = 0; i < _getController.searchProjectModel.value.join!.length; i++)
                           InkWell(
                               onTap: () => {
-                                ApiController().getSwitchList(_getController.projectModel.value.join![i].pid),
-                                Get.to(SwitchList(name: _getController.projectModel.value.join![i].name.toString()), arguments: _getController.projectModel.value.join![i].pid)
+                                ApiController().getSwitchList(_getController.searchProjectModel.value.join![i].pid),
+                                Get.to(SwitchList(name: _getController.searchProjectModel.value.join![i].name.toString()), arguments: _getController.searchProjectModel.value.join![i].pid)
                               },
                               child: Card(
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -229,20 +231,20 @@ class SamplePage extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 SizedBox(height: Get.height * 0.01),
-                                                Text(_getController.projectModel.value.join![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                                Text(_getController.projectModel.value.join![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.projectModel.value.join![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                Text(_getController.searchProjectModel.value.join![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                                Text(_getController.searchProjectModel.value.join![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.searchProjectModel.value.join![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                 Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      Text('${'Jami'.tr} ${_getController.projectModel.value.join![i].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                      Text('${'Jami'.tr} ${_getController.searchProjectModel.value.join![i].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                       Container(
                                                           width: 2,
                                                           height: Get.height * 0.025,
                                                           margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.01),
                                                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                       ),
-                                                      Text('${'Yoniq'.tr} ${_getController.projectModel.value.join![i].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                      Text('${'Yoniq'.tr} ${_getController.searchProjectModel.value.join![i].lsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                       Container(
                                                           width: 2,
                                                           height: Get.height * 0.025,
@@ -252,7 +254,7 @@ class SamplePage extends StatelessWidget {
                                                               color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                                           )
                                                       ),
-                                                      Text('${'Xato'.tr} ${_getController.projectModel.value.join![i].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
+                                                      Text('${'Xato'.tr} ${_getController.searchProjectModel.value.join![i].wsc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
                                                     ]
                                                 )
                                               ]
@@ -267,19 +269,19 @@ class SamplePage extends StatelessWidget {
                                               onSelected: (String value) {
                                                 switch (value) {
                                                   case 'edit':
-                                                    _getController.nameProjectController.text = _getController.projectModel.value.join![i].name.toString();
-                                                    _getController.noteProjectController.text = _getController.projectModel.value.join![i].note.toString();
-                                                    InstrumentComponents().bottomSheetEditName(context,_getController.projectModel.value.join![i].pid);
+                                                    _getController.nameProjectController.text = _getController.searchProjectModel.value.join![i].name.toString();
+                                                    _getController.noteProjectController.text = _getController.searchProjectModel.value.join![i].note.toString();
+                                                    InstrumentComponents().bottomSheetEditName(context,_getController.searchProjectModel.value.join![i].pid);
                                                     break;
                                                   case 'watchers':
-                                                    InstrumentComponents().bottomSheetUsers(context, _getController.projectModel.value.join![i].pid);
-                                                    ApiController().getProjectsUsers(_getController.projectModel.value.join![i].pid);
+                                                    InstrumentComponents().bottomSheetUsers(context, _getController.searchProjectModel.value.join![i].pid);
+                                                    ApiController().getProjectsUsers(_getController.searchProjectModel.value.join![i].pid);
                                                     break;
                                                   case 'share':
-                                                    InstrumentComponents().bottomSheetShare(context, _getController.projectModel.value.join![i].pid);
+                                                    InstrumentComponents().bottomSheetShare(context, _getController.searchProjectModel.value.join![i].pid);
                                                     break;
                                                   case 'delete':
-                                                    InstrumentComponents().deleteProject(context, _getController.projectModel.value.join![i].pid);
+                                                    InstrumentComponents().deleteProject(context, _getController.searchProjectModel.value.join![i].pid);
                                                     break;
                                                 }
                                               },

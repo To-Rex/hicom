@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -44,7 +44,6 @@ class GetController extends GetxController {
   void onLoadSwitch() {onLoadingSwitch.value = true;}
 
   void onLoadedSwitch() {onLoadingSwitch.value = false;}
-
 
   void onQRViewCreated(QRViewController qrController) {
     controller = qrController;
@@ -174,10 +173,10 @@ class GetController extends GetxController {
   var loginModel = LoginModel().obs;
   var registerModel = RegisterModel().obs;
   var projectModel = ProjectModel().obs;
+  var searchProjectModel = ProjectModel().obs;
   var getUsersModel = GetUsersModel().obs;
   var switchListModel = SwitchListModel().obs;
   var settingsInfoModel = SettingsInfo().obs;
-  //SwitchDetailModel
   var switchDetailModel = SwitchDetailModel().obs;
 
   void changeSwitchDetailModel(SwitchDetailModel switchDetailModels) {switchDetailModel.value = switchDetailModels;}
@@ -192,7 +191,10 @@ class GetController extends GetxController {
 
   void changeGetUsersModel(GetUsersModel getUsersModels) {getUsersModel.value = getUsersModels;}
 
-  void getProject(ProjectModel projectModels){projectModel.value = projectModels;}
+  void getProject(ProjectModel projectModels){
+    projectModel.value = projectModels;
+    searchProjectModel.value = projectModel.value;
+  }
 
   void getProvince(){
     if (loginModel.value.user != null && loginModel.value.user?.regionId != null) {
@@ -244,7 +246,6 @@ class GetController extends GetxController {
 
   String getQueryString(String action, String uid) {
     String returnUrl = "";
-
     switch (action) {
       case "wxl":
         returnUrl = "act=wxl&uid=null&dt=";
@@ -345,7 +346,6 @@ class GetController extends GetxController {
       case "swmng":
         returnUrl= "act=swmng&uid=$uid&dt=";
         break;
-
       case "swren":
         returnUrl= "act=swren&uid=$uid&dt=";
         break;
@@ -391,10 +391,8 @@ class GetController extends GetxController {
       default:
         break;
     }
-
     return returnUrl;
   }
-
 
   final TextEditingController searchController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -419,9 +417,7 @@ class GetController extends GetxController {
     passwordProjectController.clear();
   }
 
-
   late TabController tabController;
-
 
   String maskString(String input) {
     if (input.length < 20) return input;
@@ -601,4 +597,18 @@ class GetController extends GetxController {
     }
     return portModification(result, type);
   }
+
+  void searchProject(String value) {
+    if (value.isEmpty) {
+      searchProjectModel.value = projectModel.value;
+      return;
+    }
+    String lowerCaseValue = value.toLowerCase();
+    List<ProjectModelAdmin>? filteredAdmin = projectModel.value.admin?.where((element) => element.name?.toLowerCase().contains(lowerCaseValue) ?? false).toList();
+    List<ProjectModelAdmin>? filteredJoin = projectModel.value.join?.where((element) => element.name?.toLowerCase().contains(lowerCaseValue) ?? false).toList();
+    if (!listEquals(searchProjectModel.value.admin, filteredAdmin) || !listEquals(searchProjectModel.value.join, filteredJoin)) {
+      searchProjectModel.value = ProjectModel(admin: filteredAdmin, join: filteredJoin);
+    }
+  }
+
 }

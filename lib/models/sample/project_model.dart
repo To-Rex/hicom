@@ -1,22 +1,22 @@
 class ProjectModel {
   int? errCode;
-  List<Admin>? admin;
-  List<Admin>? join;
+  List<ProjectModelAdmin>? admin;
+  List<ProjectModelAdmin>? join;
 
   ProjectModel({this.errCode, this.admin, this.join});
 
   ProjectModel.fromJson(Map<String, dynamic> json) {
     errCode = json['errcode'];
     if (json['admin'] != null) {
-      admin = <Admin>[];
+      admin = <ProjectModelAdmin>[];
       json['admin'].forEach((v) {
-        admin!.add(Admin.fromJson(v));
+        admin!.add(ProjectModelAdmin.fromJson(v));
       });
     }
     if (json['join'] != null) {
-      join = <Admin>[];
+      join = <ProjectModelAdmin>[];
       json['join'].forEach((v) {
-        join!.add(Admin.fromJson(v));
+        join!.add(ProjectModelAdmin.fromJson(v));
       });
     }
   }
@@ -34,7 +34,7 @@ class ProjectModel {
   }
 }
 
-class Admin {
+class ProjectModelAdmin {
   int? sc;
   String? note;
   int? wsc;
@@ -42,9 +42,9 @@ class Admin {
   String? pid;
   int? lsc;
 
-  Admin({this.sc, this.note, this.wsc, this.name, this.pid, this.lsc});
+  ProjectModelAdmin({this.sc, this.note, this.wsc, this.name, this.pid, this.lsc});
 
-  Admin.fromJson(Map<String, dynamic> json) {
+  ProjectModelAdmin.fromJson(Map<String, dynamic> json) {
     sc = json['sc'];
     note = json['note'];
     wsc = json['wsc'];
