@@ -19,7 +19,7 @@ class SearchFields extends StatelessWidget {
         height: Get.height * 0.05,
         //width: Get.width * 0.7,
         padding: EdgeInsets.only(right: Get.width * 0.01),
-        decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), borderRadius: BorderRadius.circular(13)),
+        decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1), borderRadius: BorderRadius.circular(13)),
         child: TextField(
             controller: _getController.searchController,
             onChanged: onChanged,

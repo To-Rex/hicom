@@ -185,17 +185,3 @@ String decodeBase64Url(String encodedStr) {
 
   return urlDecodedStr;
 }
-
-
-
-main() {
-  String key = "50UvFayZ2w5u3O9B";
-  try {
-    //String decrypted = Tea.decryptTea('{"phone": "+998331432003","name": "Test Testov","type": "1","country_id": "1","region_id": "12", "district_id": "183"}', key);
-    String enkrypted = Tea.decryptTea('//Byng0ssugk9V4C+UWLqzvcHpS8ojfRaIEkc9cO/bsdPQ==', '7pSuncejhvFYM7fc');
-    //print("Decrypted: $decrypted");
-    print("Decrypted: $enkrypted");
-  } catch (e) {
-    print("Error: $e");
-  }
-}

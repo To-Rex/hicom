@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/get_controller.dart';
-
 class DropdownItem extends StatelessWidget {
-  String title;
-  Function onTap;
+  final String title;
+  final Function onTap;
 
-  DropdownItem({super.key, required this.title, required this.onTap});
+  const DropdownItem({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +15,14 @@ class DropdownItem extends StatelessWidget {
             width: Get.width,
             height: Get.height * 0.06,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
               children: [
-                Text(title, style: TextStyle(fontSize: Get.width * 0.04, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500)),
+                Text(title, style: TextStyle(fontSize: Get.width * 0.04, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500)),
                 const Spacer(),
-                Icon(Icons.chevron_right, size: Get.width * 0.04, color: Theme.of(context).colorScheme.onBackground)
+                Icon(Icons.chevron_right, size: Get.width * 0.04, color: Theme.of(context).colorScheme.onSurface)
               ]
             )
         ),

@@ -46,7 +46,7 @@ class AddProjectPage extends StatelessWidget {
                           ApiController().addProjects()
                         }
                       },
-                      style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                      style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
                       child: SizedBox(
                           width: Get.width,
                           height: Get.height * 0.06,

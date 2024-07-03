@@ -251,7 +251,7 @@ class InstrumentComponents {
                                     ApiController().renameProjects(pidId, _getController.nameProjectController.text, _getController.noteProjectController.text)
                                   }
                                 },
-                                style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
@@ -310,7 +310,7 @@ class InstrumentComponents {
                                     ApiController().renameSwitch(pidId, sn)
                                   }
                                 },
-                                style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
@@ -407,7 +407,7 @@ class InstrumentComponents {
                                 onPressed: () => {
                                   _getController.addUserData(_getController.nameProjectController.text)
                                 },
-                                style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
@@ -467,7 +467,7 @@ class InstrumentComponents {
 
                                   }
                                 },
-                                style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
@@ -525,7 +525,7 @@ class InstrumentComponents {
                                   }
                                 },
                                 //RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
-                                style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor3)),
+                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,

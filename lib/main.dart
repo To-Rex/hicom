@@ -5,18 +5,15 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hicom/resource/srting.dart';
 import 'package:hicom/splash_screen.dart';
 
-import 'controllers/get_controller.dart';
-
 
 main() async {
   await GetStorage.init();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
-  final GetController _getController = Get.put(GetController());
   @override
   Widget build(BuildContext context) {
     //_getController.setHeightWidth(context);

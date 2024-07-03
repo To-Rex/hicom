@@ -32,7 +32,7 @@ class RegisterPage extends StatelessWidget{
                   SizedBox(height: Get.height * 0.05),
                   TextFields(title: 'Ism-familiyangizni kiriting'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameController),
                   SizedBox(height: Get.height * 0.02),
-                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04)),),
+                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Mamlakat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),),
                   Container(
                     margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, bottom: Get.height * 0.02, top: Get.height * 0.01),
                     child: DropdownItem(
@@ -44,7 +44,6 @@ class RegisterPage extends StatelessWidget{
                               context: context,
                               showPhoneCode: true,
                               useSafeArea: true,
-                              onClosed: () => print('Dialog closed'),
                               showWorldWide: false,
                               useRootNavigator: true,
                               favorite: ['UZ','RU','KZ','TJ','KG','AF'],
@@ -54,15 +53,15 @@ class RegisterPage extends StatelessWidget{
                                   bottomSheetWidth: Get.width,
                                   flagSize: Get.width * 0.06,
                                   inputDecoration: InputDecoration(
-                                      fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                      fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
                                       filled: true,
                                       disabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                      focusColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                      focusColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
                                       hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.04),
                                       contentPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
                                       border: InputBorder.none,
                                       labelText: 'Mamlakatlarni qidirish'.tr,
-                                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04),
+                                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04),
                                       enabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
                                       focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10))
                                   )
@@ -83,7 +82,7 @@ class RegisterPage extends StatelessWidget{
                         }),
                   ),
                   if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04))),
+                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))),
                   if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     SizedBox(height: Get.height * 0.01),
                   if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
@@ -97,7 +96,7 @@ class RegisterPage extends StatelessWidget{
                           })
                     ),
                   if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
-                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04))),
+                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))),
                   if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     SizedBox(height: Get.height * 0.01),
                   if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
@@ -109,7 +108,7 @@ class RegisterPage extends StatelessWidget{
                             InstrumentComponents().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
                           })
                     ),
-                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: Get.width * 0.04))),
+                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))),
                   Container(
                     margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.02,top: Get.height * 0.02),
                     child: DropdownItem(
@@ -129,22 +128,10 @@ class RegisterPage extends StatelessWidget{
                             } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
                               InstrumentComponents().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
                             } else{
-                              //print() nameController.text, phoneController.text, _getController.dropDownItems[0], _getController.dropDownItems[1], _getController.dropDownItems[2], _getController.code.value + _getController.phoneController.text
-                              print(_getController.code.value + _getController.phoneController.text),
-                              print(_getController.nameController.text),
-                              print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString()),
-                              print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString()),
-                              print(_getController.dropDownItem[_getController.dropDownItems[2]]),
-
-                              //print country_id, region_id, district_id
-                              print(_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()),
-                              print(_getController.districtsModel.value.districts![_getController.dropDownItems[1]].id.toString()),
-                              print(_getController.dropDownItem[_getController.dropDownItems[2]]),
-
                               ApiController().signUp()
                             }
                           },
-                          style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)),
+                          style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
                           child: SizedBox(
                               width: Get.width,
                               height: Get.height * 0.06,

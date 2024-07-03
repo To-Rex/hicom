@@ -45,7 +45,6 @@ class ItemSettingsData extends StatelessWidget {
                   child: Center(
                       child: CupertinoSwitch(value:poEs! > 0 ? true : false,
                           onChanged: (value) {
-                            print('value $value');
                             ApiController().portPOESwitch(projectId!, serialNumber!, index!, value);
                           },
                           activeColor: AppColors.green,

@@ -12,13 +12,15 @@ import '../resource/colors.dart';
 
 class EditUser extends StatelessWidget {
 
-  final GetController _getController = Get.put(GetController());
-  void _onLoading() => _refreshController.loadComplete();
-  void _getData() => _refreshController.refreshCompleted();
   EditUser({super.key});
+
+  final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
-  var selectedValue = 'Uzbekistan';
+
+  void _onLoading() => _refreshController.loadComplete();
+  void _getData() => _refreshController.refreshCompleted();
+
   @override
   Widget build(BuildContext context) {
     _getController.dropDownItemsTitle[0] = 'Uzbekistan'.tr;
@@ -59,7 +61,6 @@ class EditUser extends StatelessWidget {
                                 context: context,
                                 showPhoneCode: true,
                                 useSafeArea: true,
-                                onClosed: () => print('Dialog closed'),
                                 showWorldWide: false,
                                 useRootNavigator: true,
                                 favorite: ['UZ','RU','KZ','TJ','KG','AF'],
@@ -144,7 +145,7 @@ class EditUser extends StatelessWidget {
                                 ApiController().editUser()
                               }
                             },
-                            style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)),
+                            style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
                             child: SizedBox(
                                 width: Get.width,
                                 height: Get.height * 0.06,

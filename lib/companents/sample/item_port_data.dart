@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/get_controller.dart';
 
 class ItemPortData extends StatelessWidget {
   final String? portName;

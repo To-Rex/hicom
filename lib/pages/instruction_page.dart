@@ -5,15 +5,12 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../controllers/get_controller.dart';
 
 class InstructionPage extends StatelessWidget {
-
-  final GetController _getController = Get.put(GetController());
-  late final WebViewController _controller;
-
   InstructionPage({super.key});
 
+  late final WebViewController _controller;
+  final GetController _getController = Get.put(GetController());
   @override
   Widget build(BuildContext context) {
-    //google.com
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(

@@ -62,7 +62,7 @@ class UserPage extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     InkWell(
-                                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                        overlayColor: WidgetStateProperty.all(Colors.transparent),
                                         child: SizedBox(
                                             height: Get.height * 0.05,
                                             child: Center(
@@ -203,7 +203,7 @@ class UserPage extends StatelessWidget {
                                 const Divider(),
                                 SizedBox(height: Get.height * 0.01),
                                 InkWell(
-                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                                   child: Row(
                                       children: [
                                         Icon(TablerIcons.logout, color: AppColors.red, size: Get.height * 0.035),

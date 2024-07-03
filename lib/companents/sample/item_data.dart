@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/get_controller.dart';
 
 class ItemData extends StatelessWidget {
   final String title;

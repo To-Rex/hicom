@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -180,19 +178,10 @@ class SwitchDetailPage extends StatelessWidget {
                                     ),
                                     Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
                                     Column(
-                                      /*children: List.generate(
-                                  _getController.switchDetailModel.value.detail!.tx!.length, (index) => ItemPortData(
-                                    portName: _getController.getPortList(1).toList()[index+1],
-                                    power: _getController.switchDetailModel.value.detail!.pw!.length > index ? _getController.formatPower(double.parse(_getController.switchDetailModel.value.detail!.pw![index].toString())) : '-',
-                                    tx: _getController.switchDetailModel.value.detail!.tx!.length > index ? _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.tx![index].toString())) : '-',
-                                    rx: _getController.switchDetailModel.value.detail!.rx!.length > index ? _getController.trafficToString(double.parse(_getController.switchDetailModel.value.detail!.rx![index].toString())) : '-',
-                                    status: switch (int.parse(_getController.switchDetailModel.value.detail!.link![index].toString())) {0 => "Offline", 1 => "Half 10M", 2 => "10M", 3 => "Half 100M", 4 => "100M", 5 => "1000M", _ => "Offline"}
-                                  )
-                                )*/
                                         children: [
                                           ListView.builder(
-                                              itemCount: _getController.switchDetailModel.value.detail!.tx!.length,
                                               shrinkWrap: true,
+                                              itemCount: _getController.switchDetailModel.value.detail!.tx!.length,
                                               itemBuilder: (context, index) => ItemPortData(
                                                   portName: _getController.getPortList(1).toList()[index+1],
                                                   power: _getController.switchDetailModel.value.detail!.pw!.length > index ? _getController.formatPower(double.parse(_getController.switchDetailModel.value.detail!.pw![index].toString())) : '-',
@@ -230,20 +219,18 @@ class SwitchDetailPage extends StatelessWidget {
                                           ListView.builder(
                                               shrinkWrap: true,
                                               itemCount: _getController.switchDetailModel.value.detail!.tx!.length,
-                                              itemBuilder: (context, index) {
-                                                return ItemSettingsData(
-                                                    projectId: pidId,
-                                                    serialNumber: sn,
-                                                    portName: _getController.getPortList(1).toList()[index+1],
-                                                    extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
-                                                    reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
-                                                    port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
-                                                    poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
-                                                    phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
-                                                    version: _getController.switchDetailModel.value.detail!.v!.length > index ? _getController.switchDetailModel.value.detail!.v![index].toString() : null,
-                                                    index: index + 1
-                                                );
-                                              }
+                                              itemBuilder: (context, index) => ItemSettingsData(
+                                                  projectId: pidId,
+                                                  serialNumber: sn,
+                                                  portName: _getController.getPortList(1).toList()[index+1],
+                                                  extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
+                                                  reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
+                                                  port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
+                                                  poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
+                                                  phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
+                                                  version: _getController.switchDetailModel.value.detail!.v!.length > index ? _getController.switchDetailModel.value.detail!.v![index].toString() : null,
+                                                  index: index + 1
+                                              )
                                           )
                                           //for(int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
                                         ]

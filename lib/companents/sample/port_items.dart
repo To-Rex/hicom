@@ -9,9 +9,8 @@ class PortItems extends StatelessWidget {
   final List<String> data;
   final List<int>? ports;
 
-  PortItems({super.key, required this.data, this.ports});
+  const PortItems({super.key, required this.data, this.ports});
 
-  final GetController _getController = Get.put(GetController());
   @override
   Widget build(BuildContext context) {
     return Container(
