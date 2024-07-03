@@ -30,7 +30,7 @@ class SwitchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
+        //backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
         appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Qurilma ro’yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05))),

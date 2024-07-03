@@ -33,7 +33,7 @@ class SamplePage extends StatelessWidget {
       _getData()
     });
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
+        //backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
         appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05))),
@@ -65,6 +65,7 @@ class SamplePage extends StatelessWidget {
                       if (_getController.searchProjectModel.value.admin!.isNotEmpty)
                         for(var i = 0; i < _getController.searchProjectModel.value.admin!.length; i++)
                           InkWell(
+                              overlayColor: WidgetStateProperty.all(Colors.transparent),
                               onTap: () => {
                                 ApiController().getSwitchList(_getController.searchProjectModel.value.admin![i].pid),
                                 Get.to(SwitchList(name: _getController.searchProjectModel.value.admin![i].name.toString()), arguments: _getController.searchProjectModel.value.admin![i].pid)
@@ -205,11 +206,11 @@ class SamplePage extends StatelessWidget {
                                       ]
                                   )
                               )
-
                           ),
                       if (_getController.searchProjectModel.value.join != null && _getController.searchProjectModel.value.join!.isNotEmpty)
                         for(var i = 0; i < _getController.searchProjectModel.value.join!.length; i++)
                           InkWell(
+                              overlayColor: WidgetStateProperty.all(Colors.transparent),
                               onTap: () => {
                                 ApiController().getSwitchList(_getController.searchProjectModel.value.join![i].pid),
                                 Get.to(SwitchList(name: _getController.searchProjectModel.value.join![i].name.toString()), arguments: _getController.searchProjectModel.value.join![i].pid)

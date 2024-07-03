@@ -38,7 +38,7 @@ class SwitchDetailPage extends StatelessWidget {
         Get.back();
       },
       child: Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
+          //backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Text('Qurilma Xaqida'.tr),
@@ -102,6 +102,7 @@ class SwitchDetailPage extends StatelessWidget {
                                 indicatorSize: TabBarIndicatorSize.tab,
                                 dividerColor: Colors.transparent,
                                 controller: _getController.tabController,
+                                overlayColor: WidgetStateProperty.all(Colors.transparent),
                                 labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500),
                                 unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                                 indicator: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.surface.withOpacity(0.1), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
