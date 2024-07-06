@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //_getController.setHeightWidth(context);
     return AdaptiveTheme(
         debugShowFloatingThemeButton: false,
         initial: AdaptiveThemeMode.dark,

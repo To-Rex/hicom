@@ -73,7 +73,8 @@ class ItemSettingsData extends StatelessWidget {
                       value:port != null && phYc! <= 1 ? true : false,
                       onChanged: (value) {
                         if (value == false) {
-                          ApiController().portExtendSwitchOff(projectId!, serialNumber!, index!, value, version!);
+                          //ApiController().portExtendSwitchOff(projectId!, serialNumber!, index!, value, version!);
+                          ApiController().portExtendSwitchOn(projectId!, serialNumber!, index!, value, version!);
                         } else {
                           ApiController().portExtendSwitchOn(projectId!, serialNumber!, index!, value, version!);
                         }
