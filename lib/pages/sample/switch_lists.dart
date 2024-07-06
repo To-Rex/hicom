@@ -6,6 +6,7 @@ import 'package:hicom/resource/colors.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/instrument/instrument_components.dart';
 import '../../companents/sample/port_items.dart';
+import '../../companents/sample/port_items_16.dart';
 import '../../companents/search_fild.dart';
 import '../../controllers/api_controller.dart';
 import '../../controllers/get_controller.dart';
@@ -134,7 +135,12 @@ class SwitchList extends StatelessWidget {
                                                   )
                                                 ]
                                             ),
-                                            PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),),
+                                            if (_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()) != 7)
+                                              PortItems(
+                                                  data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),
+                                                  ports:_getController.portModification([],_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())))
+                                            else
+                                              const PortItems16(data: [], ports: null),
                                             Row(
                                               children: [
                                                 Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
@@ -223,7 +229,18 @@ class SwitchList extends StatelessWidget {
                                                   )
                                                 ]
                                             ),
-                                                PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
+                                                //PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
+
+                                                if (_getController.switchListModel.value.online![index].link!.length >= 16)
+                                                 PortItems16(
+                                                      data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
+                                                      ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
+                                                  )
+                                                else
+                                                  PortItems(
+                                                      data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
+                                                      ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
+                                                  ),
                                                 Row(
                                                 children: [
                                                   Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),

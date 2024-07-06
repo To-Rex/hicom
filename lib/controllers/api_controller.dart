@@ -586,20 +586,13 @@ class ApiController extends GetxController {
   Future<void> deleteSwitch(pidId, sn) async {
     var json = Tea.encryptTea(
         jsonEncode({"pid": pidId, "sn": sn}), _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swdel', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
-    debugPrint(response.body);
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdel', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       Get.back();
-      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli',
-          'Ma’lumot o’zgartirildi'.tr, false, 2);
-      getSwitchList(pidId);
+      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);getSwitchList(pidId);
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
@@ -613,38 +606,21 @@ class ApiController extends GetxController {
           "auto": 0
         }),
         _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey())
-              .toString())['errcode'] ==
-          29999) {
-        InstrumentComponents().showToast(
-            Get.context!,
-            'Diqqat!',
-            'Kiritilgan ma\'lumotlar (Masalan, seriya raqam) noto\'g\'ri!'.tr,
-            true,
-            1);
-      } else if (jsonDecode(
-              Tea.decryptTea(response.body, _getController.getKey())
-                  .toString())['errcode'] ==
-          0) {
+      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
+        InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma\'lumotlar (Masalan, seriya raqam) noto\'g\'ri!'.tr, true, 1);
+      } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
         Get.back();
         _getController.clearControllers();
-        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli',
-            'Yangi loyiha qo\'shildi'.tr, false, 2);
-        getSwitchList(pidId);
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo\'shildi'.tr, false, 2);getSwitchList(pidId);
       } else {
-        InstrumentComponents().showToast(
-            Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
       }
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
@@ -652,33 +628,20 @@ class ApiController extends GetxController {
     if (!realTime) {
       _getController.clearSwitchDetailModel();
     }
-    var json = Tea.encryptTea(
-        jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}),
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}),
         _getController.getKey());
-    debugPrint(
-        '${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
+    debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     if (response.statusCode == 200 || response.statusCode == 201) {
       debugPrint(
           Tea.decryptTea(response.body, _getController.getKey()).toString());
-      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))[
-              'errcode'] ==
-          0) {
-        _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(
-            jsonDecode(
-                Tea.decryptTea(response.body, _getController.getKey()))));
-      } else if (jsonDecode(Tea.decryptTea(
-              response.body, _getController.getKey()))['errcode'] ==
-          10002) {
+      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
+        _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
+      } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
         Get.back();
-        InstrumentComponents().showToast(Get.context!, 'Vooy!',
-            'Iltimos hisobingizga qaytadan kiriting'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Iltimos hisobingizga qaytadan kiriting'.tr, true, 3);
       } else {
-        InstrumentComponents().showToast(
-            Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
       }
     } else {
       InstrumentComponents()
@@ -695,18 +658,15 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> portPOESwitch(
-      String projectId, String serialNo, int port, bool state) async {
+  Future<void> portPOESwitch(String projectId, String serialNo, int port, bool state) async {
     InstrumentComponents().loadingDialog(Get.context!);
     int opcode = 2 | ((port - 1) << 4);
     if (state) opcode |= 1 << 9;
     await switchConfig(projectId, serialNo, opcode);
   }
 
-  Future<void> portExtendSwitchOn(String projectId, String serialNo, int port,
-      bool state, String firmware) async {
+  Future<void> portExtendSwitchOn(String projectId, String serialNo, int port, bool state, String firmware) async {
     InstrumentComponents().loadingDialog(Get.context!);
-
 
     int opcode = ((port - 1) << 4);
     if (state) {
@@ -722,94 +682,56 @@ class ApiController extends GetxController {
     await switchConfig(projectId, serialNo, opcode);
   }
 
+  Future<void> switchConfig(pidId, sn, opcode) async {
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "opcode": opcode}), _getController.getKey());
+    debugPrint(Tea.decryptTea(json.toString(), _getController.getKey()).toString());
+    debugPrint('${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
+    debugPrint(response.statusCode.toString());
+    debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['data']['config'] == 'fail') {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
+      } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
+        getSwitchDetail(pidId, sn, false);
+      }
+    } else {
+      Get.back();
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    }
+  }
+
   Future<void> portRestart(String projectId, String serialNo, int port) async {
     int opcode = 3 | ((port - 1) << 4);
     opcode |= 1 << 9; // Restart
     await switchConfig(projectId, serialNo, opcode);
   }
 
-  Future<void> switchConfig(pidId, sn, opcode) async {
-    var json = Tea.encryptTea(
-        jsonEncode({"pid": pidId, "sn": sn, "opcode": opcode}),
-        _getController.getKey());
-    debugPrint(
-        Tea.decryptTea(json.toString(), _getController.getKey()).toString());
-    debugPrint(
-        '${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
-    debugPrint(response.body);
-    debugPrint(response.statusCode.toString());
-    debugPrint(
-        Tea.decryptTea(response.body, _getController.getKey()).toString());
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))[
-                  'errcode'] ==
-              0 &&
-          jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))[
-                  'data']['config'] ==
-              'fail') {
-        Get.back();
-        InstrumentComponents().showToast(
-            Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
-      } else if (jsonDecode(Tea.decryptTea(
-              response.body, _getController.getKey()))['errcode'] ==
-          0) {
-        getSwitchDetail(pidId, sn, false);
-      }
-    } else {
-      Get.back();
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
-    }
-  }
-
   Future<void> switchReboot(pidId, sn) async {
-    var json = Tea.encryptTea(
-        jsonEncode({"pid": pidId, "sn": sn}), _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swreb', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn}), _getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swreb', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
-    debugPrint(response.statusCode.toString());
-    debugPrint(
-        Tea.decryptTea(response.body, _getController.getKey()).toString());
+    debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey())
-              .toString())['errcode'] ==
-          0) {
-        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli',
-            'Qurilma qayta ishga tushdi'.tr, false, 2);
+      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Qurilma qayta ishga tushdi'.tr, false, 2);
       } else {
-        InstrumentComponents()
-            .showToast(Get.context!, 'Vooy!', 'Xatolik yuz berdi'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Xatolik yuz berdi'.tr, true, 3);
       }
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
   Future<void> getSwF(pidId, sn) async {
-    var json = Tea.encryptTea(
-        jsonEncode({"pid": pidId, "sn": sn}), _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swfwv', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
-    debugPrint(response.body);
-    debugPrint(response.statusCode.toString());
-    debugPrint(
-        Tea.decryptTea(response.body, _getController.getKey()).toString());
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn}), _getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swfwv', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
+    debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Muvaffaqiyatli', 'ok'.tr, false, 2);
+      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'ok'.tr, false, 2);
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 }

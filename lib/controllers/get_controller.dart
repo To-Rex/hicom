@@ -494,8 +494,9 @@ class GetController extends GetxController {
         return ['', '', '', '1', '2', '3', '4', '5', '6', '7', '8', 'L1', 'L2', 'SFP'];
       case switchTypeF163:
       case switchTypeG163:
-        return ['', '', '', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', 'L1', 'L2', 'SFP'];
+        return ['', '','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '', '', 'L1', 'L2','', 'SFP'];
     }
+
     return ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
   }
 
@@ -524,23 +525,23 @@ class GetController extends GetxController {
   String getTypeName(int type) {
     switch (type) {
       case switchTypeM42:
-        return "GPS208";
+        return "GPS-208";
       case switchTypeF411:
-        return "HIF411";
+        return "HI-F411";
       case switchTypeF82:
-        return "HIF82";
+        return "HI-F82";
       case switchTypeM82:
-        return "HIM82";
+        return "HI-M82";
       case switchTypeG82:
-        return "HIG82";
+        return "HI-G82";
       case switchTypeG83:
-        return "HIG83";
+        return "HI-G83";
       case switchTypeG163:
-        return "HIG163";
+        return "HI-G163";
       case switchTypeF163:
-        return "HIF163";
+        return "HIF-163";
       default:
-        return "HIF82";
+        return "HIF-82";
     }
   }
 
@@ -557,28 +558,30 @@ class GetController extends GetxController {
   List<int> portModification(List data,int type) {
     switch (type) {
       case switchTypeF411:
-        return  [3, 3, 3, data[0], data[1], data[2], data[3], 3, data[4], data[5], 3, 3];
+        return  data.isNotEmpty ? [3, 3, 3, data[0], data[1], data[2], data[3], 3, data[4], data[5], 3, 3] : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
       case switchTypeM42:
-        return [3, 3, 3, data[0], data[1], data[2], data[3], 3, data[4], data[5], 3, 3];
+        return data.isNotEmpty ? [3, 3, 3, data[0], data[1], data[2], data[3], 3, data[4], data[5], 3, 3] : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
       case switchTypeF82:
       case switchTypeM82:
-        return [3, data[0], data[1], data[2], data[3], data[4], data[5], 3, data[6], data[7]];
+        return data.isNotEmpty ? [3, data[0], data[1], data[2], data[3], data[4], data[5], 3, data[6], data[7]] : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
       case switchTypeG82:
-        return [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], 3, data[8], data[9]];
+        return data.isNotEmpty ? [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], 3, data[8], data[9]] : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
       case switchTypeG83:
-        return [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], 3, data[8], data[9]];
+        return data.isNotEmpty ? [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], 3, data[8], data[9]] : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
       case switchTypeF163:
       case switchTypeG163:
-        return [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]];
+        return data.isNotEmpty ? [3, 3, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], 3,3, data[16], data[17], data[18], 3]:[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
     }
-    return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+    return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2];
   }
 
   List<int> getPortType(link, snr, type) {
     if (link == null) {
+      debugPrint('link is null');
       return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
     }
     if (link.length != snr.length) {
+      debugPrint('link.length != snr.length');
       return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
     }
     List<int> result = [];

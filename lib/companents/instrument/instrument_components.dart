@@ -266,8 +266,6 @@ class InstrumentComponents {
   }
 
   bottomSwitchEditName(BuildContext context, pidId,sn,index,online) {
-    //_getController.nameProjectController.text = online ? _getController.switchListModel.value.online![index].name! : _getController.switchListModel.value.offline![index].name!;
-    //_getController.noteProjectController.text = online ? _getController.switchListModel.value.online![index].note! : _getController.switchListModel.value.offline![index].note!;
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
