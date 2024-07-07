@@ -29,8 +29,6 @@ class SwitchDetailPage extends StatelessWidget {
 
   void _getData() {
     refreshController.refreshCompleted();
-    var argument = Get.arguments;
-    ApiController().getSwitchList(argument);
   }
 
   @override
