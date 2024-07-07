@@ -714,16 +714,18 @@ class ApiController extends GetxController {
     debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['data']['config'] == 'fail') {
+        Get.back();
         InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
       } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
         timeOut(500, () {
+          Get.back();
           getSwitchDetail(pidId, sn);
         });
       }
     } else {
+      Get.back();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
-    Get.back();
   }
 
   Future<void> portRestart(String projectId, String serialNo, int port) async {
