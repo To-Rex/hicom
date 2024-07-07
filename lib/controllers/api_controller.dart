@@ -626,21 +626,24 @@ class ApiController extends GetxController {
 
   Future<void> getSwitchDetail(String pidId, String sn) async {
     InstrumentComponents().loadingDialog(Get.context!);
-    _getController.clearSwitchDetailModel();
-    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}), _getController.getKey());
-    debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
-    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
-      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
-        _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
-      } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
-        Get.back();
-        InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Iltimos hisobingizga qaytadan kiriting'.tr, true, 3);
+    try {
+      _getController.clearSwitchDetailModel();
+      var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}), _getController.getKey());
+      debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
+      var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
+        if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
+          _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
+        } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
+          InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Iltimos hisobingizga qaytadan kiriting'.tr, true, 3);
+        } else {
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+        }
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
       }
-    } else {
+    } catch (e) {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
     Get.back();
@@ -678,15 +681,12 @@ class ApiController extends GetxController {
   }
 
   Future<void> portPOESwitch(String projectId, String serialNo, int port, bool state) async {
-    InstrumentComponents().loadingDialog(Get.context!);
     int opcode = 2 | ((port - 1) << 4);
     if (state) opcode |= 1 << 9;
     await switchConfig(projectId, serialNo, opcode);
   }
 
   Future<void> portExtendSwitchOn(String projectId, String serialNo, int port, bool state, String firmware) async {
-    InstrumentComponents().loadingDialog(Get.context!);
-
     int opcode = ((port - 1) << 4);
     if (state) {
       opcode |= 2 * (1 << 9); // Full 10M
@@ -697,11 +697,11 @@ class ApiController extends GetxController {
         opcode |= 4 * (1 << 9); // Full 100M
       }
     }
-
     await switchConfig(projectId, serialNo, opcode);
   }
 
   Future<void> switchConfig(pidId, sn, opcode) async {
+    InstrumentComponents().loadingDialog(Get.context!);
     var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "opcode": opcode}), _getController.getKey());
     debugPrint(Tea.decryptTea(json.toString(), _getController.getKey()).toString());
     debugPrint('${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
@@ -710,15 +710,14 @@ class ApiController extends GetxController {
     debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['data']['config'] == 'fail') {
-        Get.back();
         InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
       } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
         getSwitchDetail(pidId, sn);
       }
     } else {
-      Get.back();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
+    Get.back();
   }
 
   Future<void> portRestart(String projectId, String serialNo, int port) async {
