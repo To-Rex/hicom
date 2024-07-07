@@ -22,13 +22,6 @@ class ItemSettingsData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(portName);
-    debugPrint(port.toString());
-    debugPrint(poEs.toString());
-    debugPrint(phYc.toString());
-    debugPrint(version.toString());
-    debugPrint(index.toString());
-
     return portName == null || portName == '' ? Container() : Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -77,14 +70,9 @@ class ItemSettingsData extends StatelessWidget {
               SizedBox(
                   width: Get.width * 0.2,
                   child: Center(child: CupertinoSwitch(
-                      value:port != null && phYc! <= 1 ? true : false,
+                      value:port != null && phYc! <= 2 ? true : false,
                       onChanged: (value) {
-                        if (value == false) {
-                          //ApiController().portExtendSwitchOff(projectId!, serialNumber!, index!, value, version!);
-                          ApiController().portExtendSwitchOn(projectId!, serialNumber!, index!, value, version!);
-                        } else {
-                          ApiController().portExtendSwitchOn(projectId!, serialNumber!, index!, value, version!);
-                        }
+                        ApiController().portExtendSwitch(projectId!, serialNumber!, index!, value, version!);
                       },
                       activeColor: AppColors.green,
                       trackColor: AppColors.grey.withOpacity(0.5),

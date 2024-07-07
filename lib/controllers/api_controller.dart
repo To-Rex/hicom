@@ -31,6 +31,10 @@ class ApiController extends GetxController {
     'Accept': 'application/json',
   };
 
+  void timeOut(sec,func) {
+    Timer(Duration(milliseconds: sec), func);
+  }
+
   Future<void> getRegions(data, act) async {
     var response = await get(
         Uri.parse(
@@ -686,7 +690,7 @@ class ApiController extends GetxController {
     await switchConfig(projectId, serialNo, opcode);
   }
 
-  Future<void> portExtendSwitchOn(String projectId, String serialNo, int port, bool state, String firmware) async {
+  Future<void> portExtendSwitch(String projectId, String serialNo, int port, bool state, String firmware) async {
     int opcode = ((port - 1) << 4);
     if (state) {
       opcode |= 2 * (1 << 9); // Full 10M
@@ -712,7 +716,9 @@ class ApiController extends GetxController {
       if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['data']['config'] == 'fail') {
         InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
       } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
-        getSwitchDetail(pidId, sn);
+        timeOut(500, () {
+          getSwitchDetail(pidId, sn);
+        });
       }
     } else {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);

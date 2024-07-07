@@ -268,8 +268,7 @@ class SwitchDetailPage extends StatelessWidget {
                         )
                     )
                   ]
-              )
-                  : const Center(child: CircularProgressIndicator()))
+              ) : const Center(child: CircularProgressIndicator()))
           ),
 
       )
