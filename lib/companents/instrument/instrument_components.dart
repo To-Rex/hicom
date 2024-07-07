@@ -225,7 +225,7 @@ class InstrumentComponents {
                       children: [
                         AppBar(
                           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                          title: Text('Foydalanuvchi nomini o’zgartirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045)),
+                          title: Text('Loyihani tahrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045)),
                           centerTitle: false,
                           backgroundColor: Theme.of(context).colorScheme.surface,
                           elevation: 0,
@@ -245,8 +245,6 @@ class InstrumentComponents {
                                 onPressed: () => {
                                   if (_getController.nameProjectController.text == '') {
                                     showToast(context, 'Loyihani nomini kiriting'.tr, 'Loyihani nomini kiriting'.tr, true, 3)
-                                  } else if (_getController.noteProjectController.text == '') {
-                                    showToast(context, 'Qo`shimcha ma`lumot kiriting'.tr, 'Qo`shimcha ma`lumot kiriting'.tr, true, 3)
                                   } else {
                                     ApiController().renameProjects(pidId, _getController.nameProjectController.text, _getController.noteProjectController.text)
                                   }
@@ -302,8 +300,6 @@ class InstrumentComponents {
                                 onPressed: () => {
                                   if (_getController.nameProjectController.text == '') {
                                     showToast(context, 'Diqqat!'.tr, 'Loyihani nomini kiriting'.tr, true, 3)
-                                  } else if (_getController.noteProjectController.text == '') {
-                                    showToast(context, 'Diqqat!'.tr, 'Qo`shimcha ma`lumot kiriting'.tr, true, 3)
                                   } else {
                                     ApiController().renameSwitch(pidId, sn)
                                   }

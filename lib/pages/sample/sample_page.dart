@@ -96,8 +96,7 @@ class SamplePage extends StatelessWidget {
                                             children: [
                                               SizedBox(height: Get.height * 0.01),
                                               Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                              Text(_getController.searchProjectModel.value.admin![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.searchProjectModel.value.admin![i].note.toString(),
-                                                  style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                              Text(_getController.searchProjectModel.value.admin![i].note.toString() == ''|| _getController.searchProjectModel.value.admin![i].note.toString() == ' ' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.searchProjectModel.value.admin![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                               Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -222,7 +221,7 @@ class SamplePage extends StatelessWidget {
                                 child: Center(
                                     child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Container(
                                               margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
@@ -235,7 +234,7 @@ class SamplePage extends StatelessWidget {
                                                 Text(_getController.searchProjectModel.value.join![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
                                                 Text(_getController.searchProjectModel.value.join![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.searchProjectModel.value.join![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                 Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
                                                       Text('${'Jami'.tr} ${_getController.searchProjectModel.value.join![i].sc.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
@@ -259,91 +258,12 @@ class SamplePage extends StatelessWidget {
                                                     ]
                                                 )
                                               ]
-                                          ),
-                                          Expanded(child: Container()),
-                                          PopupMenuButton<String>(
-                                              icon: Icon(Icons.menu, size: Get.width * 0.05),
-                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                              color: Theme.of(context).colorScheme.surface,
-                                              surfaceTintColor: Colors.transparent,
-                                              elevation: 4,
-                                              onSelected: (String value) {
-                                                switch (value) {
-                                                  case 'edit':
-                                                    _getController.nameProjectController.text = _getController.searchProjectModel.value.join![i].name.toString();
-                                                    _getController.noteProjectController.text = _getController.searchProjectModel.value.join![i].note.toString();
-                                                    InstrumentComponents().bottomSheetEditName(context,_getController.searchProjectModel.value.join![i].pid);
-                                                    break;
-                                                  case 'watchers':
-                                                    InstrumentComponents().bottomSheetUsers(context, _getController.searchProjectModel.value.join![i].pid);
-                                                    ApiController().getProjectsUsers(_getController.searchProjectModel.value.join![i].pid);
-                                                    break;
-                                                  case 'share':
-                                                    InstrumentComponents().bottomSheetShare(context, _getController.searchProjectModel.value.join![i].pid);
-                                                    break;
-                                                  case 'delete':
-                                                    InstrumentComponents().deleteProject(context, _getController.searchProjectModel.value.join![i].pid);
-                                                    break;
-                                                }
-                                              },
-                                              itemBuilder: (BuildContext context) {
-                                                return [
-                                                  PopupMenuItem(
-                                                      value: 'edit',
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(Icons.edit, size: Get.width * 0.04),
-                                                          SizedBox(width: Get.width * 0.015),
-                                                          Text('Tahrirlash'.tr)
-                                                        ],
-                                                      )
-                                                  ),
-                                                  PopupMenuItem(
-                                                      value: 'watchers',
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(Icons.person, size: Get.width * 0.04),
-                                                          SizedBox(width: Get.width * 0.015),
-                                                          Text('Kuzatuvchilar'.tr)
-                                                        ],
-                                                      )
-                                                  ),
-                                                  PopupMenuItem(
-                                                      value: 'share',
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(Icons.share, size: Get.width * 0.04),
-                                                          SizedBox(width: Get.width * 0.015),
-                                                          Text('Ulashish'.tr)
-                                                        ],
-                                                      )
-                                                  ),
-                                                  //line
-                                                  //const Divider(),
-                                                  const PopupMenuItem(
-                                                    height: 0,
-                                                    padding: EdgeInsets.all(0),
-                                                    value: 'watcher',
-                                                    child: Divider(),
-                                                  ),
-                                                  PopupMenuItem(
-                                                      value: 'delete',
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
-                                                          SizedBox(width: Get.width * 0.015),
-                                                          Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
-                                                        ],
-                                                      )
-                                                  )
-                                                ];
-                                              }
                                           )
                                         ]
                                     )
                                 )
                               )
-                          ),
+                          )
                     ])
                     : Column(children: [
                       SizedBox(

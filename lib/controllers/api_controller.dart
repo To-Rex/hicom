@@ -269,76 +269,62 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProjects() async {
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'),
-        headers: headers);
+    InstrumentComponents().loadingDialog(Get.context!);
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
     if (response.statusCode == 200 || response.statusCode == 201) {
       try {
-        debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n', ''),
-            _getController.getKey()));
-        _getController.getProject(ProjectModel.fromJson(jsonDecode(
-            Tea.decryptTea(
-                response.body.toString(), _getController.getKey()))));
+        debugPrint(Tea.decryptTea(response.body.toString().replaceAll('\n', ''), _getController.getKey()));
+        Get.back();
+        _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
       } catch (e) {
-        InstrumentComponents().showToast(
-            Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
         debugPrint(e.toString());
       }
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      Get.back();
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
   Future<void> renameProjects(pidId, name, note) async {
-    var json = Tea.encryptTea(
-        jsonEncode({"pid": pidId, "name": name}), _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('prjren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "name": name}), _getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey())
-              .toString())['errcode'] ==
-          20000) {
+      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
         Get.back();
-        InstrumentComponents().showToast(
-            Get.context!, 'Xatolik', 'Sizda bunday huquq yo\'q'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq yo\'q'.tr, true, 3);
       } else {
-        await renameProjectsNote(pidId, note);
+        if (note != '') {
+          await renameProjectsNote(pidId, note);
+        } else {
+          Get.back();
+          getProjects();
+        }
       }
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
   Future<void> renameProjectsNote(pidId, note) async {
-    var json = Tea.encryptTea(
-        jsonEncode({"pid": pidId, "note": note}), _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('prjnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
+    if (note == '') note = ' ';
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "note": note}), _getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey())
-              .toString())['errcode'] ==
-          20000) {
-        Get.back();
-        InstrumentComponents().showToast(
-            Get.context!, 'Diqqat!', 'Sizda bunday huquq yo\'q'.tr, true, 3);
+      if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
+        InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Sizda bunday huquq yo\'q'.tr, true, 3);
       } else {
         getProjects();
       }
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
+    Get.back();
   }
 
   Future<void> getProjectsUsers(pidId) async {
@@ -505,49 +491,34 @@ class ApiController extends GetxController {
   }
 
   Future<void> renameSwitch(pidId, sn) async {
-    var json = Tea.encryptTea(
-        jsonEncode({
-          "pid": pidId,
-          "sn": sn,
-          "name": _getController.nameProjectController.text
-        }),
-        _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "name": _getController.nameProjectController.text}), _getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      renameSwitchNote(pidId, sn);
+      if (_getController.noteProjectController.text == '') {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
+        getSwitchList(pidId);
+      } else {
+        renameSwitchNote(pidId, sn);
+      }
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
   Future<void> renameSwitchNote(pidId, sn) async {
-    var json = Tea.encryptTea(
-        jsonEncode({
-          "pid": pidId,
-          "sn": sn,
-          "note": _getController.noteProjectController.text
-        }),
-        _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('swnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "note": _getController.noteProjectController.text}), _getController.getKey());
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swnote', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);
     debugPrint(response.statusCode.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       Get.back();
-      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli',
-          'Ma’lumot o’zgartirildi'.tr, false, 2);
+      InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
       getSwitchList(pidId);
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 

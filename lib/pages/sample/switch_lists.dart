@@ -134,7 +134,6 @@ class SwitchList extends StatelessWidget {
                                                   )
                                                 ]
                                             ),
-
                                             if (_getController.switchListModel.value.offline![index].sn != null &&_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()) == 7 || _getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()) == 8)
                                               PortItems16(
                                                   data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),
@@ -235,7 +234,6 @@ class SwitchList extends StatelessWidget {
                                                   )
                                                 ]
                                             ),
-                                                //if (_getController.switchListModel.value.online![index].link!.length >= 16)
                                                 if (_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()) == 7 || _getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()) == 8)
                                                  PortItems16(
                                                      data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
