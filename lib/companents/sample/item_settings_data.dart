@@ -35,10 +35,7 @@ class ItemSettingsData extends StatelessWidget {
           ),
           if (port != null)
             if (port! < 0)
-              SizedBox(
-                  width: Get.width * 0.2,
-                  child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(poe ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize))))
-              )
+              SizedBox(width: Get.width * 0.2, child: Center(child: Container(margin: EdgeInsets.only(top: Get.width * 0.04), child: Text(poe ?? '--', style: TextStyle(fontWeight: FontWeight.w500, fontSize: Get.textTheme.bodyMedium!.fontSize)))))
             else
               SizedBox(
                   width: Get.width * 0.2,
@@ -70,7 +67,7 @@ class ItemSettingsData extends StatelessWidget {
               SizedBox(
                   width: Get.width * 0.2,
                   child: Center(child: CupertinoSwitch(
-                      value:port != null && phYc! <= 2 ? true : false,
+                      value: port != null && phYc! <= 2 ? true : false,
                       onChanged: (value) {
                         ApiController().portExtendSwitch(projectId!, serialNumber!, index!, value, version!);
                       },

@@ -634,9 +634,10 @@ class ApiController extends GetxController {
   Future<void> portExtendSwitch(String projectId, String serialNo, int port, bool state, String firmware) async {
     int opcode = ((port - 1) << 4);
     if (state) {
-      opcode |= 2 * (1 << 9); // Full 10M
+      opcode |= 2 * (1 << 9);
     } else {
-      if (!serialNo.startsWith("HIF")) {
+      debugPrint('${!serialNo.startsWith("HIF")}');
+      if (serialNo.startsWith("HIF")) {
         opcode |= 5 * (1 << 9); // Full 1000M
       } else {
         opcode |= 4 * (1 << 9); // Full 100M
@@ -651,6 +652,7 @@ class ApiController extends GetxController {
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "opcode": opcode}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
+        debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['data']['config'] == 'fail') {
           Get.back();
           InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
@@ -668,7 +670,6 @@ class ApiController extends GetxController {
       Get.back();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
-
   }
 
   Future<void> portRestart(String projectId, String serialNo, int port) async {

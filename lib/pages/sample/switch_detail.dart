@@ -217,17 +217,17 @@ class SwitchDetailPage extends StatelessWidget {
                                                     children: [
                                                       for (int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
                                                         ItemSettingsData(
-                                                        projectId: pidId,
-                                                        serialNumber: sn,
-                                                        portName: _getController.getPortList(_getController.typeFromSerialNumber(sn!)).toList()[index+1],
-                                                        extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
-                                                        reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
-                                                        port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
-                                                        poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
-                                                        phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
-                                                        version: _getController.switchDetailModel.value.detail!.v!.length > index ? _getController.switchDetailModel.value.detail!.v![index].toString() : null,
-                                                        index: index + 1
-                                                    )
+                                                            projectId: pidId,
+                                                            serialNumber: sn,
+                                                            portName: _getController.getPortList(_getController.typeFromSerialNumber(sn!)).toList()[index+1],
+                                                            extend: _getController.switchDetailModel.value.detail!.iSoc!.toString(),
+                                                            reboot: _getController.switchDetailModel.value.detail!.link![index].toString(),
+                                                            port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
+                                                            poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
+                                                            phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
+                                                            version: _getController.switchDetailModel.value.detail!.v!.length > index ? _getController.switchDetailModel.value.detail!.v![index].toString() : null,
+                                                            index: index + 1
+                                                        )
                                                     ]
                                                 )
                                             )

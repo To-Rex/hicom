@@ -502,37 +502,27 @@ class GetController extends GetxController {
 
   int typeFromSerialNumber(String serialNo) {
     if (serialNo.startsWith("HIM42") || serialNo.startsWith("PS106D") || serialNo.startsWith("PS204DM")) {
-      debugPrint('HIM42 ++++++++++++ $switchTypeM42');
       return switchTypeM42;
     } else if (serialNo.startsWith("HIF411") || serialNo.startsWith("GPS204")) {
-      debugPrint('HIF411 ++++++++++++ $switchTypeF411');
       return switchTypeF411;
     } else if (serialNo.startsWith("HIF82") || serialNo.startsWith("GPS208")) {
-      debugPrint('HIF82 ++++++++++++ $switchTypeF82');
       return switchTypeF82;
     } else if (serialNo.startsWith("HIM82") || serialNo.startsWith("PS208DM")) {
-      debugPrint('HIM82 ++++++++++++ $switchTypeM82');
       return switchTypeM82;
     } else if (serialNo.startsWith("HIG82") || serialNo.startsWith("PS208G")) {
-      debugPrint('HIG82 ++++++++++++ $switchTypeG82');
       return switchTypeG82;
     } else if (serialNo.startsWith("HIG83") || serialNo.startsWith("PS308G")) {
-      debugPrint('HIG83 ++++++++++++ $switchTypeG83');
       return switchTypeG83;
     } else if (serialNo.startsWith("HIG163") || serialNo.startsWith("PS316G")) {
-      debugPrint('HIG163 ++++++++++++ $switchTypeG163');
       return switchTypeG163;
     } else if (serialNo.startsWith("HIF163") || serialNo.startsWith("GPS316")) {
-      debugPrint('HIF163 ++++++++++++ $switchTypeF163');
       return switchTypeF163;
     } else {
-      debugPrint('HIF82 ++++++++++++ $switchTypeF82');
       return switchTypeF82;
     }
   }
 
   String getTypeName(int type) {
-    //HIF163CM11234700038EKIUFK
     switch (type) {
       case switchTypeM42:
         return "GPS-208";
@@ -638,7 +628,6 @@ class GetController extends GetxController {
     }
     return portModification(result, type);
   }
-
 
   void searchProject(String value) {
     if (value.isEmpty) {
