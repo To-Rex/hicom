@@ -255,12 +255,13 @@ class SwitchList extends StatelessWidget {
                             }
                         )
                     ]
-                ) : Column(children: [
-                  SizedBox(
-                      height: Get.height* 0.9,
-                      width: Get.width,
-                      child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)))
-                  )
+                )
+                    : Column(children: [
+                      SizedBox(
+                          height: Get.height* 0.9,
+                          width: Get.width,
+                          child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)))
+                      )
                 ]))
             )
         ),

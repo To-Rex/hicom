@@ -12,8 +12,6 @@ class PortItems16 extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
-    debugPrint(data.toString());
-    debugPrint(ports.toString());
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),

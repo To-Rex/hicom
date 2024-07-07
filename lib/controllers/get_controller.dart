@@ -577,11 +577,9 @@ class GetController extends GetxController {
 
   List<int> getPortType(link, snr, type) {
     if (link == null) {
-      debugPrint('link is null');
       return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
     }
     if (link.length != snr.length) {
-      debugPrint('link.length != snr.length');
       return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
     }
     List<int> result = [];
