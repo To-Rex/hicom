@@ -691,7 +691,7 @@ class ApiController extends GetxController {
     if (state) {
       opcode |= 2 * (1 << 9); // Full 10M
     } else {
-      if (serialNo.startsWith("HIF")) {
+      if (!serialNo.startsWith("HIF")) {
         opcode |= 5 * (1 << 9); // Full 1000M
       } else {
         opcode |= 4 * (1 << 9); // Full 100M

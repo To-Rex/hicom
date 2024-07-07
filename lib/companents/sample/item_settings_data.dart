@@ -29,7 +29,7 @@ class ItemSettingsData extends StatelessWidget {
     debugPrint(version.toString());
     debugPrint(index.toString());
 
-    return Row(
+    return portName == null || portName == '' ? Container() : Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SizedBox(width: Get.width * 0.03),
