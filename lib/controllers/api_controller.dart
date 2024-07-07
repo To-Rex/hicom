@@ -607,7 +607,7 @@ class ApiController extends GetxController {
   Future<void> getSwitchDetail(String pidId, String sn) async {
     InstrumentComponents().loadingDialog(Get.context!);
     try {
-      _getController.whileApi.value = false;
+      _getController.whileApi.value = true;
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}), _getController.getKey());
       debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
@@ -624,7 +624,6 @@ class ApiController extends GetxController {
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
       }
-      getSwitchDetailRealTime(pidId, sn, true);
     } catch (e) {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
