@@ -624,7 +624,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getSwitchDetail(String pidId, String sn, bool realTime) async {
+  Future<void> getSwitchDetail(String pidId, String sn, bool realTime,bool back) async {
     if (!realTime) {
       _getController.clearSwitchDetailModel();
     }
@@ -650,11 +650,13 @@ class ApiController extends GetxController {
     if (realTime) {
       Timer(const Duration(seconds: 5), () {
         if (_getController.whileApi.isTrue) {
-          getSwitchDetail(pidId, sn, realTime);
+          getSwitchDetail(pidId, sn, realTime,back);
         }
       });
     } else {
-      Get.back();
+      if (back) {
+        Get.back();
+      }
     }
   }
 
@@ -694,7 +696,7 @@ class ApiController extends GetxController {
         Get.back();
         InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
       } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
-        getSwitchDetail(pidId, sn, false);
+        getSwitchDetail(pidId, sn, false, true);
       }
     } else {
       Get.back();

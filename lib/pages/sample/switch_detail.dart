@@ -29,12 +29,13 @@ class SwitchDetailPage extends StatelessWidget {
 
   void _getData() {
     refreshController.refreshCompleted();
+    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),false,false);
   }
 
   @override
   Widget build(BuildContext context) {
     _getController.whileApi.value = true;
-    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),true);
+    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),true,false);
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
     _getController.tabController.animateTo(1);
     return PopScope(
@@ -70,6 +71,7 @@ class SwitchDetailPage extends StatelessWidget {
                   children: [
                     Center(child: Text(title!, style: TextStyle(fontSize: Get.textTheme.headlineSmall!.fontSize, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface))),
                     SizedBox(height: Get.height * 0.02),
+                    if (_getController.switchDetailModel.value.detail != null)
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                         child: _getController.switchDetailModel.value.detail!.link!.length >= 16
                             ? PortItems16(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)), ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)))
@@ -77,7 +79,6 @@ class SwitchDetailPage extends StatelessWidget {
                             data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!))
                         )
                     ),
-
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                         child: Row(
                             children: [
