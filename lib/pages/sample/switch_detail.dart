@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -23,9 +22,8 @@ class SwitchDetailPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
   final RefreshController refreshController = RefreshController(initialRefresh: false);
 
-  void _onLoading() {
-    refreshController.loadComplete();
-  }
+  void _onLoading() => refreshController.loadComplete();
+
 
   void _getData() {
     refreshController.refreshCompleted();
