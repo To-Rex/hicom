@@ -72,8 +72,8 @@ class SamplePage extends StatelessWidget {
                               },
                               child: Card(
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                  margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03, vertical: Get.height * 0.01),
-                                  elevation: 5,
+                                  margin: EdgeInsets.symmetric(horizontal: Get.width * 0.04, vertical: Get.height * 0.01),
+                                  elevation: 1,
                                   child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,8 +217,8 @@ class SamplePage extends StatelessWidget {
                               },
                               child: Card(
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                margin: EdgeInsets.symmetric(horizontal: Get.width * 0.04, vertical: Get.height * 0.01),
-                                elevation: 5,
+                                margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05, vertical: Get.height * 0.01),
+                                elevation: 1,
                                 child: Center(
                                     child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
