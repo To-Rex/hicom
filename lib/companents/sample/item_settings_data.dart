@@ -22,6 +22,13 @@ class ItemSettingsData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(portName);
+    debugPrint(port.toString());
+    debugPrint(poEs.toString());
+    debugPrint(phYc.toString());
+    debugPrint(version.toString());
+    debugPrint(index.toString());
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

@@ -12,7 +12,7 @@ class ItemPortData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return portName == null || portName == '' ? Container() : SizedBox(
       height: Get.height * 0.05,
       child: Row(
           children: [
