@@ -624,12 +624,14 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getSwitchDetail(String pidId, String sn, bool realTime,bool back) async {
+  Future<void> getSwitchDetail(String pidId, String sn, bool realTime) async {
+    if (!realTime){
+      InstrumentComponents().loadingDialog(Get.context!);
+    }
     if (!realTime) {
       _getController.clearSwitchDetailModel();
     }
-    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}),
-        _getController.getKey());
+    var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}), _getController.getKey());
     debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -650,13 +652,11 @@ class ApiController extends GetxController {
     if (realTime) {
       Timer(const Duration(seconds: 5), () {
         if (_getController.whileApi.isTrue) {
-          getSwitchDetail(pidId, sn, realTime,back);
+          getSwitchDetail(pidId, sn, realTime);
         }
       });
     } else {
-      if (back) {
-        Get.back();
-      }
+      Get.back();
     }
   }
 
@@ -696,7 +696,7 @@ class ApiController extends GetxController {
         Get.back();
         InstrumentComponents().showToast(Get.context!, 'Vooy!', 'Nimadur xato ketdi.'.tr, true, 3);
       } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
-        getSwitchDetail(pidId, sn, false, true);
+        getSwitchDetail(pidId, sn, false);
       }
     } else {
       Get.back();
