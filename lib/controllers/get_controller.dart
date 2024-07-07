@@ -502,27 +502,37 @@ class GetController extends GetxController {
 
   int typeFromSerialNumber(String serialNo) {
     if (serialNo.startsWith("HIM42") || serialNo.startsWith("PS106D") || serialNo.startsWith("PS204DM")) {
+      debugPrint('HIM42 ++++++++++++ $switchTypeM42');
       return switchTypeM42;
     } else if (serialNo.startsWith("HIF411") || serialNo.startsWith("GPS204")) {
+      debugPrint('HIF411 ++++++++++++ $switchTypeF411');
       return switchTypeF411;
     } else if (serialNo.startsWith("HIF82") || serialNo.startsWith("GPS208")) {
+      debugPrint('HIF82 ++++++++++++ $switchTypeF82');
       return switchTypeF82;
     } else if (serialNo.startsWith("HIM82") || serialNo.startsWith("PS208DM")) {
+      debugPrint('HIM82 ++++++++++++ $switchTypeM82');
       return switchTypeM82;
     } else if (serialNo.startsWith("HIG82") || serialNo.startsWith("PS208G")) {
+      debugPrint('HIG82 ++++++++++++ $switchTypeG82');
       return switchTypeG82;
     } else if (serialNo.startsWith("HIG83") || serialNo.startsWith("PS308G")) {
+      debugPrint('HIG83 ++++++++++++ $switchTypeG83');
       return switchTypeG83;
     } else if (serialNo.startsWith("HIG163") || serialNo.startsWith("PS316G")) {
+      debugPrint('HIG163 ++++++++++++ $switchTypeG163');
       return switchTypeG163;
     } else if (serialNo.startsWith("HIF163") || serialNo.startsWith("GPS316")) {
+      debugPrint('HIF163 ++++++++++++ $switchTypeF163');
       return switchTypeF163;
     } else {
+      debugPrint('HIF82 ++++++++++++ $switchTypeF82');
       return switchTypeF82;
     }
   }
 
   String getTypeName(int type) {
+    //HIF163CM11234700038EKIUFK
     switch (type) {
       case switchTypeM42:
         return "GPS-208";
@@ -569,10 +579,40 @@ class GetController extends GetxController {
       case switchTypeG83:
         return data.isNotEmpty ? [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], 3, data[8], data[9]] : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
       case switchTypeF163:
+        return data.isNotEmpty ? [3, 3, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], 3,3, data[16], data[17], data[18], 3]:[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
       case switchTypeG163:
         return data.isNotEmpty ? [3, 3, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], 3,3, data[16], data[17], data[18], 3]:[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
     }
     return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2];
+  }
+
+  List<int> getPortTypeIcons(type) {
+    switch (type) {
+      case switchTypeF411:
+        return [0,0,0,0,0,0,0,0,0,0,0,0];
+      case switchTypeM42:
+        return [1,1,1,1,1,1,1,1,1,1,1,1];
+      case switchTypeF82:
+      case switchTypeM82:
+        return [1,1,1,1,1,1,1,1,1,1,1,1];
+      case switchTypeG82:
+        return [0,0,0,0,0,0,0,0,0,0,0,0];
+      case switchTypeG83:
+        return [0,0,0,0,0,0,0,0,0,0,0,0];
+      case switchTypeF163:
+      case switchTypeG163:
+        //return data.isNotEmpty ? [3, 3, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], 3,3, data[16], data[17], data[18], 3]:[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
+        return [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1];
+    }
+    return [0,0,0,0,0,0,0,0,0,0,0,0];
+  }
+
+  String getPortTypes(int port){
+    if (port == 1) {
+      return 'assets/svg_assets/port_top.svg';
+    } else {
+      return 'assets/svg_assets/port.svg';
+    }
   }
 
   List<int> getPortType(link, snr, type) {
@@ -598,6 +638,7 @@ class GetController extends GetxController {
     }
     return portModification(result, type);
   }
+
 
   void searchProject(String value) {
     if (value.isEmpty) {

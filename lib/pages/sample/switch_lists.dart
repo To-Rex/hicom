@@ -66,7 +66,7 @@ class SwitchList extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return InkWell(
                                   overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                  onTap: () => {_getController.clearSwitchDetailModel(), Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.online![index].sn, title: _getController.switchListModel.value.online![index].name, pidId: Get.arguments))},
+                                  onTap: () => {_getController.clearSwitchDetailModel(), Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.offline![index].sn, title: _getController.switchListModel.value.offline![index].name, pidId: Get.arguments))},
                                   child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -134,12 +134,19 @@ class SwitchList extends StatelessWidget {
                                                   )
                                                 ]
                                             ),
-                                            if (_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()) != 7)
+
+                                            if (_getController.switchListModel.value.offline![index].sn != null &&_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()) == 7 || _getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()) == 8)
+                                              PortItems16(
+                                                  data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),
+                                                  ports: _getController.portModification([],_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),
+                                                  portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()))
+                                              )
+                                            else
                                               PortItems(
                                                   data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),
-                                                  ports:_getController.portModification([],_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())))
-                                            else
-                                              const PortItems16(data: [], ports: null),
+                                                  ports:_getController.portModification([],_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString())),
+                                                  portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(_getController.switchListModel.value.offline![index].sn.toString()))
+                                              ),
                                             Row(
                                               children: [
                                                 Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
@@ -228,17 +235,18 @@ class SwitchList extends StatelessWidget {
                                                   )
                                                 ]
                                             ),
-                                                //PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())), ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))),
-
-                                                if (_getController.switchListModel.value.online![index].link!.length >= 16)
+                                                //if (_getController.switchListModel.value.online![index].link!.length >= 16)
+                                                if (_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()) == 7 || _getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()) == 8)
                                                  PortItems16(
-                                                      data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
-                                                      ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
+                                                     data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
+                                                     ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
+                                                     portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
                                                   )
                                                 else
                                                   PortItems(
-                                                      data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
-                                                      ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
+                                                    data: _getController.getPortMap(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
+                                                    ports: _getController.getPortType(_getController.switchListModel.value.online![index].link,_getController.switchListModel.value.online![index].snr,_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString())),
+                                                    portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(_getController.switchListModel.value.online![index].sn.toString()))
                                                   ),
                                                 Row(
                                                 children: [

@@ -72,9 +72,9 @@ class SwitchDetailPage extends StatelessWidget {
                     if (_getController.switchDetailModel.value.detail != null)
                       Padding(
                           padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-                          child: _getController.switchDetailModel.value.detail!.link!.length >= 16
-                              ? PortItems16(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)), ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)))
-                              : PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!))
+                          child: _getController.typeFromSerialNumber(sn!) == 7 || _getController.typeFromSerialNumber(sn!) == 8
+                              ? PortItems16(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)), ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)), portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(sn!)))
+                              : PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)), portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(sn!))
                           )
                       ),
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01), child: InkWell(
