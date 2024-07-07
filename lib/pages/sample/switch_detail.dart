@@ -29,13 +29,13 @@ class SwitchDetailPage extends StatelessWidget {
 
   void _getData() {
     refreshController.refreshCompleted();
-    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),false);
+    ApiController().getSwitchDetail(pidId.toString(), sn.toString());
   }
 
   @override
   Widget build(BuildContext context) {
     _getController.whileApi.value = true;
-    ApiController().getSwitchDetail(pidId.toString(), sn.toString(),true);
+    ApiController().getSwitchDetailRealTime(pidId.toString(), sn.toString(),true);
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
     _getController.tabController.animateTo(1);
     return PopScope(
