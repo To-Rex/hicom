@@ -72,45 +72,25 @@ class SwitchDetailPage extends StatelessWidget {
                     Center(child: Text(title!, style: TextStyle(fontSize: Get.textTheme.headlineSmall!.fontSize, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface))),
                     SizedBox(height: Get.height * 0.02),
                     if (_getController.switchDetailModel.value.detail != null)
-                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-                        child: _getController.switchDetailModel.value.detail!.link!.length >= 16
-                            ? PortItems16(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)), ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)))
-                            : PortItems(
-                            data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!))
-                        )
-                    ),
-                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
-                        child: Row(
-                            children: [
-                              InkWell(
-                                  onTap: () {
-                                    InstrumentComponents().infoPortDialog(context);
-                                  },
-                                  child: Row(
-                                      children: [
-                                        Icon(TablerIcons.info_circle, color: AppColors.blue, size: Get.textTheme.headlineSmall!.fontSize),
-                                        SizedBox(width: Get.width * 0.01),
-                                        Text('Portlar holati xaqida'.tr, style: TextStyle(color: AppColors.blue, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500))
-                                      ]
-                                  )
-                              ),
-                              const Spacer(),
-                              Text('MTU VLAN'.tr, style: TextStyle(color: Get.theme.colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)),
-                              SizedBox(width: Get.width * 0.01),
-                              CupertinoSwitch(
-                                  activeColor: AppColors.green,
-                                  trackColor: Colors.grey.withOpacity(0.5),
-                                  focusColor: AppColors.green,
-                                  thumbColor: Theme.of(context).colorScheme.surface,
-                                  applyTheme: true,
-                                  onChanged: (value) {
-                                    //getSwF
-                                    ApiController().getSwF(pidId!, sn!);
-                                  }, value: false
-                              ),
-                            ]
-                        )
-                    ),
+                      Padding(
+                          padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                          child: _getController.switchDetailModel.value.detail!.link!.length >= 16
+                              ? PortItems16(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)), ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)))
+                              : PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!))
+                          )
+                      ),
+                    Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01), child: InkWell(
+                            onTap: () {
+                              InstrumentComponents().infoPortDialog(context);
+                            },
+                            child: Row(
+                                children: [
+                                  Icon(TablerIcons.info_circle, color: AppColors.blue, size: Get.textTheme.headlineSmall!.fontSize),
+                                  SizedBox(width: Get.width * 0.01),
+                                  Text('Portlar holati xaqida'.tr, style: TextStyle(color: AppColors.blue, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500))
+                                ]
+                            )
+                        )),
                     Padding(
                         padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,top: Get.height * 0.03, bottom: Get.height * 0.02),
                         child: Column(
@@ -218,10 +198,7 @@ class SwitchDetailPage extends StatelessWidget {
                                   )
                               )
                             else
-                              SizedBox(
-                                width: Get.width,
-                                child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),
-                              ),
+                              SizedBox(width: Get.width, child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),),
                             if (_getController.switchDetailModel.value.detail != null)
                               Padding(
                                   padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,top: Get.height * 0.03, bottom: Get.height * 0.02),
@@ -236,11 +213,12 @@ class SwitchDetailPage extends StatelessWidget {
                                             ]
                                         ),
                                         Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
-                                        Expanded(child: SingleChildScrollView(
-                                            child: Column(
-                                                children: [
-                                                  for (int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
-                                                    ItemSettingsData(
+                                        Expanded(
+                                            child: SingleChildScrollView(
+                                                child: Column(
+                                                    children: [
+                                                      for (int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
+                                                        ItemSettingsData(
                                                         projectId: pidId,
                                                         serialNumber: sn,
                                                         portName: _getController.getPortList(_getController.typeFromSerialNumber(sn!)).toList()[index+1],
@@ -252,25 +230,21 @@ class SwitchDetailPage extends StatelessWidget {
                                                         version: _getController.switchDetailModel.value.detail!.v!.length > index ? _getController.switchDetailModel.value.detail!.v![index].toString() : null,
                                                         index: index + 1
                                                     )
-                                                  //for(int index = 0; index < _getController.switchDetailModel.value.detail!.tx!.length; index++)
-                                                ]
+                                                    ]
+                                                )
                                             )
-                                        ))
+                                        )
                                       ]
                                   )
                               )
                             else
-                              SizedBox(
-                                width: Get.width,
-                                child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),
-                              ),
+                              SizedBox(width: Get.width, child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),),
                           ],
                         )
                     )
                   ]
               ) : const Center(child: CircularProgressIndicator()))
-          ),
-
+          )
       )
     );
   }
