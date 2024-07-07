@@ -17,6 +17,7 @@ import '../models/settings_info.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/sample/sample_page.dart';
+import '../splash_screen.dart';
 import 'get_controller.dart';
 
 class ApiController extends GetxController {
@@ -146,20 +147,12 @@ class ApiController extends GetxController {
 
   Future<void> login(phone, session, keys, enter) async {
     var json = Tea.encryptTea('{"phone": "$phone","session":"$session"}', keys);
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('login', 'null') + json.toString()}&key=$keys'),
-        headers: headers);
+    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('login', 'null') + json.toString()}&key=$keys'), headers: headers);
     debugPrint(response.statusCode.toString());
     debugPrint(Tea.decryptTea(response.body, keys).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys)
-              .toString()
-              .codeUnits))['errcode'] ==
-          0) {
-        _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(
-            utf8.decode(
-                Tea.decryptTea(response.body, keys).toString().codeUnits))));
+      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys).toString().codeUnits))['errcode'] == 0) {
+        _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys).toString().codeUnits))));
         _getController.writeKey(_getController.loginModel.value.key.toString());
         _getController.writeUid(_getController.loginModel.value.uid.toString());
         _getController.writeUser(_getController.loginModel.value);
@@ -167,26 +160,21 @@ class ApiController extends GetxController {
           Get.offAll(SamplePage());
         }
       } else {
-        if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys)
-                .toString()
-                .codeUnits))['errcode'] ==
-            20003) {
-          _getController
-              .writeKey(_getController.loginModel.value.key.toString());
-          _getController
-              .writeUid(_getController.loginModel.value.uid.toString());
+        if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys).toString().codeUnits))['errcode'] == 20003) {
+          _getController.writeKey(_getController.loginModel.value.key.toString());
+          _getController.writeUid(_getController.loginModel.value.uid.toString());
           _getController.writeUser(_getController.loginModel.value);
-          Get.to(RegisterPage());
-          InstrumentComponents().showToast(Get.context!, 'Xatolik',
-              'Bunday foydalanuvchi allaqachon mavjud.'.tr, true, 3);
+          _getController.clearKey();
+          _getController.clearUid();
+          _getController.clearUser();
+          Get.offAll(() => SplashScreen());
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Hisobingizga kirishda xatolik yuz berdi'.tr, true, 3);
         } else {
-          InstrumentComponents().showToast(
-              Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
         }
       }
     } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
