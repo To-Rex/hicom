@@ -69,6 +69,10 @@ class LocaleString extends Translations{
       'POE':'POE',
       'Extend':'Uzatish',
       'Reboot':'Qayta ishga tushirish',
+      'Power':'Quvvat',
+      'TX':'TX',
+      'RX':'RX',
+      'Status':'Holat',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -180,6 +184,10 @@ class LocaleString extends Translations{
       'POE':'POE',
       'Extend':'Extend',
       'Reboot':'Reboot',
+      'Power':'Power',
+      'TX':'TX',
+      'RX':'RX',
+      'Status':'Status',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -285,6 +293,10 @@ class LocaleString extends Translations{
       'POE':'ПОЕ',
       'Extend':'Продлевать',
       'Reboot':'Перезагрузить',
+      'Power':'Власть',
+      'TX':'TX',
+      'RX':'RX',
+      'Status':'Положение',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -409,6 +421,10 @@ class LocaleString extends Translations{
       'POE':'ПОЕ',
       'Extend':'Узатиш',
       'Reboot':'Қайта ишга тушириш',
+      'Power':'Қувват',
+      'TX':'TX',
+      'RX':'RX',
+      'Status':'Ҳолат',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
