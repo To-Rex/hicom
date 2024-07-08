@@ -41,9 +41,7 @@ class SamplePage extends StatelessWidget {
             centerTitle: true,
             actions: [
               Obx(() => _getController.isSearch.value
-                  ? SearchFields(onChanged: (String value) {
-                _getController.searchProject(value);
-              })
+                  ? SearchFields(onChanged: (String value) {_getController.searchProject(value);})
                   : IconButton(icon: Icon(Icons.search, size: Get.height * 0.035), onPressed: () => {_getController.isSearch.value = !_getController.isSearch.value})
               )
             ]),

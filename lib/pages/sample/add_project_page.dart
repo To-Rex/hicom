@@ -16,7 +16,7 @@ class AddProjectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Loyiha qo\'shish'.tr),
+        title: Text('Loyiha qo‘shish'.tr),
         centerTitle: true,
       ),
       body:  SingleChildScrollView(
@@ -35,13 +35,13 @@ class AddProjectPage extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () => {
                         if(_getController.nameProjectController.text.isEmpty){
-                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Loyiha nomini kiriting'.tr, true, 3)
+                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Loyiha nomini kiriting.'.tr, true, 3)
                         } else if (_getController.switchNameProjectController.text.isEmpty){
-                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilma nomini kiriting'.tr, true, 3)
+                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilma nomini kiriting.'.tr, true, 3)
                         } else if (_getController.switchSerialProjectController.text.isEmpty){
-                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilmaning ishlab chiqarish raqamini kiriting'.tr, true, 3)
+                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilmaning ishlab chiqarish raqamini kiriting.'.tr, true, 3)
                         } else if (_getController.passwordProjectController.text.isEmpty){
-                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilma parolini kiriting'.tr, true, 3)
+                          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilmaning parolini kiriting.'.tr, true, 3)
                         } else {
                           ApiController().addProjects()
                         }
