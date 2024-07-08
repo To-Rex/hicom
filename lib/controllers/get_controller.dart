@@ -636,4 +636,13 @@ class GetController extends GetxController {
     }
   }
 
+  void saveLanguage(Locale locale) {
+    GetStorage().write('language', '${locale.languageCode}_${locale.countryCode}');
+    Get.updateLocale(locale);
+  }
+
+  Locale get language {
+    return Locale(GetStorage().read('language') ?? 'uz_UZ');
+  }
+
 }

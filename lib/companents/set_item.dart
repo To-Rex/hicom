@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hicom/controllers/get_controller.dart';
 import '../resource/colors.dart';
 
 class SettingsItem extends StatelessWidget {
@@ -27,7 +28,7 @@ class SettingsItem extends StatelessWidget {
           Text(title, style: TextStyle(color: color, fontSize: Get.width * 0.04, fontWeight: FontWeight.w500)),
           const Spacer(),
           if (isLanguage)
-            Text(Get.locale == const Locale('uz', 'UZ') ? 'O\'zbekcha' : Get.locale == const Locale('oz', 'OZ') ? 'Узбекча' : Get.locale == const Locale('ru', 'RU') ? 'Русский' : 'English', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.035, fontWeight: FontWeight.w500)),
+            Text(GetController().language.toString() == 'uz_UZ' ? 'O‘zbekcha' : GetController().language.toString() == 'oz_OZ' ? 'Узбекча' : GetController().language.toString() == 'ru_RU' ? 'Русский' : 'English', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.035, fontWeight: FontWeight.w500)),
           if (!isNightMode)
             IconButton(onPressed: () => onTap(), icon: Icon(Icons.chevron_right, size: Get.height * 0.035, color: color))
           else

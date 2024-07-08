@@ -29,8 +29,8 @@ class UserPage extends StatelessWidget {
   ];
 
   updateLanguage(Locale locale){
-    debugPrint(locale.toString());
     Get.updateLocale(locale);
+    _getController.saveLanguage(locale);
   }
 
   bottomBuildLanguageDialog(BuildContext context){
@@ -73,9 +73,9 @@ class UserPage extends StatelessWidget {
                                                     children: [
                                                       Text(locale[index]['name'], style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                       const Spacer(),
-                                                      if (locale[index]['locale'] == Get.locale)
+                                                      if (locale[index]['locale'].toString() == _getController.language.toString())
                                                         Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onSurface),
-                                                      if (locale[index]['locale'] != Get.locale)
+                                                      if (locale[index]['locale'].toString() != _getController.language.toString())
                                                         Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                     ]
                                                 )
@@ -83,6 +83,7 @@ class UserPage extends StatelessWidget {
                                         ),
                                         onTap: (){
                                           updateLanguage(locale[index]['locale']);
+                                          Get.back();
                                         }
                                     ),
                                     const Divider()
@@ -253,7 +254,9 @@ class UserPage extends StatelessWidget {
                                   SettingsItem(
                                       icon: Icon(TablerIcons.world, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                       title: 'Dastur tili'.tr,
-                                      onTap: () {bottomBuildLanguageDialog(context);},
+                                      onTap: () {
+                                        bottomBuildLanguageDialog(context);
+                                        },
                                       color: Theme.of(context).colorScheme.onSurface, isNightMode: false,
                                       isLanguage: true
                                   ),

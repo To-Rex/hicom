@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hicom/controllers/get_controller.dart';
 import 'package:hicom/resource/srting.dart';
 import 'package:hicom/splash_screen.dart';
 
@@ -26,8 +27,7 @@ class MyApp extends StatelessWidget {
             title: 'Ildiz Kitoblari',
             theme: theme,
             translations: LocaleString(),
-            //locale: Get.locale ?? const Locale('uz', 'UZ'),
-            locale: Locale(Get.locale?.languageCode ?? 'uz', Get.locale?.countryCode ?? 'UZ'),
+            locale: GetController().language,
             darkTheme: lightTheme,
             routes: {
               '/': (context) => SplashScreen()
