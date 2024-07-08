@@ -85,7 +85,7 @@ class SwitchDetailPage extends StatelessWidget {
                                 children: [
                                   Icon(TablerIcons.info_circle, color: AppColors.blue, size: Get.textTheme.headlineSmall!.fontSize),
                                   SizedBox(width: Get.width * 0.01),
-                                  Text('Portlar holati xaqida'.tr, style: TextStyle(color: AppColors.blue, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500))
+                                  Text('Portlar holati haqida'.tr, style: TextStyle(color: AppColors.blue, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500))
                                 ]
                             )
                         )),
@@ -106,7 +106,7 @@ class SwitchDetailPage extends StatelessWidget {
                                     unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                                     indicator: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.surface.withOpacity(0.1), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
                                     tabs: [
-                                      Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Ma\'lumotlar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis)))),
+                                      Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Malumotlar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis)))),
                                       Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Portlar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis)))),
                                       Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Sozlamalar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis))))
                                     ]

@@ -50,6 +50,10 @@ class LocaleString extends Translations{
       'Kuting!':'Kuting!',
       'Mamlakatlarni qidirish':'Mamlakatlarni qidirish',
       'Qurilma haqida':'Qurilma haqida',
+      'Portlar holati haqida':'Portlar holati haqida',
+      'ma’lumotlar':'ma’lumotlar',
+      'Portlar':'Portlar',
+      'Sozlamalar':'Sozlamalar',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -142,6 +146,10 @@ class LocaleString extends Translations{
       'Kuting!':'Loading...',
       'Mamlakatlarni qidirish':'Search Regions',
       'Qurilma haqida':'About Device',
+      'Portlar holati haqida':'About Ports',
+      'ma’lumotlar':'Information',
+      'Portlar':'Ports',
+      'Sozlamalar':'Settings',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -237,6 +245,10 @@ class LocaleString extends Translations{
       'Kuting!':'Подождите...',
       'Mamlakatlarni qidirish':'Поиск регионов',
       'Qurilma haqida':'Информация о устройстве',
+      'Portlar holati haqida':'Информация о состоянии портов',
+      'ma’lumotlar':'Данные',
+      'Portlar':'Порты',
+      'Sozlamalar':'Настройки',
 
       'Kuzatuvchilar':'Подписчики',
       'Ulashish':'Поделиться',
@@ -332,6 +344,10 @@ class LocaleString extends Translations{
       'Kuting!':'Кутинг!',
       'Mamlakatlarni qidirish':'Мамлакатларни қидириш',
       'Qurilma haqida':'Қурилма хақида',
+      'Portlar holati haqida':'Портлар ҳолати хақида',
+      'ma’lumotlar':'Маълумотлар',
+      'Portlar':'Портлар',
+      'Sozlamalar':'Созламалар',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
