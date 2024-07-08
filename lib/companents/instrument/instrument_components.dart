@@ -236,15 +236,15 @@ class InstrumentComponents {
                           ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Loyihani nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: 'Loyiha nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Qo`shimcha ma`lumot'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: 'Qo‘shimcha ma’lumot'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
                                 onPressed: () => {
                                   if (_getController.nameProjectController.text == '') {
-                                    showToast(context, 'Loyihani nomini kiriting'.tr, 'Loyihani nomini kiriting'.tr, true, 3)
+                                    showToast(context, 'Diqqat!'.tr, 'Loyiha nomini kiriting.'.tr, true, 3)
                                   } else {
                                     ApiController().renameProjects(pidId, _getController.nameProjectController.text, _getController.noteProjectController.text)
                                   }
