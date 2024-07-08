@@ -106,7 +106,7 @@ class SwitchDetailPage extends StatelessWidget {
                                     unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                                     indicator: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.surface.withOpacity(0.1), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
                                     tabs: [
-                                      Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Malumotlar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis)))),
+                                      Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('ma’lumotlar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis)))),
                                       Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Portlar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis)))),
                                       Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Sozlamalar'.tr,maxLines: 1,overflow: TextOverflow.ellipsis))))
                                     ]
@@ -132,7 +132,7 @@ class SwitchDetailPage extends StatelessWidget {
                                         SizedBox(height: Get.height * 0.015),
                                         ItemData(title: 'Ip adress'.tr, subtitle: _getController.switchDetailModel.value.detail!.ip.toString()),
                                         SizedBox(height: Get.height * 0.015),
-                                        ItemData(title: 'Dasturiy ta`minot'.tr,subtitle: _getController.switchDetailModel.value.detail!.v.toString()),
+                                        ItemData(title: 'Dasturiy ta’minot'.tr,subtitle: _getController.switchDetailModel.value.detail!.v.toString()),
                                         SizedBox(height: Get.height * 0.015),
                                         ItemData(title: 'POE kuchlanishi'.tr, subtitle: '${_getController.switchDetailModel.value.detail!.vol} V'),
                                         SizedBox(height: Get.height * 0.015),
@@ -152,7 +152,7 @@ class SwitchDetailPage extends StatelessWidget {
                                                 //switchReboot
                                                 ApiController().switchReboot(pidId.toString(), sn.toString());
                                               },
-                                              child: Text('Qurilmani o\'chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
+                                              child: Text('Qurilmani o‘chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
                                             )
                                         )
                                       ]
