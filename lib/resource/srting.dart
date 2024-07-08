@@ -52,6 +52,7 @@ class LocaleString extends Translations{
       'Qurilma nomi':'Qurilma nomi',
       'Qurilmaning ishlab chiqarish raqami':'Qurilmaning ishlab chiqarish raqami',
       'Qurilma paroli':'Qurilma paroli',
+      'QR Kodni Skaynerlash':'QR Kodni Skaynerlash',
 
       //validation
       'Muvaffaqiyatli':'Muvaffaqiyatli',
@@ -125,6 +126,7 @@ class LocaleString extends Translations{
       'Qurilma nomi':'Device Name',
       'Qurilmaning ishlab chiqarish raqami':'Device Manufacturing Number',
       'Qurilma paroli':'Device Password',
+      'QR Kodni Skaynerlash':'Scan QR Code',
 
       // validation
       'Muvaffaqiyatli':'Successful',
@@ -198,6 +200,7 @@ class LocaleString extends Translations{
       'Qurilma nomi':'Название устройства',
       'Qurilmaning ishlab chiqarish raqami':'Серийный номер устройства',
       'Qurilma paroli':'Пароль устройства',
+      'QR Kodni Skaynerlash':'Сканирование QR кода',
 
       // validation
       'Muvaffaqiyatli':'Успешно',
@@ -271,6 +274,7 @@ class LocaleString extends Translations{
       'Qurilma nomi':'Қурилма номи',
       'Qurilmaning ishlab chiqarish raqami':'Қурилманинг ишлаб чиқариш рақами',
       'Qurilma paroli':'Қурилма пароли',
+      'QR Kodni Skaynerlash':'ҚР Кодни Скайнерлаш',
 
       // validation
       'Muvaffaqiyatli':'Муваффақиятли',

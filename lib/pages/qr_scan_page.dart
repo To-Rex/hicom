@@ -12,7 +12,7 @@ class QRViewExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QR Kodni Skaynerlash', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500)),
+        title: Text('QR Kodni Skaynerlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color:Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05),
           onPressed: () => Get.back()
