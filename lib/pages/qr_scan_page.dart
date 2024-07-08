@@ -19,11 +19,7 @@ class QRViewExample extends StatelessWidget {
         ),
         actions: [
           Obx(() => IconButton(
-              icon: Icon(
-                _getController.cameraFacing.value == CameraFacing.front ? Icons.camera_rear : Icons.camera_front,
-                color: Colors.white,
-                size: Get.width * 0.05
-              ),
+              icon: Icon(_getController.cameraFacing.value == CameraFacing.front ? Icons.camera_rear : Icons.camera_front, color: Colors.white, size: Get.width * 0.05),
               onPressed: _getController.toggleCamera
             )),
           Obx(() => IconButton(
@@ -44,13 +40,7 @@ class QRViewExample extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: QRView(
-                    overlay: QrScannerOverlayShape(
-                        borderColor: Colors.white,
-                        borderRadius: 10,
-                        borderLength: 30,
-                        borderWidth: 10,
-                        cutOutSize: MediaQuery.of(context).size.width * 0.8
-                    ),
+                    overlay: QrScannerOverlayShape(borderColor: Colors.white, borderRadius: 10, borderLength: 30, borderWidth: 10, cutOutSize: MediaQuery.of(context).size.width * 0.8),
                     key: _getController.qrKey,
                     cameraFacing: _getController.cameraFacing.value,
                     onQRViewCreated: _getController.onQRViewCreated
