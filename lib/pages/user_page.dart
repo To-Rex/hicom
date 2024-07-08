@@ -256,7 +256,7 @@ class UserPage extends StatelessWidget {
                                   const Divider(),
                                   SettingsItem(
                                       icon: Icon(TablerIcons.info_circle, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                      title: 'Foydalanish yo\'riqnomasi'.tr,
+                                      title: 'Foydalanish yo‘riqnomasi'.tr,
                                       onTap: () {
                                         Get.to(() => InstructionPage(), transition: Transition.fadeIn);
                                       },
@@ -267,7 +267,7 @@ class UserPage extends StatelessWidget {
                                   const Divider(),
                                   SettingsItem(
                                       icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
-                                      title: 'Qo\'llab quvvatlash'.tr,
+                                      title: 'Qo‘llab quvvatlash'.tr,
                                       onTap: () {
                                         Get.to(() => SupportPage(), transition: Transition.fadeIn);
                                       },
