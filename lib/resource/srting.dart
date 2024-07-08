@@ -49,6 +49,7 @@ class LocaleString extends Translations{
       'Qurilma o‘chiq':'Qurilma o‘chiq',
       'Kuting!':'Kuting!',
       'Mamlakatlarni qidirish':'Mamlakatlarni qidirish',
+      'Qurilma haqida':'Qurilma haqida',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -140,6 +141,7 @@ class LocaleString extends Translations{
       'Qurilma o‘chiq':'The device is off',
       'Kuting!':'Loading...',
       'Mamlakatlarni qidirish':'Search Regions',
+      'Qurilma haqida':'About Device',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -234,6 +236,7 @@ class LocaleString extends Translations{
       'Qurilma o`chiq':'Устройство выключено',
       'Kuting!':'Подождите...',
       'Mamlakatlarni qidirish':'Поиск регионов',
+      'Qurilma haqida':'Информация о устройстве',
 
       'Kuzatuvchilar':'Подписчики',
       'Ulashish':'Поделиться',
@@ -328,6 +331,7 @@ class LocaleString extends Translations{
       'Qurilma o`chiq':'Қурилма ўчиқ',
       'Kuting!':'Кутинг!',
       'Mamlakatlarni qidirish':'Мамлакатларни қидириш',
+      'Qurilma haqida':'Қурилма хақида',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
