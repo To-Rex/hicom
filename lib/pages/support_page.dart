@@ -15,7 +15,7 @@ class SupportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Qo\'llab quvvatlash'.tr,
+        title: Text('Qo‘llab quvvatlash'.tr,
           style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05),
         ),
         centerTitle: true,
@@ -40,7 +40,7 @@ class SupportPage extends StatelessWidget {
                           if (_getController.getSettings('ContactPhone') != '')
                             SettingsSupportItem(
                                 icon: Icon(TablerIcons.device_mobile, color: AppColors.primaryColor, size: Get.height * 0.04),
-                                title: 'Bog’lanish'.tr,
+                                title: 'Bog‘lanish'.tr,
                                 onTap: () {launchUrl(Uri.parse('tel:${_getController.getSettings('ContactPhone')}'));},
                                 color: Theme.of(context).colorScheme.onSurface,
                                 isNightMode: false,
