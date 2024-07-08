@@ -77,6 +77,7 @@ class InstrumentComponents {
                                         onTap: () {
                                           setState(() {
                                             if (index != 0) {
+                                              Get.back();
                                               _getController.changeDropDownItems(0, index);
                                               ApiController().getRegions(Tea.encryptTea('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}',ApiController.key), 'districts');
                                             }
@@ -123,6 +124,7 @@ class InstrumentComponents {
                                     return InkWell(
                                         onTap: () {
                                           if (index != 0) {
+                                            Get.back();
                                             setState(() {
                                               _getController.changeDropDownItems(1, index);
                                             });
@@ -167,6 +169,7 @@ class InstrumentComponents {
                                     return InkWell(
                                         onTap: () {
                                           setState(() {
+                                            Get.back();
                                             _getController.changeDropDownItems(2, index);
                                           });
                                         },

@@ -89,12 +89,6 @@ class EditUser extends StatelessWidget {
                             ),
                             if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr){
                               ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions')
-
-                             /* _getController.clearDistrictsModel(),
-                              _getController.clearProvinceModel(),
-                              _getController.dropDownItems[0] = 0,
-                              _getController.dropDownItems[1] = 0,
-                              _getController.dropDownItems[2] = 0,*/
                             } else {
                               }
                           }),
