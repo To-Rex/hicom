@@ -294,9 +294,9 @@ class InstrumentComponents {
                           ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Qurilmani nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: 'Qurilma nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Qo`shimcha ma`lumot'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: 'Qo‘shimcha ma’lumot'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -512,7 +512,7 @@ class InstrumentComponents {
     Get.dialog(
         AlertDialog(
           title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
-          content: Text('Qurilma o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+          content: Text('Qurilma o‘chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
           actions: [
             TextButton(
                 onPressed: () => Get.back(),
@@ -523,7 +523,7 @@ class InstrumentComponents {
                   Get.back(),
                   ApiController().deleteSwitch(pid,sn)
                 },
-                child: Text('O’chirish'.tr)
+                child: Text('O‘chirish'.tr)
             )
           ],
         )

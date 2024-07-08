@@ -73,6 +73,7 @@ class LocaleString extends Translations{
       'TX':'TX',
       'RX':'RX',
       'Status':'Holat',
+      'Qurilmani tahrirlash':'Qurilmani tahrirlash',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -188,6 +189,7 @@ class LocaleString extends Translations{
       'TX':'TX',
       'RX':'RX',
       'Status':'Status',
+      'Qurilmani tahrirlash':'Edit Device',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -297,6 +299,7 @@ class LocaleString extends Translations{
       'TX':'TX',
       'RX':'RX',
       'Status':'Положение',
+      'Qurilmani tahrirlash':'Изменить устройство',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -425,6 +428,7 @@ class LocaleString extends Translations{
       'TX':'TX',
       'RX':'RX',
       'Status':'Ҳолат',
+      'Qurilmani tahrirlash':'Қурилмани таҳрирлаш',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
