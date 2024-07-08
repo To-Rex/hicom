@@ -522,27 +522,9 @@ class GetController extends GetxController {
     }
   }
 
-  String getTypeName(int type) {
-    switch (type) {
-      case switchTypeM42:
-        return 'Hi-M42CM';
-      case switchTypeF411:
-        return 'Hi-F411CM';
-      case switchTypeF82:
-        return 'Hi-F82CM';
-      case switchTypeM82:
-        return 'Hi-M82CM';
-      case switchTypeG82:
-        return 'Hi-G82CM';
-      case switchTypeG83:
-        return 'Hi-G83CM';
-      case switchTypeG163:
-        return 'Hi-G 163CM';
-      case switchTypeF163:
-        return 'Hi-F163CM';
-      default:
-        return 'Hi-F82CM';
-    }
+  String getTypeName(String type) {
+    //HIF163CM11234700038EKIUFK to HI-F163CM
+    return type.substring(0,8).replaceAll('HI', 'HI-');
   }
 
   List<String> getPortList(int type) {
