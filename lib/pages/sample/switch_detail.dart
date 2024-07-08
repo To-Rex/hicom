@@ -206,8 +206,8 @@ class SwitchDetailPage extends StatelessWidget {
                                             children: [
                                               Expanded(child: Center(child: Text('Port'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
                                               Expanded(child: Center(child: Text('POE'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
-                                              Expanded(child: Center(child: Text('Extend'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
-                                              Expanded(child: Center(child: Text('Reboot'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                              Expanded(child:Center(child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Text('Extend'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500))))),
+                                              Expanded(child: Center(child:SingleChildScrollView(scrollDirection: Axis.horizontal, child: Text('Reboot'.tr, maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500))))),
                                             ]
                                         ),
                                         Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),

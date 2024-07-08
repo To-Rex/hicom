@@ -407,8 +407,8 @@ class LocaleString extends Translations{
       'Ma’lumotlar topilmadi':'Маълумотлар топилмади',
       'Port':'Порт',
       'POE':'ПОЕ',
-      'Extend':'Екстенд',
-      'Reboot':'Ребут',
+      'Extend':'Узатиш',
+      'Reboot':'Қайта ишга тушириш',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
