@@ -63,6 +63,7 @@ class LocaleString extends Translations{
       'POE quvvati':'POE кучлиги',
       'Online davri':'Online даври',
       'Qurilmani o‘chirib yoqish':'Qurilmani o‘chirib yoqish',
+      'Qurilmalar ro‘yxati':'Qurilmalar ro’yxati',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -168,6 +169,7 @@ class LocaleString extends Translations{
       'POE quvvati':'POE State',
       'Online davri':'Online Day',
       'Qurilmani o‘chirib yoqish':'Delete Device',
+      'Qurilmalar ro‘yxati':'Device List',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -267,6 +269,7 @@ class LocaleString extends Translations{
       'ma’lumotlar':'Данные',
       'Portlar':'Порты',
       'Sozlamalar':'Настройки',
+      'Qurilmalar ro‘yxati':'Список устройств',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -385,6 +388,7 @@ class LocaleString extends Translations{
       'POE quvvati':'ПОЭ куввати',
       'Online davri':'Онлайн даври',
       'Qurilmani o‘chirib yoqish':'Қурилмани ўчириб юқиш',
+      'Qurilmalar ro‘yxati':'Қурилмалар рўйхати',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
