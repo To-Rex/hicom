@@ -55,7 +55,10 @@ class LocaleString extends Translations{
       'QR Kodni Skaynerlash':'QR Kodni Skaynerlash',
       'Loyihani tahrirlash':'Loyihani tahrirlash',
       'Qo‘shimcha ma’lumot':'Qo‘shimcha ma’lumot',
-
+      'Loyihani kuzatuvchilari':'Loyihani kuzatuvchilari',
+      'Loyihani ulashish':'Loyihani ulashish',
+      'Kuzatuvchi telefon raqami':'Kuzatuvchi telefon raqami',
+      'Kuzatuvchi nomi':'Kuzatuvchi nomi',
 
       //validation
       'Muvaffaqiyatli':'Muvaffaqiyatli',
@@ -73,7 +76,6 @@ class LocaleString extends Translations{
       'Iltimos hisobingizga qaytadan kiriting.': 'Iltimos hisobingizga qaytadan kiriting.',
       'Iltimos qaytadan urinib ko‘ring.': 'Iltimos qaytadan urinib ko‘ring.',
       'Qurilma qayta ishga tushdi.':'Qurilma qayta ishga tushdi.',
-
       'Loyiha nomini kiriting.':'Loyiha nomini kiriting.',
       'Qurilma nomini kiriting.':'Qurilma nomini kiriting.',
       'Qurilmaning ishlab chiqarish raqamini kiriting.':'Qurilmaning ishlab chiqarish raqamini kiriting.',
@@ -132,6 +134,10 @@ class LocaleString extends Translations{
       'QR Kodni Skaynerlash':'Scan QR Code',
       'Loyihani tahrirlash':'Edit Project',
       'Qo‘shimcha ma’lumot':'Additional Information',
+      'Loyihani kuzatuvchilari':'Project Followers',
+      'Loyihani ulashish':'Share Project',
+      'Kuzatuvchi telefon raqami':'Follower Phone Number',
+      'Kuzatuvchi nomi':'Follower Name',
 
       // validation
       'Muvaffaqiyatli':'Successful',
@@ -149,11 +155,12 @@ class LocaleString extends Translations{
       'Iltimos hisobingizga qaytadan kiriting.':'Please Log in Again.',
       'Iltimos qaytadan urinib ko‘ring.':'Please Try Again.',
       'Qurilma qayta ishga tushdi.':'Device Restarted.',
-
       'Loyiha nomini kiriting.':'Enter Project Name.',
       'Qurilma nomini kiriting.':'Enter Device Name.',
       'Qurilmaning ishlab chiqarish raqamini kiriting.':'Enter Device Manufacturing Number.',
-      'Qurilmaning parolini kiriting.':'Enter Device Password.'
+      'Qurilmaning parolini kiriting.':'Enter Device Password.',
+      'Kuzatuvchi telefon raqami kiriting':'Enter Follower Phone Number',
+      'Kuzatuvchi nomi kiriting':'Enter Follower Name',
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -208,6 +215,10 @@ class LocaleString extends Translations{
       'QR Kodni Skaynerlash':'Сканирование QR кода',
       'Loyihani tahrirlash':'Изменить проект',
       'Qo‘shimcha ma’lumot':'Дополнительная информация',
+      'Loyihani kuzatuvchilari':'Подписчики проекта',
+      'Loyihani ulashish':'Поделиться проектом',
+      'Kuzatuvchi telefon raqami':'Номер телефона подписчика',
+      'Kuzatuvchi nomi':'Имя подписчика',
 
       // validation
       'Muvaffaqiyatli':'Успешно',
@@ -225,11 +236,12 @@ class LocaleString extends Translations{
       'Iltimos hisobingizga qaytadan kiriting.':'Пожалуйста, войдите в аккаунт заново.',
       'Iltimos qaytadan urinib ko‘ring.':'Пожалуйста, попробуйте снова.',
       'Qurilma qayta ishga tushdi.':'Устройство перезапущено.',
-
       'Loyiha nomini kiriting.':'Введите название проекта.',
       'Qurilma nomini kiriting.':'Введите название устройства.',
       'Qurilmaning ishlab chiqarish raqamini kiriting.':'Введите серийный номер устройства.',
-      'Qurilmaning parolini kiriting.':'Введите пароль устройства.'
+      'Qurilmaning parolini kiriting.':'Введите пароль устройства.',
+      'Kuzatuvchi telefon raqami kiriting':'Номер телефона подписчика',
+      'Kuzatuvchi nomi kiriting':'Имя подписчика',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дилшоджон Ҳайдаров',
@@ -284,6 +296,10 @@ class LocaleString extends Translations{
       'QR Kodni Skaynerlash':'ҚР Кодни Скайнерлаш',
       'Loyihani tahrirlash':'Лойиҳани таҳрирлаш',
       'Qo‘shimcha ma’lumot':'Қўшимча маълумот',
+      'Loyihani kuzatuvchilari':'Лойиҳани кузатувчилари',
+      'Loyihani ulashish':'Лойиҳани улашиш',
+      'Kuzatuvchi telefon raqami':'Кузатувчи телефон рақами',
+      'Kuzatuvchi nomi':'Кузатувчи номи',
 
       // validation
       'Muvaffaqiyatli':'Муваффақиятли',
@@ -301,11 +317,12 @@ class LocaleString extends Translations{
       'Iltimos hisobingizga qaytadan kiriting.':'Илтимос, ҳисобингизга қайтадан киринг.',
       'Iltimos qaytadan urinib ko‘ring.':'Илтимос қайтадан уриниб кўринг.',
       'Qurilma qayta ishga tushdi.':'Қурилма қайта ишга тушди.',
-
       'Loyiha nomini kiriting.':'Лойиҳа номини киритинг.',
       'Qurilma nomini kirитинг.':'Қурилма номини киритинг.',
       'Qurilmaning ishlab chiqarish raqamini kiriting.':'Қурилманинг ишлаб чиқариш рақамини киритинг.',
-      'Qurilmaning parolini kiriting.':'Қурилманинг паролини киритинг.'
+      'Qurilmaning parolini kiriting.':'Қурилманинг паролини киритинг.',
+      'Kuzatuvchi telefon raqami kiriting':'Кузатувчи телефон рақами киритинг',
+      'Kuzatuvchi nomi kiriting':'Кузатувчи номи киритинг',
     }
 
   };
