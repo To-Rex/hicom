@@ -91,7 +91,7 @@ class RegisterPage extends StatelessWidget{
                       child: DropdownItem(
                           title: _getController.provinceModel.value.regions![_getController.dropDownItems[0]].name.toString(),
                           onTap: () => {
-                            InstrumentComponents().bottomBuildLanguageDialog(context,'Violyat'.tr,0),
+                            InstrumentComponents().bottomBuildLanguageDialog(context,'Viloyat'.tr,0),
                             _getController.dropDownItems[1] = 0
                           })
                     ),

@@ -13,6 +13,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getController.phoneController.clear();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

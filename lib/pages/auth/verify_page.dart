@@ -20,7 +20,7 @@ class VerifyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    _getController.codeController.clear();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

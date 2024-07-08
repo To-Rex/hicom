@@ -28,7 +28,10 @@ class SplashScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Flexible(child: Container()),
-            SizedBox(width: Get.width * 0.35, child: Image.asset('assets/images/logo.png', fit: BoxFit.cover)),
+            SizedBox(width: Get.width * 0.5, child: Image.asset(
+                //'assets/images/logo.png',
+              Theme.of(context).brightness == Brightness.light ? 'assets/images/logo.png' : 'assets/images/logo_night.png',
+                fit: BoxFit.cover)),
             Flexible(child: Container()),
             CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
             SizedBox(height: Get.height * 0.04),
