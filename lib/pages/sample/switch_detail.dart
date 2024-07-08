@@ -51,9 +51,9 @@ class SwitchDetailPage extends StatelessWidget {
             title: Text('Qurilma haqida'.tr),
             centerTitle: true,
             leading: IconButton(icon: Icon(Icons.arrow_back_ios, size:Get.height * 0.035), onPressed: () => {Get.back()}),
-            actions: [
+            /*actions: [
               IconButton(icon: Icon(Icons.settings, size: Get.height * 0.035), onPressed: () => {Get.back()})
-            ],
+            ],*/
           ),
           body: SmartRefresher(
               enablePullDown: true,
@@ -161,7 +161,7 @@ class SwitchDetailPage extends StatelessWidget {
                             else
                               SizedBox(
                                 width: Get.width,
-                                child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),
+                                child: Center(child: Text('Ma’lumotlar topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),
                               ),
                             if (_getController.switchDetailModel.value.detail != null)
                               Padding(
@@ -196,7 +196,7 @@ class SwitchDetailPage extends StatelessWidget {
                                   )
                               )
                             else
-                              SizedBox(width: Get.width, child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),),
+                              SizedBox(width: Get.width, child: Center(child: Text('Ma’lumotlar topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),),
                             if (_getController.switchDetailModel.value.detail != null)
                               Padding(
                                   padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,top: Get.height * 0.03, bottom: Get.height * 0.02),
@@ -204,10 +204,10 @@ class SwitchDetailPage extends StatelessWidget {
                                       children: [
                                         Row(
                                             children: [
-                                              Expanded(child: Center(child: Text('Port'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
-                                              Expanded(child: Center(child: Text('POE'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
-                                              Expanded(child: Center(child: Text('Extend'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
-                                              Expanded(child: Center(child: Text('Reboot'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                              Expanded(child: Center(child: Text('Port'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                              Expanded(child: Center(child: Text('POE'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                              Expanded(child: Center(child: Text('Extend'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
+                                              Expanded(child: Center(child: Text('Reboot'.tr, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize, fontWeight: FontWeight.w500)))),
                                             ]
                                         ),
                                         Divider(thickness: 1, color: Theme.of(context).colorScheme.outline),
@@ -236,7 +236,7 @@ class SwitchDetailPage extends StatelessWidget {
                                   )
                               )
                             else
-                              SizedBox(width: Get.width, child: Center(child: Text('Ma\'lumot topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),),
+                              SizedBox(width: Get.width, child: Center(child: Text('Ma’lumotlar topilmadi'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.textTheme.bodyMedium!.fontSize))),),
                           ],
                         )
                     )
