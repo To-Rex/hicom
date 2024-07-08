@@ -47,6 +47,7 @@ class LocaleString extends Translations{
       'Past':'Past',
       'O`chiq':'O`chiq',
       'Qurilma o‘chiq':'Qurilma o‘chiq',
+      'Kuting!':'Kuting!',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -136,6 +137,7 @@ class LocaleString extends Translations{
       'Past':'Low',
       'O`chiq':'Off',
       'Qurilma o‘chiq':'The device is off',
+      'Kuting!':'Loading...',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -228,6 +230,7 @@ class LocaleString extends Translations{
       'Past':'Низкий',
       'O`chiq':'Включено',
       'Qurilma o`chiq':'Устройство выключено',
+      'Kuting!':'Подождите...',
 
       'Kuzatuvchilar':'Подписчики',
       'Ulashish':'Поделиться',
@@ -320,6 +323,7 @@ class LocaleString extends Translations{
       'Past':'Паст',
       'O`chiq':'Ўчиқ',
       'Qurilma o`chiq':'Қурилма ўчиқ',
+      'Kuting!':'Кутинг!',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
