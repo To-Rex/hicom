@@ -128,7 +128,7 @@ class SwitchList extends StatelessWidget {
                                                                 children: [
                                                                   Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
                                                                   SizedBox(width: Get.width * 0.015),
-                                                                  Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
+                                                                  Text('O‘chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
                                                                 ],
                                                               )
                                                           )
@@ -228,7 +228,7 @@ class SwitchList extends StatelessWidget {
                                                                 children: [
                                                                   Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
                                                                   SizedBox(width: Get.width * 0.015),
-                                                                  Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
+                                                                  Text('O‘chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
                                                                 ],
                                                               )
                                                           )

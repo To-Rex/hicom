@@ -39,6 +39,14 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang' : 'Shaxarni yoki Tumanni tanlang',
       'Saqlash' : 'Saqlash',
       'Ma’lumotlarni kiriting' : 'Ma’lumotlarni kiriting',
+      'Bekor qilish':'Bekor qilish',
+      'Diqqat!':'Diqqat!',
+      'Portlar holati':'Portlar holati',
+      'Yaxshi':'Yaxshi',
+      'Normal':'Normal',
+      'Past':'Past',
+      'O`chiq':'O`chiq',
+      'Qurilma o‘chiq':'Qurilma o‘chiq',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -59,6 +67,8 @@ class LocaleString extends Translations{
       'Loyihani ulashish':'Loyihani ulashish',
       'Kuzatuvchi telefon raqami':'Kuzatuvchi telefon raqami',
       'Kuzatuvchi nomi':'Kuzatuvchi nomi',
+      'Loyiha o’chirilsinmi?':'Loyiha o’chirilsinmi?',
+      'Qurilma o‘chirilsinmi?':'Qurilma o‘chirilsinmi?',
 
       //validation
       'Muvaffaqiyatli':'Muvaffaqiyatli',
@@ -80,6 +90,7 @@ class LocaleString extends Translations{
       'Qurilma nomini kiriting.':'Qurilma nomini kiriting.',
       'Qurilmaning ishlab chiqarish raqamini kiriting.':'Qurilmaning ishlab chiqarish raqamini kiriting.',
       'Qurilmaning parolini kiriting.':'Qurilmaning parolini kiriting.',
+      'dialoglar':'Agar indikator sariq yoki to‘q sariq bo‘lsa, tarmoq kabelini va ulagichni tekshiring. uzoq masofali port funksiyasini yoqishga harakat qilib ko‘ring, chunki muammo liniyaning juda uzunligi yoki kabel sifatining yomonligi bilan bog‘liq bo‘lishi mumkin.'
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -117,6 +128,14 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang':'Select City or District',
       'Saqlash':'Save',
       'Ma’lumotlarni kiriting':'Enter Information',
+      'Bekor qilish':'Cancel',
+      'Diqqat!':'Attention!',
+      'Portlar holati':'Port Status',
+      'Yaxshi':'Good',
+      'Normal':'Normal',
+      'Past':'Low',
+      'O`chiq':'Off',
+      'Qurilma o‘chiq':'The device is off',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -138,6 +157,8 @@ class LocaleString extends Translations{
       'Loyihani ulashish':'Share Project',
       'Kuzatuvchi telefon raqami':'Follower Phone Number',
       'Kuzatuvchi nomi':'Follower Name',
+      'Loyiha o’chirilsinmi?':'Delete Project?',
+      'Qurilma o‘chirilsinmi?':'Delete Device?',
 
       // validation
       'Muvaffaqiyatli':'Successful',
@@ -161,6 +182,7 @@ class LocaleString extends Translations{
       'Qurilmaning parolini kiriting.':'Enter Device Password.',
       'Kuzatuvchi telefon raqami kiriting':'Enter Follower Phone Number',
       'Kuzatuvchi nomi kiriting':'Enter Follower Name',
+      'dialoglar':'If the indicator is yellow or orange, check the network cable and connector. try enabling the long-distance port function, as the problem may be caused by the line being too long or the cable quality being poor.'
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -198,6 +220,14 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang':'Выберите город или район',
       'Saqlash':'Сохранить',
       'Ma’lumotlarni kiriting':'Введите данные',
+      'Bekor qilish':'Отменить',
+      'Diqqat!':'Внимание!',
+      'Portlar holati':'Состояние портов',
+      'Yaxshi':'Хорошо',
+      'Normal':'Нормально',
+      'Past':'Низкий',
+      'O`chiq':'Включено',
+      'Qurilma o`chiq':'Устройство выключено',
 
       'Kuzatuvchilar':'Подписчики',
       'Ulashish':'Поделиться',
@@ -219,6 +249,8 @@ class LocaleString extends Translations{
       'Loyihani ulashish':'Поделиться проектом',
       'Kuzatuvchi telefon raqami':'Номер телефона подписчика',
       'Kuzatuvchi nomi':'Имя подписчика',
+      'Loyiha o’chirilsinmi?':'Вы хотите удалить проект?',
+      'Qurilma o‘chirilsinmi?':'Вы хотите удалить устройство?',
 
       // validation
       'Muvaffaqiyatli':'Успешно',
@@ -242,6 +274,7 @@ class LocaleString extends Translations{
       'Qurilmaning parolini kiriting.':'Введите пароль устройства.',
       'Kuzatuvchi telefon raqami kiriting':'Номер телефона подписчика',
       'Kuzatuvchi nomi kiriting':'Имя подписчика',
+      'dialoglar':'Если индикатор желтый или оранжевый, проверьте сетевой кабель и разъем. Попробуйте включить функцию ультра дальнего порта, так как проблема может быть вызвана слишком длинной линией или плохим качеством кабеля.'
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дилшоджон Ҳайдаров',
@@ -279,6 +312,14 @@ class LocaleString extends Translations{
       'Shaxarni tanlang yoki Tumanni tanlang':'Шаҳарни ёки Туманни танланг',
       'Saqlash':'Сақлаш',
       'Ma’lumotlarni kiriting':'Маълумотларни киритинг',
+      'Bekor qilish':'Бекор килиш',
+      'Diqqat!':'Диққат!',
+      'Portlar holati':'Портлар ҳолати',
+      'Yaxshi':'Яхши',
+      'Normal':'Нормал',
+      'Past':'Паст',
+      'O`chiq':'Ўчиқ',
+      'Qurilma o`chiq':'Қурилма ўчиқ',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
@@ -300,6 +341,8 @@ class LocaleString extends Translations{
       'Loyihani ulashish':'Лойиҳани улашиш',
       'Kuzatuvchi telefon raqami':'Кузатувчи телефон рақами',
       'Kuzatuvchi nomi':'Кузатувчи номи',
+      'Loyiha o’chirilsinmi?':'Лойиҳа ўчирилсинми?',
+      'Qurilma o‘chirilsinmi?':'Қурилма ўчирилсинми?',
 
       // validation
       'Muvaffaqiyatli':'Муваффақиятли',
@@ -323,8 +366,8 @@ class LocaleString extends Translations{
       'Qurilmaning parolini kiriting.':'Қурилманинг паролини киритинг.',
       'Kuzatuvchi telefon raqami kiriting':'Кузатувчи телефон рақами киритинг',
       'Kuzatuvchi nomi kiriting':'Кузатувчи номи киритинг',
+      'dialoglar':'Агар индикатор сариқ ёки тўқ сариқ бўлса, тармоқ кабелини ва улагични текширинг. узоқ масофали порт функциясини ёқишга ҳаракат қилиб кўринг, чунки муаммо линиянинг жуда узунлиги ёки кабель сифатининг ёмонлиги билан боғлиқ бўлиши мумкин.'
     }
-
   };
 
 }

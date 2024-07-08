@@ -37,11 +37,11 @@ class InstrumentComponents {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Internet bağlanmadi'.tr),
-          content: Text('Internet bağlanmadi'.tr),
+          title: Text('Diqqat!'.tr),
+          content: Text('Internet bog‘lanmadi'.tr),
           actions: <Widget>[
             TextButton(
-                child: Text('Yana qayta urinish'.tr),
+                child: Text('Iltimos, qayta urinib ko‘ring'.tr),
                 onPressed: () {
                   Navigator.of(context).pop();
                 }
@@ -366,56 +366,6 @@ class InstrumentComponents {
     );
   }
 
-  bottomCrackUser(BuildContext context) {
-    Get.bottomSheet(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-        enableDrag: true,
-        isScrollControlled: true,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {
-              return Container(
-                  height: Get.height * 0.6,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppBar(
-                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                          title: Text('User crack'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045)),
-                          centerTitle: false,
-                          backgroundColor: Theme.of(context).colorScheme.surface,
-                          elevation: 0,
-                          leadingWidth: 0,
-                          leading: Container(),
-                          actions: [
-                            IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05))
-                          ]
-                        ),
-                        SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'User Data'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
-                        const Expanded(child: SizedBox()),
-                        Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-                            child: ElevatedButton(
-                                onPressed: () => {
-                                  _getController.addUserData(_getController.nameProjectController.text)
-                                },
-                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
-                                child: SizedBox(
-                                    width: Get.width,
-                                    height: Get.height * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
-                            )
-                        ),
-                        SizedBox(height: Get.height * 0.02)
-                      ]
-                  )
-              );
-            })
-    );
-  }
-
   bottomSheetShare(BuildContext context, pidId) {
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
@@ -548,7 +498,7 @@ class InstrumentComponents {
                   Get.back(),
                   ApiController().projectDelete(pid)
                 },
-                child: Text('O’chirish'.tr)
+                child: Text('O‘chirish'.tr)
             )
           ],
         )
@@ -630,7 +580,7 @@ class InstrumentComponents {
           actions: [
             Column(
               children: [
-                Text('Agar belgi sariq yoki to\'q sariq bo\'lsa, tarmoq kabeli va kristall boshini tekshiring, chiziq juda uzun yoki yomon simli material tufayli portning ultra uzoq masofali funksiyasini yoqishga harakat qiling.'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                Text('dialoglar'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                 Padding(padding: EdgeInsets.only(top: Get.height * 0.01), child: const Divider()),
                 SizedBox(
                   width: Get.width,
