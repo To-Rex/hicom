@@ -28,7 +28,10 @@ class UserPage extends StatelessWidget {
     {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
   ];
 
-  updateLanguage(Locale locale){Get.updateLocale(locale);}
+  updateLanguage(Locale locale){
+    debugPrint(locale.toString());
+    Get.updateLocale(locale);
+  }
 
   bottomBuildLanguageDialog(BuildContext context){
     Get.bottomSheet(
@@ -80,7 +83,8 @@ class UserPage extends StatelessWidget {
                                         ),
                                         onTap: (){
                                           updateLanguage(locale[index]['locale']);
-                                        }),
+                                        }
+                                    ),
                                     const Divider()
                                   ],
                                 )

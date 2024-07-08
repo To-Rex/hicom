@@ -523,7 +523,6 @@ class GetController extends GetxController {
   }
 
   String getTypeName(String type) {
-    //HIF163CM11234700038EKIUFK to HI-F163CM
     return type.substring(0,8).replaceAll('HI', 'HI-');
   }
 

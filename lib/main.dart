@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AdaptiveTheme(
         debugShowFloatingThemeButton: false,
-        initial: AdaptiveThemeMode.dark,
+        initial: AdaptiveThemeMode.system,
         light: ThemeData.light(useMaterial3: true),
         dark: ThemeData.dark(useMaterial3: true),
         builder: (theme, lightTheme) => GetMaterialApp(
@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
             title: 'Ildiz Kitoblari',
             theme: theme,
             translations: LocaleString(),
-            locale: Get.locale ?? const Locale('uz', 'UZ'),
+            //locale: Get.locale ?? const Locale('uz', 'UZ'),
+            locale: Locale(Get.locale?.languageCode ?? 'uz', Get.locale?.countryCode ?? 'UZ'),
             darkTheme: lightTheme,
-            //home: SplashScreen()
             routes: {
               '/': (context) => SplashScreen()
             }));
