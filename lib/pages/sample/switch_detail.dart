@@ -225,7 +225,7 @@ class SwitchDetailPage extends StatelessWidget {
                                                             port: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : null,
                                                             poEs: _getController.switchDetailModel.value.detail!.poEc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.poEc![index].toString()) : 0,
                                                             phYc: _getController.switchDetailModel.value.detail!.phYc!.length > index ? int.parse(_getController.switchDetailModel.value.detail!.phYc![index].toString()) : 0,
-                                                            version: _getController.switchDetailModel.value.detail!.v!.length > index ? _getController.switchDetailModel.value.detail!.v![index].toString() : null,
+                                                            version: _getController.switchDetailModel.value.detail!.v![0].toString(),
                                                             index: index + 1
                                                         )
                                                     ]

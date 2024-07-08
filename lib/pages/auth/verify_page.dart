@@ -48,12 +48,9 @@ class VerifyPage extends StatelessWidget {
                   controller: _getController.codeController,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
-                  obscureText: true,
+                  obscureText: false,
                   focusNode: FocusNode(),
-                  style: TextStyle(
-                      fontSize: Get.width * 0.04,
-                      color: Theme.of(context).colorScheme.onSurface
-                  ),
+                  style: TextStyle(fontSize: Get.width * 0.04, color: Theme.of(context).colorScheme.onSurface),
                   maxLength: 5,
                   buildCounter: (BuildContext context, {required int currentLength, required int? maxLength, required bool isFocused}) => null,
                   decoration: InputDecoration(

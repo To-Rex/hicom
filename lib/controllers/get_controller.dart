@@ -525,23 +525,23 @@ class GetController extends GetxController {
   String getTypeName(int type) {
     switch (type) {
       case switchTypeM42:
-        return "GPS-208";
+        return 'Hi-M42CM';
       case switchTypeF411:
-        return "HI-F411";
+        return 'Hi-F411CM';
       case switchTypeF82:
-        return "HI-F82";
+        return 'Hi-F82CM';
       case switchTypeM82:
-        return "HI-M82";
+        return 'Hi-M82CM';
       case switchTypeG82:
-        return "HI-G82";
+        return 'Hi-G82CM';
       case switchTypeG83:
-        return "HI-G83";
+        return 'Hi-G83CM';
       case switchTypeG163:
-        return "HI-G163";
+        return 'Hi-G 163CM';
       case switchTypeF163:
-        return "HIF-163";
+        return 'Hi-F163CM';
       default:
-        return "HIF-82";
+        return 'Hi-F82CM';
     }
   }
 

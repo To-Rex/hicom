@@ -95,53 +95,29 @@ class ApiController extends GetxController {
   }
 
   Future<void> checkCode() async {
-    var json = Tea.encryptTea(
-        '{"phone": "${_getController.code.value + _getController.phoneController.text}","code":"${_getController.codeController.text}"}',
-        _getController.getKey());
-    var response = await post(
-        Uri.parse(
-            '${_baseUrl + _getController.getQueryString('checkcode', 'null') + json.toString()}&key=${_getController.getKey()}'),
-        headers: headers);
-    debugPrint(response.body);
-    debugPrint(
-        Tea.decryptTea(response.body, _getController.getKey()).toString());
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      _getController.writeLogin(
-          _getController.code.value + _getController.phoneController.text,
-          jsonDecode(utf8.decode(
-              Tea.decryptTea(response.body, _getController.getKey())
-                  .toString()
-                  .codeUnits))['session']);
-      if (jsonDecode(utf8.decode(
-              Tea.decryptTea(response.body, _getController.getKey())
-                  .toString()
-                  .codeUnits))['errcode'] ==
-          0) {
-        if (jsonDecode(utf8.decode(
-                Tea.decryptTea(response.body, _getController.getKey())
-                    .toString()
-                    .codeUnits))['registered'] ==
-            0) {
-          Get.to(RegisterPage());
+    try {
+      var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":"${_getController.codeController.text}"}', _getController.getKey());
+      var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('checkcode', 'null') + json.toString()}&key=${_getController.getKey()}'), headers: headers);
+      debugPrint(response.body);
+      debugPrint(response.statusCode.toString());
+      debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
+          _getController.writeLogin(_getController.code.value + _getController.phoneController.text, jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['session']);
+          if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['registered'] == 0) {
+            Get.to(RegisterPage());
+          } else {
+            InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Kiritilgan kod tasdiqlandi'.tr, false, 2);
+            login(_getController.code.value + _getController.phoneController.text, jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['session'], key, true);
+          }
         } else {
-          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli',
-              'Kiritilgan kod tasdiqlandi'.tr, false, 2);
-          login(
-              _getController.code.value + _getController.phoneController.text,
-              jsonDecode(utf8.decode(
-                  Tea.decryptTea(response.body, _getController.getKey())
-                      .toString()
-                      .codeUnits))['session'],
-              key,
-              true);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Kiritilgan kod xato'.tr, true, 3);
         }
       } else {
-        InstrumentComponents().showToast(
-            Get.context!, 'Hayronman', 'Xatolik yuz berdi'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
       }
-    } else {
-      InstrumentComponents()
-          .showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
+    } catch (e) {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Ulanishni tekshiring'.tr, true, 3);
     }
   }
 
