@@ -41,6 +41,22 @@ class LocaleString extends Translations{
       'Ma’lumotlarni kiriting' : 'Ma’lumotlarni kiriting',
       'Bunday foydalanuvchi allaqachon mavjud.' : 'Bunday foydalanuvchi allaqachon mavjud.',
 
+      //validation
+      'Muvaffaqiyatli':'Muvaffaqiyatli',
+      'Iltimos ulanishni tekshiring!': 'Iltimos ulanishni tekshiring!',
+      'Hisobingizga kirishda xatolik yuz berdi.':'Hisobingizga kirishda xatolik yuz berdi.',
+      'Serverga ulanishda xatolik yuz berdi.':'Serverga ulanishda xatolik yuz berdi.',
+      'Ushbu foydalanuvchi hisobi o‘chirildi.':'Ushbu foydalanuvchi hisobi o‘chirildi.',
+      'Sizda bunday huquq mavjud emas!':'Sizda bunday huquq mavjud emas!',
+      'Ushbu foydalanuvchi allaqachon taklif qilgan.':'Ushbu foydalanuvchi allaqachon taklif qilgan.',
+      'Ushbu foydalanuvchi tizimda mavjud emas!':'Ushbu foydalanuvchi tizimda mavjud emas!',
+      'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!':'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!',
+      'Ushbu loyiha boshqa foydalanuvchilarda mavjud.':'Ushbu loyiha boshqa foydalanuvchilarda mavjud.',
+      'Bu qurilma online emas.':'Bu qurilma online emas.',
+      'Ma’lumot o’zgartirildi.':'Ma’lumot o’zgartirildi.',
+      'Iltimos hisobingizga qaytadan kiriting.': 'Iltimos hisobingizga qaytadan kiriting.',
+      'Iltimos qaytadan urinib ko‘ring.': 'Iltimos qaytadan urinib ko‘ring.',
+      'Qurilma qayta ishga tushdi.':'Qurilma qayta ishga tushdi.',
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
