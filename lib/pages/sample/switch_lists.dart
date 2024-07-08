@@ -14,7 +14,8 @@ import 'add_switch_page.dart';
 
 class SwitchList extends StatelessWidget {
   final String name;
-  SwitchList({super.key, required this.name});
+  final bool isAdmin;
+  SwitchList({super.key, required this.name, required this.isAdmin});
   final GetController _getController = Get.put(GetController());
   final RefreshController refreshController = RefreshController(initialRefresh: false);
 
@@ -73,7 +74,7 @@ class SwitchList extends StatelessWidget {
                                   child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                      elevation: 5,
+                                      elevation: 1,
                                       color: Theme.of(context).colorScheme.surface,
                                       child: Padding(
                                           padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, bottom: Get.height * 0.01),
@@ -84,6 +85,7 @@ class SwitchList extends StatelessWidget {
                                                   Text(_getController.switchListModel.value.offline![index].name.toString()),
                                                   const Spacer(),
                                                   Icon(TablerIcons.circle_filled, color: Theme.of(context).colorScheme.error, size: Get.width * 0.025),
+
                                                   PopupMenuButton<String>(
                                                       icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
                                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -93,12 +95,20 @@ class SwitchList extends StatelessWidget {
                                                       onSelected: (String value) {
                                                         switch (value) {
                                                           case 'edit':
-                                                            _getController.nameProjectController.text = _getController.switchListModel.value.offline![index].name.toString();
-                                                            _getController.noteProjectController.text = _getController.switchListModel.value.offline![index].note.toString();
-                                                            InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.offline![index].sn, index,false);
+                                                            if(isAdmin){
+                                                              _getController.nameProjectController.text = _getController.switchListModel.value.offline![index].name.toString();
+                                                              _getController.noteProjectController.text = _getController.switchListModel.value.offline![index].note.toString();
+                                                              InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.offline![index].sn, index,false);
+                                                            } else {
+                                                              InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
+                                                            }
                                                             break;
                                                           case 'delete':
-                                                            InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.offline![index].sn);
+                                                            if (isAdmin) {
+                                                              InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.offline![index].sn);
+                                                            } else {
+                                                              InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
+                                                            }
                                                             break;
                                                         }
                                                       },
@@ -173,7 +183,7 @@ class SwitchList extends StatelessWidget {
                                   child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                      elevation: 5,
+                                      elevation: 1,
                                       color: Theme.of(context).colorScheme.surface,
                                       child: Padding(
                                           padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, bottom: Get.height * 0.01),
@@ -189,16 +199,25 @@ class SwitchList extends StatelessWidget {
                                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                                       color: Theme.of(context).colorScheme.surface,
                                                       surfaceTintColor: Colors.transparent,
+                                                      shadowColor: Colors.transparent,
                                                       elevation: 4,
                                                       onSelected: (String value) {
                                                         switch (value) {
                                                           case 'edit':
-                                                            _getController.nameProjectController.text = _getController.switchListModel.value.online![index].name.toString();
-                                                            _getController.noteProjectController.text = _getController.switchListModel.value.online![index].note.toString();
-                                                            InstrumentComponents().bottomSwitchEditName(context,Get.arguments,_getController.switchListModel.value.online![index].sn, index,false);
+                                                            if (isAdmin) {
+                                                              _getController.nameProjectController.text = _getController.switchListModel.value.online![index].name.toString();
+                                                              _getController.noteProjectController.text = _getController.switchListModel.value.online![index].note.toString();
+                                                              InstrumentComponents().bottomSwitchEditName(context, Get.arguments, _getController.switchListModel.value.online![index].sn, index, false);
+                                                            } else {
+                                                              InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
+                                                            }
                                                             break;
                                                           case 'delete':
-                                                            InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.online![index].sn);
+                                                            if (isAdmin) {
+                                                              InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.online![index].sn);
+                                                            } else {
+                                                              InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
+                                                            }
                                                             break;
                                                         }
                                                       },

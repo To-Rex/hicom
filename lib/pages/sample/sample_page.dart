@@ -66,7 +66,7 @@ class SamplePage extends StatelessWidget {
                               overlayColor: WidgetStateProperty.all(Colors.transparent),
                               onTap: () => {
                                 ApiController().getSwitchList(_getController.searchProjectModel.value.admin![i].pid),
-                                Get.to(SwitchList(name: _getController.searchProjectModel.value.admin![i].name.toString()), arguments: _getController.searchProjectModel.value.admin![i].pid)
+                                Get.to(SwitchList(name: _getController.searchProjectModel.value.admin![i].name.toString(), isAdmin: true), arguments: _getController.searchProjectModel.value.admin![i].pid)
                               },
                               child: Card(
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -217,7 +217,7 @@ class SamplePage extends StatelessWidget {
                               overlayColor: WidgetStateProperty.all(Colors.transparent),
                               onTap: () => {
                                 ApiController().getSwitchList(_getController.searchProjectModel.value.join![i].pid),
-                                Get.to(SwitchList(name: _getController.searchProjectModel.value.join![i].name.toString()), arguments: _getController.searchProjectModel.value.join![i].pid)
+                                Get.to(SwitchList(name: _getController.searchProjectModel.value.join![i].name.toString(), isAdmin: false), arguments: _getController.searchProjectModel.value.join![i].pid)
                               },
                               child: Card(
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
