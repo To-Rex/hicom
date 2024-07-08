@@ -95,8 +95,17 @@ class SamplePage extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(height: Get.height * 0.01),
-                                              Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                              Text(_getController.searchProjectModel.value.admin![i].note.toString() == ''|| _getController.searchProjectModel.value.admin![i].note.toString() == ' ' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.searchProjectModel.value.admin![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                              SizedBox(
+                                                width: Get.width * 0.6,
+                                                child: Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                              ),
+                                              SizedBox(
+                                                width: Get.width * 0.6,
+                                                child: Text(_getController.searchProjectModel.value.admin![i].note.toString() == ''|| _getController.searchProjectModel.value.admin![i].note.toString() == ' ' ? 'Qo‘shimcha ma’lumotlar yo‘q'.tr : _getController.searchProjectModel.value.admin![i].note.toString(),
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
+                                              ),
                                               Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -181,8 +190,6 @@ class SamplePage extends StatelessWidget {
                                                       ],
                                                     )
                                                 ),
-                                                //line
-                                                //const Divider(),
                                                 const PopupMenuItem(
                                                   height: 0,
                                                   padding: EdgeInsets.all(0),
@@ -195,7 +202,7 @@ class SamplePage extends StatelessWidget {
                                                       children: [
                                                         Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
                                                         SizedBox(width: Get.width * 0.015),
-                                                        Text('O\'chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
+                                                        Text('O‘chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
                                                       ],
                                                     )
                                                 )
@@ -231,8 +238,8 @@ class SamplePage extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 SizedBox(height: Get.height * 0.01),
-                                                Text(_getController.searchProjectModel.value.join![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                                Text(_getController.searchProjectModel.value.join![i].note.toString() == '' ? 'Qo`shimcha ma`lumotlar yo`q'.tr : _getController.searchProjectModel.value.join![i].note.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                SizedBox(width: Get.width * 0.6, child: Text(_getController.searchProjectModel.value.join![i].name.toString(), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),),
+                                                SizedBox(width: Get.width * 0.6, child: Text(_getController.searchProjectModel.value.join![i].note.toString() == '' ? 'Qo‘shimcha ma’lumotlar yo‘q'.tr : _getController.searchProjectModel.value.join![i].note.toString(), overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),),
                                                 Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -269,7 +276,7 @@ class SamplePage extends StatelessWidget {
                       SizedBox(
                           height: Get.height* 0.9,
                           width: Get.width,
-                          child: Center(child: Text('Loyihalar ro\'yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)))
+                          child: Center(child: Text('Loyihalar ro‘yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)))
                       )
                     ])
                 )
