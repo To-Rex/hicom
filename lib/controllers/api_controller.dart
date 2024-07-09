@@ -353,6 +353,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> addProjects() async {
+    debugPrint(_getController.switchSerialProjectController.text);
     try {
       var json = Tea.encryptTea(jsonEncode({'sna': [_getController.switchSerialProjectController.text], 'na': [_getController.switchNameProjectController.text], 'pda': [_getController.passwordProjectController.text], 'name': _getController.nameProjectController.text, 'note': '', 'auto': 0}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
@@ -371,9 +372,11 @@ class ApiController extends GetxController {
           getProjects();
         }
       } else {
+        Get.back();
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
+      Get.back();
       InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
