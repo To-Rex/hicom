@@ -5,6 +5,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/set_item.dart';
 import 'package:hicom/controllers/api_controller.dart';
+import 'package:hicom/pages/auth/login_page.dart';
 import 'package:hicom/pages/support_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:hicom/splash_screen.dart';
@@ -221,7 +222,7 @@ class UserPage extends StatelessWidget {
                                     _getController.clearKey();
                                     _getController.clearUid();
                                     _getController.clearUser();
-                                    Get.offAll(() => SplashScreen());
+                                    Get.offAll(() => LoginPage());
                                   },
                                   onLongPress: (){
                                     ApiController().deleteUser();
