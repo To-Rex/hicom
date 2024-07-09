@@ -82,6 +82,8 @@ class LocaleString extends Translations{
       'Kodni kiriting':'Kodni kiriting',
       'Kodni qayta yuborish':'Kodni qayta yuborish',
       'Sizga SMS Xabarnoma yubordik':'Sizga SMS Xabarnoma yubordik.',
+      'Kiritilgan kod tasdiqlandi':'Kiritilgan kod tasdiqlandi',
+      'Kiritilgan kod xato':'Kiritilgan kod xato',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -206,6 +208,8 @@ class LocaleString extends Translations{
       'Kodni kiriting':'Enter code',
       'Kodni qayta yuborish':'Resend code',
       'Sizga SMS Xabarnoma yubordik':'We have sent you an SMS message',
+      'Kiritilgan kod tasdiqlandi':'The code has been verified',
+      'Kiritilgan kod xato':'The code is incorrect',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -324,6 +328,7 @@ class LocaleString extends Translations{
       'Kodni kiriting':'Введите код',
       'Kodni qayta yuborish':'Повторно отправить код',
       'Sizga SMS Xabarnoma yubordik':'Сообщение SMS было отправлено на ваш номер',
+      'Kiritilgan kod tasdiqlandi':'Введенный код подтвержден',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -334,6 +339,7 @@ class LocaleString extends Translations{
       'POE quvvati':'POE мощность',
       'Online davri':'Онлайн период',
       'Qurilmani o‘chirib yoqish':'Перезагрузите устройство',
+      'Kiritilgan kod xato':'Введенный код неверный',
 
       'Kuzatuvchilar':'Подписчики',
       'Ulashish':'Поделиться',
@@ -461,6 +467,8 @@ class LocaleString extends Translations{
       'Kodni kiriting':'Кодни киритинг',
       'Kodni qayta yuborish':'Кодни қайта юбориш',
       'Sizga SMS Xabarnoma yubordik':'Сизга SMS Хабарнома юбордик',
+      'Kiritilgan kod tasdiqlandi':'Киритилган код тасдиқланди',
+      'Kiritilgan kod xato':'Киритилган код хато',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',

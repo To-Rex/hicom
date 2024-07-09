@@ -9,8 +9,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../controllers/get_controller.dart';
 
 class VerifyPageNumber extends StatelessWidget {
-
-  VerifyPageNumber({super.key});
+  final String phoneNumber;
+  VerifyPageNumber({super.key, required this.phoneNumber});
 
   final GetController _getController = Get.put(GetController());
 
@@ -96,7 +96,6 @@ class VerifyPageNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _getController.codeController.clear();
     _getController.startTimer();
     return Scaffold(
       appBar: AppBar(
@@ -115,12 +114,12 @@ class VerifyPageNumber extends StatelessWidget {
           Container(
             width: Get.width,
             margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.13),
-            child: Text('Kodni kiriting:'.tr, style: TextStyle(fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize, fontWeight: FontWeight.w500))
+            child: Text('${'Kodni kiriting'.tr}:', style: TextStyle(fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize, fontWeight: FontWeight.w500))
           ),
           Container(
               width: Get.width,
               margin: EdgeInsets.only(top: Get.height * 0.01, left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.03),
-              child: Text('Telefoningizga faollashtirish kodi SMS tarzida yuborildi.'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize, fontWeight: FontWeight.w500))
+              child: Text('${'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.'.tr} $phoneNumber', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize, fontWeight: FontWeight.w500))
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: Get.width * 0.15, vertical: Get.height * 0.04),

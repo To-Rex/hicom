@@ -63,7 +63,7 @@ class ApiController extends GetxController {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
         InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} raqamiga Kod yuborildi'.tr, false, 2);
         //Get.to(VerifyPage());
-        Get.to(VerifyPageNumber());
+        Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi'.tr, true, 3);
       }
