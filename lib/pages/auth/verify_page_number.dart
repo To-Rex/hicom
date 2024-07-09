@@ -147,6 +147,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
                         } else {
                           FocusScope.of(context).previousFocus();
                         }
@@ -175,6 +177,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
                         } else {
                           FocusScope.of(context).previousFocus();
                         }
@@ -203,6 +207,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
                         } else {
                           FocusScope.of(context).previousFocus();
                         }
@@ -231,6 +237,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
                         } else {
                           FocusScope.of(context).previousFocus();
                         }
@@ -257,24 +265,27 @@ class VerifyPageNumber extends StatelessWidget {
                           border: InputBorder.none,
                       ),
                       onChanged: (value) {
-                        if (value.length == 1 && _getController.verifyCodeControllers[4].text.length == 1) {
+                        if (value.length == 1 && _getController.verifyCodeControllers[0].text.length == 1 && _getController.verifyCodeControllers[1].text.length == 1 && _getController.verifyCodeControllers[2].text.length == 1 && _getController.verifyCodeControllers[3].text.length == 1) {
                           FocusScope.of(context).nextFocus();
-                        } else {
+                          ApiController().checkCode();
+                        } else if (value.isEmpty) {
                           FocusScope.of(context).previousFocus();
                         }
-                        ApiController().checkCode();
                       },
                     )
                   ),
                 ]
             )
           ),
-          Obx(() =>_getController.countdownDuration.value.inSeconds == 0
-              ? TextButton(onPressed: () {
+          Padding(padding: EdgeInsets.only(left: Get.width * 0.05, right: Get.width * 0.03),
+              child: Obx(() =>_getController.countdownDuration.value.inSeconds == 0
+                  ? TextButton(onPressed: () {
+                ApiController().sendCode();
                 _getController.resetTimer();
-          }, child: Text('Kodni qayta yuborish'.tr, style: Theme.of(context).textTheme.bodyMedium))
-              : Text('${'Sizga SMS Xabarnoma yubordik'.tr}: ${_getController.countdownDuration.value.inMinutes.toString().padLeft(2, '0')}:${(_getController.countdownDuration.value.inSeconds % 60).toString().padLeft(2, '0')}', style: Theme.of(context).textTheme.bodyMedium)
-          ),
+              }, child: Text('Kodni qayta yuborish'.tr, style: Theme.of(context).textTheme.bodyMedium))
+                  : Text('${'Sizga SMS Xabarnoma yubordik'.tr}: ${_getController.countdownDuration.value.inMinutes.toString().padLeft(2, '0')}:${(_getController.countdownDuration.value.inSeconds % 60).toString().padLeft(2, '0')}', style: Theme.of(context).textTheme.bodyMedium)
+              )
+          )
         ]
       )
     );

@@ -406,7 +406,7 @@ class GetController extends GetxController {
   final countdownDuration = const Duration(minutes: 1, seconds: 59).obs;
   Timer? _timer;
   void startTimer() {
-    if (_timer == null && countdownDuration.value.inSeconds > 0) {
+    if (countdownDuration.value.inSeconds > 0) {
       const oneSec = Duration(seconds: 1);
       _timer = Timer.periodic(
           oneSec, (timer) {
@@ -423,7 +423,7 @@ class GetController extends GetxController {
   void stopTimer() {_timer!.cancel();}
 
   void resetTimer() {
-    if (_timer != null) {
+    if (_timer != null && _timer!.isActive) {
       _timer!.cancel();
     }
     countdownDuration.value = const Duration(minutes: 1, seconds: 59);
@@ -447,7 +447,9 @@ class GetController extends GetxController {
 
   //clear verifyCodeControllers
   void clearVerifyCodeControllers() {
-    verifyCodeControllers = List.generate(5, (index) => TextEditingController());
+    for (var i = 0; i < verifyCodeControllers.length; i++) {
+      verifyCodeControllers[i].clear();
+    }
   }
 
   void clearControllers() {
