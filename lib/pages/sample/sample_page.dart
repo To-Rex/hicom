@@ -29,7 +29,7 @@ class SamplePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ApiController().login(_getController.getNumber(),_getController.getSession(),'50UvFayZ2w5u3O9B',false).then((_) => {
-      refreshController.requestRefresh(),
+      //refreshController.requestRefresh(),
       _getData()
     });
     return Scaffold(

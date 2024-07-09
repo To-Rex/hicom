@@ -23,6 +23,7 @@ class GetController extends GetxController {
   var fullName = 'Dilshodjon Haydarov'.obs;
   var height = 0.0.obs;
   var width = 0.0.obs;
+  var sec = 0.obs;
   var isSearch = false.obs;
   var isNightMode = false.obs;
   var code = '+998'.obs;
