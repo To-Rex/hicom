@@ -84,6 +84,7 @@ class LocaleString extends Translations{
       'Sizga SMS Xabarnoma yubordik':'Sizga SMS Xabarnoma yubordik.',
       'Kiritilgan kod tasdiqlandi':'Kiritilgan kod tasdiqlandi',
       'Kiritilgan kod xato':'Kiritilgan kod xato',
+      'raqamiga kod yuborildi':'raqamiga kod yuborildi',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -210,6 +211,7 @@ class LocaleString extends Translations{
       'Sizga SMS Xabarnoma yubordik':'We have sent you an SMS message',
       'Kiritilgan kod tasdiqlandi':'The code has been verified',
       'Kiritilgan kod xato':'The code is incorrect',
+      'raqamiga kod yuborildi':'sent to your number',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -329,6 +331,7 @@ class LocaleString extends Translations{
       'Kodni qayta yuborish':'Повторно отправить код',
       'Sizga SMS Xabarnoma yubordik':'Сообщение SMS было отправлено на ваш номер',
       'Kiritilgan kod tasdiqlandi':'Введенный код подтвержден',
+      'raqamiga kod yuborildi':'номеру отправлен код',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -469,6 +472,7 @@ class LocaleString extends Translations{
       'Sizga SMS Xabarnoma yubordik':'Сизга SMS Хабарнома юбордик',
       'Kiritilgan kod tasdiqlandi':'Киритилган код тасдиқланди',
       'Kiritilgan kod xato':'Киритилган код хато',
+      'raqamiga kod yuborildi':'Рақамига код юборилди',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',

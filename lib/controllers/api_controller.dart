@@ -61,14 +61,14 @@ class ApiController extends GetxController {
     debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
-        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} raqamiga Kod yuborildi'.tr, false, 2);
+        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} ${'raqamiga Kod yuborildi'.tr}', false, 2);
         //Get.to(VerifyPage());
         Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
       }
     } else {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
     }
   }
 
@@ -87,6 +87,7 @@ class ApiController extends GetxController {
             Get.to(RegisterPage());
           } else {
             InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Kiritilgan kod tasdiqlandi'.tr, false, 2);
+            _getController.clearVerifyCodeControllers();
             login(_getController.code.value + _getController.phoneController.text, jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['session'], key, true);
           }
         } else {
@@ -117,14 +118,20 @@ class ApiController extends GetxController {
             Get.offAll(SamplePage());
           }
         } else {
+          _getController.sec.value = 0;
           if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys).toString().codeUnits))['errcode'] == 20003) {
-            _getController.writeKey(_getController.loginModel.value.key.toString());
-            _getController.writeUid(_getController.loginModel.value.uid.toString());
-            _getController.writeUser(_getController.loginModel.value);
-            _getController.clearKey();
-            _getController.clearUid();
-            _getController.clearUser();
-            Get.offAll(() => SplashScreen());
+            //{"errcode":20003,"errmsg":"user not exist"}
+            if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys).toString().codeUnits))['errmsg'] == 'user not exist'){
+              Get.offAll(() => RegisterPage());
+            } else{
+              _getController.writeKey(_getController.loginModel.value.key.toString());
+              _getController.writeUid(_getController.loginModel.value.uid.toString());
+              _getController.writeUser(_getController.loginModel.value);
+              _getController.clearKey();
+              _getController.clearUid();
+              _getController.clearUser();
+              Get.offAll(() => SplashScreen());
+            }
             InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Hisobingizga kirishda xatolik yuz berdi.'.tr, true, 3);
           } else {
             InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
@@ -214,6 +221,8 @@ class ApiController extends GetxController {
     try {
       InstrumentComponents().loadingDialog(Get.context!);
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
+      debugPrint(response.body.toString());
+      debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
       } else {
