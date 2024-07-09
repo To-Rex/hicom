@@ -16,9 +16,10 @@ class LoginPage extends StatelessWidget {
     _getController.phoneController.clear();
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back, size: Get.width * 0.07),
-            onPressed: () => Get.back())
+        leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()),
+        actions: [
+          IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed: () => Get.back())
+        ],
       ),
       body: Column(
         children: [
@@ -26,12 +27,12 @@ class LoginPage extends StatelessWidget {
           Container(
             width: Get.width,
             margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.13),
-            child: Text('Telefon raqamingizni kiriting:'.tr, style: TextStyle(fontSize: Get.width * 0.065, fontWeight: FontWeight.w500))
+            child: Text('Telefon raqamingizni kiriting'.tr, style: TextStyle(fontSize: Get.width * 0.065, fontWeight: FontWeight.w500))
           ),
           Container(
               width: Get.width,
               margin: EdgeInsets.only(top: Get.height * 0.01, left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.03),
-              child: Text('Biz Tasdiqlash kodini jo‘natamiz.'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
+              child: Text('Biz Tasdiqlash kodini jo‘natamiz'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
           ),
           Container(
               width: Get.width,

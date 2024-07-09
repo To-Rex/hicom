@@ -15,9 +15,9 @@ class SplashScreen extends StatelessWidget {
     //_getController.addUserData(' {"Phone":"+998916848100","SessionToken":"ivEWz4iyP2UZ348HRyF3JKNMuppBSGCNL3a2fnRJolJIpjQUEOlJH208aXBdQtfQ","KEY":"a2tB333raC8y74dt","UID":"2025b25f25ce9ad98d6047ff0dc105b5"}');
     Future.delayed(const Duration(seconds: 2), () {
       if(_getController.getUid() != '' && _getController.getKey() != '50UvFayZ2w5u3O9B') {
-        Get.off(SamplePage());
+        Get.offAll(SamplePage());
       } else {
-        Get.off(LoginPage(), transition: Transition.fadeIn);
+        Get.offAll(LoginPage(), transition: Transition.fadeIn);
       }
     });
 
@@ -29,7 +29,6 @@ class SplashScreen extends StatelessWidget {
           children: <Widget>[
             Flexible(child: Container()),
             SizedBox(width: Get.width * 0.5, child: Image.asset(
-                //'assets/images/logo.png',
               Theme.of(context).brightness == Brightness.light ? 'assets/images/logo.png' : 'assets/images/logo_night.png',
                 fit: BoxFit.cover)),
             Flexible(child: Container()),

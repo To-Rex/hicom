@@ -74,6 +74,10 @@ class LocaleString extends Translations{
       'RX':'RX',
       'Status':'Holat',
       'Qurilmani tahrirlash':'Qurilmani tahrirlash',
+      'Telefon raqamingizni kiriting':'Telefon raqamingizni kiriting:',
+      'Biz Tasdiqlash kodini jo‘natamiz':'Biz Tasdiqlash kodini jo‘natamiz.',
+      'Telefon raqam':'Telefon raqam',
+      'Tasdiqlash':'Tasdiqlash',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -190,6 +194,10 @@ class LocaleString extends Translations{
       'RX':'RX',
       'Status':'Status',
       'Qurilmani tahrirlash':'Edit Device',
+      'Telefon raqamingizni kiriting':'Enter your phone number:',
+      'Biz Tasdiqlash kodini jo‘natamiz':'We will send you a verification code.',
+      'Telefon raqam':'Phone Number',
+      'Tasdiqlash':'Verify',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -300,6 +308,10 @@ class LocaleString extends Translations{
       'RX':'RX',
       'Status':'Положение',
       'Qurilmani tahrirlash':'Изменить устройство',
+      'Telefon raqamingizni kiriting':'Введите ваш номер телефона:',
+      'Biz Tasdiqlash kodini jo‘natamiz':'Отправьте код подтверждения',
+      'Telefon raqam':'Номер телефона',
+      'Tasdiqlash':'Подтвердить',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -429,6 +441,10 @@ class LocaleString extends Translations{
       'RX':'RX',
       'Status':'Ҳолат',
       'Qurilmani tahrirlash':'Қурилмани таҳрирлаш',
+      'Telefon raqamingizni kiriting':'Телефон рақамингизни киритинг:',
+      'Biz Tasdiqlash kodini jo‘natamiz':'Биз Тасдиқлаш кодини жўнатамиз',
+      'Telefon raqam':'Телефон рақам',
+      'Tasdiqlash':'Тасдиқлаш',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',

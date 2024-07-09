@@ -2,7 +2,6 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
-
 import '../../companents/dropdown_item.dart';
 import '../../companents/instrument/instrument_components.dart';
 import '../../companents/text_fild.dart';
@@ -23,7 +22,7 @@ class RegisterPage extends StatelessWidget{
       appBar: AppBar(
         title: Text('Ma’lumotlarni kiriting'.tr),
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.06), onPressed: () => Get.back())
+        leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.06), onPressed: () => Get.back()),
       ),
       body: Obx(() => SingleChildScrollView(
           child: Column(
