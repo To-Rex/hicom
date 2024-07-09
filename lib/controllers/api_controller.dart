@@ -90,6 +90,7 @@ class ApiController extends GetxController {
             login(_getController.code.value + _getController.phoneController.text, jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['session'], key, true);
           }
         } else {
+          _getController.clearVerifyCodeControllers();
           InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Kiritilgan kod xato'.tr, true, 3);
         }
       } else {

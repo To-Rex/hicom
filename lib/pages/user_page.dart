@@ -217,6 +217,7 @@ class UserPage extends StatelessWidget {
                                       ]
                                   ),
                                   onTap: (){
+                                    _getController.sec.value = 0;
                                     _getController.clearKey();
                                     _getController.clearUid();
                                     _getController.clearUser();

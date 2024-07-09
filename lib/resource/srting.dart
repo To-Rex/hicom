@@ -78,6 +78,10 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'Biz Tasdiqlash kodini jo‘natamiz.',
       'Telefon raqam':'Telefon raqam',
       'Tasdiqlash':'Tasdiqlash',
+      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.',
+      'Kodni kiriting':'Kodni kiriting',
+      'Kodni qayta yuborish':'Kodni qayta yuborish',
+      'Sizga SMS Xabarnoma yubordik':'Sizga SMS Xabarnoma yubordik.',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -198,6 +202,10 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'We will send you a verification code.',
       'Telefon raqam':'Phone Number',
       'Tasdiqlash':'Verify',
+      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Verification code has been sent to your phone.',
+      'Kodni kiriting':'Enter code',
+      'Kodni qayta yuborish':'Resend code',
+      'Sizga SMS Xabarnoma yubordik':'We have sent you an SMS message',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -312,6 +320,10 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'Отправьте код подтверждения',
       'Telefon raqam':'Номер телефона',
       'Tasdiqlash':'Подтвердить',
+      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Код подтверждения SMS отправлен на ваш номер телефона',
+      'Kodni kiriting':'Введите код',
+      'Kodni qayta yuborish':'Повторно отправить код',
+      'Sizga SMS Xabarnoma yubordik':'Сообщение SMS было отправлено на ваш номер',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -445,6 +457,10 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'Биз Тасдиқлаш кодини жўнатамиз',
       'Telefon raqam':'Телефон рақам',
       'Tasdiqlash':'Тасдиқлаш',
+      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Телефонингизга фаоллаштириш коди SMS тарзида юборилди.',
+      'Kodni kiriting':'Кодни киритинг',
+      'Kodni qayta yuborish':'Кодни қайта юбориш',
+      'Sizga SMS Xabarnoma yubordik':'Сизга SMS Хабарнома юбордик',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',

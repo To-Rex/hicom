@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/resource/colors.dart';
@@ -14,11 +15,84 @@ class VerifyPageNumber extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
 
 
-  final mackFormater = MaskTextInputFormatter(
-      mask: '00000',
-      filter: { "#": RegExp(r'[0-9]') },
-      type: MaskAutoCompletionType.lazy
-  );
+  final List locale =[
+    {'name':'English','locale':const Locale('en','US')},
+    {'name':'Russian','locale':const Locale('ru','RU')},
+    {'name':'Uzbek','locale':const Locale('uz','UZ')},
+    {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
+  ];
+
+  updateLanguage(Locale locale){
+    Get.updateLocale(locale);
+    _getController.saveLanguage(locale);
+  }
+
+  bottomBuildLanguageDialog(BuildContext context){
+    Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        enableDrag: true,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return SizedBox(
+                  height: Get.height * 0.5,
+                  width: double.infinity,
+                  child: Column(
+                      children: [
+                        Container(
+                            height: Get.height * 0.005,
+                            width: Get.width * 0.2,
+                            margin: EdgeInsets.only(top: Get.height * 0.02, bottom: Get.height * 0.03),
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface, borderRadius: BorderRadius.circular(10.0))
+                        ),
+                        Text('Tilni tanlang'.tr,
+                          style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045),
+                        ),
+                        Expanded(
+                            child: ListView.builder(
+                                itemCount: locale.length,
+                                itemBuilder: (context, index){
+                                  return Container(
+                                      height: Get.height * 0.07,
+                                      width: double.infinity,
+                                      padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
+                                      child: Column(
+                                        children: [
+                                          InkWell(
+                                              overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                              child: SizedBox(
+                                                  height: Get.height * 0.05,
+                                                  child: Center(
+                                                      child: Row(
+                                                          children: [
+                                                            Text(locale[index]['name'], style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                            const Spacer(),
+                                                            if (locale[index]['locale'].toString() == _getController.language.toString())
+                                                              Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onSurface),
+                                                            if (locale[index]['locale'].toString() != _getController.language.toString())
+                                                              Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
+                                                          ]
+                                                      )
+                                                  )
+                                              ),
+                                              onTap: (){
+                                                updateLanguage(locale[index]['locale']);
+                                                Get.back();
+                                              }
+                                          ),
+                                          const Divider()
+                                        ],
+                                      )
+                                  );
+                                }
+                            )
+                        )
+                      ]
+                  )
+              );
+            })
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +102,12 @@ class VerifyPageNumber extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.arrow_back, size: Get.width * 0.07),
-            onPressed: () => Get.back())
+            onPressed: () => Get.back()),
+          actions: [
+            IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed: () {
+              bottomBuildLanguageDialog(context);
+            })
+          ]
       ),
       body: Column(
         children: [
@@ -68,6 +147,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else {
+                          FocusScope.of(context).previousFocus();
                         }
                       },
                     )
@@ -87,11 +168,6 @@ class VerifyPageNumber extends StatelessWidget {
                         FilteringTextInputFormatter.digitsOnly
                       ],
                       textAlign: TextAlign.center,
-                      /*style: TextStyle(
-                          fontSize: Get.width * 0.07,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.black
-                      ),*/
                       style: Theme.of(context).textTheme.headlineSmall,
                       decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -99,6 +175,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else {
+                          FocusScope.of(context).previousFocus();
                         }
                       },
                     )
@@ -118,11 +196,6 @@ class VerifyPageNumber extends StatelessWidget {
                         FilteringTextInputFormatter.digitsOnly
                       ],
                       textAlign: TextAlign.center,
-                      /*style: TextStyle(
-                          fontSize: Get.width * 0.07,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.black
-                      ),*/
                       style: Theme.of(context).textTheme.headlineSmall,
                       decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -130,6 +203,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else {
+                          FocusScope.of(context).previousFocus();
                         }
                       },
                     )
@@ -149,11 +224,6 @@ class VerifyPageNumber extends StatelessWidget {
                         FilteringTextInputFormatter.digitsOnly
                       ],
                       textAlign: TextAlign.center,
-                      /*style: TextStyle(
-                          fontSize: Get.width * 0.07,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.black
-                      ),*/
                       style: Theme.of(context).textTheme.headlineSmall,
                       decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -161,6 +231,8 @@ class VerifyPageNumber extends StatelessWidget {
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else {
+                          FocusScope.of(context).previousFocus();
                         }
                       },
                     )
@@ -185,8 +257,10 @@ class VerifyPageNumber extends StatelessWidget {
                           border: InputBorder.none,
                       ),
                       onChanged: (value) {
-                        if (value.length == 1) {
+                        if (value.length == 1 && _getController.verifyCodeControllers[4].text.length == 1) {
                           FocusScope.of(context).nextFocus();
+                        } else {
+                          FocusScope.of(context).previousFocus();
                         }
                         ApiController().checkCode();
                       },
@@ -199,7 +273,7 @@ class VerifyPageNumber extends StatelessWidget {
               ? TextButton(onPressed: () {
                 _getController.resetTimer();
           }, child: Text('Kodni qayta yuborish'.tr, style: Theme.of(context).textTheme.bodyMedium))
-              : Text('Sizga SMS Xabarnoma yubordik: ${_getController.countdownDuration.value.inMinutes.toString().padLeft(2, '0')}:${(_getController.countdownDuration.value.inSeconds % 60).toString().padLeft(2, '0')}', style: Theme.of(context).textTheme.bodyMedium)
+              : Text('${'Sizga SMS Xabarnoma yubordik'.tr}: ${_getController.countdownDuration.value.inMinutes.toString().padLeft(2, '0')}:${(_getController.countdownDuration.value.inSeconds % 60).toString().padLeft(2, '0')}', style: Theme.of(context).textTheme.bodyMedium)
           ),
         ]
       )
