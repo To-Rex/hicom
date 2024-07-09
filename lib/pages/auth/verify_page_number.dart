@@ -231,9 +231,7 @@ class VerifyPageNumber extends StatelessWidget {
                       ],
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headlineSmall,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
-                      ),
+                      decoration: const InputDecoration(border: InputBorder.none),
                       onChanged: (value) {
                         if (value.length == 1) {
                           FocusScope.of(context).nextFocus();
