@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ import '../models/sample/switch_list_model.dart';
 
 class GetController extends GetxController {
   var fullName = 'Dilshodjon Haydarov'.obs;
+  var height = 0.0.obs;
+  var width = 0.0.obs;
   var isSearch = false.obs;
   var isNightMode = false.obs;
   var code = '+998'.obs;
@@ -36,6 +39,11 @@ class GetController extends GetxController {
   QRViewController? controller;
   var isLampOn = false.obs;
   var cameraFacing = CameraFacing.back.obs;
+
+  void setHeightWidth(BuildContext context) {
+    height.value = MediaQuery.of(context).size.height;
+    width.value = MediaQuery.of(context).size.width;
+  }
 
   void onLoad() {onLoading.value = true;}
 
@@ -394,6 +402,33 @@ class GetController extends GetxController {
     return returnUrl;
   }
 
+  final countdownDuration = const Duration(minutes: 1, seconds: 59).obs;
+  Timer? _timer;
+  void startTimer() {
+    if (_timer == null && countdownDuration.value.inSeconds > 0) {
+      const oneSec = Duration(seconds: 1);
+      _timer = Timer.periodic(
+          oneSec, (timer) {
+        if (countdownDuration.value.inSeconds == 0) {
+          timer.cancel();
+        } else {
+          countdownDuration.value = countdownDuration.value - oneSec;
+        }
+      }
+      );
+    }
+  }
+
+  void stopTimer() {_timer!.cancel();}
+
+  void resetTimer() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    countdownDuration.value = const Duration(minutes: 1, seconds: 59);
+    startTimer();
+  }
+
   final TextEditingController searchController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final RefreshController refreshController = RefreshController(initialRefresh: false);
@@ -405,6 +440,14 @@ class GetController extends GetxController {
   final TextEditingController switchSerialProjectController = TextEditingController();
   final TextEditingController noteProjectController = TextEditingController();
   final TextEditingController passwordProjectController = TextEditingController();
+
+  //list 5 TextEditingController for switch
+  List<TextEditingController> verifyCodeControllers = List.generate(5, (index) => TextEditingController());
+
+  //clear verifyCodeControllers
+  void clearVerifyCodeControllers() {
+    verifyCodeControllers = List.generate(5, (index) => TextEditingController());
+  }
 
   void clearControllers() {
     nameController.clear();

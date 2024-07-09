@@ -16,6 +16,7 @@ import '../models/sample/switch_list_model.dart';
 import '../models/settings_info.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/verify_page.dart';
+import '../pages/auth/verify_page_number.dart';
 import '../pages/sample/sample_page.dart';
 import '../splash_screen.dart';
 import 'get_controller.dart';
@@ -61,7 +62,8 @@ class ApiController extends GetxController {
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
         InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} raqamiga Kod yuborildi'.tr, false, 2);
-        Get.to(VerifyPage());
+        //Get.to(VerifyPage());
+        Get.to(VerifyPageNumber());
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi'.tr, true, 3);
       }
@@ -72,7 +74,8 @@ class ApiController extends GetxController {
 
   Future<void> checkCode() async {
     try {
-      var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":"${_getController.codeController.text}"}', _getController.getKey());
+      //var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":"${_getController.codeController.text}"}', _getController.getKey());
+      var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":"${_getController.verifyCodeControllers[0].text+_getController.verifyCodeControllers[1].text+_getController.verifyCodeControllers[2].text+_getController.verifyCodeControllers[3].text+_getController.verifyCodeControllers[4].text}"}', _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('checkcode', 'null') + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       debugPrint(response.body);
       debugPrint(response.statusCode.toString());
