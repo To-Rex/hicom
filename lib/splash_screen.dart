@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
             Flexible(child: Container()),
             CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
             SizedBox(height: Get.height * 0.04),
-            Text('versiya'.tr, style: TextStyle(fontSize: Get.width * 0.035, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
+            Text('${'Talqin'.tr}: 1.0.0', style: TextStyle(fontSize: Get.width * 0.035, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
             SizedBox(height: Get.height * 0.02),
           ]
         )

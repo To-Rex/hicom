@@ -87,6 +87,7 @@ class LocaleString extends Translations{
       'raqamiga kod yuborildi':'raqamiga kod yuborildi',
       'Faol loyihalar yo‘q':'Faol loyihalar yo‘q',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.',
+      'Talqin':'Talqin',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -216,6 +217,7 @@ class LocaleString extends Translations{
       'raqamiga kod yuborildi':'sent to your number',
       'Faol loyihalar yo‘q':'No Active Projects',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Please click on the top-right corner of the share button.',
+      'Talqin':'Version',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -338,6 +340,7 @@ class LocaleString extends Translations{
       'raqamiga kod yuborildi':'номеру отправлен код',
       'Faol loyihalar yo‘q':'Нет активных проектов',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Нажмите кнопку «Добавить проект», чтобы создать новый проект.',
+      'Talqin':'Версия',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -481,6 +484,7 @@ class LocaleString extends Translations{
       'raqamiga kod yuborildi':'Рақамига код юборилди',
       'Faol loyihalar yo‘q':'Фаол Лоўиҳалар йўқ',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Лойиҳа қўшиш учун пастки ўнг бурчакдаги қўшиш тугмасини босинг.',
+      'Talqin':'Талқин',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',

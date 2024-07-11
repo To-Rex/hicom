@@ -311,7 +311,7 @@ class UserPage extends StatelessWidget {
                           )
                       ),
                       SizedBox(height: Get.height * 0.02),
-                      Text('© Hicom.uz 2022. version 1.0.0', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
+                      Text('© Hicom.uz 2022. ${'Talqin'.tr}: 1.0.0', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
                     ]
                 ))
             )
