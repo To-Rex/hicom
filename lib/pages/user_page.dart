@@ -8,7 +8,6 @@ import 'package:hicom/controllers/api_controller.dart';
 import 'package:hicom/pages/auth/login_page.dart';
 import 'package:hicom/pages/support_page.dart';
 import 'package:hicom/resource/colors.dart';
-import 'package:hicom/splash_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../controllers/get_controller.dart';
 import 'package:share_link/share_link.dart';
@@ -310,7 +309,9 @@ class UserPage extends StatelessWidget {
                                 ]
                             )
                           )
-                      )
+                      ),
+                      SizedBox(height: Get.height * 0.02),
+                      Text('© Hicom.uz 2022. version 1.0.0', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
                     ]
                 ))
             )
