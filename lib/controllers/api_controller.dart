@@ -364,9 +364,13 @@ class ApiController extends GetxController {
       var json = Tea.encryptTea(jsonEncode({'sna': [_getController.switchSerialProjectController.text], 'na': [_getController.switchNameProjectController.text], 'pda': [_getController.passwordProjectController.text], 'name': _getController.nameProjectController.text, 'note': '', 'auto': 0}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
+        debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
-        } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['bound'].length != 0) {
+        } if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
+        }
+        else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['bound'].length != 0) {
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu loyiha boshqa foydalanuvchilarda mavjud.'.tr, false, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noonline'].length != 0) {
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu qurilma online emas.'.tr, false, 3);
@@ -382,6 +386,7 @@ class ApiController extends GetxController {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
+      debugPrint(e.toString());
       Get.back();
       InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
@@ -470,7 +475,11 @@ class ApiController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
-        } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
+        }
+        if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
+        }
+        else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
           Get.back();
           _getController.clearControllers();
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi.'.tr, false, 2);getSwitchList(pidId);
