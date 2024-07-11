@@ -15,10 +15,7 @@ class AddProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Loyiha qo‘shish'.tr),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text('Loyiha qo‘shish'.tr), centerTitle: true),
       body:  SingleChildScrollView(
         child: Column(
             children: [
