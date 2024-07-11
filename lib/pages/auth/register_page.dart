@@ -19,7 +19,7 @@ class RegisterPage extends StatelessWidget{
   final List locale =[
     {'name':'English','locale':const Locale('en','US')},
     {'name':'Русский','locale':const Locale('ru','RU')},
-    {'name':'Uzbek','locale':const Locale('uz','UZ')},
+    {'name':'O‘zbekcha','locale':const Locale('uz','UZ')},
     {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
   ];
 
