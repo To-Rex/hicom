@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/pages/auth/login_page.dart';
-import 'package:hicom/pages/auth/verify_page_number.dart';
 import 'package:hicom/pages/sample/sample_page.dart';
 import '../controllers/get_controller.dart';
-import 'onboarding_page.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
@@ -22,7 +20,6 @@ class SplashScreen extends StatelessWidget {
         if(_getController.getUid() != '' && _getController.getKey() != '50UvFayZ2w5u3O9B') {
           Get.offAll(SamplePage());
         } else {
-          //Get.offAll(VerifyPageNumber(), transition: Transition.fadeIn);
           Get.offAll(LoginPage(), transition: Transition.fadeIn);
         }
       }

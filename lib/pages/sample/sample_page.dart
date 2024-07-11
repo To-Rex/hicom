@@ -56,7 +56,7 @@ class SamplePage extends StatelessWidget {
             controller: refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Obx(() => _getController.searchProjectModel.value.admin != null || _getController.searchProjectModel.value.join != null
+                child: Obx(() => _getController.searchProjectModel.value.admin != null && _getController.searchProjectModel.value.join!.isNotEmpty &&  _getController.searchProjectModel.value.join!.length > 0 || _getController.searchProjectModel.value.join != null && _getController.searchProjectModel.value.admin!.isNotEmpty && _getController.searchProjectModel.value.admin!.length > 0
                     ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -270,13 +270,11 @@ class SamplePage extends StatelessWidget {
                               )
                           )
                     ])
-                    : Column(children: [
-                      SizedBox(
+                    : Column(children: [SizedBox(
                           height: Get.height* 0.9,
                           width: Get.width,
                           child: Center(child: Text('Loyihalar ro‘yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)))
-                      )
-                    ])
+                      )])
                 )
             )
         ),
