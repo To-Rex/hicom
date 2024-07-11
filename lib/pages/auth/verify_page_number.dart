@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
-import 'package:hicom/resource/colors.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../controllers/get_controller.dart';
 
 class VerifyPageNumber extends StatelessWidget {
