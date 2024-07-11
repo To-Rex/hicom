@@ -15,7 +15,6 @@ import '../models/sample/project_model.dart';
 import '../models/sample/switch_list_model.dart';
 import '../models/settings_info.dart';
 import '../pages/auth/register_page.dart';
-import '../pages/auth/verify_page.dart';
 import '../pages/auth/verify_page_number.dart';
 import '../pages/sample/sample_page.dart';
 import '../splash_screen.dart';
@@ -202,36 +201,43 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSettings() async {
-    try {
-      debugPrint('${_baseUrl + _getController.getQueryString('settings', 'null') + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}');
-      var response = await get(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null') + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
-      debugPrint(response.body);
-      debugPrint(response.statusCode.toString());
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        _getController.changeSettingsInfoModel(SettingsInfo.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())));
-      } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+    if(_getController.isRequest.value) {
+      debugPrint('getSettings');
+      _getController.setRequest();
+      try {
+        debugPrint('${_baseUrl + _getController.getQueryString('settings', 'null') + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}');
+        var response = await get(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null') + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
+        debugPrint(response.body);
+        debugPrint(response.statusCode.toString());
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          _getController.changeSettingsInfoModel(SettingsInfo.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())));
+        } else {
+          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        }
+      } catch (e){
+        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
-    } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
   Future<void> getProjects() async {
-    try {
-      InstrumentComponents().loadingDialog(Get.context!);
-      var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
-      debugPrint(response.body.toString());
-      debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
-      } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+    debugPrint('getProjects');
+    if(_getController.isRequest.value) {
+      _getController.setRequest();
+      try {
+        InstrumentComponents().loadingDialog(Get.context!);
+        var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
+        debugPrint(response.body.toString());
+        debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
+        } else {
+          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        }
+      } catch (e){
+        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
       Get.back();
-    } catch (e){
-      Get.back();
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 

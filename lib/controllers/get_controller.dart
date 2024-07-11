@@ -24,6 +24,7 @@ class GetController extends GetxController {
   var height = 0.0.obs;
   var width = 0.0.obs;
   var sec = 0.obs;
+  var isRequest = true.obs;
   var isSearch = false.obs;
   var isNightMode = false.obs;
   var code = '+998'.obs;
@@ -44,6 +45,13 @@ class GetController extends GetxController {
   void setHeightWidth(BuildContext context) {
     height.value = MediaQuery.of(context).size.height;
     width.value = MediaQuery.of(context).size.width;
+  }
+
+  void setRequest() {
+    isRequest.value = false;
+    Timer(const Duration(seconds: 3), () {
+      isRequest.value = true;
+    });
   }
 
   void onLoad() {onLoading.value = true;}
