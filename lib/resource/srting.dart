@@ -85,6 +85,8 @@ class LocaleString extends Translations{
       'Kiritilgan kod tasdiqlandi':'Kiritilgan kod tasdiqlandi',
       'Kiritilgan kod xato':'Kiritilgan kod xato',
       'raqamiga kod yuborildi':'raqamiga kod yuborildi',
+      'Faol loyihalar yo‘q':'Faol loyihalar yo‘q',
+      'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -212,6 +214,8 @@ class LocaleString extends Translations{
       'Kiritilgan kod tasdiqlandi':'The code has been verified',
       'Kiritilgan kod xato':'The code is incorrect',
       'raqamiga kod yuborildi':'sent to your number',
+      'Faol loyihalar yo‘q':'No Active Projects',
+      'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Please click on the top-right corner of the share button.',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -332,6 +336,8 @@ class LocaleString extends Translations{
       'Sizga SMS Xabarnoma yubordik':'Сообщение SMS было отправлено на ваш номер',
       'Kiritilgan kod tasdiqlandi':'Введенный код подтвержден',
       'raqamiga kod yuborildi':'номеру отправлен код',
+      'Faol loyihalar yo‘q':'Нет активных проектов',
+      'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Нажмите кнопку «Добавить проект», чтобы создать новый проект.',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -473,6 +479,8 @@ class LocaleString extends Translations{
       'Kiritilgan kod tasdiqlandi':'Киритилган код тасдиқланди',
       'Kiritilgan kod xato':'Киритилган код хато',
       'raqamiga kod yuborildi':'Рақамига код юборилди',
+      'Faol loyihalar yo‘q':'Фаол Лоўиҳалар йўқ',
+      'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Лойиҳа қўшиш учун пастки ўнг бурчакдаги қўшиш тугмасини босинг.',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
@@ -522,5 +530,4 @@ class LocaleString extends Translations{
       'dialoglar':'Агар индикатор сариқ ёки тўқ сариқ бўлса, тармоқ кабелини ва улагични текширинг. узоқ масофали порт функциясини ёқишга ҳаракат қилиб кўринг, чунки муаммо линиянинг жуда узунлиги ёки кабель сифатининг ёмонлиги билан боғлиқ бўлиши мумкин.'
     }
   };
-
 }

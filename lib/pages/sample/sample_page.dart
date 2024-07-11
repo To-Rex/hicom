@@ -273,7 +273,18 @@ class SamplePage extends StatelessWidget {
                     : Column(children: [SizedBox(
                           height: Get.height* 0.9,
                           width: Get.width,
-                          child: Center(child: Text('Loyihalar ro‘yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)))
+                          child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset('assets/svg_assets/empty.svg', width: Get.width * 0.18, height: Get.height * 0.18),
+                                  SizedBox(height: Get.height * 0.01),
+                                  Text('Faol loyihalar yo‘q'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize)),
+                                  SizedBox(height: Get.height * 0.01),
+                                  Padding(padding: EdgeInsets.only(left: Get.width * 0.05, right: Get.width * 0.05), child: Text('Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.'.tr, textAlign: TextAlign.center, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize)))
+                                ]
+                              )
+                          )
                       )])
                 )
             )
