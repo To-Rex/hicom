@@ -49,7 +49,7 @@ class GetController extends GetxController {
 
   void setRequest() {
     isRequest.value = false;
-    Timer(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(milliseconds: 3000), () {
       isRequest.value = true;
     });
   }

@@ -222,7 +222,7 @@ class ApiController extends GetxController {
 
   Future<void> getProjects() async {
     debugPrint('getProjects');
-    if(_getController.isRequest.value) {
+    if(_getController.isRequest.isTrue) {
       _getController.setRequest();
       try {
         InstrumentComponents().loadingDialog(Get.context!);
