@@ -674,14 +674,15 @@ class InstrumentComponents {
                                                           Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                       ]
                                                   ),
-                                                  SizedBox(height: Get.height * 0.012),
-                                                ],
+                                                  SizedBox(height: Get.height * 0.01)
+                                                ]
                                               ),
                                               onTap: (){
                                                 updateLanguage(locale[index]['locale']);
                                                 Get.back();
                                               }
                                           ),
+                                          if (index != locale.length - 1)
                                           const Divider()
                                         ],
                                       )
