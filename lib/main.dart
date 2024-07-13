@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return AdaptiveTheme(
               debugShowFloatingThemeButton: false,
-              initial: AdaptiveThemeMode.system,
+              initial: AdaptiveThemeMode.light,
               light: ThemeData.light(useMaterial3: true),
               dark: ThemeData.dark(useMaterial3: true),
               builder: (theme, lightTheme) => GetMaterialApp(
