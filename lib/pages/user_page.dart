@@ -121,7 +121,7 @@ class UserPage extends StatelessWidget {
                                 ),
                                 SizedBox(height: Get.height * 0.01),
                                 ElevatedButton(
-                                    style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                    style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                     onPressed: () {
                                       Get.to(() => EditUser(), transition: Transition.fadeIn);
                                     },

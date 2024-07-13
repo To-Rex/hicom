@@ -50,7 +50,7 @@ class SwitchDetailPage extends StatelessWidget {
             backgroundColor: Colors.transparent,
             title: Text('Qurilma haqida'.tr),
             centerTitle: true,
-            leading: IconButton(icon: Icon(Icons.arrow_back_ios, size:Get.height * 0.035), onPressed: () => {Get.back()}),
+            leading: IconButton(icon: Icon(Icons.arrow_back, size:Get.height * 0.035), onPressed: () => {Get.back()}),
             /*actions: [
               IconButton(icon: Icon(Icons.settings, size: Get.height * 0.035), onPressed: () => {Get.back()})
             ],*/

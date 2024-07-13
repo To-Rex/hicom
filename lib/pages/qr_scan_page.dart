@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../controllers/get_controller.dart';
@@ -14,23 +15,22 @@ class QRViewExample extends StatelessWidget {
       appBar: AppBar(
         title: Text('QR Kodni Skaynerlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500)),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color:Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05),
+          icon: Icon(Icons.arrow_back, color:Theme.of(context).colorScheme.onSurface, size: Get.width * 0.06),
           onPressed: () => Get.back()
         ),
         actions: [
           Obx(() => IconButton(
-              icon: Icon(_getController.cameraFacing.value == CameraFacing.front ? Icons.camera_rear : Icons.camera_front, color: Colors.white, size: Get.width * 0.05),
+              icon: Icon(_getController.cameraFacing.value == CameraFacing.front ? Icons.camera_rear : Icons.camera_front, color: Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05),
               onPressed: _getController.toggleCamera
             )),
           Obx(() => IconButton(
               icon: Icon(
                 _getController.isLampOn.value ? Icons.flashlight_off : Icons.flashlight_on,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onSurface,
                 size: Get.width * 0.05
               ),
               onPressed: _getController.toggleLamp
-            )
-          )
+            ))
         ]
       ),
       body: Obx(() => Stack(

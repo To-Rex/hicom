@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -31,7 +32,9 @@ class AddSwitchPage extends StatelessWidget {
               SizedBox(height: Get.height * 0.02),
               TextFields(title: 'Qurilma paroli'.tr,hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController),
               SizedBox(height: Get.height * 0.2),
-              Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+              Container(
+                  height: 50.h,
+                  padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                   child: ElevatedButton(
                       onPressed: () => {
                         if(_getController.nameProjectController.text.isEmpty){
@@ -46,8 +49,7 @@ class AddSwitchPage extends StatelessWidget {
                           ApiController().addSwitch(Get.arguments)
                         }
                       },
-                      style: ButtonStyle(
-                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
+                      style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                       child: SizedBox(
                           width: Get.width,
                           height: Get.height * 0.06,

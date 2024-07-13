@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -28,7 +29,9 @@ class AddProjectPage extends StatelessWidget {
               SizedBox(height: Get.height * 0.02),
               TextFields(title: 'Qurilma paroli'.tr,hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController),
               SizedBox(height: Get.height * 0.25),
-              Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+              Container(
+                height: 50.h,
+                  padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                   child: ElevatedButton(
                       onPressed: () => {
                         if(_getController.nameProjectController.text.isEmpty){
@@ -43,14 +46,15 @@ class AddProjectPage extends StatelessWidget {
                           ApiController().addProjects()
                         }
                       },
-                      style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
+                      style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                       child: SizedBox(
                           width: Get.width,
                           height: Get.height * 0.06,
-                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
+                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04)))
+                      )
                   )
               ),
-              SizedBox(height: Get.height * 0.03),
+              SizedBox(height: Get.height * 0.03)
             ]
         )
       )

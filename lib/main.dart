@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               dark: ThemeData.dark(useMaterial3: true),
               builder: (theme, lightTheme) => GetMaterialApp(
                   debugShowCheckedModeBanner: false,
-                  title: 'Ildiz Kitoblari',
+                  title: 'Hicom',
                   theme: theme,
                   translations: LocaleString(),
                   locale: GetController().language,

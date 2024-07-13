@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
@@ -76,6 +77,7 @@ class LoginPage extends StatelessWidget {
           const Spacer(),
           Container(
               width: Get.width,
+              height: 50.h,
               margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),

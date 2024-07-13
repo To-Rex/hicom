@@ -139,7 +139,7 @@ class EditUser extends StatelessWidget {
                                 ApiController().editUser()
                               }
                             },
-                            style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
+                            style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                             child: SizedBox(
                                 width: Get.width,
                                 height: Get.height * 0.06,

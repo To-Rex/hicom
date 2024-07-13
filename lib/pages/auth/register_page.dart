@@ -1,5 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -202,7 +203,9 @@ class RegisterPage extends StatelessWidget{
                         }),
                   ),
                   SizedBox(height: Get.height * 0.05),
-                  Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                  Container(
+                      padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                      height: 50.h,
                       child: ElevatedButton(
                           onPressed: () => {
                             if (_getController.nameController.text.isEmpty) {
