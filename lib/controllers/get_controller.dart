@@ -30,7 +30,7 @@ class GetController extends GetxController {
   var code = '+998'.obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
-  RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi'].obs;
+  RxList<String> dropDownItem = <String>['Sotuvchi','Ornatuvchi','Buyurtmachi'].obs;
   var responseText = ''.obs;
   var whileApi = false.obs;
   var onLoading = false.obs;
