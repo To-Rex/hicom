@@ -14,10 +14,7 @@ class DropdownItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: Get.height * 0.015, horizontal: Get.width * 0.03),
             width: Get.width,
             height: Get.height * 0.07,
-            decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(10),
-            ),
+            decoration: BoxDecoration(color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
             child: Row(
               children: [
                 Text(title, style: TextStyle(fontSize: Get.width * 0.04, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500)),
