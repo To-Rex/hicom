@@ -67,10 +67,7 @@ class SwitchList extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return InkWell(
                                   overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                  onTap: () => {
-                                    //_getController.clearSwitchDetailModel(), Get.to(SwitchDetailPage(sn: _getController.switchListModel.value.offline![index].sn, title: _getController.switchListModel.value.offline![index].name, pidId: Get.arguments))
-                                    InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilma o`chiq'.tr, true, 3)
-                                  },
+                                  onTap: () => InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Qurilma o`chiq'.tr, true, 3),
                                   child: Card(
                                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -85,7 +82,6 @@ class SwitchList extends StatelessWidget {
                                                   Text(_getController.switchListModel.value.offline![index].name.toString()),
                                                   const Spacer(),
                                                   Icon(TablerIcons.circle_filled, color: Theme.of(context).colorScheme.error, size: Get.width * 0.025),
-
                                                   PopupMenuButton<String>(
                                                       icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
                                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -161,9 +157,9 @@ class SwitchList extends StatelessWidget {
                                               ),
                                             Row(
                                               children: [
-                                                Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}'),
+                                                Text('${'MAC'.tr} ${_getController.switchListModel.value.offline![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
                                                 const Spacer(),
-                                                Text(_getController.maskString(_getController.switchListModel.value.offline![index].sn.toString())),
+                                                Text(_getController.maskString(_getController.switchListModel.value.offline![index].sn.toString()),style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
                                               ],
                                             )
                                           ],
@@ -272,7 +268,7 @@ class SwitchList extends StatelessWidget {
                                                 children: [
                                                   Text('${'MAC'.tr} ${_getController.switchListModel.value.online![index].mac}',style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
                                                   const Spacer(),
-                                                  Text(_getController.maskString(_getController.switchListModel.value.online![index].sn.toString(),),style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize)),
+                                                  Text(_getController.maskString(_getController.switchListModel.value.online![index].sn.toString()),style: TextStyle(fontSize: Get.textTheme.bodySmall!.fontSize))
                                                 ]
                                             )
                                               ]
