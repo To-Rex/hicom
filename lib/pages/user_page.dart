@@ -125,7 +125,7 @@ class UserPage extends StatelessWidget {
                                     onPressed: () {
                                       Get.to(() => EditUser(), transition: Transition.fadeIn);
                                     },
-                                    child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: Get.height * 0.02, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.surface))),
+                                    child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: Get.height * 0.02, fontWeight: FontWeight.w500, color: AppColors.white))),
                                 SizedBox(height: Get.height * 0.01),
                                 const Divider(),
                                 SizedBox(height: Get.height * 0.01),

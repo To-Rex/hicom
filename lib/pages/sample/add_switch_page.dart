@@ -16,7 +16,7 @@ class AddSwitchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Loyiha qo\'shish'.tr),
+        title: Text('Loyiha qo‘shish'.tr),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
