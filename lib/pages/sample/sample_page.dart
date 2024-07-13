@@ -15,25 +15,26 @@ class SamplePage extends StatelessWidget {
   SamplePage({super.key});
 
   final GetController _getController = Get.put(GetController());
-  final RefreshController refreshController = RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   void _onLoading() {
-    refreshController.loadComplete();
+    _refreshController.loadComplete();
   }
 
   void _getData() {
-    refreshController.refreshCompleted();
+    _refreshController.refreshCompleted();
     ApiController().getProjects();
   }
 
   @override
   Widget build(BuildContext context) {
     ApiController().login(_getController.getNumber(),_getController.getSession(),'50UvFayZ2w5u3O9B',false).then((_) => {
-      refreshController.requestRefresh(),
-      _getData()
+      _refreshController.requestRefresh(),
+    });
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      _getData();
     });
     return Scaffold(
-        //backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.9),
         appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro‘yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05))),
@@ -51,9 +52,9 @@ class SamplePage extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             header: CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {return SizedBox(height: Get.height * 0.1);}),
             footer: CustomFooter(builder: (BuildContext context, LoadStatus? mode) {return SizedBox(height: Get.height * 0.1);}),
-            onLoading: _onLoading,
+            onLoading: null,
             onRefresh: _getData,
-            controller: refreshController,
+            controller: _refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Obx(() => _getController.searchProjectModel.value.admin != null && _getController.searchProjectModel.value.join!.isNotEmpty &&  _getController.searchProjectModel.value.join!.length > 0 || _getController.searchProjectModel.value.join != null && _getController.searchProjectModel.value.admin!.isNotEmpty && _getController.searchProjectModel.value.admin!.length > 0

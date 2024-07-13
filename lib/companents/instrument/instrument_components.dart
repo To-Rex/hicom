@@ -624,7 +624,7 @@ class InstrumentComponents {
                   _getController.clearUser(),
                   Get.offAll(() => LoginPage())
                 },
-                child: Text('O‘chirish'.tr)
+                child: Text('Ha'.tr)
             )
           ]
         )

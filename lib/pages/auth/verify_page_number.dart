@@ -53,6 +53,7 @@ class VerifyPageNumber extends StatelessWidget {
                     child: TextField(
                       controller: _getController.verifyCodeControllers[0],
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                         FilteringTextInputFormatter.digitsOnly
@@ -83,6 +84,7 @@ class VerifyPageNumber extends StatelessWidget {
                     child: TextField(
                       controller: _getController.verifyCodeControllers[1],
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                         FilteringTextInputFormatter.digitsOnly
@@ -113,6 +115,7 @@ class VerifyPageNumber extends StatelessWidget {
                     child: TextField(
                       controller: _getController.verifyCodeControllers[2],
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                         FilteringTextInputFormatter.digitsOnly
@@ -143,6 +146,7 @@ class VerifyPageNumber extends StatelessWidget {
                     child: TextField(
                       controller: _getController.verifyCodeControllers[3],
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                         FilteringTextInputFormatter.digitsOnly
@@ -171,15 +175,14 @@ class VerifyPageNumber extends StatelessWidget {
                     child: TextField(
                       controller: _getController.verifyCodeControllers[4],
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.done,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                         FilteringTextInputFormatter.digitsOnly
                       ],
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headlineSmall,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
-                      ),
+                      decoration: const InputDecoration(border: InputBorder.none),
                       onChanged: (value) {
                         if (value.length == 1 && _getController.verifyCodeControllers[0].text.length == 1 && _getController.verifyCodeControllers[1].text.length == 1 && _getController.verifyCodeControllers[2].text.length == 1 && _getController.verifyCodeControllers[3].text.length == 1) {
                           FocusScope.of(context).nextFocus();
@@ -187,9 +190,9 @@ class VerifyPageNumber extends StatelessWidget {
                         } else if (value.isEmpty) {
                           FocusScope.of(context).previousFocus();
                         }
-                      },
+                      }
                     )
-                  ),
+                  )
                 ]
             )
           ),

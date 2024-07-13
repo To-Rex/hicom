@@ -20,9 +20,7 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()),
         actions: [
-          IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed: () {
-            InstrumentComponents().languageDialog(context);
-          })
+          IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed:() => InstrumentComponents().languageDialog(context))
         ]
       ),
       body: Column(

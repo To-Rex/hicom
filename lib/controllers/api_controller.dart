@@ -109,6 +109,7 @@ class ApiController extends GetxController {
           _getController.writeUid(_getController.loginModel.value.uid.toString());
           _getController.writeUser(_getController.loginModel.value);
           if (enter) {
+            _getController.setRequest();
             Get.offAll(SamplePage());
           }
         } else {
@@ -225,7 +226,8 @@ class ApiController extends GetxController {
         debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
         if (response.statusCode == 200 || response.statusCode == 201) {
           if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
-           login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
+            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+            login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
           } else{
             _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
           }
@@ -234,7 +236,6 @@ class ApiController extends GetxController {
         }
         Get.back();
       } catch (e){
-        Get.back();
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
     }
