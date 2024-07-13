@@ -32,9 +32,8 @@ class ApiController extends GetxController {
     'Accept': 'application/json',
   };
 
-  void timeOut(sec,func) {
-    Timer(Duration(milliseconds: sec), func);
-  }
+  void timeOut(sec,func) => Timer(Duration(milliseconds: sec), func);
+
 
   Future<void> getRegions(data, act) async {
     var response = await get(Uri.parse('${_baseUrl + _getController.getQueryString(act, 'null') + data}&key=$key'), headers: headers);
@@ -73,12 +72,8 @@ class ApiController extends GetxController {
 
   Future<void> checkCode() async {
     try {
-      //var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":"${_getController.codeController.text}"}', _getController.getKey());
       var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":"${_getController.verifyCodeControllers[0].text+_getController.verifyCodeControllers[1].text+_getController.verifyCodeControllers[2].text+_getController.verifyCodeControllers[3].text+_getController.verifyCodeControllers[4].text}"}', _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('checkcode', 'null') + json.toString()}&key=${_getController.getKey()}'), headers: headers);
-      debugPrint(response.body);
-      debugPrint(response.statusCode.toString());
-      debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
           _getController.writeLogin(_getController.code.value + _getController.phoneController.text, jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['session']);
@@ -119,7 +114,6 @@ class ApiController extends GetxController {
         } else {
           _getController.sec.value = 0;
           if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys).toString().codeUnits))['errcode'] == 20003) {
-            //{"errcode":20003,"errmsg":"user not exist"}
             if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, keys).toString().codeUnits))['errmsg'] == 'user not exist'){
               Get.offAll(() => RegisterPage());
             } else{
@@ -234,10 +228,11 @@ class ApiController extends GetxController {
         } else {
           InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
+        Get.back();
       } catch (e){
+        Get.back();
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
-      Get.back();
     }
   }
 

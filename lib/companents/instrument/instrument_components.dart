@@ -5,14 +5,25 @@ import 'package:get/get.dart';
 import '../../controllers/api_controller.dart';
 import '../../controllers/get_controller.dart';
 import '../../controllers/tea.dart';
+import '../../pages/auth/login_page.dart';
 import '../../resource/colors.dart';
 import '../text_fild.dart';
 
 class InstrumentComponents {
   final GetController _getController = Get.put(GetController());
+  final List locale =[
+    {'name':'English','locale':const Locale('en','US')},
+    {'name':'Русский','locale':const Locale('ru','RU')},
+    {'name':'O‘zbekcha','locale':const Locale('uz','UZ')},
+    {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
+  ];
 
-  void showToast(context,String title,String message, error,sec) {
-    Get.snackbar(
+  updateLanguage(Locale locale){
+    Get.updateLocale(locale);
+    _getController.saveLanguage(locale);
+  }
+
+  void showToast(context,String title,String message, error,sec) => Get.snackbar(
       title.tr,
       message.tr,
       backgroundColor: error ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onSurface,
@@ -30,13 +41,8 @@ class InstrumentComponents {
         color: Theme.of(context).colorScheme.onError,
       ) : null,
     );
-  }
 
-  void showDialogConnectivity(context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
+  void showDialogConnectivity(context) => showDialog(context: context, builder: (BuildContext context) => AlertDialog(
           title: Text('Diqqat!'.tr),
           content: Text('Internet bog‘lanmadi'.tr),
           actions: <Widget>[
@@ -47,13 +53,9 @@ class InstrumentComponents {
                 }
             ),
           ],
-        );
-      },
-    );
-  }
+        ));
 
-  bottomBuildLanguageDialog(BuildContext context,title,cat){
-    Get.bottomSheet(
+  bottomBuildLanguageDialog(BuildContext context,title,cat) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
@@ -209,10 +211,8 @@ class InstrumentComponents {
               );
             })
     );
-  }
 
-  bottomSheetEditName(BuildContext context, pidId) {
-    Get.bottomSheet(
+  bottomSheetEditName(BuildContext context, pidId) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
@@ -264,10 +264,8 @@ class InstrumentComponents {
               );
             })
     );
-  }
 
-  bottomSwitchEditName(BuildContext context, pidId,sn,index,online) {
-    Get.bottomSheet(
+  bottomSwitchEditName(BuildContext context, pidId,sn,index,online) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
@@ -319,10 +317,8 @@ class InstrumentComponents {
               );
             })
     );
-  }
 
-  bottomSheetUsers(BuildContext context, pidId) {
-    Get.bottomSheet(
+  bottomSheetUsers(BuildContext context, pidId) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
@@ -367,10 +363,8 @@ class InstrumentComponents {
               );
             })
     );
-  }
 
-  bottomSheetShare(BuildContext context, pidId) {
-    Get.bottomSheet(
+  bottomSheetShare(BuildContext context, pidId) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
@@ -426,10 +420,8 @@ class InstrumentComponents {
               );
             })
     );
-  }
 
-  bottomSheetProjectAdd(BuildContext context, pidId) {
-    Get.bottomSheet(
+  bottomSheetProjectAdd(BuildContext context, pidId) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         isScrollControlled: true,
@@ -484,10 +476,8 @@ class InstrumentComponents {
               );
             })
     );
-  }
 
-  void deleteProject(BuildContext context, String? pid) {
-    Get.dialog(
+  void deleteProject(BuildContext context, String? pid) => Get.dialog(
         AlertDialog(
           title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
           content: Text('Loyiha o’chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
@@ -506,10 +496,8 @@ class InstrumentComponents {
           ],
         )
     );
-  }
 
-  void deleteSwitch(BuildContext context, String? pid, sn) {
-    Get.dialog(
+  void deleteSwitch(BuildContext context, String? pid, sn) => Get.dialog(
         AlertDialog(
           title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
           content: Text('Qurilma o‘chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
@@ -528,10 +516,8 @@ class InstrumentComponents {
           ],
         )
     );
-  }
 
-  void infoPortDialog(BuildContext context) {
-    Get.dialog(
+  void infoPortDialog(BuildContext context) => Get.dialog(
         AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           title: Text('Portlar holati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
@@ -599,10 +585,8 @@ class InstrumentComponents {
           ],
         )
     );
-  }
 
-  void loadingDialog(BuildContext context) {
-    Get.dialog(
+  void loadingDialog(BuildContext context) => Get.dialog(
         AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           title: Text('Kuting!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
@@ -619,6 +603,93 @@ class InstrumentComponents {
           )
         )
     );
-  }
 
+  void logOutDialog(BuildContext context) => Get.dialog(
+        AlertDialog(
+          title: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
+          content: Text('Hisobdan chiqishni xohlaysizmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+          actions: [
+            TextButton(
+                onPressed: () => Get.back(),
+                child: Text('Bekor qilish'.tr)
+            ),
+            TextButton(
+                onPressed: () => {
+                  Get.back(),
+                  _getController.isRequest.value = true,
+                  _getController.sec.value = 0,
+                  _getController.clearKey(),
+                  _getController.clearUid(),
+                  _getController.clearUser(),
+                  Get.offAll(() => LoginPage())
+                },
+                child: Text('O‘chirish'.tr)
+            )
+          ]
+        )
+    );
+
+  void languageDialog(BuildContext context){
+    Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        enableDrag: true,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return SizedBox(
+                  height: Get.height * 0.5,
+                  width: double.infinity,
+                  child: Column(
+                      children: [
+                        Container(
+                            height: Get.height * 0.005,
+                            width: Get.width * 0.2,
+                            margin: EdgeInsets.only(top: Get.height * 0.02, bottom: Get.height * 0.03),
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface, borderRadius: BorderRadius.circular(10.0))
+                        ),
+                        Text('Tilni tanlang'.tr,
+                          style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045),
+                        ),
+                        Expanded(
+                            child: ListView.builder(
+                                itemCount: locale.length,
+                                itemBuilder: (context, index){
+                                  return Container(
+                                      height: Get.height * 0.07,
+                                      width: double.infinity,
+                                      padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
+                                      child: Column(
+                                        children: [
+                                          InkWell(
+                                              overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                              child: Center(
+                                                  child: Row(
+                                                      children: [
+                                                        Text(locale[index]['name'], style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+                                                        const Spacer(),
+                                                        if (locale[index]['locale'].toString() == _getController.language.toString())
+                                                          Icon(TablerIcons.circle_check, color: Theme.of(context).colorScheme.onSurface),
+                                                        if (locale[index]['locale'].toString() != _getController.language.toString())
+                                                          Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
+                                                      ]
+                                                  )
+                                              ),
+                                              onTap: (){
+                                                updateLanguage(locale[index]['locale']);
+                                                Get.back();
+                                              }
+                                          ),
+                                          const Divider()
+                                        ],
+                                      )
+                                  );
+                                }
+                            )
+                        )
+                      ]
+                  )
+              );
+            })
+    );
+  }
 }

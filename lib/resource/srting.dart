@@ -78,7 +78,8 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'Biz tasdiqlash kodini jo‘natamiz.',
       'Telefon raqam':'Telefon raqam',
       'Tasdiqlash':'Tasdiqlash',
-      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.',
+      'Faollashtirish kodi':'Faollashtirish kodi',
+      'raqamiga SMS tarzida yuborildi.':'raqamiga SMS tarzida yuborildi.',
       'Kodni kiriting':'Kodni kiriting',
       'Kodni qayta yuborish':'Kodni qayta yuborish',
       'Sizga SMS Xabarnoma yubordik':'Sizga SMS Xabarnoma yubordik.',
@@ -131,7 +132,8 @@ class LocaleString extends Translations{
       'Qurilma nomini kiriting.':'Qurilma nomini kiriting.',
       'Qurilmaning ishlab chiqarish raqamini kiriting.':'Qurilmaning ishlab chiqarish raqamini kiriting.',
       'Qurilmaning parolini kiriting.':'Qurilmaning parolini kiriting.',
-      'dialoglar':'Agar indikator sariq yoki to‘q sariq bo‘lsa, tarmoq kabelini va ulagichni tekshiring. uzoq masofali port funksiyasini yoqishga harakat qilib ko‘ring, chunki muammo liniyaning juda uzunligi yoki kabel sifatining yomonligi bilan bog‘liq bo‘lishi mumkin.'
+      'dialoglar':'Agar indikator sariq yoki to‘q sariq bo‘lsa, tarmoq kabelini va ulagichni tekshiring. uzoq masofali port funksiyasini yoqishga harakat qilib ko‘ring, chunki muammo liniyaning juda uzunligi yoki kabel sifatining yomonligi bilan bog‘liq bo‘lishi mumkin.',
+      'Hisobdan chiqishni xohlaysizmi?':'Hisobdan chiqishni xohlaysizmi?',
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -208,7 +210,8 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'We will send you a verification code.',
       'Telefon raqam':'Phone Number',
       'Tasdiqlash':'Verify',
-      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Verification code has been sent to your phone.',
+      'Faollashtirish kodi': 'Activation code',
+      'raqamiga SMS tarzida yuborildi.': 'has been sent via SMS to the number.',
       'Kodni kiriting':'Enter code',
       'Kodni qayta yuborish':'Resend code',
       'Sizga SMS Xabarnoma yubordik':'We have sent you an SMS message',
@@ -264,7 +267,8 @@ class LocaleString extends Translations{
       'Qurilmaning parolini kiriting.':'Enter Device Password.',
       'Kuzatuvchi telefon raqami kiriting':'Enter Follower Phone Number',
       'Kuzatuvchi nomi kiriting':'Enter Follower Name',
-      'dialoglar':'If the indicator is yellow or orange, check the network cable and connector. try enabling the long-distance port function, as the problem may be caused by the line being too long or the cable quality being poor.'
+      'dialoglar':'If the indicator is yellow or orange, check the network cable and connector. try enabling the long-distance port function, as the problem may be caused by the line being too long or the cable quality being poor.',
+      'Hisobdan chiqishni xohlaysizmi?':'Do you want to log out of your account?',
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -332,7 +336,8 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'Отправьте код подтверждения',
       'Telefon raqam':'Номер телефона',
       'Tasdiqlash':'Подтвердить',
-      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Код подтверждения SMS отправлен на ваш номер телефона',
+      'Faollashtirish kodi': 'Код активации',
+      'raqamiga SMS tarzida yuborildi.': 'отправлен на номер в виде SMS.',
       'Kodni kiriting':'Введите код',
       'Kodni qayta yuborish':'Повторно отправить код',
       'Sizga SMS Xabarnoma yubordik':'Сообщение SMS было отправлено на ваш номер',
@@ -398,7 +403,8 @@ class LocaleString extends Translations{
       'Qurilmaning parolini kiriting.':'Введите пароль устройства.',
       'Kuzatuvchi telefon raqami kiriting':'Номер телефона подписчика',
       'Kuzatuvchi nomi kiriting':'Имя подписчика',
-      'dialoglar':'Если индикатор желтый или оранжевый, проверьте сетевой кабель и разъем. Попробуйте включить функцию ультра дальнего порта, так как проблема может быть вызвана слишком длинной линией или плохим качеством кабеля.'
+      'dialoglar':'Если индикатор желтый или оранжевый, проверьте сетевой кабель и разъем. Попробуйте включить функцию ультра дальнего порта, так как проблема может быть вызвана слишком длинной линией или плохим качеством кабеля.',
+      'Hisobdan chiqishni xohlaysizmi?':'Вы хотите выйти из аккаунта?',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дилшоджон Ҳайдаров',
@@ -475,7 +481,8 @@ class LocaleString extends Translations{
       'Biz Tasdiqlash kodini jo‘natamiz':'Биз тасдиқлаш кодини жўнатамиз',
       'Telefon raqam':'Телефон рақам',
       'Tasdiqlash':'Тасдиқлаш',
-      'Telefoningizga faollashtirish kodi SMS tarzida yuborildi.':'Телефонингизга фаоллаштириш коди SMS тарзида юборилди.',
+      'Faollashtirish kodi': 'Фаоллаштириш коди',
+      'raqamiga SMS tarzida yuborildi.': 'Рақамига SMS тарзида юборилди.',
       'Kodni kiriting':'Кодни киритинг',
       'Kodni qayta yuborish':'Кодни қайта юбориш',
       'Sizga SMS Xabarnoma yubordik':'Сизга SMS Хабарнома юбордик',
@@ -531,7 +538,8 @@ class LocaleString extends Translations{
       'Qurilmaning parolini kiriting.':'Қурилманинг паролини киритинг.',
       'Kuzatuvchi telefon raqami kiriting':'Кузатувчи телефон рақами киритинг',
       'Kuzatuvchi nomi kiriting':'Кузатувчи номи киритинг',
-      'dialoglar':'Агар индикатор сариқ ёки тўқ сариқ бўлса, тармоқ кабелини ва улагични текширинг. узоқ масофали порт функциясини ёқишга ҳаракат қилиб кўринг, чунки муаммо линиянинг жуда узунлиги ёки кабель сифатининг ёмонлиги билан боғлиқ бўлиши мумкин.'
+      'dialoglar':'Агар индикатор сариқ ёки тўқ сариқ бўлса, тармоқ кабелини ва улагични текширинг. узоқ масофали порт функциясини ёқишга ҳаракат қилиб кўринг, чунки муаммо линиянинг жуда узунлиги ёки кабель сифатининг ёмонлиги билан боғлиқ бўлиши мумкин.',
+      'Hisobdan chiqishni xohlaysizmi?':'Ҳисобдан чиқишни хоҳлайсизми?',
     }
   };
 }
