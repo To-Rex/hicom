@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import '../../companents/instrument/instrument_components.dart';
@@ -198,11 +197,14 @@ class VerifyPageNumber extends StatelessWidget {
           ),
           Padding(padding: EdgeInsets.only(left: Get.width * 0.05, right: Get.width * 0.03),
               child: Obx(() =>_getController.countdownDuration.value.inSeconds == 0
-                  ? TextButton(onPressed: () {
-                ApiController().sendCode();
-                _getController.resetTimer();
-              }, child: Text('Kodni qayta yuborish'.tr, style: Theme.of(context).textTheme.bodyMedium))
-                  : Text('${'Sizga SMS Xabarnoma yubordik'.tr}: ${_getController.countdownDuration.value.inMinutes.toString().padLeft(2, '0')}:${(_getController.countdownDuration.value.inSeconds % 60).toString().padLeft(2, '0')}', style: Theme.of(context).textTheme.bodyMedium)
+                  ? TextButton(
+                  style: ButtonStyle(overlayColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.onSurface.withOpacity(0.1))),
+                  onPressed: () {ApiController().sendCode();_getController.resetTimer();},
+                  child: Text('Kodni qayta yuborish'.tr, style: Theme.of(context).textTheme.bodyMedium))
+              :TextButton(
+                  style: ButtonStyle(overlayColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.onSurface.withOpacity(0.1))),
+                  onPressed: () {},
+                  child: Text('${'Kodni qayta yuborish'.tr}: ${_getController.countdownDuration.value.inMinutes.toString().padLeft(2, '0')}:${(_getController.countdownDuration.value.inSeconds % 60).toString().padLeft(2, '0')}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6), fontSize: Get.width * 0.035)))
               )
           )
         ]
