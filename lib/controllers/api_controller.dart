@@ -224,7 +224,11 @@ class ApiController extends GetxController {
         debugPrint(response.body.toString());
         debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
         if (response.statusCode == 200 || response.statusCode == 201) {
-          _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
+          if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
+           login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
+          } else{
+            _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
+          }
         } else {
           InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
@@ -396,7 +400,11 @@ class ApiController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
         _getController.clearSwitchList();
-        _getController.changeSwitchList(SwitchListModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
+        if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
+          login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
+        } else {
+          _getController.changeSwitchList(SwitchListModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
+        }
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
@@ -498,13 +506,17 @@ class ApiController extends GetxController {
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
         debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
-        if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
-          _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
-        } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
+        if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
           Get.back();
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos hisobingizga qaytadan kiriting.'.tr, true, 3);
-        } else {
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        } else{
+          if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
+            _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
+          } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
+            Get.back();
+            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos hisobingizga qaytadan kiriting.'.tr, true, 3);
+          } else {
+            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+          }
         }
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
