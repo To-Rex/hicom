@@ -34,7 +34,7 @@ class UserPage extends StatelessWidget {
                 backgroundColor: AppColors.primaryColor,
                 minimumSize: Size(Get.width * 0.4, Get.height * 0.05),
             ),
-            child: Text('Bekor qilish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))
+            child: Text('Bekor qilish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))
         ),
 
         content: Column(

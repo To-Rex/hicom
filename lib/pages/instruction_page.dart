@@ -34,7 +34,7 @@ class InstructionPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Foydalanish yo\'riqnomasi'.tr),
+        title: Text('Foydalanish yo‘riqnomasi'.tr),
         centerTitle: true,
         leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.06), onPressed: () => Get.back())
       ),
