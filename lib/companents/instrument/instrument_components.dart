@@ -662,8 +662,9 @@ class InstrumentComponents {
                                         children: [
                                           InkWell(
                                               overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                              child: Center(
-                                                  child: Row(
+                                              child: Column(
+                                                children: [
+                                                  Row(
                                                       children: [
                                                         Text(locale[index]['name'], style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
                                                         const Spacer(),
@@ -672,7 +673,9 @@ class InstrumentComponents {
                                                         if (locale[index]['locale'].toString() != _getController.language.toString())
                                                           Icon(TablerIcons.circle, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                                       ]
-                                                  )
+                                                  ),
+                                                  SizedBox(height: Get.height * 0.012),
+                                                ],
                                               ),
                                               onTap: (){
                                                 updateLanguage(locale[index]['locale']);
