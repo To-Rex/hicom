@@ -468,7 +468,7 @@ class LocaleString extends Translations{
       'POE kuchlanishi':'ПОЭ кучланиши',
       'POE quvvati':'ПОЭ куввати',
       'Online davri':'Онлайн даври',
-      'Qurilmani o‘chirib yoqish':'Қурилмани ўчириб юқиш',
+      'Qurilmani o‘chirib yoqish':'Қурилмани ўчириб ёқиш',
       'Qurilmalar ro‘yxati':'Қурилмалар рўйхати',
       'Ma’lumotlar topilmadi':'Маълумотлар топилмади',
       'Port':'Port',
