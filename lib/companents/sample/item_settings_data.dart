@@ -4,6 +4,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
 import '../../resource/colors.dart';
+import '../instrument/instrument_components.dart';
 
 class ItemSettingsData extends StatelessWidget {
   final String? projectId;
@@ -88,7 +89,8 @@ class ItemSettingsData extends StatelessWidget {
               width: Get.width * 0.2,
                 child: Center(
                     child: ElevatedButton(onPressed: () {
-                      ApiController().portRestart(projectId!, serialNumber!, index!);},
+                      InstrumentComponents().rebootDialog(context, projectId, serialNumber, index);
+                      },
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
                         child: Icon(TablerIcons.refresh, color: Get.theme.colorScheme.onSurface, size: Get.textTheme.bodyMedium!.fontSize)
                     )

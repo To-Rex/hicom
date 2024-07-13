@@ -89,6 +89,7 @@ class LocaleString extends Translations{
       'Faol loyihalar yo‘q':'Faol loyihalar yo‘q',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.',
       'Talqin':'Talqin',
+      'Ha':'Ha',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -134,6 +135,7 @@ class LocaleString extends Translations{
       'Qurilmaning parolini kiriting.':'Qurilmaning parolini kiriting.',
       'dialoglar':'Agar indikator sariq yoki to‘q sariq bo‘lsa, tarmoq kabelini va ulagichni tekshiring. uzoq masofali port funksiyasini yoqishga harakat qilib ko‘ring, chunki muammo liniyaning juda uzunligi yoki kabel sifatining yomonligi bilan bog‘liq bo‘lishi mumkin.',
       'Hisobdan chiqishni xohlaysizmi?':'Hisobdan chiqishni xohlaysizmi?',
+      'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?':'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?'
     },
     'en_EN':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -221,6 +223,7 @@ class LocaleString extends Translations{
       'Faol loyihalar yo‘q':'No Active Projects',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Please click on the top-right corner of the share button.',
       'Talqin':'Version',
+      'Ha':'Yes',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -269,6 +272,7 @@ class LocaleString extends Translations{
       'Kuzatuvchi nomi kiriting':'Enter Follower Name',
       'dialoglar':'If the indicator is yellow or orange, check the network cable and connector. try enabling the long-distance port function, as the problem may be caused by the line being too long or the cable quality being poor.',
       'Hisobdan chiqishni xohlaysizmi?':'Do you want to log out of your account?',
+      'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?':'Do you really want to delete this port?'
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -346,6 +350,7 @@ class LocaleString extends Translations{
       'Faol loyihalar yo‘q':'Нет активных проектов',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Нажмите кнопку «Добавить проект», чтобы создать новый проект.',
       'Talqin':'Версия',
+      'Ha':'Да',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -405,6 +410,7 @@ class LocaleString extends Translations{
       'Kuzatuvchi nomi kiriting':'Имя подписчика',
       'dialoglar':'Если индикатор желтый или оранжевый, проверьте сетевой кабель и разъем. Попробуйте включить функцию ультра дальнего порта, так как проблема может быть вызвана слишком длинной линией или плохим качеством кабеля.',
       'Hisobdan chiqishni xohlaysizmi?':'Вы хотите выйти из аккаунта?',
+      'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?':'Вы уверены, что хотите отключить этот порт?',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дилшоджон Ҳайдаров',
@@ -492,6 +498,7 @@ class LocaleString extends Translations{
       'Faol loyihalar yo‘q':'Фаол Лоўиҳалар йўқ',
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Лойиҳа қўшиш учун пастки ўнг бурчакдаги қўшиш тугмасини босинг.',
       'Talqin':'Талқин',
+      'Ha':'Ха',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
@@ -540,6 +547,7 @@ class LocaleString extends Translations{
       'Kuzatuvchi nomi kiriting':'Кузатувчи номи киритинг',
       'dialoglar':'Агар индикатор сариқ ёки тўқ сариқ бўлса, тармоқ кабелини ва улагични текширинг. узоқ масофали порт функциясини ёқишга ҳаракат қилиб кўринг, чунки муаммо линиянинг жуда узунлиги ёки кабель сифатининг ёмонлиги билан боғлиқ бўлиши мумкин.',
       'Hisobdan chiqishni xohlaysizmi?':'Ҳисобдан чиқишни хоҳлайсизми?',
+      'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?':'Сиз ростдан ҳам ушбу портни ўчириб ёқишни хоҳлайсизми?',
     }
   };
 }

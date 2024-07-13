@@ -11,6 +11,7 @@ import '../text_fild.dart';
 
 class InstrumentComponents {
   final GetController _getController = Get.put(GetController());
+
   final List locale =[
     {'name':'English','locale':const Locale('en','US')},
     {'name':'Русский','locale':const Locale('ru','RU')},
@@ -629,8 +630,7 @@ class InstrumentComponents {
         )
     );
 
-  void languageDialog(BuildContext context){
-    Get.bottomSheet(
+  void languageDialog(BuildContext context) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -691,5 +691,24 @@ class InstrumentComponents {
               );
             })
     );
-  }
+
+  void rebootDialog(BuildContext context,projectId,serialNumber,index) => Get.dialog(
+        AlertDialog(
+          title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
+          content: Text('Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+          actions: [
+            TextButton(
+                onPressed: () => Get.back(),
+                child: Text('Bekor qilish'.tr)
+            ),
+            TextButton(
+                onPressed: () => {
+                  Get.back(),
+                  ApiController().portRestart(projectId!, serialNumber!, index!)
+                },
+                child: Text('Ha'.tr)
+            )
+          ]
+        )
+    );
 }
