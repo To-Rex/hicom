@@ -28,7 +28,7 @@ class TextFields extends StatelessWidget {
               cursorColor: Theme.of(context).colorScheme.onSurface,
               enabled: isEnabled ?? true,
               decoration: InputDecoration(
-                fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                fillColor: Colors.grey.withOpacity(0.1),
                 filled: true,
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,

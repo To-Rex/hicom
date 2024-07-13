@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class DropdownItem extends StatelessWidget {
@@ -13,9 +14,9 @@ class DropdownItem extends StatelessWidget {
         child: Container(
             padding: EdgeInsets.symmetric(vertical: Get.height * 0.015, horizontal: Get.width * 0.03),
             width: Get.width,
-            height: Get.height * 0.06,
+            height: Get.height * 0.07,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+              color: Colors.grey.withOpacity(0.1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
