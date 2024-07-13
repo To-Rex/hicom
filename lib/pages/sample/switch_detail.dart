@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -142,14 +143,10 @@ class SwitchDetailPage extends StatelessWidget {
                                         SizedBox(height: Get.height * 0.05),
                                         SizedBox(
                                             width: Get.width,
-                                            height: Get.height * 0.07,
+                                            height: 50.h,
                                             child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  backgroundColor: AppColors.blue,
-                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
-                                              ),
+                                              style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                               onPressed: () {
-                                                //switchReboot
                                                 ApiController().switchReboot(pidId.toString(), sn.toString());
                                               },
                                               child: Text('Qurilmani o‘chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
