@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -129,7 +130,7 @@ class SamplePage extends StatelessWidget {
                                         ),
                                         Expanded(child: Container()),
                                         PopupMenuButton<String>(
-                                            icon: Icon(Icons.menu, size: Get.width * 0.05),
+                                            icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                                             color: Theme.of(context).colorScheme.surface,
                                             surfaceTintColor: Colors.transparent,
@@ -204,6 +205,7 @@ class SamplePage extends StatelessWidget {
                                               ];
                                             }
                                         )
+
                                       ]
                                   )
                               )
