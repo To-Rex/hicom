@@ -100,12 +100,13 @@ class SamplePage extends StatelessWidget {
                                                     children: [
                                                       Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
                                                       Container(
-                                                        height: 20.h,
+                                                        height: Get.height * 0.042,
+                                                        width: Get.width * 0.1,
                                                         margin: EdgeInsets.only(right: Get.width * 0.02),
                                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: AppColors.grey.withOpacity(0.2)),
                                                         child: PopupMenuButton<String>(
                                                             icon: Icon(TablerIcons.dots, size: Get.height * 0.025),
-                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                                                            //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
                                                             color: Theme.of(context).colorScheme.surface,
                                                             surfaceTintColor: Colors.transparent,
                                                             elevation: 0,
