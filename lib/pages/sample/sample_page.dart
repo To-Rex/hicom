@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -92,8 +93,95 @@ class SamplePage extends StatelessWidget {
                                             children: [
                                               SizedBox(height: Get.height * 0.01),
                                               SizedBox(
-                                                width: Get.width * 0.6,
-                                                child: Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                                width: Get.width * 0.75,
+                                                child: Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+                                                      Container(
+                                                        height: 20.h,
+                                                        margin: EdgeInsets.only(right: Get.width * 0.02),
+                                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: AppColors.grey.withOpacity(0.2)),
+                                                        child: PopupMenuButton<String>(
+                                                            icon: Icon(TablerIcons.dots, size: Get.height * 0.025),
+                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                                                            color: Theme.of(context).colorScheme.surface,
+                                                            surfaceTintColor: Colors.transparent,
+                                                            elevation: 0,
+                                                            onSelected: (String value) {
+                                                              switch (value) {
+                                                                case 'edit':
+                                                                  _getController.nameProjectController.text = _getController.searchProjectModel.value.admin![i].name.toString();
+                                                                  _getController.noteProjectController.text = _getController.searchProjectModel.value.admin![i].note.toString();
+                                                                  InstrumentComponents().bottomSheetEditName(context,_getController.searchProjectModel.value.admin![i].pid);
+                                                                  break;
+                                                                case 'watchers':
+                                                                  InstrumentComponents().bottomSheetUsers(context, _getController.searchProjectModel.value.admin![i].pid);
+                                                                  ApiController().getProjectsUsers(_getController.searchProjectModel.value.admin![i].pid);
+                                                                  break;
+                                                                case 'share':
+                                                                  InstrumentComponents().bottomSheetShare(context, _getController.searchProjectModel.value.admin![i].pid);
+                                                                  break;
+                                                                case 'delete':
+                                                                  InstrumentComponents().deleteProject(context, _getController.searchProjectModel.value.admin![i].pid);
+                                                                  break;
+                                                              }
+                                                            },
+                                                            itemBuilder: (BuildContext context) {
+                                                              return [
+                                                                PopupMenuItem(
+                                                                    value: 'edit',
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Icon(Icons.edit, size: Get.width * 0.04),
+                                                                        SizedBox(width: Get.width * 0.015),
+                                                                        Text('Tahrirlash'.tr)
+                                                                      ],
+                                                                    )
+                                                                ),
+                                                                PopupMenuItem(
+                                                                    value: 'watchers',
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Icon(Icons.person, size: Get.width * 0.04),
+                                                                        SizedBox(width: Get.width * 0.015),
+                                                                        Text('Kuzatuvchilar'.tr)
+                                                                      ],
+                                                                    )
+                                                                ),
+                                                                PopupMenuItem(
+                                                                    value: 'share',
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Icon(Icons.share, size: Get.width * 0.04),
+                                                                        SizedBox(width: Get.width * 0.015),
+                                                                        Text('Ulashish'.tr)
+                                                                      ],
+                                                                    )
+                                                                ),
+                                                                const PopupMenuItem(
+                                                                  height: 0,
+                                                                  padding: EdgeInsets.all(0),
+                                                                  value: 'watcher',
+                                                                  child: Divider(),
+                                                                ),
+                                                                PopupMenuItem(
+                                                                    value: 'delete',
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
+                                                                        SizedBox(width: Get.width * 0.015),
+                                                                        Text('O‘chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
+                                                                      ],
+                                                                    )
+                                                                )
+                                                              ];
+                                                            }
+                                                        )
+                                                      )
+                                                    ]
+                                                )
                                               ),
                                               SizedBox(
                                                 width: Get.width * 0.6,
@@ -128,83 +216,8 @@ class SamplePage extends StatelessWidget {
                                               )
                                             ]
                                         ),
-                                        Expanded(child: Container()),
-                                        PopupMenuButton<String>(
-                                            icon: Icon(TablerIcons.dots, size: Get.width * 0.05),
-                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                                            color: Theme.of(context).colorScheme.surface,
-                                            surfaceTintColor: Colors.transparent,
-                                            elevation: 4,
-                                            onSelected: (String value) {
-                                              switch (value) {
-                                                case 'edit':
-                                                  _getController.nameProjectController.text = _getController.searchProjectModel.value.admin![i].name.toString();
-                                                  _getController.noteProjectController.text = _getController.searchProjectModel.value.admin![i].note.toString();
-                                                  InstrumentComponents().bottomSheetEditName(context,_getController.searchProjectModel.value.admin![i].pid);
-                                                  break;
-                                                case 'watchers':
-                                                  InstrumentComponents().bottomSheetUsers(context, _getController.searchProjectModel.value.admin![i].pid);
-                                                  ApiController().getProjectsUsers(_getController.searchProjectModel.value.admin![i].pid);
-                                                  break;
-                                                case 'share':
-                                                  InstrumentComponents().bottomSheetShare(context, _getController.searchProjectModel.value.admin![i].pid);
-                                                  break;
-                                                case 'delete':
-                                                  InstrumentComponents().deleteProject(context, _getController.searchProjectModel.value.admin![i].pid);
-                                                  break;
-                                              }
-                                            },
-                                            itemBuilder: (BuildContext context) {
-                                              return [
-                                                PopupMenuItem(
-                                                    value: 'edit',
-                                                    child: Row(
-                                                      children: [
-                                                        Icon(Icons.edit, size: Get.width * 0.04),
-                                                        SizedBox(width: Get.width * 0.015),
-                                                        Text('Tahrirlash'.tr)
-                                                      ],
-                                                    )
-                                                ),
-                                                PopupMenuItem(
-                                                    value: 'watchers',
-                                                    child: Row(
-                                                      children: [
-                                                        Icon(Icons.person, size: Get.width * 0.04),
-                                                        SizedBox(width: Get.width * 0.015),
-                                                        Text('Kuzatuvchilar'.tr)
-                                                      ],
-                                                    )
-                                                ),
-                                                PopupMenuItem(
-                                                    value: 'share',
-                                                    child: Row(
-                                                      children: [
-                                                        Icon(Icons.share, size: Get.width * 0.04),
-                                                        SizedBox(width: Get.width * 0.015),
-                                                        Text('Ulashish'.tr)
-                                                      ],
-                                                    )
-                                                ),
-                                                const PopupMenuItem(
-                                                  height: 0,
-                                                  padding: EdgeInsets.all(0),
-                                                  value: 'watcher',
-                                                  child: Divider(),
-                                                ),
-                                                PopupMenuItem(
-                                                    value: 'delete',
-                                                    child: Row(
-                                                      children: [
-                                                        Icon(Icons.delete, size: Get.width * 0.04, color: Theme.of(context).colorScheme.error),
-                                                        SizedBox(width: Get.width * 0.015),
-                                                        Text('O‘chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.04))
-                                                      ],
-                                                    )
-                                                )
-                                              ];
-                                            }
-                                        )
+                                        //Expanded(child: Container()),
+
 
                                       ]
                                   )

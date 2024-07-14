@@ -138,10 +138,10 @@ class RegisterPage extends StatelessWidget{
                                   bottomSheetWidth: Get.width,
                                   flagSize: Get.width * 0.06,
                                   inputDecoration: InputDecoration(
-                                      fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                                      fillColor: AppColors.grey.withOpacity(0.1),
                                       filled: true,
                                       disabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                      focusColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                                      focusColor: AppColors.grey.withOpacity(0.1),
                                       hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.04),
                                       contentPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
                                       border: InputBorder.none,
@@ -152,6 +152,7 @@ class RegisterPage extends StatelessWidget{
                                   )
                               ),
                               onSelect: (Country country) {
+                                //_getController.changeDropDownItemsTitle(0,country.name.toString());
                                 _getController.changeDropDownItemsTitle(0,country.name.toString());
                               }
                           ),
@@ -166,11 +167,11 @@ class RegisterPage extends StatelessWidget{
                         }
                         }),
                   ),
-                  if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                  if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' && _getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))),
-                  if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                  if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' && _getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     SizedBox(height: Get.height * 0.01),
-                  if (_getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                  if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' && _getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Container(
                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.02),
                       child: DropdownItem(
@@ -180,11 +181,11 @@ class RegisterPage extends StatelessWidget{
                             _getController.dropDownItems[1] = 0
                           })
                     ),
-                  if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                  if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' && _getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Shaxar/Tuman'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))),
-                  if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                  if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' && _getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     SizedBox(height: Get.height * 0.01),
-                  if (_getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
+                  if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' && _getController.districtsModel.value.districts != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Container(
                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03,bottom: Get.height * 0.02),
                       child: DropdownItem(
@@ -218,7 +219,7 @@ class RegisterPage extends StatelessWidget{
                               ApiController().signUp()
                             }
                           },
-                          style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
+                          style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                           child: SizedBox(
                               width: Get.width,
                               height: Get.height * 0.06,
