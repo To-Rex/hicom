@@ -17,10 +17,6 @@ class SamplePage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
-  void _onLoading() {
-    _refreshController.loadComplete();
-  }
-
   void _getData() {
     _refreshController.refreshCompleted();
     ApiController().getProjects();
