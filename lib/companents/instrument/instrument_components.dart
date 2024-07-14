@@ -533,7 +533,7 @@ class InstrumentComponents {
                       child: Column(
                           children: [
                             SvgPicture.asset('assets/svg_assets/port.svg', width: Get.width * 0.03, height: Get.height * 0.03,colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn)),
-                            Text('Yaxshi',maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
+                            Text('Yaxshi'.tr,maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
                           ]
                       )
                   ),
@@ -542,7 +542,7 @@ class InstrumentComponents {
                       child: Column(
                           children: [
                             SvgPicture.asset('assets/svg_assets/port.svg', width: Get.width * 0.03, height: Get.height * 0.03,colorFilter: const ColorFilter.mode(AppColors.yellow, BlendMode.srcIn)),
-                            Text('Normal',maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
+                            Text('Normal'.tr,maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
                           ]
                       )
                   ),
@@ -551,7 +551,7 @@ class InstrumentComponents {
                       child: Column(
                           children: [
                             SvgPicture.asset('assets/svg_assets/port.svg', width: Get.width * 0.03, height: Get.height * 0.03,colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn)),
-                            Text('Past', maxLines: 1,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
+                            Text('Past'.tr, maxLines: 1,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
                           ]
                       )
                   ),
@@ -560,7 +560,7 @@ class InstrumentComponents {
                       child: Column(
                           children: [
                             SvgPicture.asset('assets/svg_assets/port.svg', width: Get.width * 0.03, height: Get.height * 0.03,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn)),
-                            Text('O`chiq', maxLines: 1,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
+                            Text('O`chiq'.tr, maxLines: 1,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.027))
                           ]
                       )
                   )
