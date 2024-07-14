@@ -53,6 +53,10 @@ class ApiController extends GetxController {
   }
 
   Future<void> sendCode() async {
+    if (_getController.phoneController.text.isEmpty) {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Telefon raqamingizni kiriting', true, 3);
+      return;
+    }
     var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":""}', _getController.getKey());
     var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('sendcode', 'null') + json.toString()}&key=${_getController.getKey()}'), headers: headers);
     debugPrint(response.body);

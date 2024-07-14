@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
-import 'package:hicom/pages/auth/register_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../controllers/get_controller.dart';
@@ -83,9 +81,7 @@ class LoginPage extends StatelessWidget {
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                   onPressed: () => {
-                    //RegisterPage
-                    Get.to(RegisterPage()),
-                    //ApiController().sendCode(),
+                    ApiController().sendCode(),
                   },
                   child: Text('Tasdiqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500))
               )
