@@ -120,7 +120,7 @@ class SupportPage extends StatelessWidget {
           ),
           SizedBox(height: Get.height * 0.03),
           Text(
-            'Hicom.uz 1.0.0 (9)',
+            'versiya'.tr,
             style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04),
           ),
           SizedBox(height: Get.height * 0.02),

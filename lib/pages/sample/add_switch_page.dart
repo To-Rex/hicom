@@ -24,13 +24,13 @@ class AddSwitchPage extends StatelessWidget {
         child: Column(
             children: [
               SizedBox(height: Get.height * 0.05),
-              TextFields(title: 'Loyiha nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController,isEnabled: false),
+              TextFields(title: '${'Loyiha nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController,isEnabled: false),
               SizedBox(height: Get.height * 0.02),
-              TextFields(title: 'Qurilma nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchNameProjectController),
+              TextFields(title: '${'Qurilma nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.switchNameProjectController),
               SizedBox(height: Get.height * 0.02),
-              TextFields(title: 'Qurilmaning ishlab chiqarish raqami'.tr,hintText: 'Kiriting'.tr, controller: _getController.switchSerialProjectController,isQrCode: true),
+              TextFields(title: '${'Qurilmaning ishlab chiqarish raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.switchSerialProjectController,isQrCode: true),
               SizedBox(height: Get.height * 0.02),
-              TextFields(title: 'Qurilma paroli'.tr,hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController),
+              TextFields(title: '${'Qurilma paroli'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController),
               SizedBox(height: Get.height * 0.2),
               Container(
                   height: 50.h,

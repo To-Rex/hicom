@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../controllers/get_controller.dart';
 
 class InstructionPage extends StatelessWidget {
@@ -9,6 +8,7 @@ class InstructionPage extends StatelessWidget {
 
   late final WebViewController _controller;
   final GetController _getController = Get.put(GetController());
+
   @override
   Widget build(BuildContext context) {
     _controller = WebViewController()
