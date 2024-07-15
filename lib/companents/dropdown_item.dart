@@ -17,7 +17,7 @@ class DropdownItem extends StatelessWidget {
             decoration: BoxDecoration(color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
             child: Row(
               children: [
-                Text(title, style: TextStyle(fontSize: Get.width * 0.04, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500)),
+                Text(title.tr, style: TextStyle(fontSize: Get.width * 0.04, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500)),
                 const Spacer(),
                 Icon(Icons.chevron_right, size: Get.width * 0.04, color: Theme.of(context).colorScheme.onSurface)
               ]

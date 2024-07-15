@@ -89,6 +89,9 @@ class LocaleString extends Translations{
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.',
       'Talqin':'Version',
       'Ha':'Ha',
+      'Sotuvchi':'Sotuvchi',
+      'O‘rnatuvchi':'O‘rnatuvchi',
+      'Buyurtmachi':'Buyurtmachi',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -222,6 +225,9 @@ class LocaleString extends Translations{
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Please click on the top-right corner of the share button.',
       'Talqin':'Version',
       'Ha':'Yes',
+      'Sotuvchi':'Seller',
+      'O‘rnatuvchi':'Installer',
+      'Buyurtmachi':'Customer',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -348,6 +354,9 @@ class LocaleString extends Translations{
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Нажмите кнопку «Добавить проект», чтобы создать новый проект.',
       'Talqin':'Версия',
       'Ha':'Да',
+      'Sotuvchi':'Продавец',
+      'O‘rnatuvchi':'Установщик',
+      'Buyurtmachi':'Клиент',
 
       'Qurilma modeli':'Модель устройства',
       'Seriya raqami':'Серийный номер',
@@ -495,6 +504,9 @@ class LocaleString extends Translations{
       'Loyiha qo‘shish uchun pastki o‘ng burchakdagi qo‘shish tugmasini bosing.':'Лойиҳа қўшиш учун пастки ўнг бурчакдаги қўшиш тугмасини босинг.',
       'Talqin':'Версия',
       'Ha':'Ха',
+      'Sotuvchi':'Сотувчи',
+      'O‘rnatuvchi':'Ўрнатувчи',
+      'Buyurtmachi':'Буюртмачи',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
