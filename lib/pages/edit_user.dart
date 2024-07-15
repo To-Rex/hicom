@@ -147,7 +147,7 @@ class EditUser extends StatelessWidget {
                                 child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                         )
                     ),
-                    SizedBox(height: Get.height * 0.01),
+                    SizedBox(height: Get.height * 0.01)
                   ]
               )))
       )
