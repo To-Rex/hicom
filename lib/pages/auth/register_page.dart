@@ -214,7 +214,7 @@ class RegisterPage extends StatelessWidget{
                             } else if (_getController.dropDownItems[0] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
                               InstrumentComponents().showToast(context,'Xatolik'.tr,'Viloyatni tanlang'.tr, true, 3)
                             } else if (_getController.dropDownItems[1] == 0 && _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
-                              InstrumentComponents().showToast(context,'Xatolik'.tr,'Shaxarni tanlang yoki Tumanni tanlang'.tr, true, 3)
+                              InstrumentComponents().showToast(context,'Xatolik'.tr,'Shaxarni yoki Tumanni tanlang'.tr, true, 3)
                             } else{
                               ApiController().signUp()
                             }
