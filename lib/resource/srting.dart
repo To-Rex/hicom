@@ -545,6 +545,7 @@ class LocaleString extends Translations{
       'Iltimos ulanishni tekshiring!':'Илтимос уланишни текширинг!',
       'Hisobingizga kirishda xatolik yuz berdi.':'Ҳисобингизга киришда хатолик юз берди',
       'Serverga ulanishda xatolik yuz berdi.':'Серверга уланишда хатолик юз берди',
+      'Ushbu foydalanuvchi tizimda mavjud emas!': 'Ушбу фойдаланувчи тизимда мавжуд эмас!',
       'Ushbu foydalanuvchi hisobi o‘chirildi.':'Ушбу фойдаланувчи ҳисоби ўчирилди',
       'Sizda bunday huquq mavjud emas!':'Сизда бундай ҳуқуқ мавжуд эмас!',
       'Ushbu foydalanuvchi allaqachon taklif qilgan.':'Ушбу фойдаланувчи аллақачон таклиф қилган',

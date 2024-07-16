@@ -301,7 +301,7 @@ class InstrumentComponents {
                             child: ElevatedButton(
                                 onPressed: () => {
                                   if (_getController.nameProjectController.text == '') {
-                                    showToast(context, 'Diqqat!'.tr, 'Loyihani nomini kiriting'.tr, true, 3)
+                                    showToast(context, 'Diqqat!'.tr, 'Qurilma nomini kiriting.'.tr, true, 3)
                                   } else {
                                     ApiController().renameSwitch(pidId, sn)
                                   }
@@ -406,7 +406,6 @@ class InstrumentComponents {
                                   } else {
                                     ApiController().projectShare(pidId)
                                     //close bottom sheet
-
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
