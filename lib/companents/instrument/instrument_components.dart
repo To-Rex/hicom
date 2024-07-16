@@ -240,9 +240,9 @@ class InstrumentComponents {
                           ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Loyiha nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Loyiha nomi'.tr}:', hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Qo‘shimcha ma’lumot'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Qo‘shimcha ma’lumot'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -253,7 +253,7 @@ class InstrumentComponents {
                                     ApiController().renameProjects(pidId, _getController.nameProjectController.text, _getController.noteProjectController.text)
                                   }
                                 },
-                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
+                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
@@ -293,9 +293,9 @@ class InstrumentComponents {
                           ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Qurilma nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Qurilma nomi'.tr}:', hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Qo‘shimcha ma’lumot'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Qo‘shimcha ma’lumot'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -306,7 +306,7 @@ class InstrumentComponents {
                                     ApiController().renameSwitch(pidId, sn)
                                   }
                                 },
-                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
+                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
@@ -392,9 +392,9 @@ class InstrumentComponents {
                             ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Kuzatuvchi telefon raqami'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Kuzatuvchi telefon raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Kuzatuvchi nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Kuzatuvchi nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -409,7 +409,7 @@ class InstrumentComponents {
 
                                   }
                                 },
-                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
+                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
@@ -449,9 +449,9 @@ class InstrumentComponents {
                             ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Kuzatuvchi telefon raqami'.tr,hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Kuzatuvchi telefon raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: 'Kuzatuvchi nomi'.tr,hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Kuzatuvchi nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -465,7 +465,7 @@ class InstrumentComponents {
                                   }
                                 },
                                 //RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
-                                style: ButtonStyle(shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))), backgroundColor: WidgetStateProperty.all(AppColors.primaryColor3)),
+                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
