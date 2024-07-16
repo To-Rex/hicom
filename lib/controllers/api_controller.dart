@@ -59,20 +59,27 @@ class ApiController extends GetxController {
       InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Telefon raqamingizni kiriting', true, 3);
       return;
     }
-    var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":""}', _getController.getKey());
-    var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('sendcode', 'null') + json.toString()}&key=${_getController.getKey()}'), headers: headers);
-    debugPrint(response.body);
-    debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
-        InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} ${'raqamiga Kod yuborildi'.tr}', false, 2);
-        //Get.to(VerifyPage());
-        Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
+    InstrumentComponents().loadingDialog(Get.context!);
+    try{
+      var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":""}', _getController.getKey());
+      var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('sendcode', 'null') + json.toString()}&key=${_getController.getKey()}'), headers: headers);
+      debugPrint(response.body);
+      debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
+          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} ${'raqamiga Kod yuborildi'.tr}', false, 2);
+          //Get.to(VerifyPage());
+          Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
+        } else {
+          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
+        }
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
       }
-    } else {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
+      Get.back();
+    } catch(e) {
+      Get.back();
+      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -509,7 +516,7 @@ class ApiController extends GetxController {
   Future<void> getSwitchDetail(String pidId, String sn) async {
     InstrumentComponents().loadingDialog(Get.context!);
     try {
-      _getController.whileApi.value = true;
+      //_getController.whileApi.value = true;
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}), _getController.getKey());
       debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
@@ -554,12 +561,12 @@ class ApiController extends GetxController {
         debugPrint(e.toString());
       }
       if (realTime) {
-        _getController.getRealTime(pidId, sn, realTime);
-        /*Timer(const Duration(seconds: 5), () {
+        //_getController.getRealTime(pidId, sn, realTime);
+        Timer(const Duration(seconds: 5), () {
           if (_getController.whileApi.isTrue) {
             getSwitchDetailRealTime(pidId, sn, realTime);
           }
-        });*/
+        });
       } else {
         Get.back();
       }

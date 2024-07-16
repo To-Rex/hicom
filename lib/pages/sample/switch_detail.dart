@@ -33,14 +33,14 @@ class SwitchDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _getController.whileApi.value = true;
+    //_getController.whileApi.value = true;
     ApiController().getSwitchDetailRealTime(pidId.toString(), sn.toString(),true);
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
     _getController.tabController.animateTo(1);
     return PopScope(
       canPop: false,
       onPopInvoked : (didPop){
-        _getController.whileApi.value = false;
+       // _getController.whileApi.value = false;
         if (didPop) {
           return;
         }

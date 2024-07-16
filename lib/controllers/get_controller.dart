@@ -33,7 +33,7 @@ class GetController extends GetxController {
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
   RxList<String> dropDownItem = <String>['Sotuvchi'.tr,'O‘rnatuvchi'.tr,'Buyurtmachi'.tr].obs;
   var responseText = ''.obs;
-  RxBool whileApi = false.obs;
+  RxBool whileApi = true.obs;
   //RxBool openRealTime = false.obs;
   var onLoading = false.obs;
   var onLoadingSwitch = false.obs;
@@ -44,38 +44,6 @@ class GetController extends GetxController {
   var isLampOn = false.obs;
   var cameraFacing = CameraFacing.back.obs;
 
-  /*Timer(const Duration(seconds: 5), () {
-  if (_getController.whileApi.isTrue) {
-  getSwitchDetailRealTime(pidId, sn, realTime);
-  }
-  });*/
-  /*void getRealTime(pidId,sn,realTime){
-    Timer(const Duration(seconds: 5), () {
-      if (whileApi.isTrue) {
-        ApiController().getSwitchDetailRealTime(pidId, sn, realTime);
-      }
-    });
-  }
-
-  void closedRealTime(){
-
-  }*/
-
-  //Timer? _timerRealTime;
-
-  void getRealTime(pidId, sn, realTime) {
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (whileApi.isTrue) {
-        ApiController().getSwitchDetailRealTime(pidId, sn, realTime);
-      } else {
-        timer.cancel();
-      }
-    });
-  }
-
-  void closedRealTime() {
-    _timer?.cancel();
-  }
 
   void setHeightWidth(BuildContext context) {
     height.value = MediaQuery.of(context).size.height;
