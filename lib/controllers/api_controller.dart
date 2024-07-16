@@ -37,7 +37,9 @@ class ApiController extends GetxController {
 
   Future<void> getRegions(data, act) async {
     var response = await get(Uri.parse('${_baseUrl + _getController.getQueryString(act, 'null') + data}&key=$key'), headers: headers);
+    debugPrint('${_baseUrl + _getController.getQueryString(act, 'null') + data}&key=$key');
     if (response.statusCode == 200 || response.statusCode == 201) {
+      //debugPrint(Tea.decryptTea(response.body, key).toString());
       if (act == 'regions') {
         _getController.clearProvinceModel();
         _getController.changeProvinceModel(ProvinceModel.fromJson(jsonDecode(Tea.decryptTea(response.body, key).toString())));
@@ -546,13 +548,10 @@ class ApiController extends GetxController {
             _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
           } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
             Get.back();
-            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos hisobingizga qaytadan kiriting.'.tr, true, 3);
           }
-        } else {
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
       } catch (e) {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+        debugPrint(e.toString());
       }
       if (realTime) {
         _getController.getRealTime(pidId, sn, realTime);
