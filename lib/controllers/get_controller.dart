@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -25,9 +24,9 @@ class GetController extends GetxController {
   var height = 0.0.obs;
   var width = 0.0.obs;
   var sec = 0.obs;
-  var isRequest = true.obs;
-  var isSearch = false.obs;
-  var isNightMode = false.obs;
+  RxBool isRequest = true.obs;
+  RxBool isSearch = false.obs;
+  RxBool isNightMode = false.obs;
   var code = '+998'.obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
@@ -35,13 +34,13 @@ class GetController extends GetxController {
   var responseText = ''.obs;
   RxBool whileApi = true.obs;
   //RxBool openRealTime = false.obs;
-  var onLoading = false.obs;
-  var onLoadingSwitch = false.obs;
+  RxBool onLoading = false.obs;
+  RxBool onLoadingSwitch = false.obs;
 
   final qrKey = GlobalKey(debugLabel: 'QR');
   var result = Rxn<Barcode>();
   QRViewController? controller;
-  var isLampOn = false.obs;
+  RxBool isLampOn = false.obs;
   var cameraFacing = CameraFacing.back.obs;
 
 
@@ -214,8 +213,7 @@ class GetController extends GetxController {
 
   void getProject(ProjectModel projectModels){
     projectModel.value = projectModels;
-    searchProjectModel.value = projectModel.value;
-  }
+    searchProjectModel.value = projectModel.value;}
 
   void getProvince(){
     if (loginModel.value.user != null && loginModel.value.user?.regionId != null) {
@@ -251,19 +249,19 @@ class GetController extends GetxController {
     addRegions(Regions(countryId: 0, id: 0, name: 'Tanlang'));
   }
 
-  void addRegions(Regions regions) {provinceModel.value.regions!.insert(0, regions);}
+  void addRegions(Regions regions) => provinceModel.value.regions!.insert(0, regions);
 
-  void addDistrictsModel(Districts districtsModels) {districtsModel.value.districts!.insert(0, districtsModels);}
+  void addDistrictsModel(Districts districtsModels) => districtsModel.value.districts!.insert(0, districtsModels);
 
-  void clearProvinceModel() {provinceModel.value = ProvinceModel();}
+  void clearProvinceModel() => provinceModel.value = ProvinceModel();
 
-  void clearDistrictsModel() {districtsModel.value = DistrictsModel();}
+  void clearDistrictsModel() => districtsModel.value = DistrictsModel();
 
-  void changeLoginModel(LoginModel loginModel) {this.loginModel.value = loginModel;}
+  void changeLoginModel(LoginModel loginModel) => this.loginModel.value = loginModel;
 
-  void clearLoginModel() {loginModel.value = LoginModel();}
+  void clearLoginModel()  => loginModel.value = LoginModel();
 
-  int getType() {return dropDownItems[2];}
+  int getType() => dropDownItems[2];
 
   String getQueryString(String action, String uid) {
     String returnUrl = "";
@@ -432,7 +430,7 @@ class GetController extends GetxController {
     }
   }
 
-  void stopTimer() {_timer!.cancel();}
+  void stopTimer() => _timer!.cancel();
 
   void resetTimer() {
     if (_timer != null && _timer!.isActive) {
