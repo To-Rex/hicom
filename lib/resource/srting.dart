@@ -502,7 +502,7 @@ class LocaleString extends Translations{
       'Telefon raqam':'Телефон рақам',
       'Tasdiqlash':'Тасдиқлаш',
       'Faollashtirish kodi': 'Фаоллаштириш коди',
-      'raqamiga SMS tarzida yuborildi.': 'Рақамига SMS тарзида юборилди',
+      'raqamiga SMS tarzida yuborildi.': 'рақамига СМС тарзида юборилди.',
       'Kodni kiriting':'Кодни киритинг',
       'Kodni qayta yuborish':'Кодни қайта юбориш',
       'Kiritilgan kod tasdiqlandi':'Киритилган код тасдиқланди',
