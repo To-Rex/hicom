@@ -33,7 +33,6 @@ class GetController extends GetxController {
   RxList<String> dropDownItem = <String>['Sotuvchi'.tr,'O‘rnatuvchi'.tr,'Buyurtmachi'.tr].obs;
   var responseText = ''.obs;
   RxBool whileApi = true.obs;
-  //RxBool openRealTime = false.obs;
   RxBool onLoading = false.obs;
   RxBool onLoadingSwitch = false.obs;
 
