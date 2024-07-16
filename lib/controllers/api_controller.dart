@@ -50,13 +50,13 @@ class ApiController extends GetxController {
         _getController.changeDistrictsModel(DistrictsModel.fromJson(jsonDecode(Tea.decryptTea(response.body, key).toString())));
       }
     } else {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
     }
   }
 
   Future<void> sendCode() async {
     if (_getController.phoneController.text.isEmpty) {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Telefon raqamingizni kiriting', true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Telefon raqamingizni kiriting', true, 3);
       return;
     }
     InstrumentComponents().loadingDialog(Get.context!);
@@ -73,14 +73,14 @@ class ApiController extends GetxController {
           Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
         } else {
           Get.back();
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi', true, 3);
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi', true, 3);
       }
     } catch(e) {
       Get.back();
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -100,13 +100,13 @@ class ApiController extends GetxController {
           }
         } else {
           _getController.clearVerifyCodeControllers();
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Kiritilgan kod xato'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Kiritilgan kod xato'.tr, true, 3);
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi'.tr, true, 3);
       }
     } catch (e) {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Ulanishni tekshiring'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Ulanishni tekshiring'.tr, true, 3);
     }
   }
 
@@ -140,14 +140,14 @@ class ApiController extends GetxController {
               _getController.clearUser();
               Get.offAll(() => SplashScreen());
             }
-            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Hisobingizga kirishda xatolik yuz berdi.'.tr, true, 3);
+            InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Hisobingizga kirishda xatolik yuz berdi.'.tr, true, 3);
           } else {
-            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+            InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
           }
         }
       }
     } catch (e) {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -167,10 +167,10 @@ class ApiController extends GetxController {
         _getController.writeUid(_getController.registerModel.value.uid.toString());
         login(_getController.getNumber(), _getController.getSession(), key, true);
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e) {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -186,10 +186,10 @@ class ApiController extends GetxController {
         Get.back();
         login(_getController.getNumber(), _getController.getSession(), key, false);
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e) {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -203,10 +203,10 @@ class ApiController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ushbu foydalanuvchi hisobi o‘chirildi.'.tr, true, 3);
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch(e) {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -222,10 +222,10 @@ class ApiController extends GetxController {
         if (response.statusCode == 200 || response.statusCode == 201) {
           _getController.changeSettingsInfoModel(SettingsInfo.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())));
         } else {
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
       } catch (e){
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
     }
   }
@@ -241,18 +241,18 @@ class ApiController extends GetxController {
         debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
         if (response.statusCode == 200 || response.statusCode == 201) {
           if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
-            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+            InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
             login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
           } else{
             _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
           }
         } else {
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
         Get.back();
       } catch (e){
         Get.back();
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
     }
   }
@@ -276,10 +276,10 @@ class ApiController extends GetxController {
           }
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -297,11 +297,11 @@ class ApiController extends GetxController {
           getProjects();
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
       Get.back();
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -320,10 +320,10 @@ class ApiController extends GetxController {
           _getController.getUsersModel(GetUsersModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -344,13 +344,13 @@ class ApiController extends GetxController {
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Foydalanuvchi taklif qilindi'.tr, false, 2);
         } else {
           Get.back();
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -364,13 +364,13 @@ class ApiController extends GetxController {
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
           getProjects();
         } else {
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -390,6 +390,8 @@ class ApiController extends GetxController {
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu loyiha boshqa foydalanuvchilarda mavjud.'.tr, false, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noonline'].length != 0) {
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu qurilma online emas.'.tr, false, 3);
+        }else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noexit'].length != 0) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu qurilma topilmadi'.tr, false, 3);
         }
         else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
           Get.back();
@@ -399,12 +401,46 @@ class ApiController extends GetxController {
         }
       } else {
         Get.back();
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
       debugPrint(e.toString());
       Get.back();
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+    }
+  }
+
+  Future<void> addSwitch(pidId) async {
+    try {
+      var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sna": [_getController.switchSerialProjectController.text], "na": [_getController.switchNameProjectController.text], "pda": [_getController.passwordProjectController.text], "auto": 0}), _getController.getKey());
+      var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
+      debugPrint(response.body);
+      debugPrint(response.statusCode.toString());
+      debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
+        } if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
+        }
+        else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['bound'].length != 0) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu loyiha boshqa foydalanuvchilarda mavjud.'.tr, false, 3);
+        } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noonline'].length != 0) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu qurilma online emas.'.tr, false, 3);
+        } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noexit'].length != 0) {
+          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu qurilma topilmadi'.tr, false, 3);
+        } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
+          Get.back();
+          _getController.clearControllers();
+          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi qurilma qo‘shildi'.tr, false, 2);
+          getSwitchList(pidId);
+        }
+      } else {
+        Get.back();
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+      }
+    } catch (e){
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -423,10 +459,10 @@ class ApiController extends GetxController {
           _getController.changeSwitchList(SwitchListModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -445,10 +481,10 @@ class ApiController extends GetxController {
           renameSwitchNote(pidId, sn);
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -463,10 +499,10 @@ class ApiController extends GetxController {
         InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
         getSwitchList(pidId);
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -479,38 +515,10 @@ class ApiController extends GetxController {
         Get.back();
         InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi.'.tr, false, 2);getSwitchList(pidId);
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
-    }
-  }
-
-  Future<void> addSwitch(pidId) async {
-    try {
-      var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sna": [_getController.switchSerialProjectController.text], "na": [_getController.switchNameProjectController.text], "pda": [_getController.passwordProjectController.text], "auto": 0}), _getController.getKey());
-      var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
-      debugPrint(response.body);
-      debugPrint(response.statusCode.toString());
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
-          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
-        }
-        if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
-          InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
-        }
-        else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
-          Get.back();
-          _getController.clearControllers();
-          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi.'.tr, false, 2);getSwitchList(pidId);
-        } else {
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
-        }
-      } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
-      }
-    } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -530,16 +538,16 @@ class ApiController extends GetxController {
             _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
           } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
             Get.back();
-            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos hisobingizga qaytadan kiriting.'.tr, true, 3);
+            InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos hisobingizga qaytadan kiriting.'.tr, true, 3);
           } else {
-            InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+            InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
           }
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e) {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
     Get.back();
   }
@@ -581,7 +589,7 @@ class ApiController extends GetxController {
       if (state) opcode |= 1 << 9;
       await switchConfig(projectId, serialNo, opcode);
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
     }
   }
 
@@ -600,7 +608,7 @@ class ApiController extends GetxController {
       }
       await switchConfig(projectId, serialNo, opcode);
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
     }
   }
 
@@ -613,7 +621,7 @@ class ApiController extends GetxController {
         debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['data']['config'] == 'fail') {
           Get.back();
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos qaytadan urinib ko‘ring.'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos qaytadan urinib ko‘ring.'.tr, true, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
           timeOut(500, () {
             Get.back();
@@ -622,11 +630,11 @@ class ApiController extends GetxController {
         }
       } else {
         Get.back();
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e) {
       Get.back();
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -636,7 +644,7 @@ class ApiController extends GetxController {
       opcode |= 1 << 9; // Restart
       await switchConfig(projectId, serialNo, opcode);
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
@@ -648,13 +656,13 @@ class ApiController extends GetxController {
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Qurilma qayta ishga tushdi.'.tr, false, 2);
         } else {
-          InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
       } else {
-        InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
