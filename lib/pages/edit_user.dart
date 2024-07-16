@@ -114,7 +114,7 @@ class EditUser extends StatelessWidget {
                           child: DropdownItem(
                               title: _getController.districtsModel.value.districts![_getController.dropDownItems[1]].name.toString(),
                               onTap: () => {
-                                InstrumentComponents().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1),
+                                InstrumentComponents().bottomBuildLanguageDialog(context,'Shaxar/Tuman'.tr,1)
                               })
                       ),
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Foydalanuvchi turi'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))),

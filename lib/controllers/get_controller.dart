@@ -262,6 +262,18 @@ class GetController extends GetxController {
 
   int getType() => dropDownItems[2];
 
+  void changeDropDownItemsType() {
+    if (loginModel.value.user != null && loginModel.value.user?.type != null) {
+      for (var i = 0; i < dropDownItem.length; i++) {
+        debugPrint(dropDownItem[i].toString());
+        if (i == loginModel.value.user?.type) {
+          changeDropDownItems(2, i);
+          break;
+        }
+      }
+    }
+  }
+
   String getQueryString(String action, String uid) {
     String returnUrl = "";
     switch (action) {

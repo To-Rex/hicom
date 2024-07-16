@@ -123,6 +123,7 @@ class UserPage extends StatelessWidget {
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                     onPressed: () {
+                                      _getController.changeDropDownItemsType();
                                       Get.to(() => EditUser(), transition: Transition.fadeIn);
                                     },
                                     child: Text('Tahrirlash'.tr, style: TextStyle(fontSize: Get.height * 0.02, fontWeight: FontWeight.w500, color: AppColors.white))),
@@ -229,7 +230,7 @@ class UserPage extends StatelessWidget {
                           )
                       ),
                       SizedBox(height: Get.height * 0.02),
-                      Text('© Hicom 2024', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
+                      Text('©Hicom 2024', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))
                     ]
                 ))
             )
