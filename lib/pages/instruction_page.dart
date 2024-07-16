@@ -22,7 +22,7 @@ class InstructionPage extends StatelessWidget {
           onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://help.netflix.com/legal/fastprivacy')) {
+            if (request.url.startsWith('https://hicom.uz/doc/privacy_policy.html')) {
               return NavigationDecision.prevent;
             }else{
               return NavigationDecision.navigate;
@@ -30,7 +30,7 @@ class InstructionPage extends StatelessWidget {
           }
         ),
       )
-      ..loadRequest(Uri.parse('https://help.netflix.com/legal/fastprivacy'));
+      ..loadRequest(Uri.parse('https://hicom.uz/doc/privacy_policy.html'));
 
     return Scaffold(
       appBar: AppBar(

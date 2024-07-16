@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hicom/pages/auth/login_page.dart';
+import 'package:hicom/pages/sample/error_page.dart';
 import 'package:hicom/pages/sample/sample_page.dart';
 import '../controllers/get_controller.dart';
 
@@ -25,6 +26,7 @@ class SplashScreen extends StatelessWidget {
       }else{
         debugPrint('${_getController.sec}');
       }
+      //Get.to(ErrorPage());
     });
 
     return Scaffold(

@@ -241,6 +241,7 @@ class ApiController extends GetxController {
         }
         Get.back();
       } catch (e){
+        Get.back();
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
     }
@@ -554,11 +555,12 @@ class ApiController extends GetxController {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
       if (realTime) {
-        Timer(const Duration(seconds: 5), () {
+        _getController.getRealTime(pidId, sn, realTime);
+        /*Timer(const Duration(seconds: 5), () {
           if (_getController.whileApi.isTrue) {
             getSwitchDetailRealTime(pidId, sn, realTime);
           }
-        });
+        });*/
       } else {
         Get.back();
       }

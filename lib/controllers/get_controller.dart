@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/controllers/api_controller.dart';
@@ -32,7 +33,8 @@ class GetController extends GetxController {
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
   RxList<String> dropDownItem = <String>['Sotuvchi'.tr,'O‘rnatuvchi'.tr,'Buyurtmachi'.tr].obs;
   var responseText = ''.obs;
-  var whileApi = false.obs;
+  RxBool whileApi = false.obs;
+  //RxBool openRealTime = false.obs;
   var onLoading = false.obs;
   var onLoadingSwitch = false.obs;
 
@@ -41,6 +43,39 @@ class GetController extends GetxController {
   QRViewController? controller;
   var isLampOn = false.obs;
   var cameraFacing = CameraFacing.back.obs;
+
+  /*Timer(const Duration(seconds: 5), () {
+  if (_getController.whileApi.isTrue) {
+  getSwitchDetailRealTime(pidId, sn, realTime);
+  }
+  });*/
+  /*void getRealTime(pidId,sn,realTime){
+    Timer(const Duration(seconds: 5), () {
+      if (whileApi.isTrue) {
+        ApiController().getSwitchDetailRealTime(pidId, sn, realTime);
+      }
+    });
+  }
+
+  void closedRealTime(){
+
+  }*/
+
+  //Timer? _timerRealTime;
+
+  void getRealTime(pidId, sn, realTime) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (whileApi.isTrue) {
+        ApiController().getSwitchDetailRealTime(pidId, sn, realTime);
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
+  void closedRealTime() {
+    _timer?.cancel();
+  }
 
   void setHeightWidth(BuildContext context) {
     height.value = MediaQuery.of(context).size.height;
