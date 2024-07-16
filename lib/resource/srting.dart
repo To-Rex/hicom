@@ -400,7 +400,7 @@ class LocaleString extends Translations{
           'Sizda bunday huquq mavjud emas!': 'У вас нет доступа!',
           'Ushbu foydalanuvchi allaqachon taklif qilgan.': 'Пользователь уже является наблюдетелем данного проекта.',
           'Ushbu foydalanuvchi tizimda mavjud emas!': 'Этого пользователя нет в системе!',
-          'Kiritilgan ma’lumotlar (Masalan, serия raqam) noto‘g‘ri!': 'Введенные данные (например, серийный номер) неверны!',
+          'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!': 'Введенные данные (например, серийный номер) неверны!',
           'Ushbu loyiha boshqa foydalanuvchilarda mavjud.': 'Этот проект уже существует у других пользователей.',
           'Bu qurilma online emas.': 'Это устройство не в сети.',
           'Ma’lumot o’zgartirildi.': 'Информация изменена.',

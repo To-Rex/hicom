@@ -66,17 +66,18 @@ class ApiController extends GetxController {
       debugPrint(response.body);
       debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
+        Get.back();
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} ${'raqamiga Kod yuborildi'.tr}', false, 2);
           //Get.to(VerifyPage());
           Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
         } else {
+          Get.back();
           InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
         }
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Xatolik yuz berdi', true, 3);
       }
-      Get.back();
     } catch(e) {
       Get.back();
       InstrumentComponents().showToast(Get.context!, 'Xatolik!', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
