@@ -26,7 +26,7 @@ class LocaleString extends Translations{
       'Ism va familiya' : 'Ism va familiya',
       'Kiriting' : 'Kiriting',
       'Mamlakat' : 'Mamlakat',
-      'Ism-familiyangizni kiriting' : 'Ism va familiyangizni',
+      'Ism-familiyangizni kiriting' : 'Ism va familiya',
       'Viloyat' : 'Viloyat',
       'Shaxar/Tuman' : 'Shaxar/Tuman',
       'Foydalanuvchi turi' : 'Foydalanuvchi turi',
