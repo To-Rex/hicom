@@ -68,7 +68,7 @@ class ApiController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         Get.back();
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
-          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} ${'raqamiga Kod yuborildi'.tr}', false, 2);
+          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} ${'raqamiga kod yuborildi'.tr}', false, 2);
           //Get.to(VerifyPage());
           Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
         } else {
