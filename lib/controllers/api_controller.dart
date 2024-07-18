@@ -343,7 +343,7 @@ class ApiController extends GetxController {
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Ushbu foydalanuvchi tizimda mavjud emas!'.tr, true, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
           Get.back();
-          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Foydalanuvchi taklif qilindi'.tr, false, 2);
+          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'kuzatuvchi qo‘shildi'.tr, false, 2);
         } else {
           Get.back();
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
