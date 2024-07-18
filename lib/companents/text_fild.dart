@@ -1,8 +1,5 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../pages/qr_scan_page.dart';
 
 class TextFields extends StatelessWidget {
