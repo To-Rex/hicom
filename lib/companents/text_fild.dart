@@ -34,18 +34,19 @@ class TextFields extends StatelessWidget {
               maxLines: 1,
               maxLength: maxLengthCharacters,
               decoration: InputDecoration(
-                fillColor: Colors.grey.withOpacity(0.1),
-                filled: true,
-                border: InputBorder.none,
-                errorBorder: InputBorder.none,
-                alignLabelWithHint: true,
-                suffixIcon: isQrCode ? IconButton(onPressed: () => Get.to(QRViewExample()), icon: Icon(Icons.qr_code, color: Theme.of(context).colorScheme.onSurface)) : null,
-                contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: Get.width * 0.03), // Adjust vertical padding here
-                hintText: 'Kiriting'.tr,
-                hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.04)
+                  counterText: '',
+                  fillColor: Colors.grey.withOpacity(0.1),
+                  filled: true,
+                  border: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  alignLabelWithHint: true,
+                  suffixIcon: isQrCode ? IconButton(onPressed: () => Get.to(QRViewExample()), icon: Icon(Icons.qr_code, color: Theme.of(context).colorScheme.onSurface)) : null,
+                  contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: Get.width * 0.03),
+                  hintText: 'Kiriting'.tr,
+                  hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontSize: Get.width * 0.04)
               ),
-              style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04),
-              textAlignVertical: TextAlignVertical.center
+                style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04),
+                textAlignVertical: TextAlignVertical.center
             )
           )
         ]
