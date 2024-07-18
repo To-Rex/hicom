@@ -396,7 +396,7 @@ class ApiController extends GetxController {
         else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
           Get.back();
           _getController.clearControllers();
-          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi.'.tr, false, 2);
+          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi'.tr, false, 2);
           getProjects();
         }
       } else {

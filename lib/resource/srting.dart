@@ -91,6 +91,7 @@ class LocaleString extends Translations{
       'O‘rnatuvchi':'O‘rnatuvchi',
       'Buyurtmachi':'Foydalanuvchi',
       'Yangi qurilma qo‘shildi':'Yangi qurilma qo‘shildi',
+      'Yangi loyiha qo‘shildi':'Yangi loyiha qo‘shildi',
       'Qurilma qo‘shish':'Qurilma qo‘shish',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
@@ -228,6 +229,7 @@ class LocaleString extends Translations{
       'O‘rnatuvchi':'Installer',
       'Buyurtmachi':'Customer',
       'Yangi qurilma qo‘shildi':'New device added',
+      'Yangi loyiha qo‘shildi':'A new project has been added',
       'Qurilma qo‘shish':'Add Device',
 
       'Kuzatuvchilar':'Followers',
@@ -360,6 +362,7 @@ class LocaleString extends Translations{
       'O‘rnatuvchi': 'Установщик',
       'Buyurtmachi': 'Пользователь',
       'Yangi qurilma qo‘shildi':'Добавлено новое устройство',
+      'Yangi loyiha qo‘shildi':'Добавлен новый проект',
       'Qurilma qo‘shish':'Добавить устройство',
 
       'Qurilma modeli': 'Модель устройства',
@@ -511,6 +514,7 @@ class LocaleString extends Translations{
       'O‘rnatuvchi':'Ўрнатувчи',
       'Buyurtmachi':'Фойдаланувчи',
       'Yangi qurilma qo‘shildi':'Янги қурилма қўшилди',
+      'Yangi loyiha qo‘shildi':'Янги лойиҳа қўшилди',
       'Qurilma qo‘shish':'Қурилма қўшиш',
 
       'Kuzatuvchilar':'Кузатувчилар',
