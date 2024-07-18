@@ -476,7 +476,7 @@ class LocaleString extends Translations{
       'Seriya raqami':'Серия рақами',
       'MAC adress':'MAC адрес',
       'Ip adress':'IP адрес',
-      'Dasturiy ta’minot':'Дастурия таъминот',
+      'Dasturiy ta’minot':'Дастурий таъминот',
       'POE kuchlanishi':'POE кучланиши',
       'POE quvvati':'POE қуввати',
       'Online davri':'Онлайн даври',
