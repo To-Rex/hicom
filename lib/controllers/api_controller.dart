@@ -264,6 +264,7 @@ class ApiController extends GetxController {
       debugPrint(response.body);
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
+        debugPrint('shuda ${Tea.decryptTea(response.body, _getController.getKey()).toString()}');
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
           Get.back();
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
@@ -291,6 +292,7 @@ class ApiController extends GetxController {
       debugPrint(response.body);
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
+        debugPrint('shuda1 ${Tea.decryptTea(response.body, _getController.getKey()).toString()}');
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
         } else {
@@ -380,7 +382,7 @@ class ApiController extends GetxController {
       var json = Tea.encryptTea(jsonEncode({'sna': [_getController.switchSerialProjectController.text], 'na': [_getController.switchNameProjectController.text], 'pda': [_getController.passwordProjectController.text], 'name': _getController.nameProjectController.text, 'note': '', 'auto': 0}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
-        debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
+        debugPrint('shuda ${Tea.decryptTea(response.body, _getController.getKey()).toString()}');
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
         } if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {

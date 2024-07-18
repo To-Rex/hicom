@@ -213,10 +213,7 @@ class SamplePage extends StatelessWidget {
                                                   ]
                                               )
                                             ]
-                                        ),
-                                        //Expanded(child: Container()),
-
-
+                                        )
                                       ]
                                   )
                               )
@@ -246,8 +243,8 @@ class SamplePage extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 SizedBox(height: Get.height * 0.01),
-                                                SizedBox(width: Get.width * 0.6, child: Text(_getController.searchProjectModel.value.join![i].name.toString(), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),),
-                                                SizedBox(width: Get.width * 0.6, child: Text(_getController.searchProjectModel.value.join![i].note.toString() == '' ? 'Qo‘shimcha ma’lumotlar yo‘q'.tr : _getController.searchProjectModel.value.join![i].note.toString(), overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),),
+                                                SizedBox(width: Get.width * 0.7, child: Text(_getController.searchProjectModel.value.join![i].name.toString(), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),),
+                                                SizedBox(width: Get.width * 0.7, child: Text(_getController.searchProjectModel.value.join![i].note.toString() == '' ? 'Qo‘shimcha ma’lumotlar yo‘q'.tr : _getController.searchProjectModel.value.join![i].note.toString(), overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),),
                                                 Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     crossAxisAlignment: CrossAxisAlignment.center,

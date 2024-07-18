@@ -12,7 +12,8 @@ class TextFields extends StatelessWidget {
   final bool isQrCode;
   final bool? isEnabled;
   final bool? isPassword;
-  const TextFields({super.key,required this.title, required this.hintText, required this.controller, this.isQrCode = false, this.isEnabled, this.isPassword = false});
+  final int? maxLengthCharacters;
+  const TextFields({super.key,required this.title, required this.hintText, required this.controller, this.isQrCode = false, this.isEnabled, this.isPassword = false, required this.maxLengthCharacters});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,6 +30,9 @@ class TextFields extends StatelessWidget {
               cursorColor: Theme.of(context).colorScheme.onSurface,
               enabled: isEnabled ?? true,
               obscureText: isPassword ?? false,
+              minLines: 1,
+              maxLines: 1,
+              maxLength: maxLengthCharacters,
               decoration: InputDecoration(
                 fillColor: Colors.grey.withOpacity(0.1),
                 filled: true,

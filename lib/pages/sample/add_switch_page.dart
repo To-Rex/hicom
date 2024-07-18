@@ -24,13 +24,13 @@ class AddSwitchPage extends StatelessWidget {
         child: Column(
             children: [
               SizedBox(height: Get.height * 0.05),
-              TextFields(title: '${'Loyiha nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController,isEnabled: false),
+              TextFields(title: '${'Loyiha nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController,isEnabled: false, maxLengthCharacters: 40),
               SizedBox(height: Get.height * 0.02),
-              TextFields(title: '${'Qurilma nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.switchNameProjectController),
+              TextFields(title: '${'Qurilma nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.switchNameProjectController, maxLengthCharacters: 40),
               SizedBox(height: Get.height * 0.02),
-              TextFields(title: '${'Qurilmaning ishlab chiqarish raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.switchSerialProjectController,isQrCode: true),
+              TextFields(title: '${'Qurilmaning ishlab chiqarish raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.switchSerialProjectController,isQrCode: true, maxLengthCharacters: 100),
               SizedBox(height: Get.height * 0.02),
-              TextFields(title: '${'Qurilma paroli'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController,isPassword: true),
+              TextFields(title: '${'Qurilma paroli'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.passwordProjectController,isPassword: true, maxLengthCharacters: 40),
               SizedBox(height: Get.height * 0.2),
               Container(
                   height: 50.h,

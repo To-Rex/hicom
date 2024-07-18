@@ -240,9 +240,9 @@ class InstrumentComponents {
                           ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Loyiha nomi'.tr}:', hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Loyiha nomi'.tr}:', hintText: 'Kiriting'.tr, controller: _getController.nameProjectController, maxLengthCharacters: 40),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Qo‘shimcha ma’lumot'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Qo‘shimcha ma’lumot'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController, maxLengthCharacters: 128),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -293,9 +293,9 @@ class InstrumentComponents {
                           ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Qurilma nomi'.tr}:', hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Qurilma nomi'.tr}:', hintText: 'Kiriting'.tr, controller: _getController.nameProjectController, maxLengthCharacters: 40),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Qo‘shimcha ma’lumot'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Qo‘shimcha ma’lumot'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController, maxLengthCharacters: 128),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -392,9 +392,9 @@ class InstrumentComponents {
                             ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Kuzatuvchi telefon raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Kuzatuvchi telefon raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController, maxLengthCharacters: 40),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Kuzatuvchi nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Kuzatuvchi nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController, maxLengthCharacters: 40),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
@@ -448,9 +448,9 @@ class InstrumentComponents {
                             ]
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Kuzatuvchi telefon raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController),
+                        TextFields(title: '${'Kuzatuvchi telefon raqami'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.nameProjectController, maxLengthCharacters: 40),
                         SizedBox(height: Get.height * 0.02),
-                        TextFields(title: '${'Kuzatuvchi nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController),
+                        TextFields(title: '${'Kuzatuvchi nomi'.tr}:',hintText: 'Kiriting'.tr, controller: _getController.noteProjectController, maxLengthCharacters: 40),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
