@@ -92,14 +92,12 @@ class SamplePage extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(height: Get.height * 0.01),
-                                              SizedBox(
-                                                width: Get.width * 0.75,
-                                                child: Row(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      Text(_getController.searchProjectModel.value.admin![i].name.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-                                                      Container(
+                                              Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(width: Get.width * 0.62, child: Text(_getController.searchProjectModel.value.admin![i].name.toString(), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),),
+                                                    Container(
                                                         height: Get.height * 0.042,
                                                         width: Get.width * 0.1,
                                                         margin: EdgeInsets.only(right: Get.width * 0.02),
@@ -180,12 +178,11 @@ class SamplePage extends StatelessWidget {
                                                               ];
                                                             }
                                                         )
-                                                      )
-                                                    ]
-                                                )
+                                                    )
+                                                  ]
                                               ),
                                               SizedBox(
-                                                width: Get.width * 0.6,
+                                                width: Get.width * 0.7,
                                                 child: Text(_getController.searchProjectModel.value.admin![i].note.toString() == ''|| _getController.searchProjectModel.value.admin![i].note.toString() == ' ' ? 'Qo‘shimcha ma’lumotlar yo‘q'.tr : _getController.searchProjectModel.value.admin![i].note.toString(),
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
