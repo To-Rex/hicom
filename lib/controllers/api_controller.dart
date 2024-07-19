@@ -219,6 +219,7 @@ class ApiController extends GetxController {
         var response = await get(Uri.parse('${_baseUrl + _getController.getQueryString('settings', 'null') + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
         debugPrint(response.body);
         debugPrint(response.statusCode.toString());
+        debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
         if (response.statusCode == 200 || response.statusCode == 201) {
           _getController.changeSettingsInfoModel(SettingsInfo.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())));
         } else {

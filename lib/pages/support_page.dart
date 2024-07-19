@@ -87,6 +87,7 @@ class SupportPage extends StatelessWidget {
               if (_getController.getSettings('ContactTelegram') != '')
               IconButton(
                   onPressed: () {
+                    print(_getController.getSettings('ContactTelegram'));
                     launchUrl(Uri.parse(_getController.getSettings('ContactTelegram')));
                   },
                   icon: Icon(
