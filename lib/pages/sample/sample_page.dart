@@ -36,7 +36,13 @@ class SamplePage extends StatelessWidget {
         appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Loyihalar ro‘yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05))),
-            leading: Obx(() => IconButton(icon: Icon(_getController.isSearch.value ? Icons.arrow_back : Icons.account_circle_outlined, size: Get.height * 0.035), onPressed: () => {if (_getController.isSearch.value){_getController.isSearch.value = !_getController.isSearch.value} else {Get.to(UserPage(), transition: Transition.fadeIn)}})),
+            leading: Obx(() => IconButton(icon: Icon(_getController.isSearch.value ? Icons.arrow_back : Icons.account_circle_outlined, size: Get.height * 0.035), onPressed: () => {
+              if (_getController.isSearch.value){
+                _getController.isSearch.value = !_getController.isSearch.value,
+                _getController.searchController.clear()
+              }
+              else {
+                Get.to(UserPage(), transition: Transition.fadeIn)}})),
             centerTitle: true,
             actions: [
               Obx(() => _getController.isSearch.value
