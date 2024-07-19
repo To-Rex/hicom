@@ -50,7 +50,14 @@ class GetController extends GetxController {
 
   void setRequest() {
     isRequest.value = false;
-    Future.delayed(const Duration(milliseconds: 3000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      isRequest.value = true;
+    });
+  }
+
+  void setRequestLong() {
+    isRequest.value = false;
+    Future.delayed(const Duration(milliseconds: 4000), () {
       isRequest.value = true;
     });
   }

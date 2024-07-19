@@ -164,7 +164,7 @@ class UserPage extends StatelessWidget {
                                       icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                       title: 'Dastur mavzusi'.tr,
                                       onTap: () {
-                                        _getController.setRequest();
+                                        _getController.setRequestLong();
                                         AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
                                       },
                                       color: Theme.of(context).colorScheme.onSurface,
