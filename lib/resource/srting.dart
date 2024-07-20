@@ -94,6 +94,7 @@ class LocaleString extends Translations{
       'Yangi loyiha qo‘shildi':'Yangi loyiha qo‘shildi',
       'Qurilma qo‘shish':'Qurilma qo‘shish',
       'kuzatuvchi qo‘shildi':'Kuzatuvchi qo‘shildi',
+      'Qurilma o`chiq':'Qurilma o`chiq',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -233,6 +234,7 @@ class LocaleString extends Translations{
       'Yangi loyiha qo‘shildi':'A new project has been added',
       'Qurilma qo‘shish':'Add device',
       'kuzatuvchi qo‘shildi':'Observer added',
+      'Qurilma o`chiq':'Device is off',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -326,9 +328,7 @@ class LocaleString extends Translations{
       'Past': 'Плохое',
       'O`chiq': 'Выключено',
       'Qurilma o`chiq': 'Устройство выключено',
-      //***'Kuting!':'Пожалуйста подождите...',
       'Kuting!': 'Пожалуйста подождите...',
-      //***'Mamlakatlarni qidirish':'Поиск страны',
       'Mamlakatlarni qidirish': 'Поиск страны',
       'Qurilma haqida': 'Информация об устройстве',
       'Portlar holati haqida': 'Информация о состоянии портов',
