@@ -165,7 +165,7 @@ class UserPage extends StatelessWidget {
                                       title: 'Dastur mavzusi'.tr,
                                       onTap: () {
                                         _getController.setRequestLong();
-                                        AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
+                                        if (_getController.isRequest.isTrue) AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
                                       },
                                       color: Theme.of(context).colorScheme.onSurface,
                                       isNightMode: true,

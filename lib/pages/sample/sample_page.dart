@@ -21,7 +21,7 @@ class SamplePage extends StatelessWidget {
 
   void _getData() {
     _refreshController.refreshCompleted();
-    ApiController().getProjects();
+    if (_getController.isRequest.isTrue) ApiController().getProjects();
   }
 
   @override
