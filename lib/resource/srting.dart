@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class LocaleString extends Translations{
   @override
   Map<String, Map<String, String>> get keys => {
-    'uz_UZ':{
+    'uz_UZ': {
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
       'versiya':'Versiyasi 1.0.0',
       'Loyihalar ro‘yxati':'Loyihalar ro‘yxati',
@@ -142,7 +142,7 @@ class LocaleString extends Translations{
       'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?':'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?',
       'Ushbu qurilma topilmadi':'Ushbu qurilma topilmadi',
     },
-    'en_EN':{
+    'en_EN': {
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
       'versiya':'Version 1.0.0',
       'Loyihalar ro‘yxati':'Project List',
@@ -429,7 +429,7 @@ class LocaleString extends Translations{
       'Siz rostdan ham ushbu portni o‘chirib yoqishni xohlaysizmi?': 'Вы действительно хотите отключить данный порт?',
       'Ushbu qurilma topilmadi':'Это устройство не найдено',
     },
-    'oz_OZ':{
+    'oz_OZ': {
       'Dilshodjon Haydarov':'Дилшоджон Ҳайдаров',
       'versiya':'Версияси 1.0.0',
       'Loyihalar ro‘yxati':'Лойиҳалар рўйхати',
