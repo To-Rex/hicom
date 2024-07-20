@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -28,9 +27,9 @@ class SamplePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ApiController().login(_getController.getNumber(),_getController.getSession(),'50UvFayZ2w5u3O9B',false).then((_) => {
       _refreshController.requestRefresh(),
-    });
-    Future.delayed(const Duration(milliseconds: 2000), () {
-      _getData();
+      Future.delayed(const Duration(milliseconds: 2000), () {
+        _getData();
+      })
     });
     return Scaffold(
         appBar: AppBar(
