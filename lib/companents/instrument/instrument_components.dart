@@ -512,16 +512,23 @@ class InstrumentComponents {
                         )),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-                            child: ElevatedButton(
-                                onPressed: () => {
-                                  _getController.getLanguage()
-                                    //ApiController().projectDelete(pidId)
-                                },
+                            child: Obx(() => _getController.countdownDuration.value.inSeconds == 0
+                                ? ElevatedButton(
+                                onPressed: () => ApiController().projectDelete(pidId),
                                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
                                     child: Center(child: Text('O‘chirishni tasdiqlang'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
+                            )
+                                : ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.grey, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                child: SizedBox(
+                                    width: Get.width,
+                                    height: Get.height * 0.06,
+                                    child: Center(child: Text('${'O‘chirishni tasdiqlang'.tr} (${(_getController.countdownDuration.value.inSeconds % 60).toString()})', style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
+                            )
                             )
                         )
                       ]

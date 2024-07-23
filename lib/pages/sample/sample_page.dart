@@ -129,7 +129,7 @@ class SamplePage extends StatelessWidget {
                                                                   InstrumentComponents().bottomSheetShare(context, _getController.searchProjectModel.value.admin![i].pid);
                                                                   break;
                                                                 case 'delete':
-                                                                  //InstrumentComponents().deleteProject(context, _getController.searchProjectModel.value.admin![i].pid);
+                                                                  _getController.deleteTimer();
                                                                   InstrumentComponents().bottomSheetProjectDelete(context, _getController.searchProjectModel.value.admin![i].pid, _getController.searchProjectModel.value.admin![i].name.toString());
                                                                   break;
                                                               }

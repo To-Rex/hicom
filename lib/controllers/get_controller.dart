@@ -492,6 +492,14 @@ class GetController extends GetxController {
     startTimer();
   }
 
+  void deleteTimer() {
+    if (_timer != null && _timer!.isActive) {
+      stopTimer();
+    }
+    countdownDuration.value = const Duration(minutes: 0, seconds: 05);
+    startTimer();
+  }
+
   final TextEditingController searchController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final RefreshController refreshController = RefreshController(initialRefresh: false);
