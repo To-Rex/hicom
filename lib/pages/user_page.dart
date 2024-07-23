@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -6,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hicom/companents/instrument/instrument_components.dart';
 import 'package:hicom/companents/set_item.dart';
 import 'package:hicom/controllers/api_controller.dart';
-import 'package:hicom/pages/auth/login_page.dart';
 import 'package:hicom/pages/support_page.dart';
 import 'package:hicom/resource/colors.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
