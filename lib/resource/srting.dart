@@ -95,6 +95,9 @@ class LocaleString extends Translations{
       'Qurilma qo‘shish':'Qurilma qo‘shish',
       'kuzatuvchi qo‘shildi':'Kuzatuvchi qo‘shildi',
       'Qurilma o`chiq':'Qurilma o`chiq',
+      'Loyihani o’chirish':'Loyihani o’chirish',
+      'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?',
+      'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi.',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -235,6 +238,10 @@ class LocaleString extends Translations{
       'Qurilma qo‘shish':'Add device',
       'kuzatuvchi qo‘shildi':'Observer added',
       'Qurilma o`chiq':'Device is off',
+      'Loyihani o’chirish':'Delete project',
+      //example 'test' nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?
+      'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'Do you really want to delete the project named',
+      'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'When the project is deleted, the devices inside it are also deleted.',
 
       'Kuzatuvchilar':'Followers',
       'Ulashish':'Share',
@@ -367,6 +374,9 @@ class LocaleString extends Translations{
       'Yangi loyiha qo‘shildi':'Добавлен новый проект',
       'Qurilma qo‘shish':'Добавить устройство',
       'kuzatuvchi qo‘shildi':'Наблюдатель добавлен',
+      'Loyihani o’chirish':'Удалить проект',
+      'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'Вы действительно хотите удалить проект',
+      'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'При удалении проекта удаляются и устройства внутри него.',
 
       'Qurilma modeli': 'Модель устройства',
       'Seriya raqami': 'Серийный номер',
@@ -520,6 +530,9 @@ class LocaleString extends Translations{
       'Yangi loyiha qo‘shildi':'Янги лойиҳа қўшилди',
       'Qurilma qo‘shish':'Қурилма қўшиш',
       'kuzatuvchi qo‘shildi':'Кузатувчи қўшилди',
+      'Loyihani o’chirish':'Лойиҳани ўчириш',
+      'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'номли лойиҳани ҳақиқатдан ҳам ўчиришни хоҳлайсизми?',
+      'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'Лойиҳани ўчирилганда унинг ичидаги қурилмалар ҳам ўчирилади',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
