@@ -485,7 +485,7 @@ class InstrumentComponents {
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
-                  height: Get.height * 0.35,
+                  height: Get.height * 0.3,
                   decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Column(
@@ -507,26 +507,21 @@ class InstrumentComponents {
                         Container(
                           padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
                           width: Get.width,
-                          child: Text(name+' ${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}',
+                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz-UZ'? '"$name" ' :''}${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}',
                               style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
                         )),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
                             child: ElevatedButton(
                                 onPressed: () => {
-                                  if (_getController.nameProjectController.text == '') {
-                                    showToast(context, 'Diqqat!'.tr,'Kuzatuvchi telefon raqami kiriting'.tr, true, 3)
-                                  } else if (_getController.noteProjectController.text == '') {
-                                    showToast(context, 'Diqqat!'.tr, 'Kuzatuvchi nomi kiriting'.tr, true, 3)
-                                  } else {
-                                    ApiController().projectDelete(pidId)
-                                  }
+                                  _getController.getLanguage()
+                                    //ApiController().projectDelete(pidId)
                                 },
                                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
-                                    child: Center(child: Text('Tasdiqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
+                                    child: Center(child: Text('O‘chirishni tasdiqlang'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                             )
                         )
                       ]

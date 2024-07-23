@@ -211,6 +211,15 @@ class GetController extends GetxController {
     }
   }
 
+  String getLanguage() {
+    if (GetStorage().read('language') != null) {
+      debugPrint(GetStorage().read('language').toString());
+      return GetStorage().read('language').toString();
+    } else {
+      debugPrint('uz_UZ');
+      return 'uz_UZ';
+    }
+  }
 
   @override
   void onClose() {
