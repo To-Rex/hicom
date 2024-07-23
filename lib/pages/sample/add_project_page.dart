@@ -12,7 +12,6 @@ class AddProjectPage extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +50,7 @@ class AddProjectPage extends StatelessWidget {
                       child: SizedBox(
                           width: Get.width,
                           height: Get.height * 0.06,
-                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04)))
+                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04)))
                       )
                   )
               ),

@@ -63,17 +63,34 @@ class GetController extends GetxController {
 
   void setRequest() {
     isRequest.value = false;
-    timer.cancel();
-    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    if (timer.isActive) timer.cancel();
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       isRequest.value = true;
     });
   }
 
   void setIsBack() {
-    back.value = false;
-    Future.delayed(const Duration(milliseconds: 1000), () {
+    try{
+      back.value = false;
+      Future.delayed(const Duration(seconds: 1), () {
+        back.value = true;
+      });
+    } catch (e) {
       back.value = true;
-    });
+    }
+
+  }
+
+  void tapTimes(Function onTap) {
+    try {
+      if (timer.isActive) timer.cancel();
+      timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+        onTap();
+      });
+    } catch (e) {
+      onTap();
+    }
+
   }
 
   void onLoad() {onLoading.value = true;}

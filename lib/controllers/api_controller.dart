@@ -241,6 +241,7 @@ class ApiController extends GetxController {
         debugPrint(response.body.toString());
         debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
         if (response.statusCode == 200 || response.statusCode == 201) {
+          _getController.setIsBack();
           if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
             InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
             login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
@@ -248,10 +249,11 @@ class ApiController extends GetxController {
             _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
           }
         } else {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
-        _getController.setIsBack();
       } catch (e){
+        login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
         _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
@@ -378,7 +380,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> addProjects() async {
-    debugPrint(_getController.switchSerialProjectController.text);
     try {
       InstrumentComponents().loadingDialogs(Get.context!);
       var json = Tea.encryptTea(jsonEncode({'sna': [_getController.switchSerialProjectController.text], 'na': [_getController.switchNameProjectController.text], 'pda': [_getController.passwordProjectController.text], 'name': _getController.nameProjectController.text, 'note': '', 'auto': 0}), _getController.getKey());
@@ -406,14 +407,13 @@ class ApiController extends GetxController {
           _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi'.tr, false, 2);
           _getController.clearControllers();
-          getProjects();
+          _getController.tapTimes(getProjects);
         }
       } else {
         _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      debugPrint(e.toString());
       _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
