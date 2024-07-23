@@ -21,8 +21,6 @@ class SplashScreen extends StatelessWidget {
           } else {
             Get.offAll(LoginPage(), transition: Transition.fadeIn);
           }
-        } else{
-          Get.to(const ErrorPage());
         }
       });
     } catch (e) {
