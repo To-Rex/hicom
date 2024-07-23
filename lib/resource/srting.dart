@@ -96,7 +96,9 @@ class LocaleString extends Translations{
       'kuzatuvchi qo‘shildi':'Kuzatuvchi qo‘shildi',
       'Qurilma o`chiq':'Qurilma o`chiq',
       'Loyihani o’chirish':'Loyihani o’chirish',
+      'Qurilmani o’chirish':'Qurilmani o’chirish',
       'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?',
+      'nomli qurilmani haqiqatdan ham o‘chirishni xohlaysizmi?':'nomli qurilmani haqiqatdan ham o‘chirishni xohlaysizmi?',
       'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi.',
       'O‘chirishni tasdiqlang':'O‘chirishni tasdiqlash',
 
@@ -120,7 +122,6 @@ class LocaleString extends Translations{
       'Kuzatuvchi telefon raqami':'Kuzatuvchi telefon raqami',
       'Kuzatuvchi nomi':'Kuzatuvchi nomi',
       'Loyiha o’chirilsinmi?':'Loyiha o’chirilsinmi?',
-      'Qurilma o‘chirilsinmi?':'Qurilma o‘chirilsinmi?',
 
       //validation
       'Muvaffaqiyatli':'Muvaffaqiyatli',
@@ -240,8 +241,11 @@ class LocaleString extends Translations{
       'kuzatuvchi qo‘shildi':'Observer added',
       'Qurilma o`chiq':'Device is off',
       'Loyihani o’chirish':'Delete project',
+      'Qurilmani o’chirish':'Delete device',
       'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'Do you really want to delete the project',
+      'nomli qurilmani haqiqatdan ham o‘chirishni xohlaysizmi?':'Do you really want to delete the device',
       'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'When the project is deleted, the devices inside it are also deleted.',
+
       'O‘chirishni tasdiqlang':'Confirm deletion',
 
       'Kuzatuvchilar':'Followers',
@@ -265,7 +269,6 @@ class LocaleString extends Translations{
       'Kuzatuvchi telefon raqami':'Follower phone number',
       'Kuzatuvchi nomi':'Follower Name',
       'Loyiha o’chirilsinmi?':'Delete project?',
-      'Qurilma o‘chirilsinmi?':'Delete device?',
 
       // validation
       'Muvaffaqiyatli':'Successful',
@@ -376,7 +379,9 @@ class LocaleString extends Translations{
       'Qurilma qo‘shish':'Добавить устройство',
       'kuzatuvchi qo‘shildi':'Наблюдатель добавлен',
       'Loyihani o’chirish':'Удалить проект',
+      'Qurilmani o’chirish':'Удалить устройство',
       'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'Вы действительно хотите удалить проект',
+      'nomli qurilmani haqiqatdan ham o‘chirishni xohlaysizmi?':'Вы действительно хотите удалить устройство',
       'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'При удалении проекта удаляются и устройства внутри него.',
       'O‘chirishni tasdiqlang':'Подтвердить удаление',
 
@@ -411,7 +416,6 @@ class LocaleString extends Translations{
       'Kuzatuvchi telefon raqami': 'Номер телефона',
       'Kuzatuvchi nomi': 'Имя',
       'Loyiha o’chirilsinmi?': 'Вы действительно хотите удалить проект?',
-      'Qurilma o‘chirilsinmi?': 'Вы действительно хотите удалить устройство?',
 
           // validation
       'Muvaffaqiyatli': 'Успешно',
@@ -533,7 +537,9 @@ class LocaleString extends Translations{
       'Qurilma qo‘shish':'Қурилма қўшиш',
       'kuzatuvchi qo‘shildi':'Кузатувчи қўшилди',
       'Loyihani o’chirish':'Лойиҳани ўчириш',
+      'Qurilmani o’chirish':'Қурилмани ўчириш',
       'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'номли лойиҳани ҳақиқатдан ҳам ўчиришни хоҳлайсизми?',
+      'nomli qurilmani haqiqatdan ham o‘chirishni xohlaysizmi?':'номли қурилмани ҳақиқатдан ҳам ўчиришни хоҳлайсизми?',
       'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'Лойиҳани ўчирилганда унинг ичидаги қурилмалар ҳам ўчирилади.',
       'O‘chirishni tasdiqlang':'Ўчиришни тасдиқлаш',
 
@@ -558,7 +564,6 @@ class LocaleString extends Translations{
       'Kuzatuvchi telefon raqami':'Кузатувчи телефон рақами',
       'Kuzatuvchi nomi':'Кузатувчи номи',
       'Loyiha o’chirilsinmi?':'Лойиҳа ўчирилсинми?',
-      'Qurilma o‘chirilsinmi?':'Қурилма ўчирилсинми?',
 
       // validation
       'Muvaffaqiyatli':'Муваффақиятли',

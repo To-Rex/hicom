@@ -507,7 +507,7 @@ class InstrumentComponents {
                         Container(
                           padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
                           width: Get.width,
-                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz-UZ'? '"$name" ' :''}${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
+                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz_UZ'? '"$name" ' :''}${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
                         )),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
@@ -545,7 +545,7 @@ class InstrumentComponents {
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
-                  height: Get.height * 0.3,
+                  height: Get.height * 0.25,
                   decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
                   width: double.infinity,
                   child: Column(
@@ -553,7 +553,7 @@ class InstrumentComponents {
                       children: [
                         AppBar(
                             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-                            title: Text('Loyihani o’chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045)),
+                            title: Text('Qurilmani o’chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045)),
                             centerTitle: false,
                             backgroundColor: Theme.of(context).colorScheme.surface,
                             elevation: 0,
@@ -567,7 +567,7 @@ class InstrumentComponents {
                         Container(
                           padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
                           width: Get.width,
-                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz_UZ'? '"$name" ' :''}${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
+                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz_UZ'? '"$name" ' :''}${'nomli qurilmani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
                         )),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
@@ -594,26 +594,6 @@ class InstrumentComponents {
                   )
               );
             }
-        )
-    );
-
-  void deleteSwitch(BuildContext context, String? pid, sn) => Get.dialog(
-        AlertDialog(
-          title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
-          content: Text('Qurilma o‘chirilsinmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
-          actions: [
-            TextButton(
-                onPressed: () => Get.back(),
-                child: Text('Bekor qilish'.tr)
-            ),
-            TextButton(
-                onPressed: () => {
-                  Get.back(),
-                  ApiController().deleteSwitch(pid,sn)
-                },
-                child: Text('O‘chirish'.tr)
-            )
-          ],
         )
     );
 
