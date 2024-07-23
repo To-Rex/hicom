@@ -40,7 +40,7 @@ class SwitchDetailPage extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvoked : (didPop){
-       // _getController.whileApi.value = false;
+        _getController.whileApi.value = false;
         if (didPop) {
           return;
         }
