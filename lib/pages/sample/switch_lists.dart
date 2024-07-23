@@ -299,8 +299,9 @@ class SwitchList extends StatelessWidget {
             _getController.nameProjectController.text = name;
             Get.to(AddSwitchPage(), arguments: Get.arguments);
           },
-          child: const Icon(Icons.add)
+          child: Icon(Icons.add,color: AppColors.white,size: Get.width * 0.06),
         )
+
     );
   }
 }

@@ -639,6 +639,25 @@ class InstrumentComponents {
         )
     );
 
+  void restartDialog(BuildContext context,String pidId, String sn) => Get.dialog(
+      AlertDialog(
+          title: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
+          content: Text('Hisobdan chiqishni xohlaysizmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+          actions: [
+            TextButton(
+                onPressed: () => Get.back(),
+                child: Text('Bekor qilish'.tr)
+            ),
+            TextButton(
+                onPressed: () => {
+                  ApiController().switchReboot(pidId.toString(), sn.toString())
+                },
+                child: Text('Ha'.tr)
+            )
+          ]
+      )
+  );
+
   void languageDialog(BuildContext context) => Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,

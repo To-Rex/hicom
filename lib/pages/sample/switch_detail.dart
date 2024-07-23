@@ -147,7 +147,7 @@ class SwitchDetailPage extends StatelessWidget {
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                               onPressed: () {
-                                                ApiController().switchReboot(pidId.toString(), sn.toString());
+                                                InstrumentComponents().restartDialog(context, pidId.toString(), sn.toString());
                                               },
                                               child: Text('Qurilmani o‘chirib yoqish'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.textTheme.bodyMedium!.fontSize)),
                                             )

@@ -53,7 +53,7 @@ class AddSwitchPage extends StatelessWidget {
                       child: SizedBox(
                           width: Get.width,
                           height: Get.height * 0.06,
-                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
+                          child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                   )
               ),
               SizedBox(height: Get.height * 0.03),
