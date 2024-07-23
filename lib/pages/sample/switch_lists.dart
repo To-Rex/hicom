@@ -103,7 +103,8 @@ class SwitchList extends StatelessWidget {
                                                             break;
                                                           case 'delete':
                                                             if (isAdmin) {
-                                                              InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.offline![index].sn);
+                                                              _getController.deleteTimer();
+                                                              InstrumentComponents().bottomSheetDeviceDelete(context, Get.arguments,_getController.switchListModel.value.offline![index].sn, _getController.switchListModel.value.offline![index].name);
                                                             } else {
                                                               InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
                                                             }
@@ -212,7 +213,8 @@ class SwitchList extends StatelessWidget {
                                                             break;
                                                           case 'delete':
                                                             if (isAdmin) {
-                                                              InstrumentComponents().deleteSwitch(context, Get.arguments,_getController.switchListModel.value.online![index].sn);
+                                                              _getController.deleteTimer();
+                                                              InstrumentComponents().bottomSheetDeviceDelete(context, Get.arguments,_getController.switchListModel.value.online![index].sn, _getController.switchListModel.value.online![index].name);
                                                             } else {
                                                               InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
                                                             }

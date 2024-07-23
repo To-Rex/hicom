@@ -537,6 +537,66 @@ class InstrumentComponents {
         )
     );
 
+  bottomSheetDeviceDelete(BuildContext context, pidId,sn,name) => Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        enableDrag: true,
+        isScrollControlled: true,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                  height: Get.height * 0.3,
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0))),
+                  width: double.infinity,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppBar(
+                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+                            title: Text('Loyihani o’chirish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045)),
+                            centerTitle: false,
+                            backgroundColor: Theme.of(context).colorScheme.surface,
+                            elevation: 0,
+                            leadingWidth: 0,
+                            leading: Container(),
+                            actions: [
+                              IconButton(onPressed: () => Get.back(), icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05))
+                            ]
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        Container(
+                          padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
+                          width: Get.width,
+                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz-UZ'? '"$name" ' :''}${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
+                        )),
+                        SizedBox(height: Get.height * 0.04),
+                        Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                            child: Obx(() => _getController.countdownDuration.value.inSeconds == 0
+                                ? ElevatedButton(
+                                onPressed: () => ApiController().deleteSwitch(pidId,sn),
+                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                child: SizedBox(
+                                    width: Get.width,
+                                    height: Get.height * 0.06,
+                                    child: Center(child: Text('O‘chirishni tasdiqlang'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
+                            )
+                                : ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.grey, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                child: SizedBox(
+                                    width: Get.width,
+                                    height: Get.height * 0.06,
+                                    child: Center(child: Text('${'O‘chirishni tasdiqlang'.tr} (${(_getController.countdownDuration.value.inSeconds % 60).toString()})', style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
+                            )
+                            )
+                        )
+                      ]
+                  )
+              );
+            }
+        )
+    );
+
   void deleteSwitch(BuildContext context, String? pid, sn) => Get.dialog(
         AlertDialog(
           title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
