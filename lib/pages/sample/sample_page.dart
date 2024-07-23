@@ -25,9 +25,10 @@ class SamplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getController.setRequest();
     ApiController().login(_getController.getNumber(),_getController.getSession(),'50UvFayZ2w5u3O9B',false).then((_) => {
       _refreshController.requestRefresh(),
-      Future.delayed(const Duration(milliseconds: 2000), () {
+      Future.delayed(const Duration(milliseconds: 2500), () {
         _getData();
       })
     });

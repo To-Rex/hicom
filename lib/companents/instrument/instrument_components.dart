@@ -257,7 +257,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                             )
                         )
                       ]
@@ -310,7 +310,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                             )
                         )
                       ]
@@ -412,7 +412,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                             )
                         )
                       ]
@@ -468,7 +468,7 @@ class InstrumentComponents {
                                 child: SizedBox(
                                     width: Get.width,
                                     height: Get.height * 0.06,
-                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: Get.width * 0.04))))
+                                    child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                             )
                         )
                       ]
@@ -586,23 +586,33 @@ class InstrumentComponents {
         )
     );
 
-  void loadingDialog(BuildContext context) => Get.dialog(
+  void loadingDialogs(BuildContext context) {
+    final GetController getController = Get.put(GetController());
+    Get.dialog(
         AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          title: Text('Kuting!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
-          content: SizedBox(
-            width: Get.width,
-            height: Get.height* 0.055,
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(color: Theme.of(context).colorScheme.primary,)
-                ]
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            title: Text('Kuting!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
+            content: SizedBox(
+                width: Get.width,
+                height: Get.height* 0.055,
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(color: Theme.of(context).colorScheme.primary,)
+                    ]
+                )
             )
-          )
         )
     );
+
+    // Observe the back variable
+    ever(getController.back, (bool back) {
+      if (!back) {
+        Get.back();
+      }
+    });
+  }
 
   void logOutDialog(BuildContext context) => Get.dialog(
         AlertDialog(
@@ -714,4 +724,5 @@ class InstrumentComponents {
           ]
         )
     );
+
 }

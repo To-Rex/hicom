@@ -16,7 +16,6 @@ class SettingsItem extends StatelessWidget {
 
   const SettingsItem({super.key, required this.icon, required this.title, required this.onTap, required this.color, required this.isNightMode, required this.isLanguage});
 
-
   @override
   Widget build(BuildContext context) {
     return InkWell(

@@ -59,27 +59,27 @@ class ApiController extends GetxController {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Telefon raqamingizni kiriting', true, 3);
       return;
     }
-    InstrumentComponents().loadingDialog(Get.context!);
+    InstrumentComponents().loadingDialogs(Get.context!);
     try{
       var json = Tea.encryptTea('{"phone": "${_getController.code.value + _getController.phoneController.text}","code":""}', _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('sendcode', 'null') + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       debugPrint(response.body);
       debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
-        Get.back();
+        _getController.setIsBack();
         if (jsonDecode(utf8.decode(Tea.decryptTea(response.body, _getController.getKey()).toString().codeUnits))['errcode'] == 0) {
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', '${_getController.code.value + _getController.phoneController.text} ${'raqamiga kod yuborildi'.tr}', false, 2);
           //Get.to(VerifyPage());
           Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
         } else {
-          Get.back();
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi', true, 3);
         }
       } else {
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi', true, 3);
       }
     } catch(e) {
-      Get.back();
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
@@ -236,7 +236,7 @@ class ApiController extends GetxController {
     if(_getController.isRequest.isTrue) {
       _getController.setRequest();
       try {
-        InstrumentComponents().loadingDialog(Get.context!);
+        InstrumentComponents().loadingDialogs(Get.context!);
         var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
         debugPrint(response.body.toString());
         debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
@@ -250,9 +250,9 @@ class ApiController extends GetxController {
         } else {
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
-        Get.back();
+        _getController.setIsBack();
       } catch (e){
-        Get.back();
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
       }
     }
@@ -380,43 +380,48 @@ class ApiController extends GetxController {
   Future<void> addProjects() async {
     debugPrint(_getController.switchSerialProjectController.text);
     try {
-      InstrumentComponents().loadingDialog(Get.context!);
+      InstrumentComponents().loadingDialogs(Get.context!);
       var json = Tea.encryptTea(jsonEncode({'sna': [_getController.switchSerialProjectController.text], 'na': [_getController.switchNameProjectController.text], 'pda': [_getController.passwordProjectController.text], 'name': _getController.nameProjectController.text, 'note': '', 'auto': 0}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
         debugPrint('shuda ${Tea.decryptTea(response.body, _getController.getKey()).toString()}');
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
         } if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
         }
         else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['bound'].length != 0) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu loyiha boshqa foydalanuvchilarda mavjud.'.tr, false, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noonline'].length != 0) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu qurilma online emas.'.tr, false, 3);
         }else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noexit'].length != 0) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu qurilma topilmadi'.tr, false, 3);
         }
         else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
-          Get.back();
-          _getController.clearControllers();
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi'.tr, false, 2);
+          _getController.clearControllers();
           getProjects();
         }
       } else {
-        Get.back();
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
       debugPrint(e.toString());
-      Get.back();
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
 
   Future<void> addSwitch(pidId) async {
     try {
-      InstrumentComponents().loadingDialog(Get.context!);
+      InstrumentComponents().loadingDialogs(Get.context!);
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sna": [_getController.switchSerialProjectController.text], "na": [_getController.switchNameProjectController.text], "pda": [_getController.passwordProjectController.text], "auto": 0}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       debugPrint(response.body);
@@ -424,29 +429,33 @@ class ApiController extends GetxController {
       debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 29999) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
         } if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Kiritilgan ma’lumotlar (Masalan, seriya raqam) noto‘g‘ri!'.tr, true, 1);
         }
         else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['bound'].length != 0) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu loyiha boshqa foydalanuvchilarda mavjud.'.tr, false, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noonline'].length != 0) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Bu qurilma online emas.'.tr, false, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['noexit'].length != 0) {
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Diqqat!', 'Ushbu qurilma topilmadi'.tr, false, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
-          Get.back();
+          _getController.setIsBack();
           _getController.clearControllers();
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi qurilma qo‘shildi'.tr, false, 2);
           getSwitchList(pidId);
         }
-        Get.back();
       } else {
-        Get.back();
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
-      Get.back();
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
@@ -530,7 +539,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSwitchDetail(String pidId, String sn) async {
-    InstrumentComponents().loadingDialog(Get.context!);
+    InstrumentComponents().loadingDialogs(Get.context!);
     try {
       //_getController.whileApi.value = true;
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}), _getController.getKey());
@@ -539,12 +548,12 @@ class ApiController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
         if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
-          Get.back();
+          _getController.setIsBack();
         } else{
           if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
             _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
           } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
-            Get.back();
+            _getController.setIsBack();
             InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos hisobingizga qaytadan kiriting.'.tr, true, 3);
           } else {
             InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
@@ -556,7 +565,7 @@ class ApiController extends GetxController {
     } catch (e) {
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
-    Get.back();
+    _getController.setIsBack();
   }
 
   Future<void> getSwitchDetailRealTime(String pidId, String sn, bool realTime) async {
@@ -620,27 +629,27 @@ class ApiController extends GetxController {
   }
 
   Future<void> switchConfig(pidId, sn, opcode) async {
-    InstrumentComponents().loadingDialog(Get.context!);
+    InstrumentComponents().loadingDialogs(Get.context!);
     try {
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "opcode": opcode}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swconf', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
         debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0 && jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['data']['config'] == 'fail') {
-          Get.back();
+          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos qaytadan urinib ko‘ring.'.tr, true, 3);
         } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
           timeOut(500, () {
-            Get.back();
+            _getController.setIsBack();
             getSwitchDetail(pidId, sn);
           });
         }
       } else {
-        Get.back();
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e) {
-      Get.back();
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }

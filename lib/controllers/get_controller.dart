@@ -24,9 +24,10 @@ class GetController extends GetxController {
   var height = 0.0.obs;
   var width = 0.0.obs;
   var sec = 0.obs;
-  RxBool isRequest = true.obs;
+  RxBool isRequest = false.obs;
   RxBool isSearch = false.obs;
   RxBool isNightMode = false.obs;
+  RxBool back = false.obs;
   var code = '+998'.obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
@@ -48,17 +49,30 @@ class GetController extends GetxController {
     width.value = MediaQuery.of(context).size.width;
   }
 
-  void setRequest() {
+
+
+
+  /*void setRequest() {
     isRequest.value = false;
     Future.delayed(const Duration(milliseconds: 2000), () {
       isRequest.value = true;
     });
+  }*/
+
+  var timer = Timer.periodic(const Duration(seconds: 2), (timer) {});
+
+  void setRequest() {
+    isRequest.value = false;
+    timer.cancel();
+    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      isRequest.value = true;
+    });
   }
 
-  void setRequestLong() {
-    isRequest.value = false;
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      isRequest.value = true;
+  void setIsBack() {
+    back.value = false;
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      back.value = true;
     });
   }
 
