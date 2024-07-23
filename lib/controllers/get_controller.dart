@@ -75,6 +75,15 @@ class GetController extends GetxController {
     } catch (e) {
       back.value = true;
     }
+
+  }
+
+  void tapTimes(Function onTap, int sec) {
+    _timer?.cancel();
+    _timer = Timer(Duration(seconds: sec), () {
+      onTap();
+      _timer = null;
+    });
   }
 
   void onLoad() {onLoading.value = true;}
@@ -190,6 +199,18 @@ class GetController extends GetxController {
     writeUid(uid);
     InstrumentComponents().showToast(Get.context!, 'OK', 'Masulot saqlandi'.tr, false, 2);
   }
+
+  void addUserData(data){
+    if (data != null) {
+      var dataJson = jsonDecode(data.toString());
+      writeLogin(dataJson['Phone'].toString(), dataJson['SessionToken'].toString());
+      writeKey(dataJson['KEY'].toString());
+      writeUid(dataJson['UID'].toString());
+    } else {
+      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Masulot bo\'sh'.tr, true, 3);
+    }
+  }
+
 
   @override
   void onClose() {

@@ -10,23 +10,17 @@ class SplashScreen extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
 
+  void open() {
+    if (_getController.getUid() != '' && _getController.getKey() != '50UvFayZ2w5u3O9B') {
+      Get.offAll(() => SamplePage());
+    } else {
+      Get.offAll(() => LoginPage(), transition: Transition.fadeIn);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    try {
-      Future.delayed(const Duration(seconds: 2), () {
-        _getController.sec.value = _getController.sec.value + 1;
-        if(_getController.sec.value == 1){
-          if(_getController.getUid() != '' && _getController.getKey() != '50UvFayZ2w5u3O9B') {
-            Get.offAll(SamplePage());
-          } else {
-            Get.offAll(LoginPage(), transition: Transition.fadeIn);
-          }
-        }
-      });
-    } catch (e) {
-      debugPrint('SplashScreen error: $e');
-      Get.to(const ErrorPage());
-    }
+    _getController.tapTimes(open,3);
 
     return Scaffold(
       body: Center(

@@ -41,9 +41,12 @@ class MyApp extends StatelessWidget {
                   translations: LocaleString(),
                   locale: GetController().language,
                   darkTheme: lightTheme,
-                  routes: {
+                  /*routes: {
                     '/': (context) => SplashScreen()
-                  }));
+                  },*/
+                home: SplashScreen(),
+              )
+          );
         });
 
   }
