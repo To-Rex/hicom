@@ -380,6 +380,7 @@ class ApiController extends GetxController {
   Future<void> addProjects() async {
     debugPrint(_getController.switchSerialProjectController.text);
     try {
+      InstrumentComponents().loadingDialog(Get.context!);
       var json = Tea.encryptTea(jsonEncode({'sna': [_getController.switchSerialProjectController.text], 'na': [_getController.switchNameProjectController.text], 'pda': [_getController.passwordProjectController.text], 'name': _getController.nameProjectController.text, 'note': '', 'auto': 0}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -415,6 +416,7 @@ class ApiController extends GetxController {
 
   Future<void> addSwitch(pidId) async {
     try {
+      InstrumentComponents().loadingDialog(Get.context!);
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sna": [_getController.switchSerialProjectController.text], "na": [_getController.switchNameProjectController.text], "pda": [_getController.passwordProjectController.text], "auto": 0}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swadd', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       debugPrint(response.body);
@@ -438,11 +440,13 @@ class ApiController extends GetxController {
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi qurilma qo‘shildi'.tr, false, 2);
           getSwitchList(pidId);
         }
+        Get.back();
       } else {
         Get.back();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
+      Get.back();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
