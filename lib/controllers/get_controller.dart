@@ -191,18 +191,6 @@ class GetController extends GetxController {
     InstrumentComponents().showToast(Get.context!, 'OK', 'Masulot saqlandi'.tr, false, 2);
   }
 
-  void addUserData(data){
-    if (data != null) {
-      var dataJson = jsonDecode(data.toString());
-      writeLogin(dataJson['Phone'].toString(), dataJson['SessionToken'].toString());
-      writeKey(dataJson['KEY'].toString());
-      writeUid(dataJson['UID'].toString());
-    } else {
-      InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Masulot bo\'sh'.tr, true, 3);
-    }
-  }
-
-
   @override
   void onClose() {
     controller?.dispose();

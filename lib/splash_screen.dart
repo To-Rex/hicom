@@ -12,21 +12,18 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //_getController.addUserData(' {"Phone":"+998916848100","SessionToken":"ivEWz4iyP2UZ348HRyF3JKNMuppBSGCNL3a2fnRJolJIpjQUEOlJH208aXBdQtfQ","KEY":"a2tB333raC8y74dt","UID":"2025b25f25ce9ad98d6047ff0dc105b5"}');
     try {
       Future.delayed(const Duration(seconds: 2), () {
         _getController.sec.value = _getController.sec.value + 1;
         if(_getController.sec.value == 1){
-          debugPrint('uuuuuu111   ${_getController.sec}');
           if(_getController.getUid() != '' && _getController.getKey() != '50UvFayZ2w5u3O9B') {
             Get.offAll(SamplePage());
           } else {
             Get.offAll(LoginPage(), transition: Transition.fadeIn);
           }
-        }else{
-          debugPrint('${_getController.sec}');
+        } else{
+          Get.to(const ErrorPage());
         }
-        //Get.to(ErrorPage());
       });
     } catch (e) {
       debugPrint('SplashScreen error: $e');
