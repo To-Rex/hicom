@@ -610,7 +610,6 @@ class ApiController extends GetxController {
         debugPrint(e.toString());
       }
       if (realTime) {
-        //_getController.getRealTime(pidId, sn, realTime);
         Timer(const Duration(seconds: 5), () {
           if (_getController.whileApi.isTrue) {
             getSwitchDetailRealTime(pidId, sn, realTime);
