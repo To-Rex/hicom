@@ -61,7 +61,7 @@ class SamplePage extends StatelessWidget {
             controller: _refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Obx(() => _getController.searchProjectModel.value.admin != null && _getController.searchProjectModel.value.join!.isNotEmpty &&  _getController.searchProjectModel.value.join!.length > 0 || _getController.searchProjectModel.value.join != null && _getController.searchProjectModel.value.admin!.isNotEmpty && _getController.searchProjectModel.value.admin!.length > 0
+                child: Obx(() => _getController.searchProjectModel.value.admin != null && _getController.searchProjectModel.value.join!.isNotEmpty || _getController.searchProjectModel.value.join != null && _getController.searchProjectModel.value.admin!.isNotEmpty
                     ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

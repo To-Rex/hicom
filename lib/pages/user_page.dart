@@ -76,7 +76,6 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _getController.getUser();
     _getController.nameController.text = _getController.loginModel.value.user?.name ?? '';
-    ApiController().getSettings();
     return Scaffold(
         appBar: AppBar(leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05),)),
         body: SmartRefresher(
@@ -196,6 +195,7 @@ class UserPage extends StatelessWidget {
                                       icon: Icon(TablerIcons.headphones, color: Theme.of(context).colorScheme.onSurface, size: Get.height * 0.04),
                                       title: 'Qo‘llab quvvatlash'.tr,
                                       onTap: () {
+                                        ApiController().getSettings();
                                         Get.to(() => SupportPage(), transition: Transition.fadeIn);
                                       },
                                       color: Theme.of(context).colorScheme.onSurface,

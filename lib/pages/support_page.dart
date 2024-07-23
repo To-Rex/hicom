@@ -23,7 +23,7 @@ class SupportPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Get.back()),
         ),
-      body: Column(
+      body: Obx(() => Column(
         children: [
           SizedBox(height: Get.height * 0.02),
           if (_getController.settingsInfoModel.value.settings != null)
@@ -85,38 +85,38 @@ class SupportPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (_getController.getSettings('ContactTelegram') != '')
-              IconButton(
-                  onPressed: () {
-                    print(_getController.getSettings('ContactTelegram'));
-                    launchUrl(Uri.parse(_getController.getSettings('ContactTelegram')));
-                  },
-                  icon: Icon(
-                      TablerIcons.brand_telegram,
-                      color: AppColors.primaryColor,
-                      size: Get.height * 0.04)
-              ),
+                IconButton(
+                    onPressed: () {
+                      print(_getController.getSettings('ContactTelegram'));
+                      launchUrl(Uri.parse(_getController.getSettings('ContactTelegram')));
+                    },
+                    icon: Icon(
+                        TablerIcons.brand_telegram,
+                        color: AppColors.primaryColor,
+                        size: Get.height * 0.04)
+                ),
               if (_getController.getSettings('ContactTelegram') != '')
-              SizedBox(width: Get.width * 0.01),
+                SizedBox(width: Get.width * 0.01),
               if (_getController.getSettings('ContactFacebook') != '')
-              IconButton(
-                  onPressed: () {
-                    launchUrl(Uri.parse(_getController.getSettings('ContactFacebook')));
-                  },
-                  icon: Icon(TablerIcons.brand_facebook,
-                      color: AppColors.primaryColor,
-                      size: Get.height * 0.04)
-              ),
+                IconButton(
+                    onPressed: () {
+                      launchUrl(Uri.parse(_getController.getSettings('ContactFacebook')));
+                    },
+                    icon: Icon(TablerIcons.brand_facebook,
+                        color: AppColors.primaryColor,
+                        size: Get.height * 0.04)
+                ),
               if (_getController.getSettings('ContactFacebook') != '')
-              SizedBox(width: Get.width * 0.01),
+                SizedBox(width: Get.width * 0.01),
               if (_getController.getSettings('ContactInstagram') != '')
-              IconButton(
-                  onPressed: () {
-                    launchUrl(Uri.parse(_getController.getSettings('ContactInstagram')));
-                  },
-                  icon: Icon(TablerIcons.brand_instagram,
-                      color: AppColors.primaryColor,
-                      size: Get.height * 0.04)
-              ),
+                IconButton(
+                    onPressed: () {
+                      launchUrl(Uri.parse(_getController.getSettings('ContactInstagram')));
+                    },
+                    icon: Icon(TablerIcons.brand_instagram,
+                        color: AppColors.primaryColor,
+                        size: Get.height * 0.04)
+                ),
             ],
           ),
           SizedBox(height: Get.height * 0.03),
@@ -126,7 +126,7 @@ class SupportPage extends StatelessWidget {
           ),
           SizedBox(height: Get.height * 0.02),
         ],
-      )
+      ))
     );
   }
 
