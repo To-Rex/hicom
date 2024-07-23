@@ -260,6 +260,30 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> getProjectsHide() async {
+    debugPrint('getProjects');
+    if(_getController.isRequest.isTrue) {
+      _getController.setRequest();
+      try {
+        var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjmng', _getController.getUid()) + Tea.encryptTea('{}', _getController.getKey())}&key=${_getController.getKey()}'), headers: headers);
+        debugPrint(response.body.toString());
+        debugPrint(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString());
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
+            InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+            login(_getController.getNumber(), _getController.getSession(), _getController.getKey(), false);
+          } else{
+            _getController.getProject(ProjectModel.fromJson(jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()))));
+          }
+        } else {
+          InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
+        }
+      } catch (e){
+        InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
+      }
+    }
+  }
+
   Future<void> renameProjects(pidId, name, note) async {
     try {
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "name": name}), _getController.getKey());
@@ -405,9 +429,9 @@ class ApiController extends GetxController {
         }
         else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
           _getController.setIsBack();
-          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi'.tr, false, 2);
+          InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Yangi loyiha qo‘shildi'.tr, false, 1);
           _getController.clearControllers();
-          _getController.tapTimes(getProjects);
+          getProjectsHide();
         }
       } else {
         _getController.setIsBack();
