@@ -641,8 +641,8 @@ class InstrumentComponents {
 
   void restartDialog(BuildContext context,String pidId, String sn) => Get.dialog(
       AlertDialog(
-          title: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
-          content: Text('Hisobdan chiqishni xohlaysizmi?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
+          title: Text('Diqqat!'.tr, style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: Get.width * 0.05)),
+          content: Text('Qurilmani o‘chirib yoqish'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04)),
           actions: [
             TextButton(
                 onPressed: () => Get.back(),
