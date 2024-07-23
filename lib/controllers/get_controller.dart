@@ -458,6 +458,7 @@ class GetController extends GetxController {
   final countdownDuration = const Duration(minutes: 1, seconds: 59).obs;
   Timer? _timer;
   void startTimer() {
+    if (_timer != null && _timer!.isActive) _timer!.cancel();
     if (countdownDuration.value.inSeconds > 0) {
       const oneSec = Duration(seconds: 1);
       _timer = Timer.periodic(
@@ -476,7 +477,7 @@ class GetController extends GetxController {
 
   void resetTimer() {
     if (_timer != null && _timer!.isActive) {
-      _timer!.cancel();
+      stopTimer();
     }
     countdownDuration.value = const Duration(minutes: 1, seconds: 59);
     startTimer();
