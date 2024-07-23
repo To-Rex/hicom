@@ -49,13 +49,6 @@ class GetController extends GetxController {
     width.value = MediaQuery.of(context).size.width;
   }
 
-  /*void setRequest() {
-    isRequest.value = false;
-    Future.delayed(const Duration(milliseconds: 2000), () {
-      isRequest.value = true;
-    });
-  }*/
-
   var timer = Timer.periodic(const Duration(seconds: 2), (timer) {});
 
   void setRequest() {
@@ -758,8 +751,6 @@ class GetController extends GetxController {
     Get.updateLocale(locale);
   }
 
-  Locale get language {
-    return Locale(GetStorage().read('language') ?? 'uz_UZ');
-  }
+  Locale get language => Locale(GetStorage().read('language') ?? 'uz_UZ');
 
 }
