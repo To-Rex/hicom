@@ -86,12 +86,12 @@ class EditUser extends StatelessWidget {
                                 ),
                                 onSelect: (Country country) {
                                   _getController.changeDropDownItemsTitle(0,country.name.toString());
+                                  if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' || _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
+                                    ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions');
+                                  }
+                                  _getController.changeDropDownItemsTitle(0,country.name.toString());
                                 }
                             ),
-                            if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr){
-                              ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions')
-                            } else {
-                              }
                           }),
                     ),
                     if (_getController.dropDownItemsTitle[0] == 'Uzbekistan'.tr && _getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
