@@ -49,9 +49,6 @@ class GetController extends GetxController {
     width.value = MediaQuery.of(context).size.width;
   }
 
-
-
-
   /*void setRequest() {
     isRequest.value = false;
     Future.delayed(const Duration(milliseconds: 2000), () {
@@ -78,19 +75,6 @@ class GetController extends GetxController {
     } catch (e) {
       back.value = true;
     }
-
-  }
-
-  void tapTimes(Function onTap) {
-    try {
-      if (timer.isActive) timer.cancel();
-      timer = Timer.periodic(const Duration(seconds: 2), (timer) {
-        onTap();
-      });
-    } catch (e) {
-      onTap();
-    }
-
   }
 
   void onLoad() {onLoading.value = true;}
