@@ -507,8 +507,7 @@ class InstrumentComponents {
                         Container(
                           padding: EdgeInsets.only(left: Get.width * 0.035, right: Get.width * 0.035),
                           width: Get.width,
-                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz-UZ'? '"$name" ' :''}${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}',
-                              style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
+                          child: Text('${_getController.getLanguage() == 'oz_OZ'|| _getController.getLanguage() == 'uz-UZ'? '"$name" ' :''}${'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?'.tr} ${_getController.getLanguage() == 'ru_RU'|| _getController.getLanguage() == 'en_US'? '"$name"?' :''}\n${'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi'.tr}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize)
                         )),
                         SizedBox(height: Get.height * 0.04),
                         Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
