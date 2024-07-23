@@ -98,7 +98,7 @@ class LocaleString extends Translations{
       'Loyihani o’chirish':'Loyihani o’chirish',
       'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?',
       'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi.',
-      'O‘chirishni tasdiqlang':'O‘chirishni tasdiqlang',
+      'O‘chirishni tasdiqlang':'O‘chirishni tasdiqlash',
 
       'Kuzatuvchilar':'Kuzatuvchilar',
       'Ulashish':'Ulashish',
@@ -535,7 +535,7 @@ class LocaleString extends Translations{
       'Loyihani o’chirish':'Лойиҳани ўчириш',
       'nomli loyihani haqiqatdan ham o‘chirishni xohlaysizmi?':'номли лойиҳани ҳақиқатдан ҳам ўчиришни хоҳлайсизми?',
       'Loyihani o‘chirilganda uning ichidagi qurilmalar ham o‘chiriladi':'Лойиҳани ўчирилганда унинг ичидаги қурилмалар ҳам ўчирилади.',
-      'O‘chirishni tasdiqlang':'Ўчиришни тасдиқланг',
+      'O‘chirishni tasdiqlang':'Ўчиришни тасдиқлаш',
 
       'Kuzatuvchilar':'Кузатувчилар',
       'Ulashish':'Улашиш',
