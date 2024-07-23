@@ -79,7 +79,7 @@ class GetController extends GetxController {
   }
 
   void tapTimes(Function onTap, int sec) {
-    _timer?.cancel();
+    if (_timer != null) stopTimer();
     _timer = Timer(Duration(seconds: sec), () {
       onTap();
       _timer = null;
