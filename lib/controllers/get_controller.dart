@@ -588,7 +588,6 @@ class GetController extends GetxController {
   static const int portTypeLan4 = -97;
   static const int portTypeSfp = -50;
 
-
   List<String> getPortMap(int type) {
     switch (type) {
       case switchTypeF411:
