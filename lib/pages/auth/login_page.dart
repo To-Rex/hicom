@@ -18,11 +18,11 @@ class LoginPage extends StatelessWidget {
     _getController.phoneController.clear();
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()),
-        actions: [
-          IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed:() => InstrumentComponents().languageDialog(context)),
-          //IconButton(onPressed: () {_getController.setRequest();AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();}, icon: Icon(Theme.of(context).brightness != Brightness.dark ? TablerIcons.sun : TablerIcons.moon, color: Theme.of(context).colorScheme.onSurface, size: Get.width * 0.07))
-        ]
+          automaticallyImplyLeading: false,
+          leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()),
+          actions: [
+            IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed:() => InstrumentComponents().languageDialog(context)),
+          ]
       ),
       body: Column(
         children: [
