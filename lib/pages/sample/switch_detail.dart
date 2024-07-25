@@ -113,7 +113,7 @@ class SwitchDetailPage extends StatelessWidget {
                                     ]
                                 )
                             )
-                          ],
+                          ]
                         )
                     ),
                     Expanded(
