@@ -75,7 +75,7 @@ class UserPage extends StatelessWidget {
     _getController.getUser();
     _getController.nameController.text = _getController.loginModel.value.user?.name ?? '';
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent, leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05),)),
+        appBar: AppBar(backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent, leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()), centerTitle: true, title: Text('Mening hisobim'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.titleLarge!.fontSize, fontWeight: FontWeight.w400))),
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,

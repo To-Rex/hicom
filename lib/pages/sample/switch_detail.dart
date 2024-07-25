@@ -49,7 +49,7 @@ class SwitchDetailPage extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
-            title: Text('Qurilma haqida'.tr),
+            title: Text('Qurilma haqida'.tr,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.titleLarge!.fontSize, fontWeight: FontWeight.w400)),
             centerTitle: true,
             leading: IconButton(icon: Icon(Icons.arrow_back, size:Get.height * 0.035), onPressed: () => {Get.back()}),
           ),

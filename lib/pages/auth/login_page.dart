@@ -18,6 +18,7 @@ class LoginPage extends StatelessWidget {
     _getController.phoneController.clear();
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
           automaticallyImplyLeading: false,
           leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back()),
           actions: [

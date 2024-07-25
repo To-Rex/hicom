@@ -101,14 +101,15 @@ class RegisterPage extends StatelessWidget{
     ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions');
      return Scaffold(
       appBar: AppBar(
-        title: Text('Ma’lumotlarni kiriting'.tr),
-        centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.06), onPressed: () => Get.back()),
-        actions: [
-          IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed: () {
-            bottomBuildLanguageDialog(context);
-          })
-        ]
+          backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
+          title: Text('Ma’lumotlarni kiriting'.tr,style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.titleLarge!.fontSize, fontWeight: FontWeight.w400)),
+          centerTitle: true,
+          leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.06), onPressed: () => Get.back()),
+          actions: [
+            IconButton(icon: Icon(Icons.language, size: Get.width * 0.06), onPressed: () {
+              bottomBuildLanguageDialog(context);
+            })
+          ]
       ),
       body: Obx(() => SingleChildScrollView(
           child: Column(

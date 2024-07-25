@@ -30,7 +30,7 @@ class EditUser extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
-          title: Text('Hisobni taxrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05, fontWeight: FontWeight.w500)),
+          title: Text('Hisobni taxrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.titleLarge!.fontSize, fontWeight: FontWeight.w400)),
           centerTitle: true,
           leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back())
       ),
