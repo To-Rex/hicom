@@ -34,7 +34,7 @@ class SwitchDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _getController.whileApi.value = true;
-    ApiController().getSwitchDetailRealTime(pidId.toString(), sn.toString(),true);
+    //ApiController().getSwitchDetailRealTime(pidId.toString(), sn.toString(),true);
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
     _getController.tabController.animateTo(1);
     return PopScope(
@@ -77,6 +77,17 @@ class SwitchDetailPage extends StatelessWidget {
                               ? PortItems16(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)), ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)), portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(sn!)))
                               : PortItems(data: _getController.getPortMap(_getController.typeFromSerialNumber(sn!)),ports: _getController.getPortType(_getController.switchDetailModel.value.detail!.link,_getController.switchDetailModel.value.detail!.snr,_getController.typeFromSerialNumber(sn!)), portsIcons: _getController.getPortTypeIcons(_getController.typeFromSerialNumber(sn!))
                           )
+                      )
+                    else
+                      Container(
+                          width: Get.width,
+                          height: Get.height * 0.1,
+                          padding: EdgeInsets.all(Get.height * 0.01),
+                          margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1), borderRadius: BorderRadius.circular(11)),
+                          child: const Center(child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(AppColors.blue),
+                          ))
                       ),
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.01), child: InkWell(
                             onTap: () {

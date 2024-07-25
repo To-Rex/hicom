@@ -677,7 +677,7 @@ class InstrumentComponents {
         content: SizedBox(
           width: Get.width,
           height: Get.height * 0.055,
-          child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [CircularProgressIndicator(color: Theme.of(context).colorScheme.primary)])
+          child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [CircularProgressIndicator(color: Theme.of(context).colorScheme.primary,valueColor: const AlwaysStoppedAnimation<Color>(AppColors.blue))])
         )
       )
     );
