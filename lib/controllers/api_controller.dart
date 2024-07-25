@@ -72,10 +72,10 @@ class ApiController extends GetxController {
           //Get.to(VerifyPage());
           Get.to(VerifyPageNumber(phoneNumber: _getController.code.value + _getController.phoneController.text));
         } else {
-          _getController.setIsBack();
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi', true, 3);
         }
       } else {
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Xatolik yuz berdi', true, 3);
       }
     } catch(e) {
@@ -565,31 +565,29 @@ class ApiController extends GetxController {
   Future<void> getSwitchDetail(String pidId, String sn) async {
     InstrumentComponents().loadingDialogs(Get.context!);
     try {
-      //_getController.whileApi.value = true;
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, 'isJoin': "1"}), _getController.getKey());
       debugPrint('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}');
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swdet', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
+        _getController.setIsBack();
         debugPrint(Tea.decryptTea(response.body, _getController.getKey()).toString());
-        if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) == '') {
-          _getController.setIsBack();
-        } else{
+        if (jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) != null || jsonDecode(Tea.decryptTea(response.body.toString(), _getController.getKey()).toString()) != '') {
           if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 0) {
             _getController.changeSwitchDetailModel(SwitchDetailModel.fromJson(jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))));
           } else if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()))['errcode'] == 10002) {
-            _getController.setIsBack();
             InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos hisobingizga qaytadan kiriting.'.tr, true, 3);
           } else {
             InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
           }
         }
       } else {
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e) {
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
-    _getController.setIsBack();
   }
 
   Future<void> getSwitchDetailRealTime(String pidId, String sn, bool realTime) async {

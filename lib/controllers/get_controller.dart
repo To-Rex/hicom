@@ -24,10 +24,10 @@ class GetController extends GetxController {
   var height = 0.0.obs;
   var width = 0.0.obs;
   var sec = 0.obs;
-  RxBool isRequest = false.obs;
+  RxBool isRequest = true.obs;
   RxBool isSearch = false.obs;
   RxBool isNightMode = false.obs;
-  RxBool back = false.obs;
+  RxBool back = true.obs;
   var code = '+998'.obs;
   RxList<int> dropDownItems = <int>[0, 0, 0, 0].obs;
   RxList<String> dropDownItemsTitle = <String>['Uzbekistan'].obs;
@@ -60,15 +60,7 @@ class GetController extends GetxController {
   }
 
   void setIsBack() {
-    try{
-      back.value = false;
-      Future.delayed(const Duration(seconds: 1), () {
-        back.value = true;
-      });
-    } catch (e) {
-      back.value = true;
-    }
-
+    back.value = false;
   }
 
   void tapTimes(Function onTap, int sec) {
