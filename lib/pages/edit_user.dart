@@ -27,9 +27,9 @@ class EditUser extends StatelessWidget {
     _getController.dropDownItemsTitle[0] = 'Uzbekistan'.tr;
     ApiController().getRegions('I0N7xNMEgeesBx/mXPInIb0=','regions').then((value) => _getController.getProvince()).then((value) =>ApiController().getRegions(Tea.encryptTea('{"country_id": 1,"region_id": ${_getController.provinceModel.value.regions![_getController.dropDownItems[0]].id.toString()}}',ApiController.key), 'districts').then((value) => _getController.getDistricts()));
 
-    //ApiController().getRegions('I0N7xNMEgeesBx/mXPInISow/TDVbdLGAOLl9weENjw=','districts');
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
           title: Text('Hisobni taxrirlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05, fontWeight: FontWeight.w500)),
           centerTitle: true,
           leading: IconButton(icon: Icon(Icons.arrow_back, size: Get.width * 0.07), onPressed: () => Get.back())

@@ -47,6 +47,7 @@ class SwitchList extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
                 backgroundColor: Colors.transparent,
+                surfaceTintColor: Colors.transparent,
                 title: Obx(() => Text(_getController.isSearch.value ? ''.tr : 'Qurilmalar ro‘yxati'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05))),
                 leading: Obx(() => IconButton(icon: Icon(_getController.isSearch.value ? Icons.arrow_back : Icons.arrow_back,  size: Get.height * 0.035), onPressed: () => {
                   if (_getController.isSearch.value){

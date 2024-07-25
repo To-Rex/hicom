@@ -34,7 +34,7 @@ class SwitchDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _getController.whileApi.value = true;
-    //ApiController().getSwitchDetailRealTime(pidId.toString(), sn.toString(),true);
+    ApiController().getSwitchDetailRealTime(pidId.toString(), sn.toString(),true);
     _getController.tabController = TabController(length: 3, vsync: Navigator.of(context) as TickerProvider);
     _getController.tabController.animateTo(1);
     return PopScope(
@@ -48,13 +48,10 @@ class SwitchDetailPage extends StatelessWidget {
       },
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
             title: Text('Qurilma haqida'.tr),
             centerTitle: true,
             leading: IconButton(icon: Icon(Icons.arrow_back, size:Get.height * 0.035), onPressed: () => {Get.back()}),
-            /*actions: [
-              IconButton(icon: Icon(Icons.settings, size: Get.height * 0.035), onPressed: () => {Get.back()})
-            ],*/
           ),
           body: SmartRefresher(
               enablePullDown: true,

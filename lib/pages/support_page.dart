@@ -15,14 +15,10 @@ class SupportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Qo‘llab quvvatlash'.tr,
-          style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05),
-        ),
+        backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
+        title: Text('Qo‘llab quvvatlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.05)),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Get.back()),
-        ),
+        leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Get.back())),
       body: Obx(() => Column(
         children: [
           SizedBox(height: Get.height * 0.02),

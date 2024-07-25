@@ -16,10 +16,7 @@ class AddSwitchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Qurilma qo‘shish'.tr),
-        centerTitle: true,
-      ),
+      appBar: AppBar(backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent, title: Text('Qurilma qo‘shish'.tr), centerTitle: true),
       body: SingleChildScrollView(
         child: Column(
             children: [

@@ -13,24 +13,15 @@ class QRViewExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QR Kodni Skaynerlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500)),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color:Theme.of(context).colorScheme.onSurface, size: Get.width * 0.06),
-          onPressed: () => Get.back()
-        ),
-        actions: [
-          Obx(() => IconButton(
-              icon: Icon(_getController.cameraFacing.value == CameraFacing.front ? Icons.camera_rear : Icons.camera_front, color: Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05),
-              onPressed: _getController.toggleCamera
-            )),
-          Obx(() => IconButton(
-              icon: Icon(
-                _getController.isLampOn.value ? Icons.flashlight_off : Icons.flashlight_on,
-                color: Theme.of(context).colorScheme.onSurface,
-                size: Get.width * 0.05
-              ),
-              onPressed: _getController.toggleLamp
-            ))
+          backgroundColor: Colors.transparent,surfaceTintColor: Colors.transparent,
+          title: Text('QR Kodni Skaynerlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.045, fontWeight: FontWeight.w500)),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back, color:Theme.of(context).colorScheme.onSurface, size: Get.width * 0.06),
+              onPressed: () => Get.back()
+          ),
+          actions: [
+            Obx(() => IconButton(icon: Icon(_getController.cameraFacing.value == CameraFacing.front ? Icons.camera_rear : Icons.camera_front, color: Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05), onPressed: _getController.toggleCamera)),
+            Obx(() => IconButton(icon: Icon(_getController.isLampOn.value ? Icons.flashlight_off : Icons.flashlight_on, color: Theme.of(context).colorScheme.onSurface, size: Get.width * 0.05), onPressed: _getController.toggleLamp))
         ]
       ),
       body: Obx(() => Stack(
