@@ -696,18 +696,24 @@ class ApiController extends GetxController {
 
   Future<void> switchReboot(pidId, sn) async {
     try {
+      InstrumentComponents().loadingDialogs(Get.context!);
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swreb', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       if (response.statusCode == 200 || response.statusCode == 201) {
+        _getController.setIsBack();
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 0) {
+          Get.back();
+          getSwitchList(pidId);
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Qurilma qayta ishga tushdi.'.tr, false, 2);
         } else {
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
         }
       } else {
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }

@@ -728,6 +728,7 @@ class InstrumentComponents {
             ),
             TextButton(
                 onPressed: () => {
+                  Get.back(),
                   ApiController().switchReboot(pidId.toString(), sn.toString())
                 },
                 child: Text('Ha'.tr)
