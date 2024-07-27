@@ -286,11 +286,13 @@ class ApiController extends GetxController {
 
   Future<void> renameProjects(pidId, name, note) async {
     try {
+      InstrumentComponents().loadingDialogs(Get.context!);
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "name": name}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('prjren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       debugPrint(response.body);
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
+        _getController.setIsBack();
         debugPrint('shuda ${Tea.decryptTea(response.body, _getController.getKey()).toString()}');
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
           Get.back();
@@ -304,9 +306,11 @@ class ApiController extends GetxController {
           }
         }
       } else {
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
@@ -323,6 +327,7 @@ class ApiController extends GetxController {
         if (jsonDecode(Tea.decryptTea(response.body, _getController.getKey()).toString())['errcode'] == 20000) {
           InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Sizda bunday huquq mavjud emas!'.tr, true, 3);
         } else {
+          Get.back();
           getProjects();
         }
       } else {
@@ -508,11 +513,13 @@ class ApiController extends GetxController {
 
   Future<void> renameSwitch(pidId, sn) async {
     try {
+      InstrumentComponents().loadingDialogs(Get.context!);
       var json = Tea.encryptTea(jsonEncode({"pid": pidId, "sn": sn, "name": _getController.nameProjectController.text}), _getController.getKey());
       var response = await post(Uri.parse('${_baseUrl + _getController.getQueryString('swren', _getController.getUid()) + json.toString()}&key=${_getController.getKey()}'), headers: headers);
       debugPrint(response.body);
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
+        _getController.setIsBack();
         if (_getController.noteProjectController.text == '') {
           Get.back();
           InstrumentComponents().showToast(Get.context!, 'Muvaffaqiyatli', 'Ma’lumot o’zgartirildi'.tr, false, 2);
@@ -521,9 +528,11 @@ class ApiController extends GetxController {
           renameSwitchNote(pidId, sn);
         }
       } else {
+        _getController.setIsBack();
         InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Serverga ulanishda xatolik yuz berdi.'.tr, true, 3);
       }
     } catch (e){
+      _getController.setIsBack();
       InstrumentComponents().showToast(Get.context!, 'Xatolik', 'Iltimos ulanishni tekshiring!'.tr, true, 3);
     }
   }
