@@ -153,14 +153,9 @@ class RegisterPage extends StatelessWidget{
                                   )
                               ),
                               onSelect: (Country country) {
+                                _getController.changeDropDownItemsTitle(0,country.name.toString());
                                 if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' || _getController.dropDownItemsTitle[0] == 'Uzbekistan') {
                                   ApiController().getRegions(Tea.encryptTea('{"country_id": 1}', '50UvFayZ2w5u3O9B'),'regions');
-                                } else {
-                                  _getController.clearDistrictsModel();
-                                  _getController.clearProvinceModel();
-                                  _getController.dropDownItems[0] = 0;
-                                  _getController.dropDownItems[1] = 0;
-                                  _getController.dropDownItems[2] = 0;
                                 }
                                 _getController.changeDropDownItemsTitle(0,country.name.toString());
                               }
