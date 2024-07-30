@@ -159,8 +159,8 @@ class RegisterPage extends StatelessWidget{
                                 }
                                 _getController.changeDropDownItemsTitle(0,country.name.toString());
                               }
-                          ),
-                        }),
+                          )
+                        })
                   ),
                   if (_getController.dropDownItemsTitle[0] == 'Uzbekistan' && _getController.provinceModel.value.regions != null && _getController.provinceModel.value.regions!.isNotEmpty)
                     Padding(padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03), child:Text('${'Viloyat'.tr}:', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Get.width * 0.04))),
@@ -196,7 +196,7 @@ class RegisterPage extends StatelessWidget{
                         title: _getController.dropDownItem[_getController.dropDownItems[2]].toString(),
                         onTap: () => {
                           InstrumentComponents().bottomBuildLanguageDialog(context,'Foydalanuvchi turi'.tr,2)
-                        }),
+                        })
                   ),
                   SizedBox(height: Get.height * 0.05),
                   Container(
@@ -221,7 +221,7 @@ class RegisterPage extends StatelessWidget{
                               child: Center(child: Text('Saqlash'.tr, style: TextStyle(color: AppColors.white, fontSize: Get.width * 0.04))))
                       )
                   ),
-                  SizedBox(height: Get.height * 0.01),
+                  SizedBox(height: Get.height * 0.01)
                 ]
           )))
     );
